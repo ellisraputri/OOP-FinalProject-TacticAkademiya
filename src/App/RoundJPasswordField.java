@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package App;
 
 import java.awt.BasicStroke;
@@ -7,15 +11,15 @@ import java.awt.Insets;
 import java.awt.Shape;
 import java.awt.Stroke;
 import java.awt.geom.RoundRectangle2D;
-import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
-public class RoundJTextField extends JTextField {
+public class RoundJPasswordField extends JPasswordField {
     private Shape shape;
     private final Insets insets;
 
-    public RoundJTextField(int size) {
+    public RoundJPasswordField(int size) {
         super(size);
-        setOpaque(false); // As suggested by @AVD in comment.
+        setOpaque(false); // Make the component non-opaque
         // Define the insets (top, left, bottom, right)
         insets = new Insets(11, 12, 11, 12); // Adjust these values as needed
     }
