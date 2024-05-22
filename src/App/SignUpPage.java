@@ -4,12 +4,15 @@
  */
 package App;
 
+import java.sql.*;
+import DatabaseConnection.ConnectionProvider;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -174,6 +177,9 @@ public class SignUpPage extends javax.swing.JFrame {
         hidePasswordConfirm.setVisible(false);
         passwordConfirmField.setEchoChar('*');
         
+        
+        
+        
         revalidate();
         repaint();
     }
@@ -291,6 +297,8 @@ public class SignUpPage extends javax.swing.JFrame {
         hidePassword = new javax.swing.JLabel();
         hidePasswordConfirm = new javax.swing.JLabel();
         showPasswordConfirm = new javax.swing.JLabel();
+        registerLabel = new javax.swing.JLabel();
+        registerButton = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -344,16 +352,17 @@ public class SignUpPage extends javax.swing.JFrame {
                 loginLabelMouseExited(evt);
             }
         });
-        getContentPane().add(loginLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 581, -1, -1));
+        getContentPane().add(loginLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 590, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(179, 119, 50));
         jLabel4.setText("Already have an account? ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(721, 581, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 590, -1, -1));
 
         jSeparator1.setBackground(new java.awt.Color(179, 119, 50));
         jSeparator1.setForeground(new java.awt.Color(179, 119, 50));
         jSeparator1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jSeparator1.setOpaque(true);
         jSeparator1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jSeparator1MouseClicked(evt);
@@ -365,7 +374,7 @@ public class SignUpPage extends javax.swing.JFrame {
                 jSeparator1MouseExited(evt);
             }
         });
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 600, 60, 20));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 610, 60, 1));
 
         showPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/show_password.png"))); // NOI18N
         showPassword.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -393,7 +402,7 @@ public class SignUpPage extends javax.swing.JFrame {
                 hidePasswordMouseExited(evt);
             }
         });
-        getContentPane().add(hidePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 415, -1, -1));
+        getContentPane().add(hidePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 415, -1, 20));
 
         hidePasswordConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/hide_password.png"))); // NOI18N
         hidePasswordConfirm.setToolTipText("");
@@ -423,6 +432,36 @@ public class SignUpPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(showPasswordConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 533, -1, -1));
+
+        registerLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
+        registerLabel.setForeground(new java.awt.Color(255, 255, 255));
+        registerLabel.setText("Register");
+        registerLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registerLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                registerLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                registerLabelMouseExited(evt);
+            }
+        });
+        getContentPane().add(registerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(835, 637, -1, -1));
+
+        registerButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button1.png"))); // NOI18N
+        registerButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registerButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                registerButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                registerButtonMouseExited(evt);
+            }
+        });
+        getContentPane().add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 628, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_signup.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
@@ -538,6 +577,159 @@ public class SignUpPage extends javax.swing.JFrame {
     private void showPasswordConfirmMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPasswordConfirmMouseExited
         showPasswordConfirm.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_showPasswordConfirmMouseExited
+
+    private void registerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerButtonMouseClicked
+        String username = usernameField.getText();
+        String email = emailField.getText();
+        String password = passwordField.getText();
+        String passwordConfirm = passwordConfirmField.getText();
+        
+        if(username.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Username is still empty.");
+        }
+        else if(email.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Email is still empty.");
+        }
+        else if(password.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Password is still empty.");
+        }
+        else if(passwordConfirm.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Confirm Password is still empty.");
+        }
+        else{
+           if(!(validateEmail(email))){
+                JOptionPane.showMessageDialog(getContentPane(), "Please input a correct email.");
+           }
+           
+           if(!(password.equals(passwordConfirm))){
+               JOptionPane.showMessageDialog(getContentPane(), "Password and Confirm Password is not the same.");
+           }
+           else{
+               if(!(validatePassword(password))){
+                    JOptionPane.showMessageDialog(getContentPane(), "Password must have 8 characters with at least one number and one character");
+               }
+           }
+           
+           
+           if(password.equals(passwordConfirm) && validateEmail(email) && validatePassword(password)){
+               try{
+                   Connection con = ConnectionProvider.getCon();
+                   Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                   ResultSet rs = st.executeQuery("select count(id) from user");
+                   int newId=0;
+                   if(rs.first()){
+                       int id = rs.getInt(1);
+                       newId = id + 1;
+                   }
+                   else{
+                       newId = 1;
+                   }
+                   
+                   String str = "insert into user values(?,?,?,?)";
+                   PreparedStatement ps = con.prepareStatement(str);
+                   ps.setInt(1, newId);
+                   ps.setString(2, username);
+                   ps.setString(3, email);
+                   ps.setString(4, password);
+                   ps.executeUpdate();
+                   
+                   setVisible(false);
+                   new ListCharacter().setVisible(true);
+                   
+               }catch(Exception e){
+                   JOptionPane.showMessageDialog(getContentPane(), e);
+               }
+           }
+        }
+    }//GEN-LAST:event_registerButtonMouseClicked
+
+    private void registerButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerButtonMouseEntered
+        registerButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button2.png")));
+        registerButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        registerLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_registerButtonMouseEntered
+
+    private void registerButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerButtonMouseExited
+        registerButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button1.png")));
+        registerButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        registerLabel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_registerButtonMouseExited
+
+    private void registerLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerLabelMouseClicked
+        String username = usernameField.getText();
+        String email = emailField.getText();
+        String password = passwordField.getText();
+        String passwordConfirm = passwordConfirmField.getText();
+        
+        if(username.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Username is still empty.");
+        }
+        else if(email.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Email is still empty.");
+        }
+        else if(password.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Password is still empty.");
+        }
+        else if(passwordConfirm.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Confirm Password is still empty.");
+        }
+        else{
+           if(!(validateEmail(email))){
+                JOptionPane.showMessageDialog(getContentPane(), "Please input a correct email.");
+           }
+           
+           if(!(password.equals(passwordConfirm))){
+               JOptionPane.showMessageDialog(getContentPane(), "Password and Confirm Password is not the same.");
+           }
+           else{
+               if(!(validatePassword(password))){
+                    JOptionPane.showMessageDialog(getContentPane(), "Password must have 8 characters with at least one number and one character");
+               }
+           }
+           
+           if(password.equals(passwordConfirm) && validateEmail(email) && validatePassword(password)){
+               try{
+                   Connection con = ConnectionProvider.getCon();
+                   Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                   ResultSet rs = st.executeQuery("select count(id) from user");
+                   int newId=0;
+                   if(rs.first()){
+                       int id = rs.getInt(1);
+                       newId = id + 1;
+                   }
+                   else{
+                       newId = 1;
+                   }
+                   
+                   String str = "insert into user values(?,?,?,?)";
+                   PreparedStatement ps = con.prepareStatement(str);
+                   ps.setInt(1, newId);
+                   ps.setString(2, username);
+                   ps.setString(3, email);
+                   ps.setString(4, password);
+                   ps.executeUpdate();
+                   
+                   setVisible(false);
+                   new ListCharacter().setVisible(true);
+                   
+               }catch(Exception e){
+                   JOptionPane.showMessageDialog(getContentPane(), e);
+               }
+           }
+        }
+    }//GEN-LAST:event_registerLabelMouseClicked
+
+    private void registerLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerLabelMouseEntered
+        registerButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button2.png")));
+        registerButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        registerLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_registerLabelMouseEntered
+
+    private void registerLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerLabelMouseExited
+        registerButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button1.png")));
+        registerButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        registerLabel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_registerLabelMouseExited
     
     private void usernameFieldFocusLost(java.awt.event.FocusEvent evt) {                                   
         String text = usernameField.getText();
@@ -664,6 +856,8 @@ public class SignUpPage extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JLabel registerButton;
+    private javax.swing.JLabel registerLabel;
     private javax.swing.JLabel showPassword;
     private javax.swing.JLabel showPasswordConfirm;
     private javax.swing.JLabel usernameLabel;

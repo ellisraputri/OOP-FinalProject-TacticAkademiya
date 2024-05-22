@@ -68,7 +68,7 @@ public class WelcomePage extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         setVisible(false);
-        new SignUpPage().setVisible(true);
+        new LoginPage().setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
