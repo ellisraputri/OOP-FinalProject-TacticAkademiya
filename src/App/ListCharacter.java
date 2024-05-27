@@ -4,6 +4,9 @@
  */
 package App;
 
+import java.awt.Cursor;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author asus
@@ -15,6 +18,7 @@ public class ListCharacter extends javax.swing.JFrame {
      */
     public ListCharacter() {
         initComponents();
+        
     }
 
     /**
@@ -26,21 +30,178 @@ public class ListCharacter extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel3 = new javax.swing.JLabel();
+        nextLabel = new javax.swing.JLabel();
+        nextButton = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/back1.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel3MouseExited(evt);
+            }
+        });
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        nextLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
+        nextLabel.setForeground(new java.awt.Color(255, 255, 255));
+        nextLabel.setText("Next");
+        nextLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nextLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                nextLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                nextLabelMouseExited(evt);
+            }
+        });
+        getContentPane().add(nextLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 640, -1, -1));
+
+        nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button1.png"))); // NOI18N
+        nextButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nextButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                nextButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                nextButtonMouseExited(evt);
+            }
+        });
+        getContentPane().add(nextButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 630, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_listchar.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        int option = JOptionPane.showConfirmDialog(getContentPane(), "Are you sure you want to go back? You changes will not be saved.", "SELECT", JOptionPane.YES_NO_OPTION);
+        if(option == JOptionPane.YES_OPTION){
+            setVisible(false);
+            new WelcomePage().setVisible(true);
+        }
+        
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/back2.png")));
+        jLabel3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jLabel3MouseEntered
+
+    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/back1.png")));
+        jLabel3.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_jLabel3MouseExited
+
+    private void nextButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseClicked
+        System.out.println("ok");
+    }//GEN-LAST:event_nextButtonMouseClicked
+
+    private void nextButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseEntered
+        nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button2.png")));
+        nextButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        nextLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_nextButtonMouseEntered
+
+    private void nextButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseExited
+        nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button1.png")));
+        nextButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        nextLabel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_nextButtonMouseExited
+
+    private void nextLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextLabelMouseClicked
+        String username = usernameField.getText();
+        String email = emailField.getText();
+        String password = passwordField.getText();
+        String passwordConfirm = passwordConfirmField.getText();
+
+        if(username.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Username is still empty.");
+        }
+        else if(email.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Email is still empty.");
+        }
+        else if(password.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Password is still empty.");
+        }
+        else if(passwordConfirm.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Confirm Password is still empty.");
+        }
+        else{
+            if(!(validateEmail(email))){
+                JOptionPane.showMessageDialog(getContentPane(), "Please input a correct email.");
+            }
+
+            if(!(password.equals(passwordConfirm))){
+                JOptionPane.showMessageDialog(getContentPane(), "Password and Confirm Password is not the same.");
+            }
+            else{
+                if(!(validatePassword(password))){
+                    JOptionPane.showMessageDialog(getContentPane(), "Password must have 8 characters with at least one number and one character");
+                }
+            }
+
+            if(checkExist(username, email)){
+                JOptionPane.showMessageDialog(getContentPane(), "Email and username already existed.");
+            }
+
+            if(password.equals(passwordConfirm) && validateEmail(email) && validatePassword(password) && !(checkExist(username, email))){
+                try{
+                    Connection con = ConnectionProvider.getCon();
+                    Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                    ResultSet rs = st.executeQuery("select count(id) from user");
+                    int newId=0;
+                    if(rs.first()){
+                        int id = rs.getInt(1);
+                        newId = id + 1;
+                    }
+                    else{
+                        newId = 1;
+                    }
+
+                    String str = "insert into user values(?,?,?,?)";
+                    PreparedStatement ps = con.prepareStatement(str);
+                    ps.setInt(1, newId);
+                    ps.setString(2, username);
+                    ps.setString(3, email);
+                    ps.setString(4, password);
+                    ps.executeUpdate();
+
+                    setVisible(false);
+                    new ListCharacter().setVisible(true);
+
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(getContentPane(), e);
+                }
+            }
+        }
+    }//GEN-LAST:event_nextLabelMouseClicked
+
+    private void nextLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextLabelMouseEntered
+        nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button2.png")));
+        nextButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        nextLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_nextLabelMouseEntered
+
+    private void nextLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextLabelMouseExited
+        nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button1.png")));
+        nextButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        nextLabel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_nextLabelMouseExited
 
     /**
      * @param args the command line arguments
@@ -78,5 +239,9 @@ public class ListCharacter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel nextButton;
+    private javax.swing.JLabel nextLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -578,6 +579,32 @@ public class SignUpPage extends javax.swing.JFrame {
         showPasswordConfirm.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_showPasswordConfirmMouseExited
 
+    private boolean checkExist(String username, String email){
+        ArrayList<String> allUsername = new ArrayList<>();
+        ArrayList<String> allEmail = new ArrayList<>();
+        
+        try{
+            Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = st.executeQuery("select username from user");
+            while(rs.next()){
+                allUsername.add(rs.getString(1));
+            }
+            ResultSet rs1 = st.executeQuery("select email from user");
+            while(rs1.next()){
+                allEmail.add(rs1.getString(1));
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(getContentPane(), e);
+        }
+        
+        if(allUsername.contains(username) && allEmail.contains(email)){
+            return true;
+        }
+        return false;
+    }
+    
     private void registerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerButtonMouseClicked
         String username = usernameField.getText();
         String email = emailField.getText();
@@ -610,8 +637,12 @@ public class SignUpPage extends javax.swing.JFrame {
                }
            }
            
+           if(checkExist(username, email)){
+                JOptionPane.showMessageDialog(getContentPane(), "Email and username already existed.");               
+           }
            
-           if(password.equals(passwordConfirm) && validateEmail(email) && validatePassword(password)){
+           
+           if(password.equals(passwordConfirm) && validateEmail(email) && validatePassword(password) && !(checkExist(username, email))){
                try{
                    Connection con = ConnectionProvider.getCon();
                    Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -687,7 +718,11 @@ public class SignUpPage extends javax.swing.JFrame {
                }
            }
            
-           if(password.equals(passwordConfirm) && validateEmail(email) && validatePassword(password)){
+           if(checkExist(username, email)){
+                JOptionPane.showMessageDialog(getContentPane(), "Email and username already existed.");               
+           }
+           
+           if(password.equals(passwordConfirm) && validateEmail(email) && validatePassword(password) && !(checkExist(username, email))){
                try{
                    Connection con = ConnectionProvider.getCon();
                    Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);

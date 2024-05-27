@@ -28,6 +28,8 @@ public class LoginPage extends javax.swing.JFrame {
     public LoginPage() {
         initComponents();
         myinit();
+        setResizable(false);
+        setTitle("Log In Page");
     }
     
     private void myinit(){
