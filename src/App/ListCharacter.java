@@ -4,21 +4,56 @@
  */
 package App;
 
+import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 /**
  *
  * @author asus
  */
 public class ListCharacter extends javax.swing.JFrame {
-
+    private int userId;
+    private JPanel cloneablePanel;
+    
     /**
      * Creates new form ListCharacter
      */
     public ListCharacter() {
         initComponents();
+        setTitle("Character Listing");
+        setResizable(false);
+        myinit();
+    }
+    
+    public ListCharacter(int userId) {
+        initComponents();
+        this.userId = userId;
+        setTitle("Character Listing");
+        setResizable(false);
+        myinit();
+    }
+    
+    private void myinit(){        
+        scroll.setOpaque(false);
+        scroll.getViewport().setOpaque(false);
+        scroll.setBorder(BorderFactory.createEmptyBorder());
         
+        cloneablePanel = new JPanel(); // The initial panel inside scroll pane
+        cloneablePanel.setLayout(null); // Use absolute layout
+        cloneablePanel.setPreferredSize(new Dimension(400, 200)); // Set initial size
+        cloneablePanel.setBounds(80, 200, 1200, 1500); // Set bounds for the initial panel
+        cloneablePanel.setOpaque(false);
+        cloneablePanel.setBackground(new Color(0,0,0,0));
+        cloneablePanel.setBorder(null);
+        scroll.setViewportView(cloneablePanel); // Set this panel as viewport's view
     }
 
     /**
@@ -33,6 +68,7 @@ public class ListCharacter extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         nextLabel = new javax.swing.JLabel();
         nextButton = new javax.swing.JLabel();
+        scroll = new javax.swing.JScrollPane();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,6 +118,13 @@ public class ListCharacter extends javax.swing.JFrame {
         });
         getContentPane().add(nextButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 630, -1, -1));
 
+        scroll.setBackground(new java.awt.Color(255, 255, 255));
+        scroll.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        scroll.setForeground(new java.awt.Color(255, 255, 255));
+        scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        getContentPane().add(scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 780, 370));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_listchar.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -124,71 +167,7 @@ public class ListCharacter extends javax.swing.JFrame {
     }//GEN-LAST:event_nextButtonMouseExited
 
     private void nextLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextLabelMouseClicked
-        String username = usernameField.getText();
-        String email = emailField.getText();
-        String password = passwordField.getText();
-        String passwordConfirm = passwordConfirmField.getText();
-
-        if(username.trim().isEmpty()){
-            JOptionPane.showMessageDialog(getContentPane(), "Username is still empty.");
-        }
-        else if(email.trim().isEmpty()){
-            JOptionPane.showMessageDialog(getContentPane(), "Email is still empty.");
-        }
-        else if(password.trim().isEmpty()){
-            JOptionPane.showMessageDialog(getContentPane(), "Password is still empty.");
-        }
-        else if(passwordConfirm.trim().isEmpty()){
-            JOptionPane.showMessageDialog(getContentPane(), "Confirm Password is still empty.");
-        }
-        else{
-            if(!(validateEmail(email))){
-                JOptionPane.showMessageDialog(getContentPane(), "Please input a correct email.");
-            }
-
-            if(!(password.equals(passwordConfirm))){
-                JOptionPane.showMessageDialog(getContentPane(), "Password and Confirm Password is not the same.");
-            }
-            else{
-                if(!(validatePassword(password))){
-                    JOptionPane.showMessageDialog(getContentPane(), "Password must have 8 characters with at least one number and one character");
-                }
-            }
-
-            if(checkExist(username, email)){
-                JOptionPane.showMessageDialog(getContentPane(), "Email and username already existed.");
-            }
-
-            if(password.equals(passwordConfirm) && validateEmail(email) && validatePassword(password) && !(checkExist(username, email))){
-                try{
-                    Connection con = ConnectionProvider.getCon();
-                    Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                    ResultSet rs = st.executeQuery("select count(id) from user");
-                    int newId=0;
-                    if(rs.first()){
-                        int id = rs.getInt(1);
-                        newId = id + 1;
-                    }
-                    else{
-                        newId = 1;
-                    }
-
-                    String str = "insert into user values(?,?,?,?)";
-                    PreparedStatement ps = con.prepareStatement(str);
-                    ps.setInt(1, newId);
-                    ps.setString(2, username);
-                    ps.setString(3, email);
-                    ps.setString(4, password);
-                    ps.executeUpdate();
-
-                    setVisible(false);
-                    new ListCharacter().setVisible(true);
-
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(getContentPane(), e);
-                }
-            }
-        }
+        
     }//GEN-LAST:event_nextLabelMouseClicked
 
     private void nextLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextLabelMouseEntered
@@ -243,5 +222,6 @@ public class ListCharacter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel nextButton;
     private javax.swing.JLabel nextLabel;
+    private javax.swing.JScrollPane scroll;
     // End of variables declaration//GEN-END:variables
 }

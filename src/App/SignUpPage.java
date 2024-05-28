@@ -665,7 +665,7 @@ public class SignUpPage extends javax.swing.JFrame {
                    ps.executeUpdate();
                    
                    setVisible(false);
-                   new ListCharacter().setVisible(true);
+                   new ListCharacter(newId).setVisible(true);
                    
                }catch(Exception e){
                    JOptionPane.showMessageDialog(getContentPane(), e);
@@ -745,7 +745,7 @@ public class SignUpPage extends javax.swing.JFrame {
                    ps.executeUpdate();
                    
                    setVisible(false);
-                   new ListCharacter().setVisible(true);
+                   new ListCharacter(newId).setVisible(true);
                    
                }catch(Exception e){
                    JOptionPane.showMessageDialog(getContentPane(), e);
