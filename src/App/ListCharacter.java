@@ -8,12 +8,16 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import App.ImageLoader;
+import java.util.ArrayList;
+import javax.swing.JLabel;
 
 /**
  *
@@ -45,6 +49,7 @@ public class ListCharacter extends javax.swing.JFrame {
         scroll.setOpaque(false);
         scroll.getViewport().setOpaque(false);
         scroll.setBorder(BorderFactory.createEmptyBorder());
+        scroll.getVerticalScrollBar().setUnitIncrement(16);
         
         cloneablePanel = new JPanel(); // The initial panel inside scroll pane
         cloneablePanel.setLayout(null); // Use absolute layout
@@ -54,6 +59,48 @@ public class ListCharacter extends javax.swing.JFrame {
         cloneablePanel.setBackground(new Color(0,0,0,0));
         cloneablePanel.setBorder(null);
         scroll.setViewportView(cloneablePanel); // Set this panel as viewport's view
+        
+        App.ImageLoader loader1 = new App.ImageLoader();
+        ArrayList<BufferedImage> imageList = loader1.loadImagesFromFolder("src/App/image/CharacterCard/NotZoom");
+        ArrayList<String> nameList = loader1.returnFileNames();
+        
+        App.ImageLoader loader2 = new App.ImageLoader();
+        ArrayList<BufferedImage> imageZoomList = loader2.loadImagesFromFolder("src/App/image/CharacterCard/Zoom");        
+        
+        int row=0, column=0;
+        for(int i=0; i<imageList.size();i++){
+            BufferedImage image = imageList.get(i);
+            String charName = nameList.get(i);
+            BufferedImage imageHover = imageZoomList.get(i);
+            
+            int panelWidth = 150;
+            int panelHeight = 150;
+            
+            CharacterPanel clonedPanel = new CharacterPanel(image, imageHover, charName, panelWidth, panelHeight);
+            
+            // Calculate the row and column indices
+            row = i / 4;
+            column = i % 4;
+
+            // Calculate the x and y positions based on row and column indices
+            int x = 10 + column * (panelWidth + 40);
+            int y = 10 + row * (panelHeight + 50);
+
+            // Set the bounds for the cloned panel with your custom size
+            clonedPanel.setBounds(x, y, panelWidth, panelHeight);
+            
+            // Add the cloned panel to the initial panel
+            cloneablePanel.add(clonedPanel);
+            // Adjust preferred size of initial panel to include new panel
+            Dimension newSize = new Dimension(cloneablePanel.getWidth(), y + panelHeight + 10); // Adjusted size
+            cloneablePanel.setPreferredSize(newSize);
+            // Ensure the scroll pane updates its viewport
+            scroll.revalidate();
+            scroll.repaint();
+            // Scroll to show the new panel
+            scroll.getVerticalScrollBar().setValue(0);
+        }
+        
     }
 
     /**

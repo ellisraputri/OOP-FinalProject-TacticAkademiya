@@ -16,7 +16,8 @@ import javax.imageio.ImageIO;
  * @author asus
  */
 public class ImageLoader {
-
+    static ArrayList<String> fileName = new ArrayList<>();
+    
     public static ArrayList<BufferedImage> loadImagesFromFolder(String folderPath) {
         ArrayList<BufferedImage> images = new ArrayList<>();
         File folder = new File(folderPath);
@@ -33,10 +34,30 @@ public class ImageLoader {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    
+                    String name = file.getName();
+                    name = fixName(name);
+                    fileName.add(name);
                 }
             }
         }
         return images;
+    }
+    
+    private static String fixName(String name){
+        String extension = ".png";
+        int extensionWordLength = extension.length();
+        
+        name = name.replaceAll("Portraits", "");
+        name = name.trim();
+        name = name.substring(0, name.length()-extensionWordLength);
+        name = name.trim();
+        
+        return name;
+    }
+    
+    public ArrayList<String> returnFileNames(){
+        return fileName;
     }
 
     private static boolean isImageFile(File file) {
@@ -50,11 +71,5 @@ public class ImageLoader {
         return false;
     }
     
-    public static void main(String[] args) {
-        String folderPath = "src/App/image/CharacterCard"; // Update this path
-        ArrayList<BufferedImage> images = loadImagesFromFolder(folderPath);
-
-        // Print out the number of images loaded
-        System.out.println("Number of images loaded: " + images.size());
-    }
+    
 }
