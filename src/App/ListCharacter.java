@@ -16,7 +16,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import App.ImageLoader;
+import DatabaseConnection.ConnectionProvider;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JLabel;
 
 /**
@@ -26,6 +32,8 @@ import javax.swing.JLabel;
 public class ListCharacter extends javax.swing.JFrame {
     private int userId;
     private JPanel cloneablePanel;
+    private ArrayList<CharacterPanel> panelList = new ArrayList<>();
+
     
     /**
      * Creates new form ListCharacter
@@ -49,7 +57,7 @@ public class ListCharacter extends javax.swing.JFrame {
         scroll.setOpaque(false);
         scroll.getViewport().setOpaque(false);
         scroll.setBorder(BorderFactory.createEmptyBorder());
-        scroll.getVerticalScrollBar().setUnitIncrement(16);
+        scroll.getVerticalScrollBar().setUnitIncrement(20);
         
         cloneablePanel = new JPanel(); // The initial panel inside scroll pane
         cloneablePanel.setLayout(null); // Use absolute layout
@@ -67,6 +75,7 @@ public class ListCharacter extends javax.swing.JFrame {
         App.ImageLoader loader2 = new App.ImageLoader();
         ArrayList<BufferedImage> imageZoomList = loader2.loadImagesFromFolder("src/App/image/CharacterCard/Zoom");        
         
+        
         int row=0, column=0;
         for(int i=0; i<imageList.size();i++){
             BufferedImage image = imageList.get(i);
@@ -77,7 +86,7 @@ public class ListCharacter extends javax.swing.JFrame {
             int panelHeight = 150;
             
             CharacterPanel clonedPanel = new CharacterPanel(image, imageHover, charName, panelWidth, panelHeight);
-            
+
             // Calculate the row and column indices
             row = i / 4;
             column = i % 4;
@@ -99,6 +108,8 @@ public class ListCharacter extends javax.swing.JFrame {
             scroll.repaint();
             // Scroll to show the new panel
             scroll.getVerticalScrollBar().setValue(0);
+            
+            panelList.add(clonedPanel);
         }
         
     }
@@ -185,6 +196,15 @@ public class ListCharacter extends javax.swing.JFrame {
             new WelcomePage().setVisible(true);
         }
         
+        try{
+            Connection con = ConnectionProvider.getCon();
+            PreparedStatement ps = con.prepareStatement("delete from user where id=" + userId);
+            ps.execute();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
@@ -198,7 +218,30 @@ public class ListCharacter extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseExited
 
     private void nextButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseClicked
-        System.out.println("ok");
+        boolean[] clickedArray = new boolean[panelList.size()];
+        int i=0;
+        for(CharacterPanel panel : panelList){
+            clickedArray[i] = panel.getClicked();
+            i++;
+        }
+        
+        try{
+            Connection con = ConnectionProvider.getCon();
+            String str = "insert into characters values(" + userId;
+            for(int j=0; j<clickedArray.length; j++){
+                str = str + "," + clickedArray[j];
+            } 
+            str += ")";
+            
+            PreparedStatement ps = con.prepareStatement(str);
+            ps.executeUpdate();
+
+            setVisible(false);
+            new Home(userId).setVisible(true);
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(getContentPane(), e);
+        }
     }//GEN-LAST:event_nextButtonMouseClicked
 
     private void nextButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseEntered
@@ -214,7 +257,32 @@ public class ListCharacter extends javax.swing.JFrame {
     }//GEN-LAST:event_nextButtonMouseExited
 
     private void nextLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextLabelMouseClicked
+        boolean[] clickedArray = new boolean[panelList.size()];
+        int i=0;
+        for(CharacterPanel panel : panelList){
+            clickedArray[i] = panel.getClicked();
+            i++;
+        }
         
+        try{
+            Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            String str = "insert into characters values(" + userId;
+            for(int j=0; j<clickedArray.length; j++){
+                str = str + "," + clickedArray[j];
+            } 
+            str += ")";
+            
+            PreparedStatement ps = con.prepareStatement(str);
+            ps.executeUpdate();
+
+            setVisible(false);
+            new Home(userId).setVisible(true);
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(getContentPane(), e);
+        }
     }//GEN-LAST:event_nextLabelMouseClicked
 
     private void nextLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextLabelMouseEntered

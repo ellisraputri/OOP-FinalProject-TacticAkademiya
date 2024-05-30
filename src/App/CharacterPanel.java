@@ -49,16 +49,17 @@ public class CharacterPanel extends JPanel{
         checkmark.setVisible(false);
         
         //setting up the name of character
-        JLabel charName = new JLabel();
+        App.WrappedLabel charName = new App.WrappedLabel(150, new Color(228,220,209));
         charName.setText(characterName);
         charName.setFont(new Font("HYWenHei-85W", Font.PLAIN, 14));
-        charName.setBackground(new Color(228,220,209));
-        charName.setForeground(new Color(66,72,86));
         charName.setOpaque(true);
+        charName.setForeground(new Color(66,72,86));
         charName.setHorizontalAlignment(SwingConstants.CENTER); // Center text horizontally
         charName.setVerticalAlignment(SwingConstants.CENTER);   // Center text vertically
         Dimension size = charName.getPreferredSize();
         charName.setBounds(0, imageHeight-size.height-10, size.width+20, size.height+10);
+        charName.revalidate();
+        charName.repaint();
         add(charName);
         charName.setVisible(false);
         
@@ -106,5 +107,9 @@ public class CharacterPanel extends JPanel{
                 }
             }
         });
+    }
+    
+    public boolean getClicked(){
+        return clicked;
     }
 }

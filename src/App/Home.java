@@ -9,12 +9,17 @@ package App;
  * @author asus
  */
 public class Home extends javax.swing.JFrame {
-
+    private int userId;
     /**
      * Creates new form Home
      */
     public Home() {
         initComponents();
+    }
+    
+    public Home(int userId) {
+        initComponents();
+        this.userId = userId;
     }
 
     /**
