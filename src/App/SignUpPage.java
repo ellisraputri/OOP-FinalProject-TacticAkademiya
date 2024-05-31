@@ -31,6 +31,7 @@ public class SignUpPage extends javax.swing.JFrame {
         myinit();
         setTitle("Sign Up Page");
         setResizable(false);
+        setLocationRelativeTo(null);
     }
     
     private void myinit(){
@@ -482,6 +483,7 @@ public class SignUpPage extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         setVisible(false);
+        dispose();
         new WelcomePage().setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
 
@@ -501,11 +503,13 @@ public class SignUpPage extends javax.swing.JFrame {
 
     private void loginLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginLabelMouseClicked
         setVisible(false);
+        dispose();
         new LoginPage().setVisible(true);
     }//GEN-LAST:event_loginLabelMouseClicked
 
     private void jSeparator1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSeparator1MouseClicked
         setVisible(false);
+        dispose();
         new LoginPage().setVisible(true);
     }//GEN-LAST:event_jSeparator1MouseClicked
 
@@ -665,6 +669,7 @@ public class SignUpPage extends javax.swing.JFrame {
                    ps.executeUpdate();
                    
                    setVisible(false);
+                   dispose();
                    new ListCharacter(newId).setVisible(true);
                    
                }catch(Exception e){
@@ -745,6 +750,7 @@ public class SignUpPage extends javax.swing.JFrame {
                    ps.executeUpdate();
                    
                    setVisible(false);
+                   dispose();
                    new ListCharacter(newId).setVisible(true);
                    
                }catch(Exception e){

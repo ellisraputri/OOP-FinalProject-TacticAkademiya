@@ -19,6 +19,7 @@ public class WelcomePage extends javax.swing.JFrame {
         initComponents();
         setTitle("Welcome Page");
         setResizable(false);
+        setLocationRelativeTo(null);
     }
     
     /**
@@ -68,6 +69,7 @@ public class WelcomePage extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         setVisible(false);
+        dispose();
         new LoginPage().setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
 

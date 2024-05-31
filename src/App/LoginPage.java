@@ -28,8 +28,9 @@ public class LoginPage extends javax.swing.JFrame {
     public LoginPage() {
         initComponents();
         myinit();
+        setLocationRelativeTo(null);
+        setTitle("Login Page");
         setResizable(false);
-        setTitle("Log In Page");
     }
     
     private void myinit(){
@@ -280,13 +281,14 @@ public class LoginPage extends javax.swing.JFrame {
         getContentPane().add(hidePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 406, -1, 20));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_login.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         setVisible(false);
+        dispose();
         new WelcomePage().setVisible(true);
     }//GEN-LAST:event_jLabel3MouseClicked
 
@@ -302,6 +304,7 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void registerLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerLabelMouseClicked
         setVisible(false);
+        dispose();
         new SignUpPage().setVisible(true);
     }//GEN-LAST:event_registerLabelMouseClicked
 
@@ -347,7 +350,8 @@ public class LoginPage extends javax.swing.JFrame {
                         
                         if(passwordConfirmation.equals(password)){
                             setVisible(false);
-                            new Home().setVisible(true);
+                            dispose();
+                            new Home(id).setVisible(true);
                         }
                         else{
                             JOptionPane.showMessageDialog(getContentPane(), "Incorrect Password");
@@ -361,7 +365,8 @@ public class LoginPage extends javax.swing.JFrame {
 
                             if(passwordConfirmation.equals(password)){
                                 setVisible(false);
-                                new Home().setVisible(true);
+                                dispose();
+                                new Home(id).setVisible(true);
                             }
                             else{
                                 JOptionPane.showMessageDialog(getContentPane(), "Incorrect Password");
@@ -419,7 +424,8 @@ public class LoginPage extends javax.swing.JFrame {
                         
                         if(passwordConfirmation.equals(password)){
                             setVisible(false);
-                            new Home().setVisible(true);
+                            dispose();
+                            new Home(id).setVisible(true);
                         }
                         else{
                             JOptionPane.showMessageDialog(getContentPane(), "Incorrect Password");
@@ -433,7 +439,8 @@ public class LoginPage extends javax.swing.JFrame {
 
                             if(passwordConfirmation.equals(password)){
                                 setVisible(false);
-                                new Home().setVisible(true);
+                                dispose();
+                                new Home(id).setVisible(true);
                             }
                             else{
                                 JOptionPane.showMessageDialog(getContentPane(), "Incorrect Password");
@@ -507,6 +514,7 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void jSeparator1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSeparator1MouseClicked
         setVisible(false);
+        dispose();
         new SignUpPage().setVisible(true);
     }//GEN-LAST:event_jSeparator1MouseClicked
     

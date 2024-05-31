@@ -42,6 +42,7 @@ public class ListCharacter extends javax.swing.JFrame {
         initComponents();
         setTitle("Character Listing");
         setResizable(false);
+        setLocationRelativeTo(null);
         myinit();
     }
     
@@ -193,6 +194,7 @@ public class ListCharacter extends javax.swing.JFrame {
         int option = JOptionPane.showConfirmDialog(getContentPane(), "Are you sure you want to go back? You changes will not be saved.", "SELECT", JOptionPane.YES_NO_OPTION);
         if(option == JOptionPane.YES_OPTION){
             setVisible(false);
+            dispose();
             new WelcomePage().setVisible(true);
         }
         
@@ -237,6 +239,7 @@ public class ListCharacter extends javax.swing.JFrame {
             ps.executeUpdate();
 
             setVisible(false);
+            dispose();
             new Home(userId).setVisible(true);
 
         }catch(Exception e){
@@ -278,6 +281,7 @@ public class ListCharacter extends javax.swing.JFrame {
             ps.executeUpdate();
 
             setVisible(false);
+            dispose();
             new Home(userId).setVisible(true);
 
         }catch(Exception e){

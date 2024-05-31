@@ -4,22 +4,57 @@
  */
 package App;
 
+import DatabaseConnection.ConnectionProvider;
+import java.awt.Cursor;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author asus
  */
 public class Home extends javax.swing.JFrame {
     private int userId;
+    private String username;
+    private String email;
     /**
      * Creates new form Home
      */
     public Home() {
         initComponents();
+        this.userId = 1;
+        myinit();
     }
     
     public Home(int userId) {
         initComponents();
         this.userId = userId;
+        setTitle("Home Page");
+        setResizable(false);
+        setLocationRelativeTo(null);
+        myinit();
+    }
+    
+    private void myinit(){
+        try{
+            Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = st.executeQuery("select * from user where id='" + userId + "'");
+            if(rs.first()){
+                this.username = rs.getString("username");
+                this.email = rs.getString("email");
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(getContentPane(), e);
+        }
+        
+        usernameLabel.setText(username);
+        emailLabel.setText(email);
+        getContentPane().setComponentZOrder(usernameLabel, 0);
+        getContentPane().setComponentZOrder(emailLabel, 0);
     }
 
     /**
@@ -31,21 +66,227 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        emailLabel = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
+        exitButton = new javax.swing.JLabel();
+        profileButton = new javax.swing.JLabel();
+        goLabel2 = new javax.swing.JLabel();
+        goLabel1 = new javax.swing.JLabel();
+        goButton1 = new javax.swing.JLabel();
+        goButton2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        emailLabel.setFont(new java.awt.Font("Sunflower Medium", 0, 20)); // NOI18N
+        emailLabel.setForeground(new java.awt.Color(252, 236, 214));
+        emailLabel.setText("Email@gmail.com");
+        getContentPane().add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
+
+        usernameLabel.setFont(new java.awt.Font("Sunflower Medium", 0, 30)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(252, 236, 214));
+        usernameLabel.setText("Username");
+        getContentPane().add(usernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 25, -1, -1));
+
+        exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/exit1.png"))); // NOI18N
+        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitButtonMouseExited(evt);
+            }
+        });
+        getContentPane().add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 20, -1, -1));
+
+        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile1.png"))); // NOI18N
+        profileButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profileButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                profileButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                profileButtonMouseExited(evt);
+            }
+        });
+        getContentPane().add(profileButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 25, -1, -1));
+
+        goLabel2.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
+        goLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        goLabel2.setText("Go!");
+        goLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goLabel2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                goLabel2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                goLabel2MouseExited(evt);
+            }
+        });
+        getContentPane().add(goLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 575, -1, -1));
+
+        goLabel1.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
+        goLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        goLabel1.setText("Go!");
+        goLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goLabel1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                goLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                goLabel1MouseExited(evt);
+            }
+        });
+        getContentPane().add(goLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 292, -1, -1));
+
+        goButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button3.png"))); // NOI18N
+        goButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goButton1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                goButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                goButton1MouseExited(evt);
+            }
+        });
+        getContentPane().add(goButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 275, -1, -1));
+
+        goButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button3.png"))); // NOI18N
+        goButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goButton2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                goButton2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                goButton2MouseExited(evt);
+            }
+        });
+        getContentPane().add(goButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 558, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_home.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void goButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goButton1MouseClicked
+        setVisible(false);
+        dispose();
+        new TeamGuide1(userId).setVisible(true);
+    }//GEN-LAST:event_goButton1MouseClicked
+
+    private void goButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goButton1MouseEntered
+        goButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button4.png")));
+        goButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        goLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_goButton1MouseEntered
+
+    private void goButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goButton1MouseExited
+        goButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button3.png")));
+        goButton1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        goLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_goButton1MouseExited
+
+    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
+        int option = JOptionPane.showConfirmDialog(getContentPane(), "Are you sure you want to go back?", "SELECT", JOptionPane.YES_NO_OPTION);
+        if(option == JOptionPane.YES_OPTION){
+            setVisible(false);
+            dispose();
+            new WelcomePage().setVisible(true);
+        }
+    }//GEN-LAST:event_exitButtonMouseClicked
+
+    private void exitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseEntered
+        exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/exit2.png")));
+        exitButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_exitButtonMouseEntered
+
+    private void exitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseExited
+        exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/exit1.png")));
+        exitButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_exitButtonMouseExited
+
+    private void profileButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profileButtonMouseClicked
+
+    private void profileButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseEntered
+        //        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile2.png")));
+//        profileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_profileButtonMouseEntered
+
+    private void profileButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseExited
+        //        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile1.png")));
+//        profileButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_profileButtonMouseExited
+
+    private void goButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goButton2MouseClicked
+        setVisible(false);
+        dispose();
+        new CharInfoHome(userId).setVisible(true);
+    }//GEN-LAST:event_goButton2MouseClicked
+
+    private void goButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goButton2MouseEntered
+        goButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button4.png")));
+        goButton2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        goLabel2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_goButton2MouseEntered
+
+    private void goButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goButton2MouseExited
+        goButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button3.png")));
+        goButton2.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        goLabel2.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_goButton2MouseExited
+
+    private void goLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goLabel2MouseClicked
+        setVisible(false);
+        dispose();
+        new CharInfoHome().setVisible(true);
+    }//GEN-LAST:event_goLabel2MouseClicked
+
+    private void goLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goLabel2MouseEntered
+        goButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button4.png")));
+        goButton2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        goLabel2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_goLabel2MouseEntered
+
+    private void goLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goLabel2MouseExited
+        goButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button3.png")));
+        goButton2.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        goLabel2.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_goLabel2MouseExited
+
+    private void goLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goLabel1MouseClicked
+        setVisible(false);
+        dispose();
+        new TeamGuide1(userId).setVisible(true);
+    }//GEN-LAST:event_goLabel1MouseClicked
+
+    private void goLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goLabel1MouseEntered
+        goButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button4.png")));
+        goButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        goLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_goLabel1MouseEntered
+
+    private void goLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goLabel1MouseExited
+        goButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button3.png")));
+        goButton1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        goLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_goLabel1MouseExited
 
     /**
      * @param args the command line arguments
@@ -83,5 +324,14 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel emailLabel;
+    private javax.swing.JLabel exitButton;
+    private javax.swing.JLabel goButton1;
+    private javax.swing.JLabel goButton2;
+    private javax.swing.JLabel goLabel1;
+    private javax.swing.JLabel goLabel2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel profileButton;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }
