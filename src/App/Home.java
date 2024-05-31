@@ -24,7 +24,7 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
-        this.userId = 1;
+        this.userId = 0;
         myinit();
     }
     
@@ -115,7 +115,7 @@ public class Home extends javax.swing.JFrame {
                 profileButtonMouseExited(evt);
             }
         });
-        getContentPane().add(profileButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 25, -1, -1));
+        getContentPane().add(profileButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 15, -1, -1));
 
         goLabel2.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         goLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -186,7 +186,7 @@ public class Home extends javax.swing.JFrame {
     private void goButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goButton1MouseClicked
         setVisible(false);
         dispose();
-        new TeamGuide1(userId).setVisible(true);
+        new TeamGuide(userId, username, email).setVisible(true);
     }//GEN-LAST:event_goButton1MouseClicked
 
     private void goButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goButton1MouseEntered
@@ -273,7 +273,7 @@ public class Home extends javax.swing.JFrame {
     private void goLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goLabel1MouseClicked
         setVisible(false);
         dispose();
-        new TeamGuide1(userId).setVisible(true);
+        new TeamGuide(userId, username, email).setVisible(true);
     }//GEN-LAST:event_goLabel1MouseClicked
 
     private void goLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goLabel1MouseEntered
