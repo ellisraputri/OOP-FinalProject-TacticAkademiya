@@ -71,5 +71,9 @@ public class ImageLoader {
         return false;
     }
     
+    public void emptyFileName(){
+        fileName.clear();
+    }
+    
     
 }

@@ -101,6 +101,7 @@ public class NewJFrame extends javax.swing.JFrame {
         firstpanel.setLayout(null);
 
         jLabel1.setText("first");
+        jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         firstpanel.add(jLabel1);
         jLabel1.setBounds(120, 160, 30, 100);
 

@@ -19,56 +19,20 @@ import javax.swing.SwingConstants;
  *
  * @author asus
  */
-public class CharacterPanel extends JPanel{
-    private boolean over;
-    private boolean clicked = false;
+public class CharacterPanel extends ClonePanel{
+    private String name;
     
-    public boolean isOver() {
-        return over;
+    public CharacterPanel(String name){
+        this.name = name;
     }
 
-    public void setOver(boolean over) {
-        this.over = over;
+    public String getName() {
+        return name;
     }
     
-    public CharacterPanel(BufferedImage image, BufferedImage imageHover, String characterName, int imageWidth, int imageHeight){
-        setOpaque(false);
-        setLayout(null);
-        
-        //setting up the character image
-        JLabel charImage = new JLabel();
-        charImage.setIcon(new ImageIcon(image));
-        charImage.setBounds(0,0,imageWidth, imageHeight);
-        add(charImage);
-      
-        //setting up the checkmark
-        JLabel checkmark = new JLabel();
-        checkmark.setIcon(new ImageIcon("src/App/image/checkmark.png"));
-        checkmark.setBounds(imageWidth-checkmark.getPreferredSize().width,0, checkmark.getPreferredSize().width, checkmark.getPreferredSize().height);
-        add(checkmark);
-        checkmark.setVisible(false);
-        
-        //setting up the name of character
-        App.WrappedLabel charName = new App.WrappedLabel(150, new Color(228,220,209));
-        charName.setText(characterName);
-        charName.setFont(new Font("HYWenHei-85W", Font.PLAIN, 14));
-        charName.setOpaque(true);
-        charName.setForeground(new Color(66,72,86));
-        charName.setHorizontalAlignment(SwingConstants.CENTER); // Center text horizontally
-        charName.setVerticalAlignment(SwingConstants.CENTER);   // Center text vertically
-        Dimension size = charName.getPreferredSize();
-        charName.setBounds(0, imageHeight-size.height-10, size.width+20, size.height+10);
-        charName.revalidate();
-        charName.repaint();
-        add(charName);
-        charName.setVisible(false);
-        
-        setComponentZOrder(charImage, 1);
-        setComponentZOrder(checkmark, 0);
-        setComponentZOrder(charName, 0);
-        
-        
-        
+    
+    
+    public void settingMouse(BufferedImage image, BufferedImage imageHover){    
         //  Add event mouse
         addMouseListener(new MouseAdapter() {
             @Override
@@ -106,10 +70,10 @@ public class CharacterPanel extends JPanel{
                     charImage.setIcon(new ImageIcon(image));
                 }
             }
-        });
+        }); 
     }
     
-    public boolean getClicked(){
-        return clicked;
-    }
+    
+
+    
 }

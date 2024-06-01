@@ -1,64 +1,55 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package App;
 
-/**
- *
- * @author asus
- */
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
+import java.awt.Insets;
 import javax.swing.JLabel;
 
 public class WrappedLabel extends JLabel {
     private int maxWidth;
     private Color bgColor;
+    private Insets insets;
 
-    public WrappedLabel(int maxWidth, Color bgColor) {
+    public WrappedLabel(int maxWidth, Color bgColor, Insets insets) {
         this.maxWidth = maxWidth;
         this.bgColor = bgColor;
+        this.insets = insets != null ? insets : new Insets(0, 0, 0, 0); // default to no insets if null
+        setOpaque(false);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        // Cast Graphics to Graphics2D for better control
+        if (!isOpaque()) {
+            // Clear the background explicitly
+            g.setColor(getParent().getBackground());
+            g.fillRect(0, 0, getWidth(), getHeight());
+        } else {
+            super.paintComponent(g); // Ensure the base class paintComponent is called
+        }
+
         Graphics2D g2d = (Graphics2D) g;
 
-        // Fill the background
-        g2d.setColor(bgColor);
-        g2d.fillRect(0, 0, getWidth(), getHeight());
+        // Fill background if opaque
+        if (isOpaque()) {
+            g2d.setColor(bgColor);
+            g2d.fillRect(0, 0, getWidth(), getHeight());
+        }
 
-        // Set the text color and font
         g2d.setColor(getForeground());
         g2d.setFont(getFont());
 
-        // Get the text and font metrics
         String text = getText();
-        FontMetrics fm = g2d.getFontMetrics();
+        FontMetrics fm = g.getFontMetrics();
 
-        // Calculate the line height
         int lineHeight = fm.getHeight();
+        int x = insets.left;
+        int y = insets.top + fm.getAscent();
 
-        // Get the wrapped lines
-        String[] lines = getWrappedLines(text, fm);
-
-        // Calculate the total height of all lines
-        int totalHeight = lines.length * lineHeight;
-
-        // Calculate the y-position to start drawing the lines for vertical centering
-        int y = (getHeight() - totalHeight) / 2 + fm.getAscent();
-
-        // Draw each wrapped line centered horizontally
-        for (String line : lines) {
-            // Calculate the x-position to draw the text for horizontal centering
-            int x = (getWidth() - fm.stringWidth(line)) / 2;
-            g2d.drawString(line, x, y);
+        for (String line : getWrappedLines(text, fm)) {
+            g.drawString(line, x, y);
             y += lineHeight;
         }
     }
@@ -113,8 +104,6 @@ public class WrappedLabel extends JLabel {
 
         return wrappedLines.toArray(new String[0]);
     }
-    
-
 
     @Override
     public Dimension getPreferredSize() {
@@ -133,9 +122,14 @@ public class WrappedLabel extends JLabel {
         int lineHeight = fm.getHeight();
         int totalHeight = lines.length * lineHeight;
 
-        return new Dimension(maxWidth, totalHeight);
+        return new Dimension(maxWidth + insets.left + insets.right, totalHeight + insets.top + insets.bottom);
     }
-    
+
+    @Override
+    public Insets getInsets() {
+        return insets;
+    }
+
     public void setBackgroundColor(Color backgroundColor) {
         this.bgColor = backgroundColor;
         repaint();
@@ -144,5 +138,10 @@ public class WrappedLabel extends JLabel {
     public Color getBackgroundColor() {
         return bgColor;
     }
-}
 
+    public void setInsets(Insets insets) {
+        this.insets = insets;
+        revalidate();
+        repaint();
+    }
+}

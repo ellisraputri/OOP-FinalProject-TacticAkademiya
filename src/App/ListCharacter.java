@@ -86,7 +86,10 @@ public class ListCharacter extends javax.swing.JFrame {
             int panelWidth = 150;
             int panelHeight = 150;
             
-            CharacterPanel clonedPanel = new CharacterPanel(image, imageHover, charName, panelWidth, panelHeight);
+            CharacterPanel clonedPanel = new CharacterPanel(charName);
+            clonedPanel.settingPanel(image, charName, panelWidth, panelHeight, 16, true);
+            clonedPanel.settingMouse(image, imageHover);
+            
 
             // Calculate the row and column indices
             row = i / 4;
