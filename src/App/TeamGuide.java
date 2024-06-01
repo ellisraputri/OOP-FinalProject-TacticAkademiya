@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -75,7 +76,24 @@ public class TeamGuide extends javax.swing.JFrame {
         this.username = username;
         this.email = email;
         setLocationRelativeTo(null);
-        teamPage1();
+        teamPage3();
+    }
+    
+    private void resetRadioButtonsPage1(){
+        pyroRadButton.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        cryoRadButton.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        geoRadButton.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        electroRadButton.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        dendroRadButton.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        physicalRadButton.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        hydroRadButton.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        anemoRadButton.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        swordRadButton.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        catalystRadButton.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        claymoreRadButton.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        bowRadButton.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        polearmRadButton.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        modeSpiralAbyss.setIcon(new ImageIcon("src/App/image/radio1.png"));
     }
     
     private void teamPage1(){
@@ -84,11 +102,24 @@ public class TeamGuide extends javax.swing.JFrame {
         parentPanel.revalidate();
         parentPanel.repaint();
         
+        modeEnemyOnly.setSelected(true);
+        resetRadioButtonsPage1();
+
+        elements.clear();
+        weapons.clear();
+        characterBannedList.clear();
+        
         usernameLabel.setText(username);
         emailLabel.setText(email);
         
         enemiesPane.setOpaque(false);
         enemiesPane.setBorder(null);
+        
+        
+        for(ArrayList<EnemyPanel> list: enemyPanelList){
+            list.clear();
+        }
+        enemyPanelList.clear();
         
         enemyPanelList.add(automatonsPanel);
         enemyPanelList.add(elementalLifeformsPanel);
@@ -98,6 +129,7 @@ public class TeamGuide extends javax.swing.JFrame {
         enemyPanelList.add(mythicalBeastsPanel);
         enemyPanelList.add(otherHumanFactionsPanel);
         enemyPanelList.add(theAbyssPanel);
+        
         
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
@@ -257,6 +289,7 @@ public class TeamGuide extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        floorGroup = new javax.swing.ButtonGroup();
         parentPanel = new javax.swing.JPanel();
         teamPage1 = new javax.swing.JPanel();
         profileButton = new javax.swing.JLabel();
@@ -313,8 +346,6 @@ public class TeamGuide extends javax.swing.JFrame {
         emailLabel2 = new javax.swing.JLabel();
         exitButton2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        scrollPane3 = new javax.swing.JScrollPane();
-        clonePanelContainer3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         modeSpiralAbyss1 = new javax.swing.JRadioButton();
         hydroRadButton1 = new javax.swing.JRadioButton();
@@ -340,8 +371,25 @@ public class TeamGuide extends javax.swing.JFrame {
         floor10Radio = new javax.swing.JRadioButton();
         floor11Radio = new javax.swing.JRadioButton();
         floor12Radio = new javax.swing.JRadioButton();
-        pyroRadButton5 = new javax.swing.JRadioButton();
+        pyroRadButton1 = new javax.swing.JRadioButton();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        characterPane2 = new javax.swing.JPanel();
+        scrollPane3 = new javax.swing.JScrollPane();
+        clonePanelContainer3 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
+        teamPage4 = new javax.swing.JPanel();
+        profileButton3 = new javax.swing.JLabel();
+        usernameLabel3 = new javax.swing.JLabel();
+        emailLabel3 = new javax.swing.JLabel();
+        exitButton3 = new javax.swing.JLabel();
+        generateLabel1 = new javax.swing.JLabel();
+        generateButton1 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        summaryScroll1 = new javax.swing.JScrollPane();
+        summaryPanel1 = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Team Guide Page");
@@ -432,8 +480,21 @@ public class TeamGuide extends javax.swing.JFrame {
         modeSpiralAbyss.setText("Spiral Abyss");
         modeSpiralAbyss.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         modeSpiralAbyss.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio1.png"))); // NOI18N
+        modeSpiralAbyss.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                modeSpiralAbyssMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                modeSpiralAbyssMouseExited(evt);
+            }
+        });
+        modeSpiralAbyss.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modeSpiralAbyssActionPerformed(evt);
+            }
+        });
         teamPage1.add(modeSpiralAbyss);
-        modeSpiralAbyss.setBounds(850, 150, 220, 35);
+        modeSpiralAbyss.setBounds(850, 150, 190, 35);
 
         hydroRadButton.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
         hydroRadButton.setForeground(new java.awt.Color(252, 236, 214));
@@ -467,9 +528,17 @@ public class TeamGuide extends javax.swing.JFrame {
         modeEnemyOnly.setForeground(new java.awt.Color(252, 236, 214));
         modeEnemyOnly.setText("Enemies only");
         modeEnemyOnly.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        modeEnemyOnly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio1.png"))); // NOI18N
+        modeEnemyOnly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio2.png"))); // NOI18N
+        modeEnemyOnly.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                modeEnemyOnlyMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                modeEnemyOnlyMouseExited(evt);
+            }
+        });
         teamPage1.add(modeEnemyOnly);
-        modeEnemyOnly.setBounds(615, 150, 220, 35);
+        modeEnemyOnly.setBounds(615, 150, 200, 35);
 
         swordRadButton.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
         swordRadButton.setForeground(new java.awt.Color(252, 236, 214));
@@ -963,31 +1032,28 @@ public class TeamGuide extends javax.swing.JFrame {
         jLabel10.setText("(optional)");
         jLabel10.setToolTipText("");
         teamPage3.add(jLabel10);
-        jLabel10.setBounds(990, 240, 90, 30);
-
-        scrollPane3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-
-        clonePanelContainer3.setBackground(new java.awt.Color(255, 204, 204));
-        clonePanelContainer3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        clonePanelContainer3.setPreferredSize(new java.awt.Dimension(400, 200));
-        clonePanelContainer3.setLayout(null);
-        scrollPane3.setViewportView(clonePanelContainer3);
-
-        teamPage3.add(scrollPane3);
-        scrollPane3.setBounds(60, 310, 500, 330);
+        jLabel10.setBounds(420, 240, 90, 30);
 
         jLabel11.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel11.setText("Floor");
+        jLabel11.setText("Banned Characters");
         jLabel11.setToolTipText("");
         teamPage3.add(jLabel11);
-        jLabel11.setBounds(55, 120, 120, 40);
+        jLabel11.setBounds(60, 230, 360, 40);
 
         modeSpiralAbyss1.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         modeSpiralAbyss1.setForeground(new java.awt.Color(252, 236, 214));
         modeSpiralAbyss1.setText("Spiral Abyss");
         modeSpiralAbyss1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        modeSpiralAbyss1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio1.png"))); // NOI18N
+        modeSpiralAbyss1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio2.png"))); // NOI18N
+        modeSpiralAbyss1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                modeSpiralAbyss1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                modeSpiralAbyss1MouseExited(evt);
+            }
+        });
         teamPage3.add(modeSpiralAbyss1);
         modeSpiralAbyss1.setBounds(850, 150, 220, 35);
 
@@ -1024,8 +1090,21 @@ public class TeamGuide extends javax.swing.JFrame {
         modeEnemyOnly1.setText("Enemies only");
         modeEnemyOnly1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         modeEnemyOnly1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio1.png"))); // NOI18N
+        modeEnemyOnly1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                modeEnemyOnly1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                modeEnemyOnly1MouseExited(evt);
+            }
+        });
+        modeEnemyOnly1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modeEnemyOnly1ActionPerformed(evt);
+            }
+        });
         teamPage3.add(modeEnemyOnly1);
-        modeEnemyOnly1.setBounds(615, 150, 220, 35);
+        modeEnemyOnly1.setBounds(615, 150, 200, 35);
 
         swordRadButton1.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
         swordRadButton1.setForeground(new java.awt.Color(252, 236, 214));
@@ -1267,7 +1346,7 @@ public class TeamGuide extends javax.swing.JFrame {
 
         floor9Radio.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
         floor9Radio.setForeground(new java.awt.Color(252, 236, 214));
-        floor9Radio.setText("Pyro");
+        floor9Radio.setText("9");
         floor9Radio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         floor9Radio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio1.png"))); // NOI18N
         floor9Radio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1284,7 +1363,7 @@ public class TeamGuide extends javax.swing.JFrame {
             }
         });
         teamPage3.add(floor9Radio);
-        floor9Radio.setBounds(60, 170, 120, 33);
+        floor9Radio.setBounds(60, 170, 50, 33);
 
         jLabel17.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(241, 167, 84));
@@ -1334,7 +1413,7 @@ public class TeamGuide extends javax.swing.JFrame {
 
         floor10Radio.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
         floor10Radio.setForeground(new java.awt.Color(252, 236, 214));
-        floor10Radio.setText("Pyro");
+        floor10Radio.setText("10");
         floor10Radio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         floor10Radio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio1.png"))); // NOI18N
         floor10Radio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1351,11 +1430,11 @@ public class TeamGuide extends javax.swing.JFrame {
             }
         });
         teamPage3.add(floor10Radio);
-        floor10Radio.setBounds(160, 170, 120, 33);
+        floor10Radio.setBounds(140, 170, 60, 33);
 
         floor11Radio.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
         floor11Radio.setForeground(new java.awt.Color(252, 236, 214));
-        floor11Radio.setText("Pyro");
+        floor11Radio.setText("11");
         floor11Radio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         floor11Radio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio1.png"))); // NOI18N
         floor11Radio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1372,11 +1451,11 @@ public class TeamGuide extends javax.swing.JFrame {
             }
         });
         teamPage3.add(floor11Radio);
-        floor11Radio.setBounds(260, 170, 120, 33);
+        floor11Radio.setBounds(230, 170, 50, 33);
 
         floor12Radio.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
         floor12Radio.setForeground(new java.awt.Color(252, 236, 214));
-        floor12Radio.setText("Pyro");
+        floor12Radio.setText("12");
         floor12Radio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         floor12Radio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio1.png"))); // NOI18N
         floor12Radio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1393,34 +1472,165 @@ public class TeamGuide extends javax.swing.JFrame {
             }
         });
         teamPage3.add(floor12Radio);
-        floor12Radio.setBounds(360, 170, 120, 33);
+        floor12Radio.setBounds(310, 170, 60, 33);
 
-        pyroRadButton5.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
-        pyroRadButton5.setForeground(new java.awt.Color(252, 236, 214));
-        pyroRadButton5.setText("Pyro");
-        pyroRadButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pyroRadButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio1.png"))); // NOI18N
-        pyroRadButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        pyroRadButton1.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
+        pyroRadButton1.setForeground(new java.awt.Color(252, 236, 214));
+        pyroRadButton1.setText("Pyro");
+        pyroRadButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pyroRadButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio1.png"))); // NOI18N
+        pyroRadButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pyroRadButton5MouseEntered(evt);
+                pyroRadButton1MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                pyroRadButton5MouseExited(evt);
+                pyroRadButton1MouseExited(evt);
             }
         });
-        pyroRadButton5.addActionListener(new java.awt.event.ActionListener() {
+        pyroRadButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pyroRadButton5ActionPerformed(evt);
+                pyroRadButton1ActionPerformed(evt);
             }
         });
-        teamPage3.add(pyroRadButton5);
-        pyroRadButton5.setBounds(620, 290, 120, 33);
+        teamPage3.add(pyroRadButton1);
+        pyroRadButton1.setBounds(620, 290, 120, 33);
+
+        jLabel20.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(241, 167, 84));
+        jLabel20.setText("Floor");
+        jLabel20.setToolTipText("");
+        teamPage3.add(jLabel20);
+        jLabel20.setBounds(55, 120, 120, 40);
+
+        jLabel21.setFont(new java.awt.Font("HYWenHei-85W", 0, 16)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(241, 167, 84));
+        jLabel21.setText("(optional)");
+        jLabel21.setToolTipText("");
+        teamPage3.add(jLabel21);
+        jLabel21.setBounds(990, 240, 90, 30);
+
+        characterPane2.setLayout(null);
+
+        scrollPane3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+
+        clonePanelContainer3.setBackground(new java.awt.Color(255, 204, 204));
+        clonePanelContainer3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        clonePanelContainer3.setPreferredSize(new java.awt.Dimension(400, 200));
+        clonePanelContainer3.setLayout(null);
+        scrollPane3.setViewportView(clonePanelContainer3);
+
+        characterPane2.add(scrollPane3);
+        scrollPane3.setBounds(0, 0, 450, 350);
+
+        teamPage3.add(characterPane2);
+        characterPane2.setBounds(60, 280, 450, 350);
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamguide.png"))); // NOI18N
         teamPage3.add(jLabel19);
         jLabel19.setBounds(0, 0, 1280, 720);
 
         parentPanel.add(teamPage3, "card4");
+
+        teamPage4.setLayout(null);
+
+        profileButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile1.png"))); // NOI18N
+        profileButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profileButton3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                profileButton3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                profileButton3MouseExited(evt);
+            }
+        });
+        teamPage4.add(profileButton3);
+        profileButton3.setBounds(30, 15, 70, 70);
+
+        usernameLabel3.setFont(new java.awt.Font("Sunflower Medium", 0, 30)); // NOI18N
+        usernameLabel3.setForeground(new java.awt.Color(252, 236, 214));
+        usernameLabel3.setText("Username");
+        teamPage4.add(usernameLabel3);
+        usernameLabel3.setBounds(110, 25, 131, 40);
+
+        emailLabel3.setFont(new java.awt.Font("Sunflower Medium", 0, 20)); // NOI18N
+        emailLabel3.setForeground(new java.awt.Color(252, 236, 214));
+        emailLabel3.setText("Email@gmail.com");
+        teamPage4.add(emailLabel3);
+        emailLabel3.setBounds(110, 60, 158, 26);
+
+        exitButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/exit1.png"))); // NOI18N
+        exitButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitButton3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitButton3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitButton3MouseExited(evt);
+            }
+        });
+        teamPage4.add(exitButton3);
+        exitButton3.setBounds(1190, 20, 70, 70);
+
+        generateLabel1.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
+        generateLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        generateLabel1.setText("Generate!");
+        generateLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                generateLabel1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                generateLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                generateLabel1MouseExited(evt);
+            }
+        });
+        teamPage4.add(generateLabel1);
+        generateLabel1.setBounds(1070, 640, 130, 30);
+
+        generateButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button1.png"))); // NOI18N
+        generateButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                generateButton1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                generateButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                generateButton1MouseExited(evt);
+            }
+        });
+        teamPage4.add(generateButton1);
+        generateButton1.setBounds(1000, 630, 247, 46);
+
+        jLabel23.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(174, 116, 49));
+        jLabel23.setText("Summary");
+        jLabel23.setToolTipText("");
+        teamPage4.add(jLabel23);
+        jLabel23.setBounds(550, 140, 180, 40);
+
+        summaryScroll1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        summaryPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        summaryScroll1.setViewportView(summaryPanel1);
+
+        teamPage4.add(summaryScroll1);
+        summaryScroll1.setBounds(270, 200, 730, 350);
+
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle2.png"))); // NOI18N
+        teamPage4.add(jLabel25);
+        jLabel25.setBounds(220, 110, 850, 490);
+
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamguide.png"))); // NOI18N
+        teamPage4.add(jLabel26);
+        jLabel26.setBounds(0, 0, 1280, 720);
+
+        parentPanel.add(teamPage4, "card4");
 
         getContentPane().add(parentPanel);
         parentPanel.setBounds(0, 0, 1280, 720);
@@ -1531,8 +1741,7 @@ public class TeamGuide extends javax.swing.JFrame {
             else{
                 radio.setIcon(new ImageIcon("src/App/image/radio1.png"));
             }
-        }
-            
+        }      
     }
     
     private void radioButtonActionPerformed(String type, String component, JRadioButton radio){
@@ -1557,7 +1766,6 @@ public class TeamGuide extends javax.swing.JFrame {
                 weapons.remove(component);
             }
         }
-        
     }
     
     
@@ -1723,7 +1931,7 @@ public class TeamGuide extends javax.swing.JFrame {
     
     
     private ArrayList<CharacterPanel> characterBannedList = new ArrayList<>();
-    private Set<String> selectedPanels;
+    private Set<String> selectedPanels = new LinkedHashSet<>();
     private App.WrappedLabel bannedNameLabel;
     private JLabel bannedCharactersLabel;
     
@@ -1736,7 +1944,8 @@ public class TeamGuide extends javax.swing.JFrame {
         usernameLabel1.setText(username);
         emailLabel1.setText(email);
         
-        selectedPanels = new LinkedHashSet<>();
+        selectedPanels.clear();
+        characterBannedList.clear();
         
         characterPane.setOpaque(false);
         characterPane.setBorder(null);
@@ -1900,7 +2109,6 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryScroll.getVerticalScrollBar().setValue(0);
     }
     
-    
     private void handlePanelClick(String panelName) {
         if (selectedPanels.contains(panelName)) {
             selectedPanels.remove(panelName);
@@ -1987,9 +2195,6 @@ public class TeamGuide extends javax.swing.JFrame {
         return str;
     }
     
-    
-    
-
     private void adjustContainerSizePage2() {
         int totalHeight = 0;
         for (Component comp : summaryPanel.getComponents()) {
@@ -2003,8 +2208,6 @@ public class TeamGuide extends javax.swing.JFrame {
     }
     
     
-    
-   
     private void profileButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_profileButton1MouseClicked
@@ -2068,6 +2271,95 @@ public class TeamGuide extends javax.swing.JFrame {
         generateLabel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_generateButtonMouseExited
 
+    
+    
+    
+    private ArrayList<String> bannedName = new ArrayList<>();
+    private String floor="";
+    private void teamPage3(){
+        parentPanel.removeAll();
+        parentPanel.add(teamPage3);
+        parentPanel.revalidate();
+        parentPanel.repaint();
+        
+        elements.clear();
+        weapons.clear();
+        characterBannedList.clear();
+        
+        floorGroup = new ButtonGroup();
+        floorGroup.add(floor9Radio);
+        floorGroup.add(floor10Radio);
+        floorGroup.add(floor11Radio);
+        floorGroup.add(floor12Radio);
+        
+        usernameLabel2.setText(username);
+        emailLabel2.setText(email);
+        
+        modeEnemyOnly1.setIcon(new ImageIcon("src/App/image/radio1.png"));
+
+        characterPane2.setOpaque(false);
+        characterPane2.setBorder(null);
+        
+        scrollPane3.setOpaque(false);
+        scrollPane3.getViewport().setOpaque(false);
+        scrollPane3.setViewportBorder(null);
+        scrollPane3.setBorder(null);
+        scrollPane3.getVerticalScrollBar().setUnitIncrement(20);
+        
+        clonePanelContainer3 = new JPanel(); // The initial panel inside scroll pane
+        clonePanelContainer3.setLayout(null); // Use absolute layout
+        clonePanelContainer3.setPreferredSize(new Dimension(400, 200)); // Set initial size
+        clonePanelContainer3.setOpaque(false);
+        clonePanelContainer3.setBackground(new Color(0,0,0,0));
+        clonePanelContainer3.setBorder(null);
+        scrollPane3.setViewportView(clonePanelContainer3); // Set this panel as viewport's view
+        
+        App.ImageLoader loader3 = new App.ImageLoader();
+        loader3.emptyFileName();
+        ArrayList<BufferedImage> imageList = loader3.loadImagesFromFolder("src/App/image/CharacterCard/Small");
+        ArrayList<String> nameList = loader3.returnFileNames();
+        
+        int row=0, column=0;
+        for(int i=0; i<imageList.size();i++){
+            BufferedImage image = imageList.get(i);
+            String charName = nameList.get(i);
+            
+            int panelWidth = 120;
+            int panelHeight = 120;
+            
+            CharacterPanel clonedPanel = new CharacterPanel(charName);
+            clonedPanel.settingPanel(image, charName, panelWidth, panelHeight,12,false);
+            clonedPanel.settingMouse(image);
+            
+            // Calculate the row and column indices
+            row = i / 3;
+            column = i % 3;
+
+            // Calculate the x and y positions based on row and column indices
+            int x = 10 + column * (panelWidth + 25);
+            int y = 10 + row * (panelHeight + 30);
+
+            // Set the bounds for the cloned panel with your custom size
+            clonedPanel.setBounds(x, y, panelWidth, panelHeight);
+            
+            
+            // Add the cloned panel to the initial panel
+            clonePanelContainer3.add(clonedPanel);
+            // Adjust preferred size of initial panel to include new panel
+            Dimension newSize = new Dimension(clonePanelContainer3.getWidth(), y + panelHeight + 10); // Adjusted size
+            clonePanelContainer3.setPreferredSize(newSize);
+            // Ensure the scroll pane updates its viewport
+            scrollPane3.revalidate();
+            scrollPane3.repaint();
+            // Scroll to show the new panel
+            scrollPane3.getVerticalScrollBar().setValue(0);
+            
+            characterBannedList.add(clonedPanel);
+        }
+    } 
+    
+    
+    
     private void profileButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_profileButton2MouseClicked
@@ -2081,244 +2373,553 @@ public class TeamGuide extends javax.swing.JFrame {
     }//GEN-LAST:event_profileButton2MouseExited
 
     private void exitButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButton2MouseClicked
-        // TODO add your handling code here:
+        int option = JOptionPane.showConfirmDialog(getContentPane(), "Are you sure you want to go back? Your changes won't be saved", "SELECT", JOptionPane.YES_NO_OPTION);
+        if(option == JOptionPane.YES_OPTION){
+            setVisible(false);
+            dispose();
+            new Home(userId).setVisible(true);
+        }
     }//GEN-LAST:event_exitButton2MouseClicked
 
     private void exitButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButton2MouseEntered
-        // TODO add your handling code here:
+        exitButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/exit2.png")));
+        exitButton2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_exitButton2MouseEntered
 
     private void exitButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButton2MouseExited
-        // TODO add your handling code here:
+        exitButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/exit1.png")));
+        exitButton2.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_exitButton2MouseExited
 
     private void hydroRadButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hydroRadButton1MouseEntered
-        // TODO add your handling code here:
+        drawMouseEnteredRadioButton("elements", "hydro", hydroRadButton1);
     }//GEN-LAST:event_hydroRadButton1MouseEntered
 
     private void hydroRadButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hydroRadButton1MouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton("elements", "hydro", hydroRadButton1);
     }//GEN-LAST:event_hydroRadButton1MouseExited
 
     private void hydroRadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hydroRadButton1ActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed("elements", "hydro", hydroRadButton1);
     }//GEN-LAST:event_hydroRadButton1ActionPerformed
 
     private void swordRadButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_swordRadButton1MouseEntered
-        // TODO add your handling code here:
+        drawMouseEnteredRadioButton("weapons", "sword", swordRadButton1);
     }//GEN-LAST:event_swordRadButton1MouseEntered
 
     private void swordRadButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_swordRadButton1MouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton("weapons", "sword", swordRadButton1);
     }//GEN-LAST:event_swordRadButton1MouseExited
 
     private void swordRadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_swordRadButton1ActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed("weapons", "sword", swordRadButton1);
     }//GEN-LAST:event_swordRadButton1ActionPerformed
 
     private void dendroRadButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dendroRadButton1MouseEntered
-        // TODO add your handling code here:
+        drawMouseEnteredRadioButton("elements", "dendro", dendroRadButton1);
     }//GEN-LAST:event_dendroRadButton1MouseEntered
 
     private void dendroRadButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dendroRadButton1MouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton("elements", "dendro", dendroRadButton1);
     }//GEN-LAST:event_dendroRadButton1MouseExited
 
     private void dendroRadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dendroRadButton1ActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed("elements", "dendro", dendroRadButton1);
     }//GEN-LAST:event_dendroRadButton1ActionPerformed
 
     private void electroRadButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_electroRadButton1MouseEntered
-        // TODO add your handling code here:
+        drawMouseEnteredRadioButton("elements", "electro", electroRadButton1);
     }//GEN-LAST:event_electroRadButton1MouseEntered
 
     private void electroRadButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_electroRadButton1MouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton("elements", "electro", electroRadButton1);
     }//GEN-LAST:event_electroRadButton1MouseExited
 
     private void electroRadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_electroRadButton1ActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed("elements", "electro", electroRadButton1);
     }//GEN-LAST:event_electroRadButton1ActionPerformed
 
     private void geoRadButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_geoRadButton1MouseEntered
-        // TODO add your handling code here:
+        drawMouseEnteredRadioButton("elements", "geo", geoRadButton1);
     }//GEN-LAST:event_geoRadButton1MouseEntered
 
     private void geoRadButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_geoRadButton1MouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton("elements", "geo", geoRadButton1);
     }//GEN-LAST:event_geoRadButton1MouseExited
 
     private void geoRadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_geoRadButton1ActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed("elements", "geo", geoRadButton1);
     }//GEN-LAST:event_geoRadButton1ActionPerformed
 
     private void physicalRadButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_physicalRadButton1MouseEntered
-        // TODO add your handling code here:
+        drawMouseEnteredRadioButton("elements", "physical", physicalRadButton1);
     }//GEN-LAST:event_physicalRadButton1MouseEntered
 
     private void physicalRadButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_physicalRadButton1MouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton("elements", "physical", physicalRadButton1);
     }//GEN-LAST:event_physicalRadButton1MouseExited
 
     private void physicalRadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_physicalRadButton1ActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed("elements", "physical", physicalRadButton1);
     }//GEN-LAST:event_physicalRadButton1ActionPerformed
 
     private void cryoRadButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cryoRadButton1MouseEntered
-        // TODO add your handling code here:
+        drawMouseEnteredRadioButton("elements", "cryo", cryoRadButton1);
     }//GEN-LAST:event_cryoRadButton1MouseEntered
 
     private void cryoRadButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cryoRadButton1MouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton("elements", "cryo", cryoRadButton1);
     }//GEN-LAST:event_cryoRadButton1MouseExited
 
     private void cryoRadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cryoRadButton1ActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed("elements", "cryo", cryoRadButton1);
     }//GEN-LAST:event_cryoRadButton1ActionPerformed
 
     private void anemoRadButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anemoRadButton1MouseEntered
-        // TODO add your handling code here:
+        drawMouseEnteredRadioButton("elements", "anemo", anemoRadButton1);
     }//GEN-LAST:event_anemoRadButton1MouseEntered
 
     private void anemoRadButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anemoRadButton1MouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton("elements", "anemo", anemoRadButton1);
     }//GEN-LAST:event_anemoRadButton1MouseExited
 
     private void anemoRadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anemoRadButton1ActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed("elements", "anemo", anemoRadButton1);
     }//GEN-LAST:event_anemoRadButton1ActionPerformed
 
     private void bowRadButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bowRadButton1MouseEntered
-        // TODO add your handling code here:
+        drawMouseEnteredRadioButton("weapons", "bow", bowRadButton1);
     }//GEN-LAST:event_bowRadButton1MouseEntered
 
     private void bowRadButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bowRadButton1MouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton("weapons", "bow", bowRadButton1);
     }//GEN-LAST:event_bowRadButton1MouseExited
 
     private void bowRadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bowRadButton1ActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed("weapons", "bow", bowRadButton1);
     }//GEN-LAST:event_bowRadButton1ActionPerformed
 
     private void polearmRadButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_polearmRadButton1MouseEntered
-        // TODO add your handling code here:
+        drawMouseEnteredRadioButton("weapons", "polearm", polearmRadButton1);
     }//GEN-LAST:event_polearmRadButton1MouseEntered
 
     private void polearmRadButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_polearmRadButton1MouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton("weapons", "polearm", polearmRadButton1);
     }//GEN-LAST:event_polearmRadButton1MouseExited
 
     private void polearmRadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_polearmRadButton1ActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed("weapons", "polearm", polearmRadButton1);
     }//GEN-LAST:event_polearmRadButton1ActionPerformed
 
     private void catalystRadButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_catalystRadButton1MouseEntered
-        // TODO add your handling code here:
+       drawMouseEnteredRadioButton("weapons", "catalyst", catalystRadButton1);
     }//GEN-LAST:event_catalystRadButton1MouseEntered
 
     private void catalystRadButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_catalystRadButton1MouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton("weapons", "catalyst", catalystRadButton1);
     }//GEN-LAST:event_catalystRadButton1MouseExited
 
     private void catalystRadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catalystRadButton1ActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed("weapons", "catalyst", catalystRadButton1);
     }//GEN-LAST:event_catalystRadButton1ActionPerformed
 
     private void claymoreRadButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_claymoreRadButton1MouseEntered
-        // TODO add your handling code here:
+        drawMouseEnteredRadioButton("weapons", "claymore", claymoreRadButton1);
     }//GEN-LAST:event_claymoreRadButton1MouseEntered
 
     private void claymoreRadButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_claymoreRadButton1MouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton("weapons", "claymore", claymoreRadButton1);
     }//GEN-LAST:event_claymoreRadButton1MouseExited
 
     private void claymoreRadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_claymoreRadButton1ActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed("weapons", "claymore", claymoreRadButton1);
     }//GEN-LAST:event_claymoreRadButton1ActionPerformed
-
+    
+    
+    private void drawMouseEnteredRadioButton(JRadioButton rad, boolean isSelect){
+        if(isSelect){
+            rad.setIcon(new ImageIcon("src/App/image/radio4.png"));
+        }
+        else{
+            rad.setIcon(new ImageIcon("src/App/image/radio3.png"));
+        }
+    }
+    
+    private void drawMouseExitedRadioButton(JRadioButton rad, boolean isSelect){
+        if(isSelect){
+            rad.setIcon(new ImageIcon("src/App/image/radio2.png"));
+        }
+        else{
+            rad.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        }
+    }
+    
+    private void radioButtonActionPerformed(JRadioButton rad, boolean isSelect, JRadioButton rad2, JRadioButton rad3, JRadioButton rad4){
+        if(isSelect){
+            floor = rad.getText();
+            rad.setIcon(new ImageIcon("src/App/image/radio2.png"));
+            rad2.setIcon(new ImageIcon("src/App/image/radio1.png"));
+            rad3.setIcon(new ImageIcon("src/App/image/radio1.png"));
+            rad4.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        }
+        else{
+            rad.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        }
+    }
+    
+    
     private void floor9RadioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_floor9RadioMouseEntered
-        // TODO add your handling code here:
+        drawMouseEnteredRadioButton(floor9Radio, floor9Radio.isSelected());
     }//GEN-LAST:event_floor9RadioMouseEntered
 
     private void floor9RadioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_floor9RadioMouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton(floor9Radio, floor9Radio.isSelected());
     }//GEN-LAST:event_floor9RadioMouseExited
 
     private void floor9RadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floor9RadioActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed(floor9Radio, floor9Radio.isSelected(), floor10Radio, floor11Radio, floor12Radio);
     }//GEN-LAST:event_floor9RadioActionPerformed
 
     private void nextLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextLabel1MouseClicked
-        // TODO add your handling code here:
+        for(CharacterPanel p: characterBannedList){
+            if(p.getClicked()){
+                bannedName.add(p.getName());
+            }
+        }
+        
+        if(floor.isEmpty()){
+            JOptionPane.showMessageDialog(parentPanel, "Please select a floor number");
+        }
+        else{
+           teamPage4();
+        }
     }//GEN-LAST:event_nextLabel1MouseClicked
 
     private void nextLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextLabel1MouseEntered
-        // TODO add your handling code here:
+        nextButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button2.png")));
+        nextButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        nextLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_nextLabel1MouseEntered
 
     private void nextLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextLabel1MouseExited
-        // TODO add your handling code here:
+        nextButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button1.png")));
+        nextButton1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        nextLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_nextLabel1MouseExited
 
     private void nextButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButton1MouseClicked
-        // TODO add your handling code here:
+        for(CharacterPanel p: characterBannedList){
+            if(p.getClicked()){
+                bannedName.add(p.getName());
+            }
+        }
+        if(floor.isEmpty()){
+            JOptionPane.showMessageDialog(parentPanel, "Please select a floor number");
+        }
+        else{
+           teamPage4();
+        }        
     }//GEN-LAST:event_nextButton1MouseClicked
 
     private void nextButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButton1MouseEntered
-        // TODO add your handling code here:
+        nextButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button2.png")));
+        nextButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        nextLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_nextButton1MouseEntered
 
     private void nextButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButton1MouseExited
-        // TODO add your handling code here:
+        nextButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button1.png")));
+        nextButton1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        nextLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_nextButton1MouseExited
 
     private void floor10RadioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_floor10RadioMouseEntered
-        // TODO add your handling code here:
+        drawMouseEnteredRadioButton(floor10Radio, floor10Radio.isSelected());
     }//GEN-LAST:event_floor10RadioMouseEntered
 
     private void floor10RadioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_floor10RadioMouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton(floor10Radio, floor10Radio.isSelected());
     }//GEN-LAST:event_floor10RadioMouseExited
 
     private void floor10RadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floor10RadioActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed(floor10Radio, floor10Radio.isSelected(), floor9Radio, floor11Radio, floor12Radio);
     }//GEN-LAST:event_floor10RadioActionPerformed
 
     private void floor11RadioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_floor11RadioMouseEntered
-        // TODO add your handling code here:
+        drawMouseEnteredRadioButton(floor11Radio, floor11Radio.isSelected());
     }//GEN-LAST:event_floor11RadioMouseEntered
 
     private void floor11RadioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_floor11RadioMouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton(floor11Radio, floor11Radio.isSelected());
     }//GEN-LAST:event_floor11RadioMouseExited
 
     private void floor11RadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floor11RadioActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed(floor11Radio, floor11Radio.isSelected(), floor10Radio, floor9Radio, floor12Radio);
     }//GEN-LAST:event_floor11RadioActionPerformed
 
     private void floor12RadioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_floor12RadioMouseEntered
-        // TODO add your handling code here:
+        drawMouseEnteredRadioButton(floor12Radio, floor12Radio.isSelected());
     }//GEN-LAST:event_floor12RadioMouseEntered
 
     private void floor12RadioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_floor12RadioMouseExited
-        // TODO add your handling code here:
+        drawMouseExitedRadioButton(floor12Radio, floor12Radio.isSelected());
     }//GEN-LAST:event_floor12RadioMouseExited
 
     private void floor12RadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floor12RadioActionPerformed
-        // TODO add your handling code here:
+        radioButtonActionPerformed(floor12Radio, floor12Radio.isSelected(), floor10Radio, floor11Radio, floor9Radio);
     }//GEN-LAST:event_floor12RadioActionPerformed
 
-    private void pyroRadButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pyroRadButton5MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pyroRadButton5MouseEntered
+    private void pyroRadButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pyroRadButton1MouseEntered
+        drawMouseEnteredRadioButton("elements", "pyro", pyroRadButton1);
+    }//GEN-LAST:event_pyroRadButton1MouseEntered
 
-    private void pyroRadButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pyroRadButton5MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pyroRadButton5MouseExited
+    private void pyroRadButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pyroRadButton1MouseExited
+        drawMouseExitedRadioButton("elements", "pyro", pyroRadButton1);
+    }//GEN-LAST:event_pyroRadButton1MouseExited
 
-    private void pyroRadButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pyroRadButton5ActionPerformed
+    private void pyroRadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pyroRadButton1ActionPerformed
+        radioButtonActionPerformed("elements", "pyro", pyroRadButton1);
+    }//GEN-LAST:event_pyroRadButton1ActionPerformed
+
+    private void modeEnemyOnlyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modeEnemyOnlyMouseEntered
+        drawMouseEnteredRadioButton(modeEnemyOnly, true);
+    }//GEN-LAST:event_modeEnemyOnlyMouseEntered
+
+    private void modeEnemyOnlyMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modeEnemyOnlyMouseExited
+        drawMouseExitedRadioButton(modeEnemyOnly, true);
+    }//GEN-LAST:event_modeEnemyOnlyMouseExited
+
+    private void modeSpiralAbyssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeSpiralAbyssActionPerformed
+        teamPage3();
+    }//GEN-LAST:event_modeSpiralAbyssActionPerformed
+
+    private void modeSpiralAbyssMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modeSpiralAbyssMouseEntered
+        drawMouseEnteredRadioButton(modeSpiralAbyss, false);
+    }//GEN-LAST:event_modeSpiralAbyssMouseEntered
+
+    private void modeSpiralAbyssMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modeSpiralAbyssMouseExited
+        drawMouseExitedRadioButton(modeSpiralAbyss, false);
+    }//GEN-LAST:event_modeSpiralAbyssMouseExited
+
+    private void modeEnemyOnly1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeEnemyOnly1ActionPerformed
+        teamPage1();
+    }//GEN-LAST:event_modeEnemyOnly1ActionPerformed
+
+    private void modeEnemyOnly1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modeEnemyOnly1MouseEntered
+        drawMouseEnteredRadioButton(modeEnemyOnly1, false);
+    }//GEN-LAST:event_modeEnemyOnly1MouseEntered
+
+    private void modeEnemyOnly1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modeEnemyOnly1MouseExited
+        drawMouseExitedRadioButton(modeEnemyOnly1, false);
+    }//GEN-LAST:event_modeEnemyOnly1MouseExited
+
+    private void modeSpiralAbyss1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modeSpiralAbyss1MouseEntered
+        drawMouseEnteredRadioButton(modeSpiralAbyss1, true);
+    }//GEN-LAST:event_modeSpiralAbyss1MouseEntered
+
+    private void modeSpiralAbyss1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modeSpiralAbyss1MouseExited
+        drawMouseExitedRadioButton(modeSpiralAbyss1, true);
+    }//GEN-LAST:event_modeSpiralAbyss1MouseExited
+
+    
+    
+    
+    
+    
+    private void teamPage4(){
+        parentPanel.removeAll();
+        parentPanel.add(teamPage4);
+        parentPanel.revalidate();
+        parentPanel.repaint();
+        
+        usernameLabel3.setText(username);
+        emailLabel3.setText(email);
+        
+        selectedPanels.clear();
+        
+        summaryScroll1.setOpaque(false);
+        summaryScroll1.getViewport().setOpaque(false);
+        summaryScroll1.setViewportBorder(null);
+        summaryScroll1.setBorder(null);
+        summaryScroll1.getVerticalScrollBar().setUnitIncrement(20);
+        
+        summaryPanel1 = new JPanel(); // The initial panel inside scroll pane
+        summaryPanel1.setLayout(null); // Use absolute layout
+        summaryPanel1.setPreferredSize(new Dimension(400, 200)); // Set initial size
+        summaryPanel1.setOpaque(false);
+        summaryPanel1.setBackground(new Color(0,0,0,0));
+        summaryPanel1.setBorder(null);
+        summaryScroll1.setViewportView(summaryPanel1); // Set this panel as viewport's view
+        
+        JLabel modeLabel = new JLabel();
+        modeLabel.setText("Mode: " + "Spiral Abyss");
+        modeLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
+        modeLabel.setForeground(new Color(67,67,71));
+        modeLabel.setBounds(0,0, modeLabel.getPreferredSize().width+20, modeLabel.getPreferredSize().height);
+        summaryPanel1.add(modeLabel);
+        summaryPanel1.setComponentZOrder(modeLabel, 0);
+        
+        JLabel floorSummaryLabel = new JLabel();
+        floorSummaryLabel.setText("Floor:");
+        floorSummaryLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
+        floorSummaryLabel.setForeground(new Color(67,67,71));
+        floorSummaryLabel.setBounds(0,modeLabel.getPreferredSize().height+modeLabel.getY()+20, floorSummaryLabel.getPreferredSize().width+20, floorSummaryLabel.getPreferredSize().height);
+        summaryPanel1.add(floorSummaryLabel);
+        summaryPanel1.setComponentZOrder(floorSummaryLabel, 0);
+        
+        App.WrappedLabel floorLabel = new App.WrappedLabel(700, new Color(0,0,0,0), new Insets(2,2,2,2));
+        floorLabel.setOpaque(false);
+        floorLabel.setText(floor);
+        floorLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 18));
+        floorLabel.setForeground(new Color(113,113,113));
+        floorLabel.setBounds(0,floorSummaryLabel.getPreferredSize().height+floorSummaryLabel.getY()+5, floorLabel.getPreferredSize().width+20, floorLabel.getPreferredSize().height);
+        summaryPanel1.add(floorLabel);
+        summaryPanel1.setComponentZOrder(floorLabel, 0);
+        
+        JLabel preferredElementLabel = new JLabel();
+        preferredElementLabel.setText("Preferred Elements:");
+        preferredElementLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
+        preferredElementLabel.setForeground(new Color(67,67,71));
+        preferredElementLabel.setBounds(0,floorLabel.getPreferredSize().height+floorLabel.getY()+20, preferredElementLabel.getPreferredSize().width+20, preferredElementLabel.getPreferredSize().height);
+        summaryPanel1.add(preferredElementLabel);
+        summaryPanel1.setComponentZOrder(preferredElementLabel, 0);
+        
+        App.WrappedLabel elementsLabel = new App.WrappedLabel(700, new Color(0,0,0,0), new Insets(2,2,2,2));
+        elementsLabel.setOpaque(false);
+        elementsLabel.setText(getElements());
+        elementsLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 18));
+        elementsLabel.setForeground(new Color(113,113,113));
+        elementsLabel.setBounds(0,preferredElementLabel.getPreferredSize().height+preferredElementLabel.getY()+5, elementsLabel.getPreferredSize().width+20, elementsLabel.getPreferredSize().height);
+        summaryPanel1.add(elementsLabel);
+        summaryPanel1.setComponentZOrder(elementsLabel, 0);
+        
+        JLabel preferredWeaponLabel = new JLabel();
+        preferredWeaponLabel.setText("Preferred Weapons:");
+        preferredWeaponLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
+        preferredWeaponLabel.setForeground(new Color(67,67,71));
+        preferredWeaponLabel.setBounds(0,elementsLabel.getPreferredSize().height+elementsLabel.getY()+20, preferredWeaponLabel.getPreferredSize().width+20, preferredWeaponLabel.getPreferredSize().height);
+        summaryPanel1.add(preferredWeaponLabel);
+        summaryPanel1.setComponentZOrder(preferredWeaponLabel, 0);
+        
+        App.WrappedLabel weaponsLabel = new App.WrappedLabel(700, new Color(0,0,0,0), new Insets(2,2,2,2));
+        weaponsLabel.setOpaque(false);
+        weaponsLabel.setText(getWeapons());
+        weaponsLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 18));
+        weaponsLabel.setForeground(new Color(113,113,113));
+        weaponsLabel.setBounds(0,preferredWeaponLabel.getPreferredSize().height+preferredWeaponLabel.getY()+5, weaponsLabel.getPreferredSize().width+20, weaponsLabel.getPreferredSize().height);
+        summaryPanel1.add(weaponsLabel);
+        summaryPanel1.setComponentZOrder(weaponsLabel, 0);
+        
+        bannedCharactersLabel = new JLabel();
+        bannedCharactersLabel.setText("Banned Characters:");
+        bannedCharactersLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
+        bannedCharactersLabel.setForeground(new Color(67,67,71));
+        bannedCharactersLabel.setBounds(0,weaponsLabel.getPreferredSize().height+weaponsLabel.getY()+20, bannedCharactersLabel.getPreferredSize().width+20, bannedCharactersLabel.getPreferredSize().height);
+        summaryPanel1.add(bannedCharactersLabel);
+        summaryPanel1.setComponentZOrder(bannedCharactersLabel, 0);
+        
+        bannedNameLabel = new App.WrappedLabel(700, new Color(0,0,0,0), new Insets(2,2,2,2));
+        bannedNameLabel.setOpaque(false);
+        bannedNameLabel.setText(getBannedName());
+        bannedNameLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 18));
+        bannedNameLabel.setForeground(new Color(113,113,113));
+        bannedNameLabel.setBounds(0,bannedCharactersLabel.getPreferredSize().height+bannedCharactersLabel.getY()+5, bannedNameLabel.getPreferredSize().width+20, bannedNameLabel.getPreferredSize().height);
+        summaryPanel1.add(bannedNameLabel);
+        summaryPanel1.setComponentZOrder(bannedNameLabel, 0);
+        
+        adjustContainerSizePage4();
+        summaryScroll1.getVerticalScrollBar().setValue(0);
+    }
+    
+    private void adjustContainerSizePage4() {
+        int totalHeight = 0;
+        for (Component comp : summaryPanel1.getComponents()) {
+            totalHeight += comp.getPreferredSize().height + 12; // Adjust the offset as needed
+        }
+        summaryPanel1.setPreferredSize(new Dimension(summaryPanel1.getWidth(), totalHeight));
+        summaryPanel1.revalidate();
+        summaryPanel1.repaint();
+        summaryScroll1.revalidate();
+        summaryScroll1.repaint();
+    }
+    
+    private String getBannedName(){
+        String str="";
+        if(bannedName.isEmpty()){
+            return "-";
+        }
+        else{
+            for(String e: bannedName){
+                str = (bannedName.indexOf(e)==0)? str + e : str + ", " + e;
+            }
+        }
+        return str;
+    }
+    
+    
+    
+    private void profileButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton3MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_pyroRadButton5ActionPerformed
+    }//GEN-LAST:event_profileButton3MouseClicked
+
+    private void profileButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profileButton3MouseEntered
+
+    private void profileButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton3MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profileButton3MouseExited
+
+    private void exitButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButton3MouseClicked
+        int option = JOptionPane.showConfirmDialog(getContentPane(), "Are you sure you want to go back? Your changes won't be saved", "SELECT", JOptionPane.YES_NO_OPTION);
+        if(option == JOptionPane.YES_OPTION){
+            setVisible(false);
+            dispose();
+            new Home(userId).setVisible(true);
+        }
+    }//GEN-LAST:event_exitButton3MouseClicked
+
+    private void exitButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButton3MouseEntered
+        exitButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/exit2.png")));
+        exitButton3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_exitButton3MouseEntered
+
+    private void exitButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButton3MouseExited
+         exitButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/exit1.png")));
+        exitButton3.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_exitButton3MouseExited
+
+    private void generateLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateLabel1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_generateLabel1MouseClicked
+
+    private void generateLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateLabel1MouseEntered
+        generateButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button2.png")));
+        generateButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        generateLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_generateLabel1MouseEntered
+
+    private void generateLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateLabel1MouseExited
+        generateButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button1.png")));
+        generateButton1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        generateLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_generateLabel1MouseExited
+
+    private void generateButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateButton1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_generateButton1MouseClicked
+
+    private void generateButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateButton1MouseEntered
+       generateButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button2.png")));
+        generateButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        generateLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_generateButton1MouseEntered
+
+    private void generateButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateButton1MouseExited
+       generateButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/button1.png")));
+        generateButton1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        generateLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_generateButton1MouseExited
 
     /**
      * @param args the command line arguments
@@ -2368,6 +2969,7 @@ public class TeamGuide extends javax.swing.JFrame {
     private javax.swing.JRadioButton catalystRadButton;
     private javax.swing.JRadioButton catalystRadButton1;
     private javax.swing.JPanel characterPane;
+    private javax.swing.JPanel characterPane2;
     private javax.swing.JRadioButton claymoreRadButton;
     private javax.swing.JRadioButton claymoreRadButton1;
     private javax.swing.JPanel clonePanelContainer;
@@ -2382,16 +2984,21 @@ public class TeamGuide extends javax.swing.JFrame {
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel emailLabel1;
     private javax.swing.JLabel emailLabel2;
+    private javax.swing.JLabel emailLabel3;
     private javax.swing.JPanel enemiesPane;
     private javax.swing.JLabel exitButton;
     private javax.swing.JLabel exitButton1;
     private javax.swing.JLabel exitButton2;
+    private javax.swing.JLabel exitButton3;
     private javax.swing.JRadioButton floor10Radio;
     private javax.swing.JRadioButton floor11Radio;
     private javax.swing.JRadioButton floor12Radio;
     private javax.swing.JRadioButton floor9Radio;
+    private javax.swing.ButtonGroup floorGroup;
     private javax.swing.JLabel generateButton;
+    private javax.swing.JLabel generateButton1;
     private javax.swing.JLabel generateLabel;
+    private javax.swing.JLabel generateLabel1;
     private javax.swing.JRadioButton geoRadButton;
     private javax.swing.JRadioButton geoRadButton1;
     private javax.swing.JRadioButton hydroRadButton;
@@ -2408,6 +3015,11 @@ public class TeamGuide extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2431,20 +3043,25 @@ public class TeamGuide extends javax.swing.JFrame {
     private javax.swing.JLabel profileButton;
     private javax.swing.JLabel profileButton1;
     private javax.swing.JLabel profileButton2;
+    private javax.swing.JLabel profileButton3;
     private javax.swing.JRadioButton pyroRadButton;
-    private javax.swing.JRadioButton pyroRadButton5;
+    private javax.swing.JRadioButton pyroRadButton1;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JScrollPane scrollPane2;
     private javax.swing.JScrollPane scrollPane3;
     private javax.swing.JPanel summaryPanel;
+    private javax.swing.JPanel summaryPanel1;
     private javax.swing.JScrollPane summaryScroll;
+    private javax.swing.JScrollPane summaryScroll1;
     private javax.swing.JRadioButton swordRadButton;
     private javax.swing.JRadioButton swordRadButton1;
     private javax.swing.JPanel teamPage1;
     private javax.swing.JPanel teamPage2;
     private javax.swing.JPanel teamPage3;
+    private javax.swing.JPanel teamPage4;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JLabel usernameLabel1;
     private javax.swing.JLabel usernameLabel2;
+    private javax.swing.JLabel usernameLabel3;
     // End of variables declaration//GEN-END:variables
 }
