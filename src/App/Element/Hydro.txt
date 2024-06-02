@@ -1,0 +1,53 @@
+Xingqiu			
+Xingqiu#Pyro Applicator#Pyro Applicator, Universal Amplifier, Hydro Applicator, Electro Applicator, Dendro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator, Dendro Applicator
+Xingqiu#Electro Applicator#Electro Applicator, Hydro Applicator, Universal Amplifier, Pyro Applicator, Dendro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator, Dendro Applicator
+Xingqiu#Dendro Applicator#Bloom On-Field DPS, Hydro Applicator#Dendro Applicator
+Xingqiu#Hydro Applicator#Hydro Applicator, Universal Amplifier, Pyro Applicator, Electro Applicator, Dendro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator, Dendro Applicator
+Xingqiu#Dendro Applicator#Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator, Dendro Applicator#Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator, Dendro Applicator
+Xingqiu#Navia#Off-field DPS#Universal Amplifier, Shielder, Off-field DPS, Healer
+			
+			
+			
+Tartaglia			
+Tartaglia#Bennett#Xiangling#Kazuha
+Tartaglia#Pyro Applicator#Universal Amplifier, Pyro Applicator, Hydro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Hydro Applicator
+Tartaglia#Electro Applicator, Hydro Applicator, Hydro On-Field DPS, Electro On-Field DPS#Electro Applicator, Hydro Applicator#Swirl, Universal Amplifier
+			
+			
+			
+Ayato			
+Ayato#Pyro Applicator#Universal Amplifier, Pyro Applicator, Hydro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Hydro Applicator
+Ayato#Universal Amplifier#NA Amplifier, Universal Amplifier#Swirl
+Ayato#Reaction Amplifier, Dendro Applicator#Electro Applicator#Swirl, NA Amplifier, Hydro Applicator, Dendro Applicator, Electro Applicator
+Ayato#Nilou#Reaction Amplifier, Dendro Applicator#Dendro Applicator
+Ayato#Reaction Amplifier, Dendro Applicator#Dendro Applicator#Pyro Applicator
+Ayato#Electro Applicator, Hydro Applicator, Hydro On-Field DPS, Electro On-Field DPS#Electro Applicator, Hydro Applicator#Swirl, Universal Amplifier, NA Amplifier
+			
+			
+			
+Yelan			
+Yelan#Pyro Applicator#Pyro Applicator, Universal Amplifier, Hydro Applicator, Electro Applicator, Dendro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator, Dendro Applicator
+Yelan#Electro Applicator#Electro Applicator, Hydro Applicator, Universal Amplifier, Pyro Applicator, Dendro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator, Dendro Applicator
+Yelan#Dendro Applicator#Bloom On-Field DPS, Hydro Applicator#Dendro Applicator
+Yelan#Hydro Applicator#Hydro Applicator, Universal Amplifier, Pyro Applicator, Electro Applicator, Dendro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator, Dendro Applicator
+Yelan#Dendro Applicator#Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator, Dendro Applicator#Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator, Dendro Applicator
+Yelan#Navia#Off-field DPS#Universal Amplifier, Shielder, Off-field DPS, Healer
+			
+			
+			
+Nilou			
+Nilou#Hydro Applicator#Reaction Amplifier, Dendro Applicator#Dendro Applicator
+			
+
+Furina
+Furina#Pyro Applicator#Pyro Applicator, Universal Amplifier, Hydro Applicator, Electro Applicator, Dendro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator, Dendro Applicator
+Furina#Electro Applicator#Electro Applicator, Hydro Applicator, Universal Amplifier, Pyro Applicator, Dendro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator, Dendro Applicator
+Furina#Dendro Applicator#Bloom On-Field DPS, Hydro Applicator#Dendro Applicator
+Furina#Hydro Applicator#Hydro Applicator, Universal Amplifier, Pyro Applicator, Electro Applicator, Dendro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator, Dendro Applicator
+Furina#Dendro Applicator#Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator, Dendro Applicator#Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator, Dendro Applicator
+Furina#Navia#Off-field DPS#Universal Amplifier, Shielder, Off-field DPS, Healer
+			
+			
+Neuvillette			
+Neuvillette#Universal Amplifier#Dendro Applicator#Swirl, Shielder
+Neuvillette#Dendro Applicator, Electro Applicator#Electro Applicator, Universal Amplifier, Dendro Applicator#Shielder

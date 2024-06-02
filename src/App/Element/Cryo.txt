@@ -1,0 +1,47 @@
+Chongyun				
+Chongyun#Hydro Applicator, Pyro Applicator#Pyro Applicator, Cryo Amplifier, Universal Amplifier#Cryo Amplifier, Universal Amplifier, Swirl, Shielder, Healer	
+Chongyun#Hydro Applicator#Cryo Amplifier, Cryo Applicator#Swirl, Cryo Applicator, Hydro Applicator	
+Chongyun#Cryo Applicator#Cryo Amplifier, Cryo Applicator#Swirl, Cryo Applicator	
+				
+				
+Ganyu				
+Ganyu#Pyro Applicator, Pyro On-Field DPS#Bennett#Swirl, Cryo Amplifier, Shielder	
+Ganyu#Pyro Applicator, Cryo Applicator, Universal Amplifier#Pyro Applicator, Cryo Applicator, Universal Amplifier#Swirl, Cryo Amplifier, Shielder, Cryo Applicator, Pyro Applicator	
+Ganyu#Mona#Cryo Amplifier, Cryo Applicator#Swirl	
+Ganyu#Hydro Applicator#Cryo Amplifier, Cryo Applicator, Universal Amplifier#Swirl	
+Ganyu#Pyro Applicator, Pyro On-Field DPS#Reaction Amplifier#Swirl, Pyro Applicator, Cryo Applicator	
+Ganyu#Cryo Applicator, Cryo On-Field DPS#Cryo Amplifier, Cryo Applicator#Swirl, Cryo Applicator	
+				
+				
+Kamisato Ayaka				
+Kamisato Ayaka#Mona#Cryo Amplifier, Cryo Applicator#Swirl	
+Kamisato Ayaka#Hydro Applicator#Cryo Amplifier, Cryo Applicator, Universal Amplifier#Swirl	
+Kamisato Ayaka#Cryo Applicator#Cryo Amplifier, Cryo Applicator#Swirl, Cryo Applicator
+Kamisato Ayaka#Pyro Applicator, Pyro On-Field DPS#Universal Amplifier, Pyro Applicator, Cryo Applicator, Cryo Amplifier#Swirl, Universal Amplifier, Shielder, Healer	
+				
+				
+Kaeya				
+Kaeya#Pyro Applicator, Pyro On-Field DPS#Pyro Applicator, Cryo Applicator, Universal Amplifier, Cryo Amplifier#Swirl, Universal Amplifier, Pyro Applicator, Cryo Applicator, Cryo Amplifier	
+Kaeya#Cryo Applicator, Cryo On-Field DPS#Cryo Amplifier, Cryo Applicator#Swirl, Cryo Applicator	
+				
+				
+Rosaria				
+Rosaria#Pyro Applicator, Pyro On-Field DPS#Pyro Applicator, Cryo Applicator, Universal Amplifier, Cryo Amplifier#Swirl, Universal Amplifier, Pyro Applicator, Cryo Applicator, Cryo Amplifier	
+Rosaria#Cryo Applicator, Cryo On-Field DPS#Cryo Amplifier, Cryo Applicator#Swirl, Cryo Applicator	
+				
+				
+Aloy				
+Aloy#Pyro Applicator#Pyro Applicator, Cryo Applicator, Universal Amplifier, Cryo Amplifier#Swirl, Universal Amplifier, Pyro Applicator, Cryo Applicator, Cryo Amplifier	
+Aloy#Cryo Applicator#Cryo Amplifier, Cryo Applicator#Swirl, Cryo Applicator	
+				
+				
+Wriothesley				
+Wriothesley#Pyro Applicator#Bennett#Cryo Amplifier, Swirl	
+Wriothesley#Pyro Applicator#Pyro Applicator, Cryo Applicator, Universal Amplifier, Cryo Amplifier#Swirl, Universal Amplifier, Pyro Applicator, Cryo Applicator, Cryo Amplifier	
+Wriothesley#Hydro Applicator#Cryo Amplifier, Cryo Applicator#Swirl, Cryo Applicator, Hydro Applicator	
+Wriothesley#Cryo Applicator#Cryo Amplifier, Cryo Applicator#Swirl, Cryo Applicator	
+				
+				
+				
+				
+				

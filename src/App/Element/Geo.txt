@@ -1,0 +1,14 @@
+Ningguang			
+Ningguang#Geo Applicator, Universal Amplifier#NA Amplifier, Geo Applicator, Universal Amplifier#Shielder, Healer
+			
+			
+Noelle			
+Noelle#Geo Amplifier, Universal Amplifier#NA Amplifier, Geo Applicator, Universal Amplifier#Universal Amplifier, Geo Applicator
+			
+			
+Arataki Itto			
+Arataki Itto#Geo Amplifier, Universal Amplifier#Geo Applicator, Universal Amplifier#Shielder, Geo Applicator, Universal Amplifier, Healer
+			
+			
+Navia			
+Navia#Off-field DPS#Off-field DPS#Universal Amplifier, Shielder, Off-field DPS, Healer

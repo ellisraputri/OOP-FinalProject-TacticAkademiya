@@ -1,0 +1,10 @@
+Ganyu#S#Bow
+Diona#S#Bow
+Rosaria#A#Polearm
+Charlotte#A#Catalyst
+Kaeya#B#Sword
+Layla#B#Sword
+Chongyun#C#Claymore
+Qiqi#C#Sword
+Freminet#D#Claymore
+Aloy#D#Bow

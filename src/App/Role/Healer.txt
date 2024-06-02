@@ -1,0 +1,15 @@
+Bennett#SS#Sword
+Baizhu#SS#Catalyst
+Sangonomiya Kokomi#SS#Catalyst
+Diona#S#Bow
+Jean#S#Sword
+Kuki Shinobu#S#Sword
+Xianyun#S#Catalyst
+Chevreuse#S#Polearm
+Yaoyao#A#Polearm
+Charlotte#A#Catalyst
+Barbara#B#Catalyst
+Sayu#B#Claymore
+Noelle#B#Claymore
+Qiqi#C#Sword
+Dori#C#Claymore

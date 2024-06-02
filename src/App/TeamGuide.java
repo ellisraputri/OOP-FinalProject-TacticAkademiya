@@ -4,6 +4,7 @@
  */
 package App;
 
+import DatabaseConnection.ConnectionProvider;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -14,7 +15,11 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -68,6 +73,7 @@ public class TeamGuide extends javax.swing.JFrame {
         this.userId = 1;
         setLocationRelativeTo(null);
         teamPage1();
+        addCharOwned();
     }
     
     public TeamGuide(int userId, String username, String email) {
@@ -76,7 +82,52 @@ public class TeamGuide extends javax.swing.JFrame {
         this.username = username;
         this.email = email;
         setLocationRelativeTo(null);
-        teamPage3();
+        teamPage1();
+        addCharOwned();
+    }
+    
+    private ArrayList<String> charOwnedList = new ArrayList<>();
+    private void addCharOwned(){
+        ArrayList<Boolean> ownedOrNot = new ArrayList<>();
+        try{
+            Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = st.executeQuery("select * from characters where userId=" + userId + "");
+            if(rs.first()){
+                for(int i=2; i<87; i++){
+                    ownedOrNot.add(rs.getBoolean(i));
+                }
+            }
+            else{
+               JOptionPane.showMessageDialog(getContentPane(), "No user ID found");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        try{
+            Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs1 = st.executeQuery("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='characters'");
+            int index=0;
+            while(rs1.next()){
+                if(index==0){
+                    index++;
+                    continue;
+                }
+                if(ownedOrNot.get(index-1) == true){
+                    String name = rs1.getString(1);
+                    name = name.replaceAll("([a-z])([A-Z])", "$1 $2");
+                    charOwnedList.add(name);
+                }
+                index++;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        
+        System.out.println(charOwnedList);
     }
     
     private void resetRadioButtonsPage1(){
@@ -1934,6 +1985,10 @@ public class TeamGuide extends javax.swing.JFrame {
     private Set<String> selectedPanels = new LinkedHashSet<>();
     private App.WrappedLabel bannedNameLabel;
     private JLabel bannedCharactersLabel;
+    private App.WrappedLabel enemiesLabel;
+    private App.WrappedLabel elementsLabel;
+    private App.WrappedLabel weaponsLabel;
+
     
     private void teamPage2(){
         parentPanel.remove(teamPage1);
@@ -1969,10 +2024,19 @@ public class TeamGuide extends javax.swing.JFrame {
         ArrayList<BufferedImage> imageList = loader2.loadImagesFromFolder("src/App/image/CharacterCard/Small");
         ArrayList<String> nameList = loader2.returnFileNames();
         
+        ArrayList<String> newNameList = new ArrayList<>();
+        ArrayList<BufferedImage> newImageList = new ArrayList<>();
+        for(int i=0; i<imageList.size(); i++){
+            if(charOwnedList.contains(nameList.get(i))){
+                newNameList.add(nameList.get(i));
+                newImageList.add(imageList.get(i));
+            }
+        }
+        
         int row=0, column=0;
-        for(int i=0; i<imageList.size();i++){
-            BufferedImage image = imageList.get(i);
-            String charName = nameList.get(i);
+        for(int i=0; i<newImageList.size();i++){
+            BufferedImage image = newImageList.get(i);
+            String charName = newNameList.get(i);
             
             int panelWidth = 120;
             int panelHeight = 120;
@@ -2045,7 +2109,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel.add(enemySummaryLabel);
         summaryPanel.setComponentZOrder(enemySummaryLabel, 0);
         
-        App.WrappedLabel enemiesLabel = new App.WrappedLabel(550, new Color(0,0,0,0), new Insets(2,2,2,2));
+        enemiesLabel = new App.WrappedLabel(550, new Color(0,0,0,0), new Insets(2,2,2,2));
         enemiesLabel.setOpaque(false);
         enemiesLabel.setText(getEnemyName());
         enemiesLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 18));
@@ -2062,7 +2126,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel.add(preferredElementLabel);
         summaryPanel.setComponentZOrder(preferredElementLabel, 0);
         
-        App.WrappedLabel elementsLabel = new App.WrappedLabel(550, new Color(0,0,0,0), new Insets(2,2,2,2));
+        elementsLabel = new App.WrappedLabel(550, new Color(0,0,0,0), new Insets(2,2,2,2));
         elementsLabel.setOpaque(false);
         elementsLabel.setText(getElements());
         elementsLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 18));
@@ -2079,7 +2143,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel.add(preferredWeaponLabel);
         summaryPanel.setComponentZOrder(preferredWeaponLabel, 0);
         
-        App.WrappedLabel weaponsLabel = new App.WrappedLabel(550, new Color(0,0,0,0), new Insets(2,2,2,2));
+        weaponsLabel = new App.WrappedLabel(550, new Color(0,0,0,0), new Insets(2,2,2,2));
         weaponsLabel.setOpaque(false);
         weaponsLabel.setText(getWeapons());
         weaponsLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 18));
@@ -2182,7 +2246,13 @@ public class TeamGuide extends javax.swing.JFrame {
         }
         
         for(int index: clickedListIndex){
-            str = (index==0)? str + enemyPanelList.get(index).get(0).getType() + " (" : str + ", " + enemyPanelList.get(index).get(0).getType() + " (";    
+            if(clickedListIndex.indexOf(index) == 0){
+                str = str + enemyPanelList.get(index).get(0).getType() + " (";
+            }
+            else{
+                str = str + ", " + enemyPanelList.get(index).get(0).getType() + " (";
+            }
+            
             int j=0;
             for(EnemyPanel p: enemyPanelList.get(index)){
                 if(p.getClicked()){
@@ -2240,7 +2310,14 @@ public class TeamGuide extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButton1MouseExited
 
     private void generateLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateLabelMouseClicked
-        // TODO add your handling code here:
+        String[] bannednames = bannedNameLabel.getText().split(", ");
+        ArrayList<String> banChars = new ArrayList<>(Arrays.asList(bannednames));
+        if(charOwnedList.size() - banChars.size() < 8){
+            JOptionPane.showMessageDialog(parentPanel, "Character that is being fed to generator must be at least 8.");
+        }
+        else{
+           App.PrepareGenerator app = new App.PrepareGenerator(enemiesLabel.getText(), elementsLabel.getText(), weaponsLabel.getText(), banChars, charOwnedList); 
+        }
     }//GEN-LAST:event_generateLabelMouseClicked
 
     private void generateLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateLabelMouseEntered
@@ -2256,7 +2333,14 @@ public class TeamGuide extends javax.swing.JFrame {
     }//GEN-LAST:event_generateLabelMouseExited
 
     private void generateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateButtonMouseClicked
-        // TODO add your handling code here:
+        String[] bannednames = bannedNameLabel.getText().split(", ");
+        ArrayList<String> banChars = new ArrayList<>(Arrays.asList(bannednames));
+        if(charOwnedList.size() - banChars.size() < 10){
+            JOptionPane.showMessageDialog(parentPanel, "Character that is being fed to generator must be at least 10.");
+        }
+        else{
+           App.PrepareGenerator app = new App.PrepareGenerator(enemiesLabel.getText(), elementsLabel.getText(), weaponsLabel.getText(), banChars, charOwnedList); 
+        }
     }//GEN-LAST:event_generateButtonMouseClicked
 
     private void generateButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateButtonMouseEntered
@@ -2319,10 +2403,19 @@ public class TeamGuide extends javax.swing.JFrame {
         ArrayList<BufferedImage> imageList = loader3.loadImagesFromFolder("src/App/image/CharacterCard/Small");
         ArrayList<String> nameList = loader3.returnFileNames();
         
+        ArrayList<String> newNameList = new ArrayList<>();
+        ArrayList<BufferedImage> newImageList = new ArrayList<>();
+        for(int i=0; i<imageList.size(); i++){
+            if(charOwnedList.contains(nameList.get(i))){
+                newNameList.add(nameList.get(i));
+                newImageList.add(imageList.get(i));
+            }
+        }
+        
         int row=0, column=0;
-        for(int i=0; i<imageList.size();i++){
-            BufferedImage image = imageList.get(i);
-            String charName = nameList.get(i);
+        for(int i=0; i<newImageList.size();i++){
+            BufferedImage image = newImageList.get(i);
+            String charName = newNameList.get(i);
             
             int panelWidth = 120;
             int panelHeight = 120;
@@ -2921,6 +3014,17 @@ public class TeamGuide extends javax.swing.JFrame {
         generateLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_generateButton1MouseExited
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */

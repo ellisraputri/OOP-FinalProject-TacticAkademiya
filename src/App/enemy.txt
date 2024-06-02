@@ -1,0 +1,238 @@
+Pyro Slime#Pyro#Hydro, Cryo#null#FALSE#FALSE
+Large Pyro Slime#Pyro#Hydro, Cryo#null#FALSE#FALSE
+Hydro Slime#Hydro#Pyro#null#FALSE#FALSE
+Large Hydro Slime#Hydro#Pyro#null#FALSE#FALSE
+Anemo Slime#Anemo#null#null#FALSE#FALSE
+Large Anemo Slime#Anemo#null#null#FALSE#FALSE
+Electro Slime#Electro#null#null#FALSE#FALSE
+Large Electro Slime#Electro#null#null#FALSE#FALSE
+Mutant Electro Slime#Electro#null#null#FALSE#FALSE
+Dendro Slime#Dendro#Pyro#null#FALSE#FALSE
+Large Dendro Slime#Dendro#Pyro#null#FALSE#FALSE
+Cryo Slime#Cryo#Pyro#null#FALSE#FALSE
+Large Cryo Slime#Cryo#Pyro#null#FALSE#FALSE
+Geo Slime#Geo#null#null#FALSE#FALSE
+Large Geo Slime#null#Geo_Pyro, Geo_Hydro, Geo_Anemo, Geo_Electro, Geo_Dendro, Geo_Cryo, Geo_Physical, Pyro_Electro#Claymore#FALSE#FALSE
+Eye of the Storm#Anemo#null#null#FALSE#FALSE
+Pyro Hypostasis#Pyro#Hydro#null#FALSE#FALSE
+Hydro Hypostasis#Hydro#Dendro#null#FALSE#FALSE
+Anemo Hypostasis#Anemo#null#null#FALSE#FALSE
+Electro Hypostasis#Electro#null#null#FALSE#FALSE
+Dendro Hypostasis#null#Dendro_Electro#null#FALSE#FALSE
+Cryo Hypostasis#Cryo#Pyro#null#FALSE#FALSE
+Geo Hypostasis#null#Geo_Pyro, Geo_Hydro, Geo_Anemo, Geo_Electro, Geo_Dendro, Geo_Cryo, Geo_Physical#Claymore#FALSE#FALSE
+Oceanid#Hydro#Pyro, Cryo, Electro, Dendro#Bow#FALSE#FALSE
+Thunder Manifestation#Electro#Pyro, Cryo, Dendro#null#FALSE#FALSE
+Pyro Specter#Pyro#null#null#FALSE#FALSE
+Hydro Specter#Hydro#null#null#FALSE#FALSE
+Anemo Specter#Anemo#null#null#FALSE#FALSE
+Electro Specter#Electro#null#null#FALSE#FALSE
+Dendro Specter#Dendro#null#null#FALSE#FALSE
+Cryo Specter#Cryo#null#null#FALSE#FALSE
+Geo Specter#Geo#null#null#FALSE#FALSE
+Tainted Water-Spouting Phantasm#Hydro#Pyro, Cryo, Dendro, Electro#null#FALSE#FALSE
+Tainted Water-Splitting Phantasm#Hydro#Pyro, Cryo, Dendro, Electro#null#FALSE#FALSE
+Hydro Tulpa#Hydro#Pyro, Cryo, Dendro, Electro#null#FALSE#FALSE
+Hilichurl#null#null#null#FALSE#FALSE
+Hilichurl Fighter#null#null#null#FALSE#FALSE
+Hilichurl Berserker#null#null#null#FALSE#FALSE
+Wooden Shield Hilichurl Guard#null#Pyro#null#FALSE#FALSE
+Ice Shield Hilichurl Guard#null#Pyro#null#FALSE#FALSE
+Rock Shield Hilichurl Guard#null#Geo, Pyro_Electro#Claymore#FALSE#FALSE
+Hilichurl Shooter#null#null#null#FALSE#FALSE
+Pyro Hilichurl Shooter#null#null#null#FALSE#FALSE
+Electro Hilichurl Shooter#null#null#null#FALSE#FALSE
+Cryo Hilichurl Shooter#null#null#null#FALSE#FALSE
+Hilichurl Grenadier#null#null#null#FALSE#FALSE
+Electro Hilichurl Grenadier#null#null#null#FALSE#FALSE
+Cryo Hilichurl Grenadier#null#null#null#FALSE#FALSE
+Unusual Hilichurl#null#null#null#FALSE#FALSE
+Wooden Shieldwall Mitachurl#null#Pyro#null#FALSE#FALSE
+Rock Shieldwall Mitachurl#null#Geo, Pyro_Electro#Claymore#FALSE#FALSE
+Ice Shieldwall Mitachurl#null#Pyro#null#FALSE#FALSE
+Blazing Axe Mitachurl#null#null#null#FALSE#FALSE
+Crackling Axe Mitachurl#null#null#null#FALSE#FALSE
+Thunderhelm Lawachurl#Electro#Pyro, Cryo, Dendro#null#FALSE#FALSE
+Frostarm Lawachurl#Cryo#Pyro, Electro#null#FALSE#FALSE
+Stonehide Lawachurl#null#Geo_Pyro, Geo_Hydro, Geo_Anemo, Geo_Electro, Geo_Dendro, Geo_Cryo, Physical_Pyro, Physical_Hydro, Physical_Anemo, Physical_Electro, Physical_Dendro, Physical_Cryo, Pyro_Electro#Claymore#FALSE#FALSE
+Hydro Samachurl#null#null#null#FALSE#FALSE
+Anemo Samachurl#null#null#null#FALSE#FALSE
+Electro Samachurl#null#null#null#FALSE#FALSE
+Dendro Samachurl#null#null#null#FALSE#FALSE
+Cryo Samachurl#null#Pyro#null#FALSE#FALSE
+Geo Samachurl#null#Geo#Claymore#FALSE#FALSE
+Hydro Hilichurl Rogue#Hydro#null#null#FALSE#FALSE
+Anemo Hilichurl Rogue#Anemo#null#null#FALSE#FALSE
+Pyro Abyss Mage#null#Hydro#null#FALSE#FALSE
+Hydro Abyss Mage#null#Dendro#null#FALSE#FALSE
+Electro Abyss Mage#null#Pyro, Cryo, Dendro#null#FALSE#FALSE
+Cryo Abyss Mage#null#Pyro#null#FALSE#FALSE
+Abyss Herald Wicked Torrents#null#Dendro#null#FALSE#FALSE
+Abyss Herald Frost Fall#null#Pyro#null#FALSE#FALSE
+Abyss Lector Fathomless Flames#null#Hydro#null#FALSE#FALSE
+Abyss Lector Violet Lightning#null#Pyro, Cryo, Dendro#null#FALSE#FALSE
+Iniquitous Baptist#null#Dendro_Hydro_Pyro, Dendro_Hydro_Electro#null#FALSE#FALSE
+Rockfond Rifthound Whelp#null#null#null#FALSE#FALSE
+Thundercraven Rifthound Whelp#null#null#null#FALSE#FALSE
+Rockfond Rifthound#null#null#null#FALSE#FALSE
+Thundercraven Rifthound#null#null#null#FALSE#FALSE
+Golden Wolflord#null#Geo#null#FALSE#FALSE
+Shadowy Husk Standard Bearer#Pyro#null#null#FALSE#FALSE
+Shadowy Husk Line Breaker#Hydro#null#null#FALSE#FALSE
+Shadowy Husk Defender#Cryo#null#null#FALSE#FALSE
+Black Serpent Knight Windcutter#Anemo#null#null#FALSE#FALSE
+Black Serpent Knight Rockbreaker Ax#Geo#null#null#FALSE#FALSE
+Large Shatterstone Breacher Primus#Geo#Pyro_Electro#Claymore#TRUE#TRUE
+Shatterstone Breacher Primus#Geo#Pyro_Electro#Claymore#TRUE#TRUE
+Large Overgrown Breacher Primus#Dendro#Electro, Pyro, Hydro#null#TRUE#TRUE
+Overgrown Breacher Primus#Dendro#Electro, Pyro, Hydro#null#TRUE#TRUE
+Fatui Skirmisher - Pyroslinger Bracer#null#Hydro#null#FALSE#FALSE
+Fatui Skirmisher - Hydrogunner Legionnaire#null#Dendro, Electro#null#FALSE#FALSE
+Fatui Skirmisher - Anemoboxer Vanguard#null#null#null#FALSE#FALSE
+Fatui Skirmisher - Electrohammer Vanguard#null#Pyro, Cryo, Dendro#null#FALSE#FALSE
+Fatui Skirmisher - Cryogunner Legionnaire#null#Pyro#null#FALSE#FALSE
+Fatui Skirmisher - Geochanter Bracer#null#Geo, Pyro_Electro#Claymore#FALSE#FALSE
+Fatui Pyro Agent#Pyro#null#null#FALSE#FALSE
+Fatui Electro Cicin Mage#Electro#null#null#FALSE#FALSE
+Fatui Cryo Cicin Mage#Cryo#null#null#FALSE#FALSE
+Mirror Maiden#Hydro#null#null#FALSE#FALSE
+Wind Operative#Anemo#null#null#FALSE#FALSE
+Frost Operative#Cryo#null#null#FALSE#FALSE
+Ruin Guard#Physical#null#null#FALSE#FALSE
+Ruin Hunter#Physical#null#null#FALSE#FALSE
+Ruin Grader#Physical#null#null#FALSE#FALSE
+Ruin Serpent#Physical#null#null#FALSE#FALSE
+Ruin Cruiser#Physical#null#null#FALSE#FALSE
+Ruin Destroyer#Physical#null#null#FALSE#FALSE
+Ruin Defender#Physical#null#null#FALSE#FALSE
+Ruin Scout#Physical#null#null#FALSE#FALSE
+Perpetual Mechanical Array#Physical#null#null#FALSE#FALSE
+Ruin Drake Earthguard#Physical#null#null#FALSE#FALSE
+Ruin Drake Skywatch#Physical#null#Bow#FALSE#FALSE
+Aeonblight Drake#Physical#null#Bow#FALSE#FALSE
+Primal Construct Repulsor#null#Dendro_Electro#null#FALSE#FALSE
+Primal Construct Reshaper#null#Dendro_Electro#null#FALSE#FALSE
+Primal Construct Prospector#null#Dendro_Electro#null#FALSE#FALSE
+Algorithm of Semi-Intransient Matrix of Overseer Network#null#Dendro_Electro#null#FALSE#FALSE
+Recon Log Mek Pneuma#null#null#null#FALSE#TRUE
+Recon Log Mek Ousia#null#null#null#TRUE#FALSE
+Arithmetic Enhancer Mek Pneuma#null#null#null#FALSE#TRUE
+Arithmetic Enhancer Mek Ousia#null#null#null#TRUE#FALSE
+Underwater Survey Mek Pneuma#null#null#null#FALSE#TRUE
+Underwater Survey Mek Ousia#null#null#null#TRUE#FALSE
+Geological Survey Mek Pneuma#null#null#null#FALSE#TRUE
+Geological Survey Mek Ousia#null#null#null#TRUE#FALSE
+Underwater Patrol Mek Pneuma#null#null#null#FALSE#TRUE
+Underwater Patrol Mek Ousia#null#null#null#TRUE#FALSE
+Deepwater Assault Mek Pneuma#null#null#null#FALSE#TRUE
+Deepwater Assault Mek Ousia#null#null#null#TRUE#FALSE
+Nimble Harvester Mek Pneuma#null#null#null#FALSE#TRUE
+Nimble Harvester Mek Ousia#null#null#null#TRUE#FALSE
+Area Alert Mek Pneuma#null#null#null#FALSE#TRUE
+Area Alert Mek Ousia#null#null#null#TRUE#FALSE
+Assault Specialist Mek Pneuma#null#null#null#FALSE#TRUE
+Assault Specialist Mek Ousia#null#null#null#TRUE#FALSE
+Suppression Specialist Mek Pneuma#null#null#null#FALSE#TRUE
+Suppression Specialist Mek Ousia#null#null#null#TRUE#FALSE
+Annihilation Specialist Mek Pneuma#null#null#null#FALSE#TRUE
+Annihilation Specialist Mek Ousia#null#null#null#TRUE#FALSE
+Construction Specialist Mek Pneuma#null#null#null#FALSE#TRUE
+Construction Specialist Mek Ousia#null#null#null#TRUE#FALSE
+Dirge Of Coppelia#Anemo, Cryo#null#null#TRUE#FALSE
+Nemesis Of Coppelius#Anemo, Cryo#null#null#FALSE#TRUE
+Experimental Field Generator#Geo#null#null#FALSE#FALSE
+Maguu Kenki#null#null#null#FALSE#FALSE
+Treasure Hoarders Scout#null#Physical#null#FALSE#FALSE
+Treasure Hoarders Pyro Potioneer#null#Physical#null#FALSE#FALSE
+Treasure Hoarders Hydro Potioneer#null#Physical#null#FALSE#FALSE
+Treasure Hoarders Electro Potioneer#null#Physical#null#FALSE#FALSE
+Treasure Hoarders Cryo Potioneer#null#Physical#null#FALSE#FALSE
+Treasure Hoarders Handyman#null#Physical#null#FALSE#FALSE
+Treasure Hoarders Marksman#null#Physical#null#FALSE#FALSE
+Treasure Hoarders Gravedigger#null#Physical#null#FALSE#FALSE
+Treasure Hoarders Seaman#null#Physical#null#FALSE#FALSE
+Treasure Hoarders Pugilist#null#Physical#null#FALSE#FALSE
+Treasure Hoarders Crusher#null#Physical#null#FALSE#FALSE
+Nobushi Jintouban#null#Physical#null#FALSE#FALSE
+Nobushi Hitsukeban#null#Physical#null#FALSE#FALSE
+Nobushi Kikouban#null#Physical#null#FALSE#FALSE
+Kairagi Fiery Might#null#Physical#null#FALSE#FALSE
+Kairagi Dancing Thunder#null#Physical#null#FALSE#FALSE
+Eremite Axe Vanguard#null#Physical#null#FALSE#FALSE
+Eremite Crossbow#null#Physical#null#FALSE#FALSE
+Eremite Ravenbeak Halberdier#null#Physical#null#FALSE#FALSE
+Eremite Linebreaker#null#Physical#null#FALSE#FALSE
+Eremite Sword-Dancer#null#Physical#null#FALSE#FALSE
+Eremite Desert Clearwater#Hydro#Physical#null#FALSE#FALSE
+Eremite Sunfrost#Cryo#Physical#null#FALSE#FALSE
+Eremite Daythunder#Electro#Physical#null#FALSE#FALSE
+Eremite Galehunter#Anemo#Physical#null#FALSE#FALSE
+Eremite Stone Enchanter#Geo#Physical#null#FALSE#FALSE
+Eremite Scorching Loremaster#Pyro#Physical#null#FALSE#FALSE
+Eremite Floral Ring-Dancer#Dendro#Physical#null#FALSE#FALSE
+Pyro Whooperflower#Pyro#Hydro, Cryo, Electro#null#FALSE#FALSE
+Electro Whooperflower#Electro#Pyro, Cryo, Dendro#null#FALSE#FALSE
+Cryo Whooperflower#Cryo#Pyro, Electro#null#FALSE#FALSE
+Pyro Regisvine#Pyro#Hydro#null#FALSE#FALSE
+Electro Regisvine#Electro#Pyro, Cryo, Dendro#null#FALSE#FALSE
+Cryo Regisvine#Cryo#Pyro#null#FALSE#FALSE
+Geovishap Hatchling#Geo#null#null#FALSE#FALSE
+Geovishap#Geo#null#null#FALSE#FALSE
+Primo Geovishap#Geo#null#null#FALSE#FALSE
+Primordial Bathysmal Vishap Hatchling#Hydro#null#null#FALSE#FALSE
+Primordial Bathysmal Vishap#Hydro#null#null#FALSE#FALSE
+Rimebiter Bathysmal Vishap#Cryo#null#null#FALSE#FALSE
+Rimebiter Bathysmal Vishap Hatchling#Cryo#null#null#FALSE#FALSE
+Bolteater Bathysmal Vishap#Electro#null#null#FALSE#FALSE
+Bolteater Bathysmal Vishap Hatchling#Electro#null#null#FALSE#FALSE
+Bathysmal Vishap Herd#Electro, Cryo#null#null#FALSE#FALSE
+Hydro Cicin#Hydro#null#null#FALSE#FALSE
+Electro Cicin#Electro#null#null#FALSE#FALSE
+Cryo Cicin#Cryo#null#null#FALSE#FALSE
+Floating Hydro Fungus#Hydro, Dendro#null#null#FALSE#FALSE
+Floating Anemo Fungus#Anemo, Dendro#null#null#FALSE#FALSE
+Floating Dendro Fungus#Dendro#null#null#FALSE#FALSE
+Whirling Pyro Fungus#Pyro, Dendro#null#null#FALSE#FALSE
+Whirling Electro Fungus#Electro, Dendro#null#null#FALSE#FALSE
+Whirling Cryo Fungus#Cryo, Dendro#null#null#FALSE#FALSE
+Stretchy Pyro Fungus#Pyro, Dendro#null#null#FALSE#FALSE
+Stretchy Anemo Fungus#Anemo, Dendro#null#null#FALSE#FALSE
+Stretchy Electro Fungus#Electro, Dendro#null#null#FALSE#FALSE
+Stretchy Geo Fungus#Geo, Dendro#null#null#FALSE#FALSE
+Grounded Hydroshroom#Hydro, Dendro#null#null#FALSE#FALSE
+Winged Dendroshroom#Dendro#null#null#FALSE#FALSE
+Winged Cryoshroom#Cryo, Dendro#null#null#FALSE#FALSE
+Grounded Geoshroom#Geo, Dendro#null#null#FALSE#FALSE
+Jadeplume Terrorshroom#Dendro#Electro#null#FALSE#FALSE
+Consecrated Horned Crocodile#Hydro#null#null#FALSE#FALSE
+Consecrated Fanged Beast#Dendro#null#null#FALSE#FALSE
+Consecrated Red Vulture#Pyro#null#null#FALSE#FALSE
+Consecrated Scorpion#Electro#null#null#FALSE#FALSE
+Consecrated Flying Serpent#Anemo#null#null#FALSE#FALSE
+Setekh Wenut#Anemo#null#Bow#FALSE#FALSE
+Blubberbeast#null#null#null#FALSE#FALSE
+Hunter's Ray#null#null#null#FALSE#FALSE
+Armored Crab#null#null#null#FALSE#FALSE
+Sternshield Crab#Pyro#Hydro, Electro#null#FALSE#FALSE
+Emperor of Fire and Iron#Pyro#Hydro#null#FALSE#FALSE
+Hat Jellyfish#null#null#null#FALSE#FALSE
+Bubbly Seahorse#null#null#null#FALSE#FALSE
+Bubbler Seahorse#Electro#Pyro, Cryo, Dendro#null#FALSE#FALSE
+Millenial Pearl Seahorse#Electro#Pyro, Cryo, Dendro#null#FALSE#FALSE
+Ball Octopus#null#null#null#FALSE#FALSE
+Angelic Sea Hare#null#null#null#FALSE#FALSE
+Cherubic Sea Hare#null#null#null#FALSE#FALSE
+Xuanwen Beast#Anemo, Hydro#null#null#FALSE#FALSE
+Solitary Suanni#Anemo, Hydro#null#null#FALSE#FALSE
+Praetorian Golem#null#Geo, Pyro_Electro#Claymore#FALSE#FALSE
+Legatus Golem#null#Geo, Pyro_Electro#Claymore#FALSE#FALSE
+Stormterror#null#null#null#FALSE#FALSE
+Lupus Boreas, Dominator of Wolves#Anemo, Cryo#null#null#FALSE#FALSE
+Childe#Hydro, Electro#null#null#FALSE#FALSE
+Azhdaha#Geo, based on user input#null#null#FALSE#FALSE
+La Signora#Pyro, Cryo#null#null#FALSE#FALSE
+Magatsu Mitake Narukami no Mikoto#null#Pyro_Electro, Dendro_Electro, Cryo_Electro#null#FALSE#FALSE
+Shouki no Kami, the Prodigal#Electro#Cryo, Pyro, Dendro#Bow#FALSE#FALSE
+Guardian of Apep's Oasis#Dendro#null#null#FALSE#FALSE
+All-Devouring Narwhal#Hydro, Electro#null#null#TRUE#TRUE
+The Knave#Pyro#null#null#FALSE#FALSE

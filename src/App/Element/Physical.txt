@@ -1,0 +1,17 @@
+Razor			
+Razor#Cryo Applicator#Physical Amplifier, Bennett, Cryo Applicator#Bennett, Healer, Shielder, Cryo Applicator, Electro Applicator
+			
+			
+Xinyan			
+Xinyan#Electro Applicator#Cryo Applicator#Physical Amplifier, Electro Applicator, Cryo Applicator
+			
+			
+			
+Eula			
+Eula#Electro Applicator#Cryo Applicator#Cryo Applicator, Physical Amplifier, Shielder, Healer, Electro Applicator
+			
+			
+			
+Freminet			
+Freminet#Electro Applicator#Hydro Applicator, Cryo Applicator#Physical Amplifier, Universal Amplifier, Electro Applicator, Healer
+Freminet#Hydro Applicator#Cryo Amplifier, Cryo Applicator#Swirl, Cryo Applicator, Hydro Applicator

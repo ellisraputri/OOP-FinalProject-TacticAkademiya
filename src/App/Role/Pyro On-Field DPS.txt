@@ -1,0 +1,9 @@
+Arlecchino#SS#Polearm
+Hu Tao#SS#Polearm
+Lyney#S#Bow
+Diluc#S#Claymore
+Yoimiya#A#Bow
+Gaming#A#Claymore
+Klee#C#Catalyst
+Yanfei#C#Catalyst
+Dehya#C#Claymore

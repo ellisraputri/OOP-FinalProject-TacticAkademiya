@@ -1,0 +1,9 @@
+Xiangling#SS#Polearm
+Xingqiu#SS#Sword
+Yelan#SS#Bow
+Furina#SS#Sword
+Fischl#S#Bow
+Yae Miko#S#Catalyst
+Beidou#A#Claymore
+Rosaria#A#Polearm
+Kaeya#B#Sword

@@ -1,0 +1,11 @@
+Xiao			
+Xiao#Universal Amplifier#Anemo Amplifier#Plunge Amplifier, Shielder, Healer
+Xiao#Pyro Applicator#Pyro Applicator, Universal Amplifier#Plunge Amplifier, Anemo Amplifier, Shielder, Healer, Swirl
+			
+			
+Wanderer			
+Wanderer#Off-field DPS#Anemo Amplifier, Off-field DPS, NA Amplifier#Universal Amplifier, Shielder, Healer
+			
+			
+Shikanoin Heizou			
+Shikanoin Heizou#Off-field DPS#Anemo Amplifier, Off-field DPS, NA Amplifier#Universal Amplifier, Shielder, Healer

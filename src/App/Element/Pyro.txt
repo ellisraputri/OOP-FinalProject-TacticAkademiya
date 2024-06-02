@@ -1,0 +1,64 @@
+Xiangling
+Xiangling#Hydro Applicator, Hydro On-Field DPS#Universal Amplifier, Pyro Applicator, Hydro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Hydro Applicator
+Xiangling#Cryo Applicator, Cryo On-Field DPS#Pyro Applicator, Cryo Applicator, Universal Amplifier, Cryo Amplifier#Swirl, Universal Amplifier, Pyro Applicator, Cryo Applicator, Cryo Amplifier
+Xiangling#Pyro Applicator, Pyro On-Field DPS#Universal Amplifier, Pyro Applicator#Swirl, Universal Amplifier, Pyro Applicator
+Xiangling#Electro Applicator, Electro On-Field DPS#Electro Applicator, Pyro Applicator#Overload Amplifier, Swirl
+Xiangling#Reaction Amplifier, Dendro Applicator#Hydro Applicator#Dendro Applicator, Healer, Swirl
+			
+			
+Hu Tao
+Hu Tao#Xingqiu, Yelan, Furina, Mona#Xingqiu, Yelan, Furina, Mona#Shielder, Swirl
+Hu Tao#Xingqiu, Yelan, Furina, Mona#Geo Applicator#Shielder
+Hu Tao#Xingqiu, Yelan, Furina, Mona#Cryo Applicator#Shielder, Swirl
+Hu Tao#Xingqiu, Yelan, Furina, Mona#Pyro Applicator#Swirl, Shielder
+Hu Tao#Xingqiu, Yelan, Furina, Mona#Reaction Amplifier, Dendro Applicator#Shielder
+Hu Tao#Xingqiu, Yelan, Furina, Mona#Electro Applicator#Shielder, Swirl
+Hu Tao#Cryo Applicator, Pyro Applicator#Cryo Applicator, Pyro Applicator#Shielder, Swirl
+			
+			
+Arlecchino
+Arlecchino#Hydro Applicator#Universal Amplifier, Hydro Applicator, Pyro Applicator, NA Amplifier#Shielder, Swirl
+Arlecchino#Electro Applicator#Electro Applicator, Pyro Applicator, NA Amplifier#Overload Amplifier, Swirl
+Arlecchino#Pyro Applicator#Universal Amplifier, Pyro Applicator, NA Amplifier#Swirl, Universal Amplifier, Pyro Applicator, Shielder, Healer
+Arlecchino#Cryo Applicator, Pyro Applicator#Cryo Applicator, Pyro Applicator, Universal Amplifier, NA Amplifier#Shielder, Swirl
+			
+			
+			
+Diluc
+Diluc#Hydro Applicator#Universal Amplifier, Hydro Applicator, Pyro Applicator#Shielder, Swirl
+Diluc#Cryo Applicator#Universal Amplifier, Pyro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Shielder, Healer
+Diluc#Pyro Applicator#Universal Amplifier, Pyro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Shielder, Healer
+Diluc#Hydro Applicator#Reaction Amplifier, Dendro Applicator#Dendro Applicator, Shielder, Healer
+Diluc#Hydro Applicator#Plunge Amplifier#Universal Amplifier, Swirl, Hydro Applicator, Pyro Applicator, Shielder
+			
+			
+Lyney
+Lyney#Pyro Applicator#Pyro Applicator, Universal Amplifier#Shielder, Swirl, Healer
+Lyney#Electro Applicator#Pyro Applicator, Universal Amplifier#Overload Amplifier, Swirl
+			
+			
+Gaming
+Gaming#Hydro Applicator, Universal Amplifier#Universal Amplifier, Pyro Applicator#Plunge Amplifier
+Gaming#Hydro Applicator, Universal Amplifier#Universal Amplifier, Pyro Applicator#Swirl, Shielder, Healer
+			
+			
+Yoimiya
+Yoimiya#Hydro Applicator, Universal Amplifier#Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator#Swirl, Shielder, Healer
+Yoimiya#Hydro Applicator, Universal Amplifier#NA Amplifier#Universal Amplifier, Shielder, Healer
+Yoimiya#Electro Applicator#Electro Applicator, Pyro Applicator#Overload Amplifier
+Yoimiya#Cryo Applicator#Cryo Applicator, Universal Amplifier, Pyro Applicator, Hydro Applicator#NA Amplifier, Universal Amplifier, Pyro Applicator, Swirl, Shielder, Healer
+			
+			
+Klee			
+Klee#Pyro Applicator#Pyro Applicator, Universal Amplifier#Shielder, Swirl, Healer
+Klee#Hydro Applicator, Universal Amplifier#Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator#Swirl, Shielder, Healer
+Klee#Electro Applicator#Electro Applicator, Pyro Applicator#Overload Amplifier, Swirl
+			
+			
+Yanfei			
+Yanfei#Hydro Applicator, Universal Amplifier#Universal Amplifier, Pyro Applicator, Hydro Applicator, Electro Applicator#Swirl, Shielder, Healer
+Yanfei#Electro Applicator#Electro Applicator, Pyro Applicator#Overload Amplifier, Swirl
+			
+			
+Dehya			
+Dehya#Dendro Applicator, Reaction Amplifier#Hydro Applicator#Healer, Universal Amplifier, Shielder, Swirl

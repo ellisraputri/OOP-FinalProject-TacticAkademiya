@@ -1,0 +1,26 @@
+Overload Amplifier
+Chevreuse#S#Polearm
+
+Anemo Amplifier
+Faruzan#S#Bow
+
+Geo Amplifier
+Gorou#S#Bow
+Ningguang#C#Catalyst
+
+Cryo Amplifier
+Shenhe#SS#Polearm
+Ganyu#S#Bow
+
+NA Amplifier
+Yun Jin#S#Polearm
+Candace#C#Polearm
+
+Physical Amplifier
+Mika#B#Polearm
+
+Electro Amplifier
+Kujou Sara#S#Bow
+
+Plunge Amplifier
+Xianyun#S#Catalyst

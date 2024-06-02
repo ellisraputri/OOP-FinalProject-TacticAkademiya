@@ -1,0 +1,12 @@
+Tighnari			
+Tighnari#Reaction Amplifier, Dendro Applicator, Electro Applicator#Electro Applicator#Shielder, Electro Applicator, Universal Amplifier, Healer
+			
+			
+			
+Alhaitham			
+Alhaitham#Hydro Applicator, Electro Applicator#Reaction Amplifier, Dendro Applicator#Electro Applicator, Healer, Shielder
+			
+			
+Kaveh			
+Kaveh#Hydro Applicator#Cryo Applicator#Reaction Amplifier, Dendro Applicator
+Kaveh#Hydro Applicator, Nilou#Reaction Amplifier, Dendro Applicator#Hydro Applicator, Nilou

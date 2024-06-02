@@ -1,0 +1,86 @@
+Xiangling#Pyro#SS#Pyro Applicator, Off-field DPS#Polearm#false#false
+Kaedehara Kazuha#Anemo#SS#Swirl, CC#Sword#false#false									
+Geo Traveler#Geo#C#Geo Applicator#Sword#false#false									
+Electro Traveler#Electro#D#Electro Applicator#Sword#false#false									
+Dendro Traveler#Dendro#A#Dendro Applicator#Sword#false#false									
+Hydro Traveler#Hydro#D#Hydro Applicator#Sword#false#false									
+Bennett#Pyro#SS#Healer, Universal Amplifier, Pyro Applicator#Sword#false#false									
+Kaeya#Cryo#B#Cryo Applicator, Off-field DPS#Sword#false#false									
+Lisa#Electro#B#Electro Applicator#Catalyst#false#false									
+Barbara#Hydro#B#Healer, Hydro Applicator#Catalyst#false#false									
+Razor#Physical#B#Physical On-Field DPS#Claymore#false#false									
+Hu Tao#Pyro#SS#Pyro On-Field DPS#Polearm#false#false									
+Beidou#Electro#A#Off-Field DPS, Electro Applicator#Claymore#false#false									
+Xingqiu#Hydro#SS#Hydro Applicator, Off-field DPS#Sword#false#false									
+Ningguang#Geo#C#Geo On-Field DPS, Geo Amplifier#Catalyst#false#false									
+Fischl#Electro#S#Off-Field DPS, Electro Applicator#Bow#false#false									
+Arlecchino#Pyro#SS#Pyro On-Field DPS#Polearm#false#false									
+Noelle#Geo#B#Geo On-Field DPS, Shielder, Healer#Claymore#false#false									
+Chongyun#Cryo#C#Cryo On-Field DPS, Cryo Applicator#Claymore#false#false									
+Sucrose#Anemo#S#Swirl, CC#Catalyst#false#false									
+Jean#Anemo#S#Swirl, Healer#Sword#false#false								
+Diluc#Pyro#S#Pyro On-Field DPS#Claymore#false#false									
+Qiqi#Cryo#C#Healer, Cryo Applicator#Sword#false#false									
+Mona#Hydro#S#Universal Amplifier, Hydro Applicator#Catalyst#false#false									
+Keqing#Electro#A#Electro On-Field DPS#Sword#false#false									
+Venti#Anemo#S#Swirl, CC#Bow#false#false									
+Lyney#Pyro#S#Pyro On-Field DPS#Bow#true#false									
+Diona#Cryo#S#Healer, Shielder, Cryo Applicator#Bow#false#false									
+Tartaglia#Hydro#S#Hydro On-Field DPS#Bow#false#false									
+Xinyan#Physical#D#Shielder, Physical On-Field DPS#Claymore#false#false									
+Zhongli#Geo#SS#Shielder#Polearm#false#false									
+Albedo#Geo#S#Geo Applicator#Sword#false#false									
+Ganyu#Cryo#S#Cryo On-Field DPS, Cryo Applicator, Cryo Amplifier#Bow#false#false									
+Faruzan#Anemo#S#Anemo Amplifier#Bow#false#false									
+Chevreuse#Pyro#S#Overload Amplifier, Healer#Polearm#false#true									
+Rosaria#Cryo#A#Cryo Applicator, Off-field DPS#Polearm#false#false									
+Gaming#Pyro#A#Pyro On-Field DPS#Claymore#Plunge#false#false								
+Eula#Physical#A#Physical On-Field DPS#Claymore#false#false									
+Xianyun#Anemo#S#Plunge Amplifier, Healer, Swirl#Catalyst#false#false									
+Kamisato Ayaka#Cryo#SS#Cryo On-Field DPS#Sword#false#false									
+Xiao#Anemo#A#Anemo On-Field DPS#Polearm#Plunge#false#false								
+Yoimiya#Pyro#B#Pyro On-Field DPS#Bow#false#false									
+Aloy#Cryo#D#Cryo On-Field DPS, Cryo Applicator#Bow#false#false									
+Kujou Sara#Electro#S#Electro Amplifier#Bow#false#false									
+Raiden Shogun#Electro#SS#Electro On-Field DPS, Electro Applicator#Polearm#false#false									
+Sangonomiya Kokomi#Hydro#SS#Healer, Hydro Applicator#Catalyst#false#false									
+Thoma#Pyro#B#Shielder, Pyro Applicator#Polearm#false#false									
+Gorou#Geo#S#Geo Amplifier#Bow#false#false									
+Arataki Itto#Geo#A#Geo On-Field DPS#Claymore#false#false									
+Yun Jin#Geo#S#NA Amplifier#Polearm#false#false									
+Shenhe#Cryo#SS#Cryo Amplifier#Polearm#false#false									
+Yae Miko#Electro#S#Electro Applicator, Off-field DPS#Catalyst#false#false									
+Kamisato Ayato#Hydro#S#Hydro On-Field DPS, Hydro Applicator#Sword#false#false									
+Yelan#Hydro#SS#Hydro Applicator, Off-field DPS#Bow#false#false									
+Kuki Shinobu#Electro#S#Electro Applicator, Healer#Sword#false#false									
+Wanderer#Anemo#A#Anemo On-Field DPS#Catalyst#false#false									
+Collei#Dendro#A#Dendro Applicator#Bow#false#false									
+Tighnari#Dendro#A#Dendro On-Field DPS#Bow#false#false									
+Dori#Electro#C#Healer, Electro Applicator#Claymore#false#false									
+Candace#Hydro#C#NA Amplifier, Hydro Applicator#Polearm#false#false									
+Cyno#Electro#A#Electro On-Field DPS#Polearm#false#false									
+Nilou#Hydro#S#Bloom On-Field DPS#Sword#Bloom#false#false								
+Nahida#Dendro#SS#Dendro Applicator, Reaction Amplifier#Catalyst#false#false									
+Layla#Cryo#B#Shielder, Cryo Applicator#Sword#false#false									
+Sayu#Anemo#B#Swirl, Healer#Claymore#false#false									
+Lynette#Anemo#B#Swirl#Sword#false#true									
+Yaoyao#Dendro#A#Dendro Applicator, Healer#Polearm#false#false									
+Alhaitham#Dendro#SS#Dendro On-Field DPS#Sword#false#false									
+Klee#Pyro#C#Pyro On-Field DPS, Pyro Applicator#Catalyst#false#false									
+Mika#Cryo#B#Physical Amplifier#Polearm#false#false									
+Kaveh#Dendro#C#Dendro On-Field DPS#Claymore#false#false									
+Baizhu#Dendro#SS#Healer, Shielder, Dendro Applicator#Catalyst#false#false									
+Kirara#Dendro#B#Shielder, Dendro Applicator#Sword#false#false									
+Shikanoin Heizou#Anemo#C#Anemo On-Field DPS, Swirl#Catalyst#false#false									
+Yanfei#Pyro#C#Pyro On-Field DPS, Pyro Applicator#Catalyst#false#false									
+Freminet#Physical#D#Physical On-Field DPS, Cryo Applicator#Claymore#true#false									
+Neuvillette#Hydro#SS#Hydro On-Field DPS#Catalyst#true#false									
+Wriothesley#Cryo#S#Cryo On-Field DPS#Catalyst#false#true									
+Charlotte#Cryo#	A#Healer, Cryo Applicator#Catalyst#true#false									
+Furina#	Hydro#SS#Universal Amplifier, Healer, Hydro Applicator, Off-field DPS#Sword#true#true									
+Navia#Geo#S#Geo On-Field DPS#Claymore#false#true									
+Dehya#Pyro#C#Shielder, Pyro On-Field DPS, Pyro Applicator#Claymore#false#false									
+Amber#Pyro#D#Pyro Applicator#Bow#false#false									
+Anemo Traveler#Anemo#D#Swirl#Sword#false#false									
+Chiori#Geo#S#Geo Applicator#Sword#false#false									
+													

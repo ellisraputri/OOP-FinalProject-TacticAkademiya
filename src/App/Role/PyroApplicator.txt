@@ -1,0 +1,7 @@
+Xiangling#SS#Polearm
+Bennett#SS#Sword
+Thoma#B#Polearm
+Dehya#C#Claymore
+Klee#C#Catalyst
+Yanfei#C#Catalyst
+Amber#D#Bow

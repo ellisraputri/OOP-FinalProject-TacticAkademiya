@@ -1,0 +1,49 @@
+Beidou			
+Beidou#Hydro Applicator, Electro Applicator, Hydro On-Field DPS, Electro On-Field DPS#Electro Applicator, Hydro Applicator#Swirl
+Beidou#Reaction Amplifier, Dendro Applicator, Dendro On-Field DPS#Hydro Applicator#Hydro Applicator, Electro Applicator, Dendro Applicator, Swirl, Shielder, Healer
+Beidou#Pyro Applicator, Pyro On-Field DPS#Electro Applicator, Pyro Applicator#Overload Amplifier, Swirl
+Beidou#Electro Applicator, Electro On-Field DPS#Universal Amplifier, Electro Applicator#Swirl, Universal Amplifier, Electro Applicator
+Beidou#Electro On-Field DPS, Dendro On-Field DPS#Electro Applicator, Electro Amplifier, Dendro Applicator, Universal Amplifier, Shielder, Healer#Dendro Applicator, Universal Amplifier, Shielder, Healer, Electro Applicator, Electro Amplifier
+			
+			
+Fischl			
+Fischl#Hydro Applicator, Electro Applicator, Hydro On-Field DPS, Electro On-Field DPS#Electro Applicator, Hydro Applicator#Swirl
+Fischl#Pyro Applicator, Pyro On-Field DPS#Electro Applicator, Pyro Applicator#Overload Amplifier, Swirl
+Fischl#Reaction Amplifier, Dendro Applicator#Hydro Applicator#Hydro Applicator, Electro Applicator, Dendro Applicator, Swirl, Shielder, Healer
+Fischl#Dendro Applicator, Dendro On-Field DPS#Reaction Amplifier, Dendro Applicator#Electro Applicator, Swirl
+Fischl#Electro Applicator, Electro On-Field DPS#Universal Amplifier, Electro Applicator#Swirl, Electro Amplifier, Universal Amplifier, Electro Applicator
+Fischl#Electro On-Field DPS, Dendro On-Field DPS#Electro Applicator, Electro Amplifier, Dendro Applicator, Universal Amplifier, Shielder, Healer#Dendro Applicator, Universal Amplifier, Shielder, Healer, Electro Applicator, Electro Amplifier
+			
+			
+Keqing			
+Keqing#Reaction Amplifier, Dendro Applicator#Electro Applicator, Electro Amplifier#Swirl, Shielder, Electro Applicator
+Keqing#Cryo Applicator#Physical Amplifier, Bennett, Cryo Applicator#Bennett, Healer, Shielder, Cryo Applicator, Electro Applicator
+Keqing#Reaction Amplifier, Dendro Applicator#Hydro Applicator#Electro Applicator, Swirl, Shielder
+Keqing#Electro Amplifier#Universal Amplifier, Electro Applicator#Swirl, Electro Amplifier, Universal Amplifier, Electro Applicator
+			
+			
+			
+Raiden Shogun			
+Raiden Shogun#Xingqiu#Xiangling#Bennett
+Raiden Shogun#Hydro Applicator#Pyro Applicator#Pyro Applicator, Universal Amplifier, Healer, Swirl
+Raiden Shogun#Bennett, Pyro Applicator#Electro Amplifier, Electro Applicator, Pyro Applicator#Overload Amplifier, Swirl
+Raiden Shogun#Hydro Applicator, Electro Applicator#Hydro Applicator, Electro Applicator#Swirl
+Raiden Shogun#Universal Amplifier#Electro Amplifier, Universal Amplifier#Swirl, Universal Amplifier
+Raiden Shogun#Reaction Amplifier, Dendro Applicator#Hydro Applicator#Electro Applicator, Swirl, Shielder
+			
+			
+			
+Yae Miko			
+Yae Miko#Dendro On-Field DPS, Dendro Applicator#Reaction Amplifier, Dendro Applicator#Electro Applicator, Swirl
+Yae Miko#Hydro Applicator, Electro Applicator, Hydro On-Field DPS, Electro On-Field DPS#Electro Applicator, Hydro Applicator#Swirl
+Yae Miko#Reaction Amplifier, Dendro On-Field DPS, Dendro Applicator#Hydro Applicator#Hydro Applicator, Electro Applicator, Dendro Applicator, Swirl, Shielder, Healer
+Yae Miko#Pyro Applicator, Pyro On-Field DPS#Electro Applicator, Electro Amplifier, Pyro Applicator#Overload Amplifier, Swirl
+Yae Miko#Electro Applicator, Electro On-Field DPS#Universal Amplifier, Electro Applicator#Swirl, Electro Amplifier, Universal Amplifier, Electro Applicator
+			
+			
+			
+Cyno			
+Cyno#Reaction Amplifier, Dendro Applicator#Hydro Applicator#Electro Applicator, Dendro Applicator, Swirl, Shielder, Healer
+Cyno#Reaction Amplifier, Dendro Applicator#Dendro Applicator#Electro Applicator, Shielder, Healer
+Cyno#Pyro Applicator#Electro Applicator, Pyro Applicator#Overload Amplifier, Swirl
+Cyno#Hydro Applicator, Electro Applicator#Electro Applicator, Hydro Applicator#Hydro Applicator, Electro Applicator
