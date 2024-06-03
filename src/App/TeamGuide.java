@@ -39,6 +39,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 /**
@@ -78,6 +79,8 @@ public class TeamGuide extends javax.swing.JFrame {
     public TeamGuide() {
         initComponents();
         this.userId = 4;
+        this.username = "Ellis";
+        this.email = "ellismail@gmail.com";
         setLocationRelativeTo(null);
         teamPage1();
         addCharOwned();
@@ -167,8 +170,11 @@ public class TeamGuide extends javax.swing.JFrame {
         weapons.clear();
         characterBannedList.clear();
         
+        
         usernameLabel.setText(username);
         emailLabel.setText(email);
+        usernameLabel.setBounds(110, 25, usernameLabel.getPreferredSize().width+10, usernameLabel.getPreferredSize().height);
+        emailLabel.setBounds(110, 60, emailLabel.getPreferredSize().width+10, emailLabel.getPreferredSize().height);
         
         enemiesPane.setOpaque(false);
         enemiesPane.setBorder(null);
@@ -258,7 +264,7 @@ public class TeamGuide extends javax.swing.JFrame {
             int panelHeight = 100;
             
             EnemyPanel clonedPanel = new EnemyPanel(enemyName, type);
-            clonedPanel.settingMouse(image);
+            clonedPanel.settingMouse();
             clonedPanel.settingPanel(image, enemyName, panelWidth, panelHeight,10,false);
 
             // Calculate the row and column indices
@@ -458,7 +464,7 @@ public class TeamGuide extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Team Guide Page");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        setMinimumSize(new java.awt.Dimension(1280, 750));
+        setMinimumSize(new java.awt.Dimension(1293, 750));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -482,11 +488,11 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage1.add(profileButton);
         profileButton.setBounds(30, 15, 70, 70);
 
-        usernameLabel.setFont(new java.awt.Font("Sunflower Medium", 0, 30)); // NOI18N
+        usernameLabel.setFont(new java.awt.Font("Sunflower Medium", 0, 28)); // NOI18N
         usernameLabel.setForeground(new java.awt.Color(252, 236, 214));
         usernameLabel.setText("Username");
         teamPage1.add(usernameLabel);
-        usernameLabel.setBounds(110, 25, 131, 40);
+        usernameLabel.setBounds(110, 25, 130, 40);
 
         emailLabel.setFont(new java.awt.Font("Sunflower Medium", 0, 20)); // NOI18N
         emailLabel.setForeground(new java.awt.Color(252, 236, 214));
@@ -932,11 +938,11 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage2.add(profileButton1);
         profileButton1.setBounds(30, 15, 70, 70);
 
-        usernameLabel1.setFont(new java.awt.Font("Sunflower Medium", 0, 30)); // NOI18N
+        usernameLabel1.setFont(new java.awt.Font("Sunflower Medium", 0, 28)); // NOI18N
         usernameLabel1.setForeground(new java.awt.Color(252, 236, 214));
         usernameLabel1.setText("Username");
         teamPage2.add(usernameLabel1);
-        usernameLabel1.setBounds(110, 25, 131, 40);
+        usernameLabel1.setBounds(110, 25, 122, 40);
 
         emailLabel1.setFont(new java.awt.Font("Sunflower Medium", 0, 20)); // NOI18N
         emailLabel1.setForeground(new java.awt.Color(252, 236, 214));
@@ -1064,11 +1070,11 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage3.add(profileButton2);
         profileButton2.setBounds(30, 15, 70, 70);
 
-        usernameLabel2.setFont(new java.awt.Font("Sunflower Medium", 0, 30)); // NOI18N
+        usernameLabel2.setFont(new java.awt.Font("Sunflower Medium", 0, 28)); // NOI18N
         usernameLabel2.setForeground(new java.awt.Color(252, 236, 214));
         usernameLabel2.setText("Username");
         teamPage3.add(usernameLabel2);
-        usernameLabel2.setBounds(110, 25, 131, 40);
+        usernameLabel2.setBounds(110, 25, 122, 40);
 
         emailLabel2.setFont(new java.awt.Font("Sunflower Medium", 0, 20)); // NOI18N
         emailLabel2.setForeground(new java.awt.Color(252, 236, 214));
@@ -1703,11 +1709,11 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage4.add(profileButton3);
         profileButton3.setBounds(30, 15, 70, 70);
 
-        usernameLabel3.setFont(new java.awt.Font("Sunflower Medium", 0, 30)); // NOI18N
+        usernameLabel3.setFont(new java.awt.Font("Sunflower Medium", 0, 28)); // NOI18N
         usernameLabel3.setForeground(new java.awt.Color(252, 236, 214));
         usernameLabel3.setText("Username");
         teamPage4.add(usernameLabel3);
-        usernameLabel3.setBounds(110, 25, 131, 40);
+        usernameLabel3.setBounds(110, 25, 122, 40);
 
         emailLabel3.setFont(new java.awt.Font("Sunflower Medium", 0, 20)); // NOI18N
         emailLabel3.setForeground(new java.awt.Color(252, 236, 214));
@@ -2102,6 +2108,8 @@ public class TeamGuide extends javax.swing.JFrame {
         
         usernameLabel1.setText(username);
         emailLabel1.setText(email);
+        usernameLabel1.setBounds(110, 25, usernameLabel1.getPreferredSize().width+10, usernameLabel1.getPreferredSize().height);
+        emailLabel1.setBounds(110, 60, emailLabel1.getPreferredSize().width+10, emailLabel1.getPreferredSize().height);
         
         selectedPanels.clear();
         characterBannedList.clear();
@@ -2147,7 +2155,7 @@ public class TeamGuide extends javax.swing.JFrame {
             
             CharacterPanel clonedPanel = new CharacterPanel(charName);
             clonedPanel.settingPanel(image, charName, panelWidth, panelHeight,12,false);
-            clonedPanel.settingMouse(image);
+            clonedPanel.settingMouse();
             
 
             // Calculate the row and column indices
@@ -2416,12 +2424,14 @@ public class TeamGuide extends javax.swing.JFrame {
     private void generateLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateLabelMouseClicked
         String[] bannednames = bannedNameLabel.getText().split(", ");
         ArrayList<String> banChars = new ArrayList<>(Arrays.asList(bannednames));
-        if(charOwnedList.size() - banChars.size() < 8){
+        if(charOwnedList.size() - banChars.size() < 7){
             JOptionPane.showMessageDialog(parentPanel, "Character that is being fed to generator must be at least 8.");
         }
         else{
            App.PrepareGenerator app = new App.PrepareGenerator(enemiesLabel.getText(), elementsLabel.getText(), weaponsLabel.getText(), banChars, charOwnedList); 
-           System.out.println(app.getGeneratedTeam());
+           System.out.println("generated:"+app.getGeneratedTeam());
+           dispose();
+           new TeamResult(userId, username, email, app.getGeneratedTeam()).setVisible(true);
         }
     }//GEN-LAST:event_generateLabelMouseClicked
 
@@ -2440,12 +2450,14 @@ public class TeamGuide extends javax.swing.JFrame {
     private void generateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateButtonMouseClicked
         String[] bannednames = bannedNameLabel.getText().split(", ");
         ArrayList<String> banChars = new ArrayList<>(Arrays.asList(bannednames));
-        if(charOwnedList.size() - banChars.size() < 10){
-            JOptionPane.showMessageDialog(parentPanel, "Character that is being fed to generator must be at least 10.");
+        if(charOwnedList.size() - banChars.size() < 7){
+            JOptionPane.showMessageDialog(parentPanel, "Character that is being fed to generator must be at least 8.");
         }
         else{
            App.PrepareGenerator app = new App.PrepareGenerator(enemiesLabel.getText(), elementsLabel.getText(), weaponsLabel.getText(), banChars, charOwnedList); 
-           System.out.println(app.getGeneratedTeam());
+           System.out.println("generated:"+app.getGeneratedTeam());
+           dispose();
+           new TeamResult(userId, username, email, app.getGeneratedTeam()).setVisible(true);
         }
     }//GEN-LAST:event_generateButtonMouseClicked
 
@@ -2516,6 +2528,8 @@ public class TeamGuide extends javax.swing.JFrame {
         
         usernameLabel2.setText(username);
         emailLabel2.setText(email);
+        usernameLabel2.setBounds(110, 25, usernameLabel2.getPreferredSize().width+10, usernameLabel2.getPreferredSize().height);
+        emailLabel2.setBounds(110, 60, emailLabel2.getPreferredSize().width+10, emailLabel2.getPreferredSize().height);
         
         modeEnemyOnly1.setIcon(new ImageIcon("src/App/image/radio1.png"));
 
@@ -2560,7 +2574,7 @@ public class TeamGuide extends javax.swing.JFrame {
             
             CharacterPanel clonedPanel = new CharacterPanel(charName);
             clonedPanel.settingPanel(image, charName, panelWidth, panelHeight,12,false);
-            clonedPanel.settingMouse(image);
+            clonedPanel.settingMouse();
             
             // Calculate the row and column indices
             row = i / 3;
@@ -2971,7 +2985,7 @@ public class TeamGuide extends javax.swing.JFrame {
     
     
     
-    
+    private HashMap<String, String> chamberHalfAndEnemies = new LinkedHashMap<>();        
     
     private void teamPage4(){
         parentPanel.removeAll();
@@ -2981,6 +2995,8 @@ public class TeamGuide extends javax.swing.JFrame {
         
         usernameLabel3.setText(username);
         emailLabel3.setText(email);
+        usernameLabel3.setBounds(110, 25, usernameLabel3.getPreferredSize().width+10, usernameLabel3.getPreferredSize().height);
+        emailLabel3.setBounds(110, 60, emailLabel3.getPreferredSize().width+10, emailLabel3.getPreferredSize().height);
         
         selectedPanels.clear();
         chamberHalfAndEnemies.clear();
@@ -3155,263 +3171,18 @@ public class TeamGuide extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButton3MouseExited
 
     
-    private HashMap<String, String> chamberHalfAndEnemies = new LinkedHashMap<>();
-//    
-//    private void extractEnemyFromText(){
-//        if(!(chamber.equals("All"))){
-//            boolean arrived=false;
-//            int halfCount=0;
-//
-//            try {
-//                File myObj = new File("src/App/text/Floor/floor"+floor+".txt");
-//                Scanner myReader = new Scanner(myObj);
-//
-//                while (myReader.hasNextLine()) {
-//                    String data = myReader.nextLine();
-//                    if(arrived && halfCount<2){
-//                        String[] parts = data.split("#");
-//                        chamberHalfAndEnemies.put(parts[0].trim(), parts[1].trim());
-//                        halfCount++;
-//                    }
-//
-//                    if(data.trim().equals("Chamber"+chamber)){
-//                        arrived=true;
-//                    }
-//
-//                    if(halfCount==2){
-//                        break;
-//                    }
-//                }
-//                myReader.close();
-//
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        else{
-//            String firstHalf="";
-//            String secondHalf="";
-//            
-//            try {
-//                File myObj = new File("src/App/text/Floor/floor"+floor+".txt");
-//                Scanner myReader = new Scanner(myObj);
-//
-//                while (myReader.hasNextLine()) {
-//                    String data = myReader.nextLine();
-//                    if(data.contains("#")){
-//                        String[] parts = data.split("#");
-//                        if(parts[0].trim().equals("First Half")){
-//                            firstHalf = firstHalf + parts[1] +", ";
-//                        }
-//                        else{
-//                            secondHalf = secondHalf + parts[1] +", ";
-//                        }
-//                    }
-//                }
-//                myReader.close();
-//
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//            
-//            firstHalf = firstHalf.substring(0, firstHalf.length()-2);
-//            secondHalf = secondHalf.substring(0, secondHalf.length()-2);
-//            chamberHalfAndEnemies.put("First Half", firstHalf);
-//            chamberHalfAndEnemies.put("Second Half", secondHalf);
-//        }
-//        
-//    }
-//    
-//    
-//    private ArrayList<String> checkOtherTeam(ArrayList<String> generatedTeam, String charRedeem){
-//        ArrayList<String> charCompleteHalf = new ArrayList<>(generatedTeam);
-//        ArrayList<String> charUncompleteHalf = new ArrayList<>(charOwnedList);
-//        for(String i:generatedTeam){
-//            charUncompleteHalf.remove(i);
-//        }
-//        if(!(charRedeem.isEmpty())){
-//            charUncompleteHalf.add(charRedeem);
-//        }
-//        
-//        ArrayList<String>generatedTeam2 = new ArrayList<>();
-//        try{
-//            App.PrepareGenerator app2 = new App.PrepareGenerator(chamberHalfAndEnemies.get("Second Half"), elementsLabel.getText(), weaponsLabel.getText(), bannedName, charUncompleteHalf);
-//            generatedTeam2 = app2.getGeneratedTeam();
-//        }catch(Exception e){
-//            ArrayList<String> returned = new ArrayList<>();
-//            returned.add(charCompleteHalf.get(2));
-//            return returned;
-//        }
-//        return generatedTeam2;
-//    }
-//    
-//    private HashMap<ArrayList<String>, ArrayList<String>> checkInTextTeams(){
-//        HashMap<ArrayList<String>, ArrayList<String>> firstHalfSecondHalf = new LinkedHashMap<>();
-//        ArrayList<String> firstHalf = new ArrayList<>();
-//        ArrayList<String> secondHalf = new ArrayList<>();
-//        try {
-//            File myObj = new File("src/App/text/floor12 First Half.txt");
-//            Scanner myReader = new Scanner(myObj);
-//
-//            while (myReader.hasNextLine()) {
-//                String data = myReader.nextLine();
-//                String[] parts = data.split(", ");
-//                
-//                if(charOwnedList.contains(parts[0]) && charOwnedList.contains(parts[1]) &&charOwnedList.contains(parts[2]) &&charOwnedList.contains(parts[3])){
-//                    firstHalf.add(data);
-//                }
-//            }
-//            
-//            File myObj2 = new File("src/App/text/floor12 Second Half.txt");
-//            myReader = new Scanner(myObj2);
-//            while(myReader.hasNextLine()){
-//                String data2 = myReader.nextLine();
-//                String[] parts2 = data2.split(", ");
-//                if(charOwnedList.contains(parts2[0]) && charOwnedList.contains(parts2[1]) &&charOwnedList.contains(parts2[2]) &&charOwnedList.contains(parts2[3])){
-//                    secondHalf.add(data2);
-//                }
-//            }
-//            
-//            myReader.close();
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        
-//        System.out.println(firstHalf +" ditambah" + secondHalf);
-//        ArrayList<String> temp = new ArrayList<>();
-//        temp.add("null");
-//        
-//        for(String first: firstHalf){
-//            String[] firstTeam = first.split(", ");
-//            ArrayList<String> al = new ArrayList<>(Arrays.asList(firstTeam));
-//            firstHalfSecondHalf.put(al, temp);
-//        }
-//        
-//        for(String second: secondHalf){
-//            String[] secondTeam = second.split(", ");
-//            ArrayList<String> al = new ArrayList<>(Arrays.asList(secondTeam));
-//            firstHalfSecondHalf.put(temp, al);
-//        }
-//        
-//        for(String first: firstHalf){
-//            String[] firstTeam = first.split(", ");
-//            for(String second: secondHalf){
-//                String[]secondTeam = second.split(", ");
-//                ArrayList<String> al1 = new ArrayList<>(Arrays.asList(firstTeam));
-//                ArrayList<String> al2 = new ArrayList<>(Arrays.asList(secondTeam));
-//                boolean noCommon = Collections.disjoint(Arrays.asList(firstTeam), Arrays.asList(secondTeam));
-//                if(noCommon){
-//                    firstHalfSecondHalf.put(al1, al2);
-//                }
-//            }
-//        }
-//        return firstHalfSecondHalf;
-//    }
-//    
-//   
-//    private HashMap<String, ArrayList<String>> teamsFinal = new LinkedHashMap<>();
-//    
-//    private void checkFloor(){
-//        if(floor.equals("12")){
-//              HashMap<ArrayList<String>, ArrayList<String>> firstHalfSecondHalf = checkInTextTeams();
-//              System.out.println("TEAMSSSSSSSS" + firstHalfSecondHalf);
-//              
-//              ArrayList<ArrayList<String>> teamListFirstHalf = new ArrayList<>();
-//              ArrayList<ArrayList<String>> teamListSecondHalf = new ArrayList<>();
-//              
-//              for(ArrayList<String> firstHalf: firstHalfSecondHalf.keySet()){
-//                  if(!(firstHalf.contains("null"))){
-//                      teamListFirstHalf.add(firstHalf);
-//                      if(!(firstHalfSecondHalf.get(firstHalf).contains("null"))){
-//                          teamsFinal.put("First Half", firstHalf);
-//                          teamsFinal.put("Second Half", firstHalfSecondHalf.get(firstHalf));
-//                          break;
-//                      }
-//                  }
-//                  if(!(firstHalfSecondHalf.get(firstHalf).contains("null"))){
-//                     teamListSecondHalf.add(firstHalfSecondHalf.get(firstHalf));
-//                  }
-//              }
-//              
-//              
-//              boolean success = false;
-//              int index =0;
-//              while(success == false && index<teamListFirstHalf.size()){
-//                  success = generateOtherTeam(teamListFirstHalf.get(index), "team2Generate");
-//                  index++;
-//              }
-//              
-//              index=0;
-//              while(success == false && index<teamListSecondHalf.size()){
-//                  success = generateOtherTeam(teamListSecondHalf.get(index), "team1Generate");
-//                  index++;
-//              }
-//              
-//              index=0;
-//              while(success == false){
-//                  success = generateTeamSpiralAbyss();
-//              }
-//              
-//        }
-//        else{
-//            generateTeamSpiralAbyss();
-//        }
-//    }
-//    
-//    private boolean generateOtherTeam(ArrayList<String> generatedTeam, String type){
-//        ArrayList<String> tempCharOwned = new ArrayList<>(charOwnedList);
-//        ArrayList<String> returnedTeam = checkOtherTeam(generatedTeam, "");
-//
-//        ArrayList<String>generatedTeam2 = generatedTeam;
-//        while(returnedTeam.size()==1){
-//            tempCharOwned.remove(returnedTeam.get(0));
-//
-//            System.out.println("TEMP CHAR OWNEDDDDDDDDDDDD : " + tempCharOwned);
-//            App.PrepareGenerator app1 = new App.PrepareGenerator(chamberHalfAndEnemies.get("First Half"), elementsLabel.getText(), weaponsLabel.getText(), bannedName, tempCharOwned);
-//            generatedTeam2 = app1.getGeneratedTeam();
-//            returnedTeam = checkOtherTeam(generatedTeam2, returnedTeam.get(0));
-//
-//        }
-//        
-//        if(type.equals("allGenerate")){
-//            teamsFinal.put("First Half", generatedTeam2);
-//            teamsFinal.put("Second Half", returnedTeam);
-//            return true;
-//        }
-//        else if(type.equals("team1Generate")){
-//            teamsFinal.put("First Half", returnedTeam);
-//            teamsFinal.put("Second Half", generatedTeam2);
-//            return true;
-//        }
-//        else if(type.equals("team2Generate")){
-//            teamsFinal.put("First Half", generatedTeam2);
-//            teamsFinal.put("Second Half", returnedTeam);
-//            return true;
-//        }
-//        
-//        System.out.println("GENERATED TEAM 2" + generatedTeam2);
-//        System.out.println("RETURNED TEAM" +returnedTeam);
-//        return false;
-//    }
-//    
-//    private boolean generateTeamSpiralAbyss(){
-//        App.PrepareGenerator app = new App.PrepareGenerator(chamberHalfAndEnemies.get("First Half"), elementsLabel.getText(), weaponsLabel.getText(), bannedName, charOwnedList);
-//        ArrayList<String>generatedTeam = app.getGeneratedTeam();
-//        System.out.println("GENERATED 1" + generatedTeam);
-//
-//        boolean result = generateOtherTeam(generatedTeam, "allGenerate");
-//        return result;
-//    }
-    
-    private HashMap<String, ArrayList<String>> teamsFinal = new LinkedHashMap<>();
     
     private void generateLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateLabel1MouseClicked
         App.PrepareGeneratorSpiralAbyss app = new App.PrepareGeneratorSpiralAbyss(floor, chamber, elementsLabel, weaponsLabel, bannedName, charOwnedList);
         app.extractEnemyFromText();
         app.checkFloor();
+        
+        HashMap<String, ArrayList<String>> teamsFinal = new LinkedHashMap<>();
         teamsFinal = app.getFinalTeams();
         System.out.print(teamsFinal);
+        
+        dispose();
+        new TeamResult(userId, username, email, teamsFinal).setVisible(true);
     }//GEN-LAST:event_generateLabel1MouseClicked
 
     private void generateLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateLabel1MouseEntered
@@ -3430,8 +3201,13 @@ public class TeamGuide extends javax.swing.JFrame {
         App.PrepareGeneratorSpiralAbyss app = new App.PrepareGeneratorSpiralAbyss(floor, chamber, elementsLabel, weaponsLabel, bannedName, charOwnedList);
         app.extractEnemyFromText();
         app.checkFloor();
+        
+        HashMap<String, ArrayList<String>> teamsFinal = new LinkedHashMap<>();
         teamsFinal = app.getFinalTeams();
         System.out.print(teamsFinal);
+        
+        dispose();
+        new TeamResult(userId, username, email, teamsFinal).setVisible(true);
     }//GEN-LAST:event_generateButton1MouseClicked
 
     private void generateButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateButton1MouseEntered

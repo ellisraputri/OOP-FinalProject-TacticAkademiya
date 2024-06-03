@@ -38,16 +38,7 @@ public abstract class ClonePanel extends JPanel{
         this.over = over;
     }
     
-    public void settingPanel(BufferedImage image, String name, int imageWidth, int imageHeight, int fontSize, boolean bigCheckmark){
-        setOpaque(false);
-        setLayout(null);
-        
-        //setting up the character image
-        charImage = new JLabel();
-        charImage.setIcon(new ImageIcon(image));
-        charImage.setBounds(0,0,imageWidth, imageHeight);
-        add(charImage);
-        
+    private void settingNameAndCheckMark(String name, int imageWidth, int imageHeight, int fontSize, boolean bigCheckmark){
         if(bigCheckmark){
             drawBigCheckmark(imageWidth);
         }
@@ -70,7 +61,37 @@ public abstract class ClonePanel extends JPanel{
         charName.repaint();
         add(charName);
         charName.setVisible(false);
-       
+    }
+    
+    public void settingPanel(ImageIcon image, String name, int imageWidth, int imageHeight, int fontSize, boolean bigCheckmark){
+        setOpaque(false);
+        setLayout(null);
+        
+        //setting up the character image
+        charImage = new JLabel();
+        charImage.setIcon(image);
+        charImage.setBounds(0,0,imageWidth, imageHeight);
+        add(charImage);
+        
+        settingNameAndCheckMark(name, imageWidth, imageHeight, fontSize, bigCheckmark);
+        
+        setComponentZOrder(charImage, 1);
+        setComponentZOrder(checkmark, 0);
+        setComponentZOrder(charName, 0);
+    }
+    
+    
+    public void settingPanel(BufferedImage image, String name, int imageWidth, int imageHeight, int fontSize, boolean bigCheckmark){
+        setOpaque(false);
+        setLayout(null);
+        
+        //setting up the character image
+        charImage = new JLabel();
+        charImage.setIcon(new ImageIcon(image));
+        charImage.setBounds(0,0,imageWidth, imageHeight);
+        add(charImage);
+        
+        settingNameAndCheckMark(name, imageWidth, imageHeight, fontSize, bigCheckmark);
         
         setComponentZOrder(charImage, 1);
         setComponentZOrder(checkmark, 0);
@@ -97,7 +118,7 @@ public abstract class ClonePanel extends JPanel{
     }
         
    
-    public void settingMouse(BufferedImage image){
+    public void settingMouse(){
         //  Add event mouse
         addMouseListener(new MouseAdapter() {
             @Override

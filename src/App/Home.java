@@ -84,7 +84,7 @@ public class Home extends javax.swing.JFrame {
         emailLabel.setText("Email@gmail.com");
         getContentPane().add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
 
-        usernameLabel.setFont(new java.awt.Font("Sunflower Medium", 0, 30)); // NOI18N
+        usernameLabel.setFont(new java.awt.Font("Sunflower Medium", 0, 28)); // NOI18N
         usernameLabel.setForeground(new java.awt.Color(252, 236, 214));
         usernameLabel.setText("Username");
         getContentPane().add(usernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 25, -1, -1));

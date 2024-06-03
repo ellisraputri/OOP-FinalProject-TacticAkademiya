@@ -34,7 +34,8 @@ Raiden Shogun#Reaction Amplifier, Dendro Applicator#Hydro Applicator#Electro App
 			
 			
 Yae Miko			
-Yae Miko#Dendro On-Field DPS, Dendro Applicator#Reaction Amplifier, Dendro Applicator#Electro Applicator, Swirl
+Yae Miko#Dendro On-Field DPS#Reaction Amplifier, Dendro Applicator#Electro Applicator, Shielder, Swirl
+Yae Miko#Dendro Applicator#Reaction Amplifier, Dendro Applicator#Electro Applicator, Shielder, Swirl
 Yae Miko#Hydro Applicator, Electro Applicator, Hydro On-Field DPS, Electro On-Field DPS#Electro Applicator, Hydro Applicator#Swirl
 Yae Miko#Reaction Amplifier, Dendro On-Field DPS, Dendro Applicator#Hydro Applicator#Hydro Applicator, Electro Applicator, Dendro Applicator, Swirl, Shielder, Healer
 Yae Miko#Pyro Applicator, Pyro On-Field DPS#Electro Applicator, Electro Amplifier, Pyro Applicator#Overload Amplifier, Swirl
