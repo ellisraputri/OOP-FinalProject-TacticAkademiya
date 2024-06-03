@@ -6,6 +6,7 @@ package App;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.image.BufferedImage;
@@ -147,10 +148,10 @@ public class TeamResult extends javax.swing.JFrame {
         parentPanel.revalidate();
         parentPanel.repaint();
         
-        usernameLabel.setText(username);
-        emailLabel.setText(email);
-        usernameLabel.setBounds(110, 25, usernameLabel.getPreferredSize().width+10, usernameLabel.getPreferredSize().height);
-        emailLabel.setBounds(110, 60, emailLabel.getPreferredSize().width+10, emailLabel.getPreferredSize().height);
+        usernameLabel1.setText(username);
+        emailLabel1.setText(email);
+        usernameLabel1.setBounds(110, 25, usernameLabel1.getPreferredSize().width+10, usernameLabel1.getPreferredSize().height);
+        emailLabel1.setBounds(110, 60, emailLabel1.getPreferredSize().width+10, emailLabel1.getPreferredSize().height);
         
         setImages2(0, "First Half");
         setImages2(1, "First Half");
@@ -169,26 +170,26 @@ public class TeamResult extends javax.swing.JFrame {
         }
         
         Insets insets = new Insets(2,2,2,2);
-        char1Detail = new App.WrappedLabel(220, Color.yellow, insets);
-        char1Detail.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        char1Detail = new App.WrappedLabel(340, new Color(0,0,0,0), insets);
+        char1Detail.setFont(new java.awt.Font("HYWenHei-85W", Font.PLAIN, 18)); // NOI18N
         char1Detail.setForeground(new java.awt.Color(255, 247, 235));
         char1Detail.setOpaque(false);
         resultPage2.add(char1Detail);
-        
-        char2Detail = new App.WrappedLabel(220, Color.yellow, insets);
-        char2Detail.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+               
+        char2Detail = new App.WrappedLabel(340, new Color(0,0,0,0), insets);
+        char2Detail.setFont(new java.awt.Font("HYWenHei-85W", Font.PLAIN, 18)); // NOI18N
         char2Detail.setForeground(new java.awt.Color(255, 247, 235));
         char2Detail.setOpaque(false);
         resultPage2.add(char2Detail);
         
-        char3Detail = new App.WrappedLabel(220, Color.yellow, insets);
-        char3Detail.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        char3Detail = new App.WrappedLabel(340, new Color(0,0,0,0), insets);
+        char3Detail.setFont(new java.awt.Font("HYWenHei-85W", Font.PLAIN, 18)); // NOI18N
         char3Detail.setForeground(new java.awt.Color(255, 247, 235));
         char3Detail.setOpaque(false);
         resultPage2.add(char3Detail);
         
-        char4Detail = new App.WrappedLabel(220, Color.yellow, insets);
-        char4Detail.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        char4Detail = new App.WrappedLabel(340, new Color(0,0,0,0), insets);
+        char4Detail.setFont(new java.awt.Font("HYWenHei-85W", Font.PLAIN, 18)); // NOI18N
         char4Detail.setForeground(new java.awt.Color(255, 247, 235));
         char4Detail.setOpaque(false);
         resultPage2.add(char4Detail);
@@ -231,6 +232,8 @@ public class TeamResult extends javax.swing.JFrame {
     private int heightTrackFirst=320;
     private int heightTrackSecond=320;
     private void setTextAndLayout(JLabel label, App.WrappedLabel label2, int index, String type){
+        label2.setOpaque(false);
+        
         String str = (type.equals("First Half"))? teamSpiralAbyss.get("First Half").get(index) : teamSpiralAbyss.get("Second Half").get(index-4);
         str = str + ":";
         label.setText(str);
@@ -239,21 +242,25 @@ public class TeamResult extends javax.swing.JFrame {
         
         String str2 = teamInfo.get(index);
         label2.setText(str2);
-        label2.setBounds(label.getPreferredSize().width+label.getX()+5, label.getY(), label2.getPreferredSize().width, label2.getPreferredSize().height);
+        label2.setBounds(label.getPreferredSize().width+label.getX()+5, y-2, label2.getPreferredSize().width, label2.getPreferredSize().height);
         
         if(type.equals("First Half")){
-            heightTrackFirst = heightTrackFirst + label2.getY() + label2.getPreferredSize().height;
+            heightTrackFirst = heightTrackFirst + 20 + label2.getPreferredSize().height;
         }
         else{
-            heightTrackSecond = heightTrackSecond + label2.getY() + label2.getPreferredSize().height;
+            heightTrackSecond = heightTrackSecond + 20 + label2.getPreferredSize().height;
         }
         
-        System.out.println(label.getBounds());
-        System.out.println(label2.getBounds());
+        
+        label2.setOpaque(false);
+        label.setBackground(new Color(0,0,0,0));
+        label2.setBackgroundColor(Color.red);
         
         
         resultPage2.add(label);
         resultPage2.add(label2);
+        resultPage2.setComponentZOrder(label, 0);
+        resultPage2.setComponentZOrder(label2, 0);
         resultPage2.revalidate();
         resultPage2.repaint();
     }
@@ -337,11 +344,9 @@ public class TeamResult extends javax.swing.JFrame {
         exitButton1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        firstHalftext = new javax.swing.JLabel();
         char2Name = new javax.swing.JLabel();
         char4Name = new javax.swing.JLabel();
         char3Name = new javax.swing.JLabel();
-        secondHalfText = new javax.swing.JLabel();
         char1Name = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         secondHalfButton = new javax.swing.JLabel();
@@ -504,7 +509,7 @@ public class TeamResult extends javax.swing.JFrame {
         usernameLabel1.setForeground(new java.awt.Color(252, 236, 214));
         usernameLabel1.setText("Username");
         resultPage2.add(usernameLabel1);
-        usernameLabel1.setBounds(110, 25, 122, 40);
+        usernameLabel1.setBounds(110, 25, 150, 40);
 
         emailLabel1.setFont(new java.awt.Font("Sunflower Medium", 0, 20)); // NOI18N
         emailLabel1.setForeground(new java.awt.Color(252, 236, 214));
@@ -541,24 +546,6 @@ public class TeamResult extends javax.swing.JFrame {
         resultPage2.add(jLabel10);
         jLabel10.setBounds(100, 410, 190, 50);
 
-        firstHalftext.setBackground(new java.awt.Color(252, 236, 214));
-        firstHalftext.setFont(new java.awt.Font("HYWenHei-85W", 0, 20)); // NOI18N
-        firstHalftext.setForeground(new java.awt.Color(60, 108, 0));
-        firstHalftext.setText("First Half");
-        firstHalftext.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                firstHalftextMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                firstHalftextMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                firstHalftextMouseExited(evt);
-            }
-        });
-        resultPage2.add(firstHalftext);
-        firstHalftext.setBounds(785, 235, 110, 30);
-
         char2Name.setBackground(new java.awt.Color(252, 236, 214));
         char2Name.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         char2Name.setForeground(new java.awt.Color(111, 70, 10));
@@ -580,24 +567,6 @@ public class TeamResult extends javax.swing.JFrame {
         resultPage2.add(char3Name);
         char3Name.setBounds(750, 420, 190, 30);
 
-        secondHalfText.setBackground(new java.awt.Color(252, 236, 214));
-        secondHalfText.setFont(new java.awt.Font("HYWenHei-85W", 0, 20)); // NOI18N
-        secondHalfText.setForeground(new java.awt.Color(25, 82, 105));
-        secondHalfText.setText("Second Half");
-        secondHalfText.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                secondHalfTextMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                secondHalfTextMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                secondHalfTextMouseExited(evt);
-            }
-        });
-        resultPage2.add(secondHalfText);
-        secondHalfText.setBounds(995, 235, 130, 30);
-
         char1Name.setBackground(new java.awt.Color(252, 236, 214));
         char1Name.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         char1Name.setForeground(new java.awt.Color(111, 70, 10));
@@ -605,7 +574,7 @@ public class TeamResult extends javax.swing.JFrame {
         resultPage2.add(char1Name);
         char1Name.setBounds(750, 320, 190, 30);
 
-        jLabel12.setBackground(new java.awt.Color(241, 167, 84));
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Team Explanation");
@@ -780,103 +749,11 @@ public class TeamResult extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_firstHalfButtonMouseExited
 
-    private void firstHalftextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_firstHalftextMouseClicked
-        firstHalfClicked = !(firstHalfClicked);
-        if(firstHalfClicked){
-            firstHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle5_hoverclicked.png")));
-            firstHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            handleClickFirstHalf();
-        }
-        else{
-            firstHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle5_hover.png")));
-            firstHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        }
-        
-        if(firstHalfClicked == false && secondHalfClicked == false){
-            resetClick();
-        }
-        if(secondHalfClicked){
-            secondHalfClicked = false;
-            secondHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle6.png")));
-            secondHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        }
-    }//GEN-LAST:event_firstHalftextMouseClicked
-
-    private void firstHalftextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_firstHalftextMouseEntered
-        firstHalfOver = true;
-        if(firstHalfClicked){
-            firstHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle5_hoverclicked.png")));
-            firstHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        }
-        else{
-            firstHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle5_hover.png")));
-            firstHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        }
-    }//GEN-LAST:event_firstHalftextMouseEntered
-
-    private void firstHalftextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_firstHalftextMouseExited
-        firstHalfOver = false;
-        if(firstHalfClicked){
-            firstHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle5_clicked.png")));
-            firstHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        }
-        else{
-            firstHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle5.png")));
-            firstHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        }
-    }//GEN-LAST:event_firstHalftextMouseExited
-
     
     
     private boolean secondHalfOver = false;
     private boolean secondHalfClicked = false;
     
-    private void secondHalfTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_secondHalfTextMouseClicked
-        secondHalfClicked = !(secondHalfClicked);
-        if(secondHalfClicked){
-            secondHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle6_hoverclicked.png")));
-            secondHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            handleClickSecondHalf();
-        }
-        else{
-            secondHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle6_hover.png")));
-            secondHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        }
-        
-        if(firstHalfClicked == false && secondHalfClicked == false){
-            resetClick();
-        }
-        if(firstHalfClicked){
-            firstHalfClicked = false;
-            firstHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle5.png")));
-            firstHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        }
-    }//GEN-LAST:event_secondHalfTextMouseClicked
-
-    private void secondHalfTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_secondHalfTextMouseEntered
-       secondHalfOver = true;
-        if(secondHalfClicked){
-            secondHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle6_hoverclicked.png")));
-            secondHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        }
-        else{
-            secondHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle6_hover.png")));
-            secondHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        }
-    }//GEN-LAST:event_secondHalfTextMouseEntered
-
-    private void secondHalfTextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_secondHalfTextMouseExited
-        secondHalfOver = false;
-        if(secondHalfClicked){
-            secondHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle6_clicked.png")));
-            secondHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        }
-        else{
-            secondHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle6.png")));
-            secondHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        }
-    }//GEN-LAST:event_secondHalfTextMouseExited
-
     private void secondHalfButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_secondHalfButtonMouseClicked
         secondHalfClicked = !(secondHalfClicked);
         if(secondHalfClicked){
@@ -980,7 +857,6 @@ public class TeamResult extends javax.swing.JFrame {
     private javax.swing.JLabel exitButton;
     private javax.swing.JLabel exitButton1;
     private javax.swing.JLabel firstHalfButton;
-    private javax.swing.JLabel firstHalftext;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -997,7 +873,6 @@ public class TeamResult extends javax.swing.JFrame {
     private javax.swing.JPanel resultPage1;
     private javax.swing.JPanel resultPage2;
     private javax.swing.JLabel secondHalfButton;
-    private javax.swing.JLabel secondHalfText;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JLabel usernameLabel1;
     // End of variables declaration//GEN-END:variables

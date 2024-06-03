@@ -15,29 +15,24 @@ public class WrappedLabel extends JLabel {
 
     public WrappedLabel(int maxWidth, Color bgColor, Insets insets) {
         this.maxWidth = maxWidth;
-        this.bgColor = bgColor;
+        this.bgColor = bgColor != null ? bgColor : new Color(0, 0, 0, 0); // default to transparent if null
         this.insets = insets != null ? insets : new Insets(0, 0, 0, 0); // default to no insets if null
         setOpaque(false);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        if (!isOpaque()) {
-            // Clear the background explicitly
-            g.setColor(getParent().getBackground());
+        // Custom background handling
+        if (isOpaque()) {
+            g.setColor(bgColor);
             g.fillRect(0, 0, getWidth(), getHeight());
         } else {
-            super.paintComponent(g); // Ensure the base class paintComponent is called
+            // Ensure transparent background
+            g.setColor(new Color(0, 0, 0, 0));
+            g.fillRect(0, 0, getWidth(), getHeight());
         }
 
         Graphics2D g2d = (Graphics2D) g;
-
-        // Fill background if opaque
-        if (isOpaque()) {
-            g2d.setColor(bgColor);
-            g2d.fillRect(0, 0, getWidth(), getHeight());
-        }
-
         g2d.setColor(getForeground());
         g2d.setFont(getFont());
 
@@ -49,10 +44,11 @@ public class WrappedLabel extends JLabel {
         int y = insets.top + fm.getAscent();
 
         for (String line : getWrappedLines(text, fm)) {
-            g.drawString(line, x, y);
+            g2d.drawString(line, x, y);
             y += lineHeight;
         }
     }
+
 
     private String[] getWrappedLines(String text, FontMetrics fm) {
         StringBuilder currentLine = new StringBuilder();
@@ -99,7 +95,7 @@ public class WrappedLabel extends JLabel {
 
         // Add the last line if there's any remaining content
         if (currentLine.length() > 0) {
-            wrappedLines.add(currentLine.toString());    
+            wrappedLines.add(currentLine.toString());
         }
 
         return wrappedLines.toArray(new String[0]);
