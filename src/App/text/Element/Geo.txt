@@ -1,5 +1,6 @@
 Ningguang			
 Ningguang#Geo Applicator, Universal Amplifier#NA Amplifier, Geo Applicator, Universal Amplifier#Shielder, Healer
+Ningguang#Geo Applicator#Geo Amplifier, Geo Applicator, Universal Amplifier, NA Amplifier#Geo On-Field DPS, Geo Applicator
 			
 			
 Noelle			

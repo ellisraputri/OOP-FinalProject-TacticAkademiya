@@ -1,0 +1,13 @@
+Neuvillette, Kaedehara Kazuha, Baizhu, Furina
+Tartaglia, Kaedehara Kazuha, Bennett, Xiangling
+Arlecchino, Zhongli, Yelan, Bennett
+Hu Tao, Zhongli, Yelan, Xingqiu
+Arlecchino, Zhongli, Kaedehara Kazuha, Bennett
+Neuvillette, Kaedehara Kazuha, Furina, Charlotte
+Xiao, Xianyun, Furina, Faruzan
+Raiden Shogun, Xingqiu, Bennett, Xiangling
+Raiden Shogun, Yelan, Bennett, Xiangling
+Neuvillette, Kaedehara Kazuha, Zhongli, Furina
+Nilou, Nahida, Baizhu, Furina
+Hu Tao, Zhongli, Yelan, Furina
+Navia, Zhongli, Bennett, Xiangling

@@ -1,0 +1,11 @@
+Chamber1
+First Half#Treasure Hoarders Pyro Potioneer, Treasure Hoarders Hydro Potioneer, Recon Log Mek Ousia, Nobushi Jintouban, Nobushi Hitsukeban, Nobushi Kikouban, Geological Survey Mek Ousia, Arithmetic Enhancer Mek Ousia
+Second Half#Nobushi Hitsukeban, Nobushi Kikouban, Nimble Harvester Mek Pneuma, Assault Specialist Mek Pneuma, Arithmetic Enhancer Mek Pneuma, Treasure Hoarders Electro Potioneer
+
+Chamber2
+First Half#Large Hydro Slime, Large Cryo Slime, Cherubic Sea Hare, Annihilation Specialist Mek Ousia, Treasure Hoarders Cryo Potioneer
+Second Half#Large Pyro Slime, Annihilation Specialist Mek Pneuma, Treasure Hoarders Pyro Potioneer, Sternshield Crab
+
+Chamber3
+First Half#Blazing Axe Mitachurl, Crackling Axe Mitachurl, Mirror Maiden, Suppression Specialist Mek Ousia
+Second Half#Fatui Pyro Agent, Annihilation Specialist Mek Pneuma

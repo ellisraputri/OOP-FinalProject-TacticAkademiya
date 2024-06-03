@@ -71,7 +71,7 @@ Abyss Herald Wicked Torrents#null#Dendro#null#FALSE#FALSE
 Abyss Herald Frost Fall#null#Pyro#null#FALSE#FALSE
 Abyss Lector Fathomless Flames#null#Hydro#null#FALSE#FALSE
 Abyss Lector Violet Lightning#null#Pyro, Cryo, Dendro#null#FALSE#FALSE
-Iniquitous Baptist#null#Dendro_Hydro_Pyro, Dendro_Hydro_Electro#null#FALSE#FALSE
+Iniquitous Baptist#null#Dendro_Hydro_Pyro, Dendro_Hydro_Electro, Pyro_Hydro#null#FALSE#FALSE
 Rockfond Rifthound Whelp#null#null#null#FALSE#FALSE
 Thundercraven Rifthound Whelp#null#null#null#FALSE#FALSE
 Rockfond Rifthound#null#null#null#FALSE#FALSE

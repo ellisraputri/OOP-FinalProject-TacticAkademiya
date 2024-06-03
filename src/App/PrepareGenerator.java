@@ -23,20 +23,22 @@ public class PrepareGenerator {
     private ArrayList<String> bannedNames;
     private ArrayList<String> charOwned;
     
-    public static ArrayList<String> charName = new ArrayList<>();
-    public static ArrayList<String> charElement = new ArrayList<>();
-    public static ArrayList<String> charTier = new ArrayList<>();
-    public static ArrayList<String> charWeapon = new ArrayList<>();
-    public static ArrayList<Boolean> charPneuma = new ArrayList<>();
-    public static ArrayList<Boolean> charOusia = new ArrayList<>();
+    public ArrayList<String> charName = new ArrayList<>();
+    public ArrayList<String> charElement = new ArrayList<>();
+    public ArrayList<String> charTier = new ArrayList<>();
+    public ArrayList<String> charWeapon = new ArrayList<>();
+    public ArrayList<Boolean> charPneuma = new ArrayList<>();
+    public ArrayList<Boolean> charOusia = new ArrayList<>();
     
-    public static ArrayList<String> bestElements = new ArrayList<>();
-    public static ArrayList<String> avoidElements = new ArrayList<>();
-    public static ArrayList<String> bestWeapons = new ArrayList<>();
-    public static boolean bestPneuma=false;
-    public static boolean bestOusia=false;
+    public ArrayList<String> bestElements = new ArrayList<>();
+    public ArrayList<String> avoidElements = new ArrayList<>();
+    public ArrayList<String> bestWeapons = new ArrayList<>();
+    public boolean bestPneuma=false;
+    public boolean bestOusia=false;
     
-    public static String[][] teams;
+    public String[][] teams;
+    
+    private ArrayList<String> generatedTeam = new ArrayList<>();
 
     public PrepareGenerator(String enemies, String preferredElements, String preferredWeapons, ArrayList<String> bannedNames, ArrayList<String>charOwned) {
         this.enemies = enemies;
@@ -55,7 +57,7 @@ public class PrepareGenerator {
     private void prepareCharacters(){
         
         try {
-            File myObj = new File("src/App/character.txt");
+            File myObj = new File("src/App/text/character.txt");
             Scanner myReader = new Scanner(myObj);
 
             while (myReader.hasNextLine()) {
@@ -97,7 +99,7 @@ public class PrepareGenerator {
     
     private void findEnemyFromText(String enemyName){       
         try {
-            File myObj = new File("src/App/enemy.txt");
+            File myObj = new File("src/App/text/enemy.txt");
             Scanner myReader = new Scanner(myObj);
 
             while (myReader.hasNextLine()) {
@@ -167,10 +169,12 @@ public class PrepareGenerator {
         while(state==false){
             state = execute();
         }
-
+        
+        
         for(int i=0; i<teams.length; i++){
             for(String role: teams[i]){
                 System.out.println("hasil"+role);
+                generatedTeam.add(role);
             }
         }
     }
@@ -204,6 +208,10 @@ public class PrepareGenerator {
         activateGenerator();
         boolean state = check();
         return state;
+    }
+    
+    public ArrayList<String> getGeneratedTeam(){
+        return generatedTeam;
     }
 
     

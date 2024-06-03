@@ -1,0 +1,11 @@
+Chamber1
+First Half#Fatui Skirmisher - Pyroslinger Bracer, Nimble Harvester Mek Ousia, Treasure Hoarders Gravedigger, Treasure Hoarders Seaman, Treasure Hoarders Handyman
+Second Half#Construction Specialist Mek Pneuma, Geological Survey Mek Pneuma
+
+Chamber2
+First Half#Pyro Specter, Dendro Specter, Electro Specter, Winged Dendroshroom, Winged Cryoshroom, Grounded Hydroshroom, Grounded Geoshroom
+Second Half#Rimebiter Bathysmal Vishap Hatchling, Bolteater Bathysmal Vishap Hatchling, Primordial Bathysmal Vishap
+
+Chamber3
+First Half#Eremite Stone Enchanter, Eremite Sunfrost
+Second Half#Ruin Grader

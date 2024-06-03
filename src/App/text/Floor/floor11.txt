@@ -1,0 +1,11 @@
+Chamber1
+First Half#Ice Shieldwall Mitachurl, Cryo Samachurl, Pyro Hilichurl Shooter, Electro Hilichurl Shooter, Ice Shield Hilichurl Guard, Cryo Hilichurl Shooter
+Second Half#Grounded Hydroshroom, Winged Dendroshroom, Winged Cryoshroom, Grounded Geoshroom, Eremite Desert Clearwater, Eremite Sunfrost, Eremite Daythunder
+
+Chamber2
+First Half#Geovishap, Primordial Bathysmal Vishap Hatchling, Rimebiter Bathysmal Vishap Hatchling, Bolteater Bathysmal Vishap Hatchling, Ruin Destroyer, Ruin Scout, Nobushi Jintouban
+Second Half#Large Pyro Slime, Large Cryo Slime, Large Electro Slime, Mutant Electro Slime, Cryo Whooperflower, Pyro Whooperflower, Electro Whooperflower, Pyro Specter, Cryo Specter, Electro Specter, Sternshield Crab, Cherubic Sea Hare, Bubbler Seahorse
+
+Chamber3
+First Half#Ice Shieldwall Mitachurl, Frostarm Lawachurl, Cryo Abyss Mage, Hilichurl Grenadier
+Second Half#Anemo Hilichurl Rogue, Ruin Hunter, Ruin Drake Skywatch

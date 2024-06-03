@@ -15,13 +15,18 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.Scanner;
 import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -70,7 +75,7 @@ public class TeamGuide extends javax.swing.JFrame {
      */
     public TeamGuide() {
         initComponents();
-        this.userId = 1;
+        this.userId = 3;
         setLocationRelativeTo(null);
         teamPage1();
         addCharOwned();
@@ -341,6 +346,7 @@ public class TeamGuide extends javax.swing.JFrame {
     private void initComponents() {
 
         floorGroup = new javax.swing.ButtonGroup();
+        chamberGroup = new javax.swing.ButtonGroup();
         parentPanel = new javax.swing.JPanel();
         teamPage1 = new javax.swing.JPanel();
         profileButton = new javax.swing.JLabel();
@@ -428,6 +434,11 @@ public class TeamGuide extends javax.swing.JFrame {
         characterPane2 = new javax.swing.JPanel();
         scrollPane3 = new javax.swing.JScrollPane();
         clonePanelContainer3 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        chamber2Rad = new javax.swing.JRadioButton();
+        chamber3Rad = new javax.swing.JRadioButton();
+        chamber1Rad = new javax.swing.JRadioButton();
+        chamberAllRad = new javax.swing.JRadioButton();
         jLabel19 = new javax.swing.JLabel();
         teamPage4 = new javax.swing.JPanel();
         profileButton3 = new javax.swing.JLabel();
@@ -1083,14 +1094,14 @@ public class TeamGuide extends javax.swing.JFrame {
         jLabel10.setText("(optional)");
         jLabel10.setToolTipText("");
         teamPage3.add(jLabel10);
-        jLabel10.setBounds(420, 240, 90, 30);
+        jLabel10.setBounds(420, 300, 90, 30);
 
         jLabel11.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel11.setText("Banned Characters");
+        jLabel11.setText("Chamber");
         jLabel11.setToolTipText("");
         teamPage3.add(jLabel11);
-        jLabel11.setBounds(60, 230, 360, 40);
+        jLabel11.setBounds(280, 110, 170, 40);
 
         modeSpiralAbyss1.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         modeSpiralAbyss1.setForeground(new java.awt.Color(252, 236, 214));
@@ -1414,7 +1425,7 @@ public class TeamGuide extends javax.swing.JFrame {
             }
         });
         teamPage3.add(floor9Radio);
-        floor9Radio.setBounds(60, 170, 50, 33);
+        floor9Radio.setBounds(60, 160, 50, 33);
 
         jLabel17.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(241, 167, 84));
@@ -1481,7 +1492,7 @@ public class TeamGuide extends javax.swing.JFrame {
             }
         });
         teamPage3.add(floor10Radio);
-        floor10Radio.setBounds(140, 170, 60, 33);
+        floor10Radio.setBounds(60, 210, 60, 33);
 
         floor11Radio.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
         floor11Radio.setForeground(new java.awt.Color(252, 236, 214));
@@ -1502,7 +1513,7 @@ public class TeamGuide extends javax.swing.JFrame {
             }
         });
         teamPage3.add(floor11Radio);
-        floor11Radio.setBounds(230, 170, 50, 33);
+        floor11Radio.setBounds(150, 160, 50, 33);
 
         floor12Radio.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
         floor12Radio.setForeground(new java.awt.Color(252, 236, 214));
@@ -1523,7 +1534,7 @@ public class TeamGuide extends javax.swing.JFrame {
             }
         });
         teamPage3.add(floor12Radio);
-        floor12Radio.setBounds(310, 170, 60, 33);
+        floor12Radio.setBounds(150, 210, 60, 33);
 
         pyroRadButton1.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
         pyroRadButton1.setForeground(new java.awt.Color(252, 236, 214));
@@ -1551,7 +1562,7 @@ public class TeamGuide extends javax.swing.JFrame {
         jLabel20.setText("Floor");
         jLabel20.setToolTipText("");
         teamPage3.add(jLabel20);
-        jLabel20.setBounds(55, 120, 120, 40);
+        jLabel20.setBounds(60, 110, 120, 40);
 
         jLabel21.setFont(new java.awt.Font("HYWenHei-85W", 0, 16)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(241, 167, 84));
@@ -1571,10 +1582,101 @@ public class TeamGuide extends javax.swing.JFrame {
         scrollPane3.setViewportView(clonePanelContainer3);
 
         characterPane2.add(scrollPane3);
-        scrollPane3.setBounds(0, 0, 450, 350);
+        scrollPane3.setBounds(0, 0, 440, 330);
 
         teamPage3.add(characterPane2);
-        characterPane2.setBounds(60, 280, 450, 350);
+        characterPane2.setBounds(60, 340, 440, 330);
+
+        jLabel22.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(241, 167, 84));
+        jLabel22.setText("Banned Characters");
+        jLabel22.setToolTipText("");
+        teamPage3.add(jLabel22);
+        jLabel22.setBounds(60, 290, 360, 40);
+
+        chamber2Rad.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
+        chamber2Rad.setForeground(new java.awt.Color(252, 236, 214));
+        chamber2Rad.setText("2");
+        chamber2Rad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        chamber2Rad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio1.png"))); // NOI18N
+        chamber2Rad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                chamber2RadMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                chamber2RadMouseExited(evt);
+            }
+        });
+        chamber2Rad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chamber2RadActionPerformed(evt);
+            }
+        });
+        teamPage3.add(chamber2Rad);
+        chamber2Rad.setBounds(280, 210, 50, 33);
+
+        chamber3Rad.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
+        chamber3Rad.setForeground(new java.awt.Color(252, 236, 214));
+        chamber3Rad.setText("3");
+        chamber3Rad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        chamber3Rad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio1.png"))); // NOI18N
+        chamber3Rad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                chamber3RadMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                chamber3RadMouseExited(evt);
+            }
+        });
+        chamber3Rad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chamber3RadActionPerformed(evt);
+            }
+        });
+        teamPage3.add(chamber3Rad);
+        chamber3Rad.setBounds(380, 160, 50, 33);
+
+        chamber1Rad.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
+        chamber1Rad.setForeground(new java.awt.Color(252, 236, 214));
+        chamber1Rad.setText("1");
+        chamber1Rad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        chamber1Rad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio1.png"))); // NOI18N
+        chamber1Rad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                chamber1RadMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                chamber1RadMouseExited(evt);
+            }
+        });
+        chamber1Rad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chamber1RadActionPerformed(evt);
+            }
+        });
+        teamPage3.add(chamber1Rad);
+        chamber1Rad.setBounds(280, 160, 50, 33);
+
+        chamberAllRad.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
+        chamberAllRad.setForeground(new java.awt.Color(252, 236, 214));
+        chamberAllRad.setText("All");
+        chamberAllRad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        chamberAllRad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/radio1.png"))); // NOI18N
+        chamberAllRad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                chamberAllRadMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                chamberAllRadMouseExited(evt);
+            }
+        });
+        chamberAllRad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chamberAllRadActionPerformed(evt);
+            }
+        });
+        teamPage3.add(chamberAllRad);
+        chamberAllRad.setBounds(380, 210, 70, 33);
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamguide.png"))); // NOI18N
         teamPage3.add(jLabel19);
@@ -2317,6 +2419,7 @@ public class TeamGuide extends javax.swing.JFrame {
         }
         else{
            App.PrepareGenerator app = new App.PrepareGenerator(enemiesLabel.getText(), elementsLabel.getText(), weaponsLabel.getText(), banChars, charOwnedList); 
+           System.out.println(app.getGeneratedTeam());
         }
     }//GEN-LAST:event_generateLabelMouseClicked
 
@@ -2340,6 +2443,7 @@ public class TeamGuide extends javax.swing.JFrame {
         }
         else{
            App.PrepareGenerator app = new App.PrepareGenerator(enemiesLabel.getText(), elementsLabel.getText(), weaponsLabel.getText(), banChars, charOwnedList); 
+           System.out.println(app.getGeneratedTeam());
         }
     }//GEN-LAST:event_generateButtonMouseClicked
 
@@ -2357,14 +2461,40 @@ public class TeamGuide extends javax.swing.JFrame {
 
     
     
+    private void resetRadioButtonsPage3(){
+        pyroRadButton1.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        cryoRadButton1.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        geoRadButton1.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        electroRadButton1.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        dendroRadButton1.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        physicalRadButton1.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        hydroRadButton1.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        anemoRadButton1.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        swordRadButton1.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        catalystRadButton1.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        claymoreRadButton1.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        bowRadButton1.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        polearmRadButton1.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        modeEnemyOnly1.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        floor9Radio.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        floor10Radio.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        floor11Radio.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        floor12Radio.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        chamber1Rad.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        chamber2Rad.setIcon(new ImageIcon("src/App/image/radio1.png"));
+        chamber3Rad.setIcon(new ImageIcon("src/App/image/radio1.png"));
+    }
+    
     
     private ArrayList<String> bannedName = new ArrayList<>();
     private String floor="";
+    private String chamber="";
     private void teamPage3(){
         parentPanel.removeAll();
         parentPanel.add(teamPage3);
         parentPanel.revalidate();
         parentPanel.repaint();
+        resetRadioButtonsPage3();
         
         elements.clear();
         weapons.clear();
@@ -2375,6 +2505,12 @@ public class TeamGuide extends javax.swing.JFrame {
         floorGroup.add(floor10Radio);
         floorGroup.add(floor11Radio);
         floorGroup.add(floor12Radio);
+        
+        chamberGroup = new ButtonGroup();
+        chamberGroup.add(chamber1Rad);
+        chamberGroup.add(chamber2Rad);
+        chamberGroup.add(chamber3Rad);
+        chamberGroup.add(chamberAllRad);
         
         usernameLabel2.setText(username);
         emailLabel2.setText(email);
@@ -2647,9 +2783,15 @@ public class TeamGuide extends javax.swing.JFrame {
         }
     }
     
-    private void radioButtonActionPerformed(JRadioButton rad, boolean isSelect, JRadioButton rad2, JRadioButton rad3, JRadioButton rad4){
+    private void radioButtonActionPerformed(JRadioButton rad, boolean isSelect, JRadioButton rad2, JRadioButton rad3, JRadioButton rad4, String type){
         if(isSelect){
-            floor = rad.getText();
+            if(type.equals("floor")){
+                floor = rad.getText();
+            }
+            else{
+                chamber = rad.getText();
+            }
+            
             rad.setIcon(new ImageIcon("src/App/image/radio2.png"));
             rad2.setIcon(new ImageIcon("src/App/image/radio1.png"));
             rad3.setIcon(new ImageIcon("src/App/image/radio1.png"));
@@ -2670,7 +2812,7 @@ public class TeamGuide extends javax.swing.JFrame {
     }//GEN-LAST:event_floor9RadioMouseExited
 
     private void floor9RadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floor9RadioActionPerformed
-        radioButtonActionPerformed(floor9Radio, floor9Radio.isSelected(), floor10Radio, floor11Radio, floor12Radio);
+        radioButtonActionPerformed(floor9Radio, floor9Radio.isSelected(), floor10Radio, floor11Radio, floor12Radio,"floor");
     }//GEN-LAST:event_floor9RadioActionPerformed
 
     private void nextLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextLabel1MouseClicked
@@ -2684,7 +2826,12 @@ public class TeamGuide extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(parentPanel, "Please select a floor number");
         }
         else{
-           teamPage4();
+           if(chamber.isEmpty()){
+               JOptionPane.showMessageDialog(parentPanel, "Please select a chamber");
+           }
+           else{
+               teamPage4();
+           }
         }
     }//GEN-LAST:event_nextLabel1MouseClicked
 
@@ -2710,8 +2857,13 @@ public class TeamGuide extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(parentPanel, "Please select a floor number");
         }
         else{
-           teamPage4();
-        }        
+           if(chamber.isEmpty()){
+               JOptionPane.showMessageDialog(parentPanel, "Please select a chamber");
+           }
+           else{
+               teamPage4();
+           }
+        }     
     }//GEN-LAST:event_nextButton1MouseClicked
 
     private void nextButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButton1MouseEntered
@@ -2735,7 +2887,7 @@ public class TeamGuide extends javax.swing.JFrame {
     }//GEN-LAST:event_floor10RadioMouseExited
 
     private void floor10RadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floor10RadioActionPerformed
-        radioButtonActionPerformed(floor10Radio, floor10Radio.isSelected(), floor9Radio, floor11Radio, floor12Radio);
+        radioButtonActionPerformed(floor10Radio, floor10Radio.isSelected(), floor9Radio, floor11Radio, floor12Radio,"floor");
     }//GEN-LAST:event_floor10RadioActionPerformed
 
     private void floor11RadioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_floor11RadioMouseEntered
@@ -2747,7 +2899,7 @@ public class TeamGuide extends javax.swing.JFrame {
     }//GEN-LAST:event_floor11RadioMouseExited
 
     private void floor11RadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floor11RadioActionPerformed
-        radioButtonActionPerformed(floor11Radio, floor11Radio.isSelected(), floor10Radio, floor9Radio, floor12Radio);
+        radioButtonActionPerformed(floor11Radio, floor11Radio.isSelected(), floor10Radio, floor9Radio, floor12Radio,"floor");
     }//GEN-LAST:event_floor11RadioActionPerformed
 
     private void floor12RadioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_floor12RadioMouseEntered
@@ -2759,7 +2911,7 @@ public class TeamGuide extends javax.swing.JFrame {
     }//GEN-LAST:event_floor12RadioMouseExited
 
     private void floor12RadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floor12RadioActionPerformed
-        radioButtonActionPerformed(floor12Radio, floor12Radio.isSelected(), floor10Radio, floor11Radio, floor9Radio);
+        radioButtonActionPerformed(floor12Radio, floor12Radio.isSelected(), floor10Radio, floor11Radio, floor9Radio,"floor");
     }//GEN-LAST:event_floor12RadioActionPerformed
 
     private void pyroRadButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pyroRadButton1MouseEntered
@@ -2829,6 +2981,7 @@ public class TeamGuide extends javax.swing.JFrame {
         emailLabel3.setText(email);
         
         selectedPanels.clear();
+        chamberHalfAndEnemies.clear();
         
         summaryScroll1.setOpaque(false);
         summaryScroll1.getViewport().setOpaque(false);
@@ -2869,15 +3022,32 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel1.add(floorLabel);
         summaryPanel1.setComponentZOrder(floorLabel, 0);
         
+        JLabel chamberSummaryLabel = new JLabel();
+        chamberSummaryLabel.setText("Chamber:");
+        chamberSummaryLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
+        chamberSummaryLabel.setForeground(new Color(67,67,71));
+        chamberSummaryLabel.setBounds(0,floorLabel.getPreferredSize().height+floorLabel.getY()+20, chamberSummaryLabel.getPreferredSize().width+20, chamberSummaryLabel.getPreferredSize().height);
+        summaryPanel1.add(chamberSummaryLabel);
+        summaryPanel1.setComponentZOrder(chamberSummaryLabel, 0);
+        
+        App.WrappedLabel chamberLabel = new App.WrappedLabel(700, new Color(0,0,0,0), new Insets(2,2,2,2));
+        chamberLabel.setOpaque(false);
+        chamberLabel.setText(chamber);
+        chamberLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 18));
+        chamberLabel.setForeground(new Color(113,113,113));
+        chamberLabel.setBounds(0,chamberSummaryLabel.getPreferredSize().height+chamberSummaryLabel.getY()+5, chamberLabel.getPreferredSize().width+20, chamberLabel.getPreferredSize().height);
+        summaryPanel1.add(chamberLabel);
+        summaryPanel1.setComponentZOrder(chamberLabel, 0);
+        
         JLabel preferredElementLabel = new JLabel();
         preferredElementLabel.setText("Preferred Elements:");
         preferredElementLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
         preferredElementLabel.setForeground(new Color(67,67,71));
-        preferredElementLabel.setBounds(0,floorLabel.getPreferredSize().height+floorLabel.getY()+20, preferredElementLabel.getPreferredSize().width+20, preferredElementLabel.getPreferredSize().height);
+        preferredElementLabel.setBounds(0,chamberLabel.getPreferredSize().height+chamberLabel.getY()+20, preferredElementLabel.getPreferredSize().width+20, preferredElementLabel.getPreferredSize().height);
         summaryPanel1.add(preferredElementLabel);
         summaryPanel1.setComponentZOrder(preferredElementLabel, 0);
         
-        App.WrappedLabel elementsLabel = new App.WrappedLabel(700, new Color(0,0,0,0), new Insets(2,2,2,2));
+        elementsLabel = new App.WrappedLabel(700, new Color(0,0,0,0), new Insets(2,2,2,2));
         elementsLabel.setOpaque(false);
         elementsLabel.setText(getElements());
         elementsLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 18));
@@ -2894,7 +3064,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel1.add(preferredWeaponLabel);
         summaryPanel1.setComponentZOrder(preferredWeaponLabel, 0);
         
-        App.WrappedLabel weaponsLabel = new App.WrappedLabel(700, new Color(0,0,0,0), new Insets(2,2,2,2));
+        weaponsLabel = new App.WrappedLabel(700, new Color(0,0,0,0), new Insets(2,2,2,2));
         weaponsLabel.setOpaque(false);
         weaponsLabel.setText(getWeapons());
         weaponsLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 18));
@@ -2982,8 +3152,258 @@ public class TeamGuide extends javax.swing.JFrame {
         exitButton3.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_exitButton3MouseExited
 
+    
+    private HashMap<String, String> chamberHalfAndEnemies = new LinkedHashMap<>();
+    
+    private void extractEnemyFromText(){
+        if(!(chamber.equals("All"))){
+            boolean arrived=false;
+            int halfCount=0;
+
+            try {
+                File myObj = new File("src/App/text/Floor/floor"+floor+".txt");
+                Scanner myReader = new Scanner(myObj);
+
+                while (myReader.hasNextLine()) {
+                    String data = myReader.nextLine();
+                    if(arrived && halfCount<2){
+                        String[] parts = data.split("#");
+                        chamberHalfAndEnemies.put(parts[0].trim(), parts[1].trim());
+                        halfCount++;
+                    }
+
+                    if(data.trim().equals("Chamber"+chamber)){
+                        arrived=true;
+                    }
+
+                    if(halfCount==2){
+                        break;
+                    }
+                }
+                myReader.close();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            String firstHalf="";
+            String secondHalf="";
+            
+            try {
+                File myObj = new File("src/App/text/Floor/floor"+floor+".txt");
+                Scanner myReader = new Scanner(myObj);
+
+                while (myReader.hasNextLine()) {
+                    String data = myReader.nextLine();
+                    if(data.contains("#")){
+                        String[] parts = data.split("#");
+                        if(parts[0].trim().equals("First Half")){
+                            firstHalf = firstHalf + parts[1] +", ";
+                        }
+                        else{
+                            secondHalf = secondHalf + parts[1] +", ";
+                        }
+                    }
+                }
+                myReader.close();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            
+            firstHalf = firstHalf.substring(0, firstHalf.length()-2);
+            secondHalf = secondHalf.substring(0, secondHalf.length()-2);
+            chamberHalfAndEnemies.put("First Half", firstHalf);
+            chamberHalfAndEnemies.put("Second Half", secondHalf);
+        }
+        
+    }
+    
+    
+    private ArrayList<String> checkOtherTeam(ArrayList<String> generatedTeam, String charRedeem){
+        ArrayList<String> charCompleteHalf = new ArrayList<>(generatedTeam);
+        ArrayList<String> charUncompleteHalf = new ArrayList<>(charOwnedList);
+        for(String i:generatedTeam){
+            charUncompleteHalf.remove(i);
+        }
+        if(!(charRedeem.isEmpty())){
+            charUncompleteHalf.add(charRedeem);
+        }
+        
+        ArrayList<String>generatedTeam2 = new ArrayList<>();
+        try{
+            App.PrepareGenerator app2 = new App.PrepareGenerator(chamberHalfAndEnemies.get("Second Half"), elementsLabel.getText(), weaponsLabel.getText(), bannedName, charUncompleteHalf);
+            generatedTeam2 = app2.getGeneratedTeam();
+        }catch(Exception e){
+            ArrayList<String> returned = new ArrayList<>();
+            returned.add(charCompleteHalf.get(2));
+            return returned;
+        }
+        return generatedTeam2;
+    }
+    
+    private void checkInTextTeams(){
+        HashMap<String, String> firstHalfSecondHalf = new LinkedHashMap<>();
+        try {
+            File myObj = new File("src/App/text/floor12 First Half.txt");
+            Scanner myReader = new Scanner(myObj);
+            
+            File myObj2 = new File("src/App/text/floor12 Second Half.txt");
+            Scanner myReader2 = new Scanner(myObj2);
+
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String[] parts = data.split(", ");
+                
+                if(charOwnedList.contains(parts[0]) && charOwnedList.contains(parts[1]) &&charOwnedList.contains(parts[2]) &&charOwnedList.contains(parts[3])){
+                    while(myReader2.hasNextLine()){
+                        String data2 = myReader2.nextLine();
+                        String[] parts2 = data2.split(", ");
+                        if(charOwnedList.contains(parts2[0]) && charOwnedList.contains(parts2[1]) &&charOwnedList.contains(parts2[2]) &&charOwnedList.contains(parts2[3])){
+                            firstHalfSecondHalf.put(data, data2);
+                        }
+                        else{
+                            
+                        }
+                    }
+                }
+            }
+            myReader.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private ArrayList<String> checkInTextFirstHalf(){
+        ArrayList<String> bestTeamFirstHalf = new ArrayList<>();
+        try {
+            File myObj = new File("src/App/text/floor12 First Half.txt");
+            Scanner myReader = new Scanner(myObj);
+
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String[] parts = data.split(", ");
+                if(charOwnedList.contains(parts[0]) && charOwnedList.contains(parts[1]) &&charOwnedList.contains(parts[2]) &&charOwnedList.contains(parts[3])){
+                    bestTeamFirstHalf.add(parts[0]);
+                    bestTeamFirstHalf.add(parts[1]);
+                    bestTeamFirstHalf.add(parts[2]);
+                    bestTeamFirstHalf.add(parts[3]);
+                }
+            }
+            myReader.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return bestTeamFirstHalf;
+    }
+    
+    private ArrayList<String> checkInTextSecondHalf(ArrayList<String> tempCharNot){
+        ArrayList<String> bestTeamSecondHalf = new ArrayList<>();
+        ArrayList<String> tempChar = new ArrayList<>(charOwnedList);
+        for(String s: tempCharNot){
+            tempChar.remove(s);
+        }
+        try {
+            File myObj = new File("src/App/text/floor12 Second Half.txt");
+            Scanner myReader = new Scanner(myObj);
+
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String[] parts = data.split(", ");
+                if(tempChar.contains(parts[0]) && tempChar.contains(parts[1]) &&tempChar.contains(parts[2]) &&tempChar.contains(parts[3])){
+                    bestTeamSecondHalf.add(parts[0]);
+                    bestTeamSecondHalf.add(parts[1]);
+                    bestTeamSecondHalf.add(parts[2]);
+                    bestTeamSecondHalf.add(parts[3]);
+                }
+            }
+            myReader.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return bestTeamSecondHalf;
+    }
+    
+    
+    private HashMap<String, ArrayList<String>> teamsFinal = new LinkedHashMap<>();
+    
+    private void checkFloor(){
+        if(floor.equals("12")){
+            ArrayList<String> team1 = checkInTextFirstHalf();
+            ArrayList<String> team2 = checkInTextSecondHalf(team1);
+            System.out.println("team1"+team1);
+            System.out.println("team2"+team2);
+
+            if(!(team1.isEmpty()) && !(team2.isEmpty())){
+                teamsFinal.put("First Half", team1);
+                teamsFinal.put("Second Half", team2);
+            }
+            else if(team1.isEmpty() && !(team2.isEmpty())){
+                generateOtherTeam(team2, "team1Generate");
+            }
+            else if(team2.isEmpty() && !(team1.isEmpty())){
+                System.out.println("masuk sini");
+                generateOtherTeam(team1, "team2Generate");
+            }
+            else{
+                generateTeamSpiralAbyss();
+            }
+        }
+        else{
+            generateTeamSpiralAbyss();
+        }
+    }
+    
+    private void generateOtherTeam(ArrayList<String> generatedTeam, String type){
+        ArrayList<String> tempCharOwned = new ArrayList<>(charOwnedList);
+        ArrayList<String> returnedTeam = checkOtherTeam(generatedTeam, "");
+
+        ArrayList<String>generatedTeam2 = generatedTeam;
+        while(returnedTeam.size()==1){
+            tempCharOwned.remove(returnedTeam.get(0));
+
+            System.out.println("TEMP CHAR OWNEDDDDDDDDDDDD : " + tempCharOwned);
+            App.PrepareGenerator app1 = new App.PrepareGenerator(chamberHalfAndEnemies.get("First Half"), elementsLabel.getText(), weaponsLabel.getText(), bannedName, tempCharOwned);
+            generatedTeam2 = app1.getGeneratedTeam();
+            returnedTeam = checkOtherTeam(generatedTeam2, returnedTeam.get(0));
+
+        }
+        
+        if(type.equals("allGenerate")){
+            teamsFinal.put("First Half", generatedTeam2);
+            teamsFinal.put("Second Half", returnedTeam);
+        }
+        else if(type.equals("team1Generate")){
+            teamsFinal.put("First Half", returnedTeam);
+            teamsFinal.put("Second Half", generatedTeam2);
+        }
+        else if(type.equals("team2Generate")){
+            teamsFinal.put("First Half", generatedTeam2);
+            teamsFinal.put("Second Half", returnedTeam);
+        }
+        
+        System.out.println("GENERATED TEAM 2" + generatedTeam2);
+        System.out.println("RETURNED TEAM" +returnedTeam);
+    }
+    
+    private void generateTeamSpiralAbyss(){
+        App.PrepareGenerator app = new App.PrepareGenerator(chamberHalfAndEnemies.get("First Half"), elementsLabel.getText(), weaponsLabel.getText(), bannedName, charOwnedList);
+        ArrayList<String>generatedTeam = app.getGeneratedTeam();
+        System.out.println("GENERATED 1" + generatedTeam);
+
+        generateOtherTeam(generatedTeam, "allGenerate");
+    }
+    
+    
+    
     private void generateLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateLabel1MouseClicked
-        // TODO add your handling code here:
+        extractEnemyFromText();
+        checkFloor();
+        System.out.print(teamsFinal);
     }//GEN-LAST:event_generateLabel1MouseClicked
 
     private void generateLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateLabel1MouseEntered
@@ -2999,7 +3419,9 @@ public class TeamGuide extends javax.swing.JFrame {
     }//GEN-LAST:event_generateLabel1MouseExited
 
     private void generateButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateButton1MouseClicked
-        // TODO add your handling code here:
+        extractEnemyFromText();
+        checkFloor();
+        System.out.print(teamsFinal);
     }//GEN-LAST:event_generateButton1MouseClicked
 
     private void generateButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateButton1MouseEntered
@@ -3013,6 +3435,54 @@ public class TeamGuide extends javax.swing.JFrame {
         generateButton1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         generateLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_generateButton1MouseExited
+
+    private void chamber2RadMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chamber2RadMouseEntered
+        drawMouseEnteredRadioButton(chamber2Rad, chamber2Rad.isSelected());
+    }//GEN-LAST:event_chamber2RadMouseEntered
+
+    private void chamber2RadMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chamber2RadMouseExited
+        drawMouseExitedRadioButton(chamber2Rad, chamber2Rad.isSelected());
+    }//GEN-LAST:event_chamber2RadMouseExited
+
+    private void chamber2RadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chamber2RadActionPerformed
+        radioButtonActionPerformed(chamber2Rad, chamber2Rad.isSelected(), chamber3Rad, chamber1Rad, chamberAllRad,"chamber");
+    }//GEN-LAST:event_chamber2RadActionPerformed
+
+    private void chamber3RadMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chamber3RadMouseEntered
+        drawMouseEnteredRadioButton(chamber3Rad, chamber3Rad.isSelected());
+    }//GEN-LAST:event_chamber3RadMouseEntered
+
+    private void chamber3RadMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chamber3RadMouseExited
+        drawMouseExitedRadioButton(chamber3Rad, chamber3Rad.isSelected());
+    }//GEN-LAST:event_chamber3RadMouseExited
+
+    private void chamber3RadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chamber3RadActionPerformed
+        radioButtonActionPerformed(chamber3Rad, chamber3Rad.isSelected(), chamber2Rad, chamber1Rad, chamberAllRad,"chamber");
+    }//GEN-LAST:event_chamber3RadActionPerformed
+
+    private void chamber1RadMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chamber1RadMouseEntered
+        drawMouseEnteredRadioButton(chamber1Rad, chamber1Rad.isSelected());
+    }//GEN-LAST:event_chamber1RadMouseEntered
+
+    private void chamber1RadMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chamber1RadMouseExited
+        drawMouseExitedRadioButton(chamber1Rad, chamber1Rad.isSelected());
+    }//GEN-LAST:event_chamber1RadMouseExited
+
+    private void chamber1RadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chamber1RadActionPerformed
+        radioButtonActionPerformed(chamber1Rad, chamber1Rad.isSelected(), chamber2Rad, chamber3Rad,chamberAllRad,"chamber");
+    }//GEN-LAST:event_chamber1RadActionPerformed
+
+    private void chamberAllRadMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chamberAllRadMouseEntered
+        drawMouseEnteredRadioButton(chamberAllRad, chamberAllRad.isSelected());
+    }//GEN-LAST:event_chamberAllRadMouseEntered
+
+    private void chamberAllRadMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chamberAllRadMouseExited
+        drawMouseExitedRadioButton(chamberAllRad, chamberAllRad.isSelected());
+    }//GEN-LAST:event_chamberAllRadMouseExited
+
+    private void chamberAllRadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chamberAllRadActionPerformed
+        radioButtonActionPerformed(chamberAllRad, chamberAllRad.isSelected(), chamber2Rad, chamber3Rad,chamber1Rad,"chamber");
+    }//GEN-LAST:event_chamberAllRadActionPerformed
 
     
     
@@ -3072,6 +3542,11 @@ public class TeamGuide extends javax.swing.JFrame {
     private javax.swing.JRadioButton bowRadButton1;
     private javax.swing.JRadioButton catalystRadButton;
     private javax.swing.JRadioButton catalystRadButton1;
+    private javax.swing.JRadioButton chamber1Rad;
+    private javax.swing.JRadioButton chamber2Rad;
+    private javax.swing.JRadioButton chamber3Rad;
+    private javax.swing.JRadioButton chamberAllRad;
+    private javax.swing.ButtonGroup chamberGroup;
     private javax.swing.JPanel characterPane;
     private javax.swing.JPanel characterPane2;
     private javax.swing.JRadioButton claymoreRadButton;
@@ -3121,6 +3596,7 @@ public class TeamGuide extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
