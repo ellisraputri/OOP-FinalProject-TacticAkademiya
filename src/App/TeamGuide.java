@@ -5,7 +5,6 @@
 package App;
 
 import DatabaseConnection.ConnectionProvider;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -15,32 +14,22 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -78,7 +67,7 @@ public class TeamGuide extends javax.swing.JFrame {
      */
     public TeamGuide() {
         initComponents();
-        this.userId = 4;
+        this.userId = 6;
         this.username = "Ellis";
         this.email = "ellismail@gmail.com";
         setLocationRelativeTo(null);
@@ -2846,7 +2835,13 @@ public class TeamGuide extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(parentPanel, "Please select a chamber");
            }
            else{
-               teamPage4();
+               if(charOwnedList.size() - bannedName.size() < 9){
+                    JOptionPane.showMessageDialog(parentPanel, "Character that is being fed to generator must be at least 10.");
+                }
+               else{
+                   teamPage4();
+               }
+               
            }
         }
     }//GEN-LAST:event_nextLabel1MouseClicked
@@ -2877,7 +2872,12 @@ public class TeamGuide extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(parentPanel, "Please select a chamber");
            }
            else{
-               teamPage4();
+               if(charOwnedList.size() - bannedName.size() < 9){
+                    JOptionPane.showMessageDialog(parentPanel, "Character that is being fed to generator must be at least 10.");
+                }
+               else{
+                   teamPage4();
+               }
            }
         }     
     }//GEN-LAST:event_nextButton1MouseClicked

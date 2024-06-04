@@ -95,7 +95,7 @@ public class TeamResult extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon("src/App/image/CharacterCard/NotZoom/Portraits "+charName+".png");
         
         CharacterPanel charPanel = new CharacterPanel(charName);
-        charPanel.settingPanel(icon, charName, 150, 150,12,false);
+        charPanel.settingPanel(icon, charName, 150, 150,14,false);
         charPanel.settingMouse();
         
         int x = 100 + (index*150) + (index*10);
@@ -214,7 +214,7 @@ public class TeamResult extends javax.swing.JFrame {
         }
         ImageIcon icon = new ImageIcon("src/App/image/CharacterCard/Small/Portraits "+charName+".png");
         
-        CharacterPanel charPanel = new CharacterPanel(charName);
+        CharacterPanelNonClick charPanel = new CharacterPanelNonClick(charName);
         charPanel.settingPanel(icon, charName, 120, 120,12,false);
         charPanel.settingMouse();
         
@@ -233,7 +233,6 @@ public class TeamResult extends javax.swing.JFrame {
     private int heightTrackSecond=320;
     private void setTextAndLayout(JLabel label, App.WrappedLabel label2, int index, String type){
         label2.setOpaque(false);
-        
         String str = (type.equals("First Half"))? teamSpiralAbyss.get("First Half").get(index) : teamSpiralAbyss.get("Second Half").get(index-4);
         str = str + ":";
         label.setText(str);
@@ -241,7 +240,16 @@ public class TeamResult extends javax.swing.JFrame {
         label.setBounds(label.getX(), y, label.getPreferredSize().width, label.getPreferredSize().height);
         
         String str2 = teamInfo.get(index);
-        label2.setText(str2);
+        if(str.equals("Sangonomiya Kokomi:")){
+            System.out.println("kokomi");
+            String[]strArr = str2.split(", ");
+            String str3 = "<html>" + strArr[0].trim() + ",<br>" + strArr[1].trim() + "</html>";;
+            label2.setText(str3);
+        }
+        else{
+            label2.setText(str2);
+        }
+        
         label2.setBounds(label.getPreferredSize().width+label.getX()+5, y-2, label2.getPreferredSize().width, label2.getPreferredSize().height);
         
         if(type.equals("First Half")){

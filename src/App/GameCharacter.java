@@ -7,6 +7,8 @@ public class GameCharacter {
     private String weapon;
     private boolean pneuma;
     private boolean ousia;
+    private int stars;
+
     
     public GameCharacter(){}
 
@@ -42,5 +44,13 @@ public class GameCharacter {
     public boolean getOusia(){
         return this.ousia;
     }
+    
+    public int getStars() {
+        return stars;
+    }
 
+    public void setStars(int stars) {
+        this.stars = stars;
+    }
+    
 }

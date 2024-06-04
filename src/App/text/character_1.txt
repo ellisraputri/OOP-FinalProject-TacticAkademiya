@@ -8,7 +8,7 @@ Bennett#Pyro#SS#Healer, Universal Amplifier, Pyro Applicator#Sword#false#false#4
 Kaeya#Cryo#B#Cryo Applicator, Off-field DPS#Sword#false#false#4						
 Lisa#Electro#B#Electro Applicator#Catalyst#false#false#4							
 Barbara#Hydro#B#Healer, Hydro Applicator#Catalyst#false#false#4									
-Razor#Physical#B#Physical On-Field DPS#Claymore#false#false#4								
+Razor#Cryo#B#Physical On-Field DPS#Claymore#false#false#4								
 Hu Tao#Pyro#SS#Pyro On-Field DPS#Polearm#false#false#5								
 Beidou#Electro#A#Off-Field DPS, Electro Applicator#Claymore#false#false#4									
 Xingqiu#Hydro#SS#Hydro Applicator, Off-field DPS#Sword#false#false#4								
@@ -35,7 +35,7 @@ Faruzan#Anemo#S#Anemo Amplifier#Bow#false#false#4
 Chevreuse#Pyro#S#Overload Amplifier, Healer#Polearm#false#true#4									
 Rosaria#Cryo#A#Cryo Applicator, Off-field DPS#Polearm#false#false#4									
 Gaming#Pyro#A#Pyro On-Field DPS#Claymore#false#false#4								
-Eula#Physical#A#Physical On-Field DPS#Claymore#false#false#5									
+Eula#Cryo#A#Physical On-Field DPS#Claymore#false#false#5									
 Xianyun#Anemo#S#Plunge Amplifier, Healer, Swirl#Catalyst#false#false#5									
 Kamisato Ayaka#Cryo#SS#Cryo On-Field DPS#Sword#false#false#5									
 Xiao#Anemo#A#Anemo On-Field DPS#Polearm#false#false#5								
@@ -73,11 +73,11 @@ Baizhu#Dendro#SS#Healer, Shielder, Dendro Applicator#Catalyst#false#false#5
 Kirara#Dendro#B#Shielder, Dendro Applicator#Sword#false#false#4								
 Shikanoin Heizou#Anemo#C#Anemo On-Field DPS, Swirl#Catalyst#false#false#4									
 Yanfei#Pyro#C#Pyro On-Field DPS, Pyro Applicator#Catalyst#false#false#4									
-Freminet#Physical#D#Physical On-Field DPS, Cryo Applicator#Claymore#true#false#4									
+Freminet#Cryo#D#Physical On-Field DPS, Cryo Applicator#Claymore#true#false#4									
 Neuvillette#Hydro#SS#Hydro On-Field DPS#Catalyst#true#false#5									
 Wriothesley#Cryo#S#Cryo On-Field DPS#Catalyst#false#true#5									
 Charlotte#Cryo#	A#Healer, Cryo Applicator#Catalyst#true#false#4									
-Furina#	Hydro#SS#Universal Amplifier, Healer, Hydro Applicator, Off-field DPS#Sword#true#true#5									
+Furina#Hydro#SS#Universal Amplifier, Healer, Hydro Applicator, Off-field DPS#Sword#true#true#5									
 Navia#Geo#S#Geo On-Field DPS#Claymore#false#true#5									
 Dehya#Pyro#C#Shielder, Pyro On-Field DPS, Pyro Applicator#Claymore#false#false#5									
 Amber#Pyro#D#Pyro Applicator#Bow#false#false#4									

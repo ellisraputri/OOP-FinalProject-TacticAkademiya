@@ -24,7 +24,7 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
-        this.userId = 0;
+        this.userId = 1;
         myinit();
     }
     
@@ -53,6 +53,8 @@ public class Home extends javax.swing.JFrame {
         
         usernameLabel.setText(username);
         emailLabel.setText(email);
+        usernameLabel.setBounds(110, 25, usernameLabel.getPreferredSize().width+10, usernameLabel.getPreferredSize().height);
+        emailLabel.setBounds(110, 60, emailLabel.getPreferredSize().width+10, emailLabel.getPreferredSize().height);
         getContentPane().setComponentZOrder(usernameLabel, 0);
         getContentPane().setComponentZOrder(emailLabel, 0);
     }
@@ -237,7 +239,7 @@ public class Home extends javax.swing.JFrame {
     private void goButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goButton2MouseClicked
         setVisible(false);
         dispose();
-        new CharInfoHome(userId).setVisible(true);
+        new CharInfoHome(userId, username, email).setVisible(true);
     }//GEN-LAST:event_goButton2MouseClicked
 
     private void goButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goButton2MouseEntered

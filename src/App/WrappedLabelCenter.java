@@ -9,17 +9,17 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-public class WrappedLabel extends JLabel {
+public class WrappedLabelCenter extends JLabel {
     private int maxWidth;
     private Color bgColor;
     private Insets insets;
     private int horizontalAlignment;
     
-    public WrappedLabel(){
+    public WrappedLabelCenter(){
         super();
     }
     
-    public WrappedLabel(int maxWidth, Color bgColor, Insets insets) {
+    public WrappedLabelCenter(int maxWidth, Color bgColor, Insets insets) {
         this.maxWidth = maxWidth;
         this.bgColor = bgColor != null ? bgColor : new Color(0, 0, 0, 0); // default to transparent if null
         this.insets = insets != null ? insets : new Insets(0, 0, 0, 0); // default to no insets if null
@@ -58,11 +58,24 @@ public class WrappedLabel extends JLabel {
             FontMetrics fm = g.getFontMetrics();
 
             int lineHeight = fm.getHeight();
-            int x = insets.left;
             int y = insets.top + fm.getAscent();
+            int componentWidth = getWidth() - insets.left - insets.right;
 
             for (String line : getWrappedLines(text, fm)) {
-                g2d.drawString(line, x, y);
+                int x;
+                switch (getHorizontalAlignment()) {
+                    case SwingConstants.CENTER:
+                        x = (componentWidth - fm.stringWidth(line)) / 2;
+                        break;
+                    case SwingConstants.RIGHT:
+                        x = componentWidth - fm.stringWidth(line);
+                        break;
+                    case SwingConstants.LEFT:
+                    default:
+                        x = 0;
+                        break;
+                }
+                g2d.drawString(line, insets.left + x, y);
                 y += lineHeight;
             }
         }

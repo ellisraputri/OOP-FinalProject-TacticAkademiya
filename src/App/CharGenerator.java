@@ -107,7 +107,7 @@ public class CharGenerator {
             }
         }
         else{
-            if(character.getElement().equals(bestElement)){
+            if(character.getElement().equals(bestElement) && !(avoidElements.contains(character.getElement()))){
                 num += 3;
             }
         }
@@ -168,7 +168,7 @@ public class CharGenerator {
             String str;
             for(String element: elements){
                 try {
-                    File myObj = new File("src/App/text/Element/"+ element + ".txt");
+                    File myObj = new File("src/App/text/DPS_Element/"+ element + ".txt");
                     Scanner myReader = new Scanner(myObj);
         
                     while (myReader.hasNextLine()) {
@@ -197,7 +197,7 @@ public class CharGenerator {
             String[] roles2 = findRoleBasedOnChar(nameSupport2).split(",");
             for(String element: elements){
                 try {
-                    File myObj = new File("src/App/text/Element/"+ element + ".txt");
+                    File myObj = new File("src/App/text/DPS_Element/"+ element + ".txt");
                     Scanner myReader = new Scanner(myObj);
         
                     while (myReader.hasNextLine()) {
@@ -248,7 +248,7 @@ public class CharGenerator {
     public String[] findTeamComp(String nameDps, String name2, String name3, String element){
         int n=0;
         try {
-            File myObj = new File("src/App/text/Element/"+ element + ".txt");
+            File myObj = new File("src/App/text/DPS_Element/"+ element + ".txt");
             Scanner myReader = new Scanner(myObj);
 
             while (myReader.hasNextLine()) {
@@ -309,7 +309,7 @@ public class CharGenerator {
     public String[] findAvailableTeamComp(int n, String name2, String name3, String element, String state){
         String line;
 
-        try(Stream<String> lines = Files.lines(Paths.get("src/App/text/Element/" + element + ".txt"))) {
+        try(Stream<String> lines = Files.lines(Paths.get("src/App/text/DPS_Element/" + element + ".txt"))) {
             line = lines.skip(n).findFirst().get();
             String[] part = line.split("#");
             if(part.length==1){
