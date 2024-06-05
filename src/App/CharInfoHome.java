@@ -265,12 +265,12 @@ public class CharInfoHome extends javax.swing.JFrame {
         scrollPane.setViewportBorder(null);
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
-        
+
         parentPanel = new JPanel(); // The initial panel inside scroll pane
         parentPanel.setLayout(null); // Use absolute layout
         parentPanel.setPreferredSize(new Dimension(400, 200)); // Set initial size
         parentPanel.setOpaque(false);
-        parentPanel.setBackground(new Color(0,0,0,0));
+        parentPanel.setBackground(new Color(0, 0, 0, 0));
         parentPanel.setBorder(null);
         scrollPane.setViewportView(parentPanel); // Set this panel as viewport's view
         
@@ -411,13 +411,14 @@ public class CharInfoHome extends javax.swing.JFrame {
             // Set the bounds for the cloned panel with your custom size
             clonedPanel.setBounds(x, y, panelWidth, panelHeight);
             
-//            clonedPanel.addMouseListener(new MouseAdapter() {
-//                @Override
-//                public void mouseClicked(MouseEvent e) {
-//                    handlePanelClick(clonedPanel.getName());
-//                }
-//            });
-//            
+            clonedPanel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    dispose();
+                    new CharInfo(clonedPanel.getGameChar(), userId, username, email).setVisible(true);
+                }
+            });
+            
             // Add the cloned panel to the initial panel
             parentPanel.add(clonedPanel);
             // Adjust preferred size of initial panel to include new panel
