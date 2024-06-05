@@ -6,6 +6,8 @@ package App;
 import DatabaseConnection.ConnectionProvider;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import javax.swing.SwingConstants;
 /**
@@ -17,35 +19,38 @@ public class CharacterArchivePanel extends JPanel{
     private static int borderRadius;
     private Color bgColor;
     private static int borderWidth;
-    private String name;
-    private String element;
     private ImageIcon image;
-    private int stars;
     private Color textColor;
     private String path;
+    private Color bgHover;
+    private Color bgDefault;
+    private GameCharacter gameChar;
 
-    public CharacterArchivePanel(int borderRadius, String name, String element, ImageIcon image, int stars) {
+    public CharacterArchivePanel(int borderRadius, ImageIcon image, GameCharacter gc) {
         setLayout(null);
         this.borderRadius = borderRadius;
         this.borderWidth = 0;
-        this.name = name;
-        this.element = element;
         this.image = image;
-        this.stars = stars;
+        this.gameChar = gc;
         setOpaque(false);
         
-        System.out.println(name + stars);
-        
+        String name = gameChar.getName();
+        String element = gameChar.getElement();
+        int stars = gameChar.getStars();
        
         if(stars == 4){
             bgColor = new Color(202,204,246);
+            bgDefault = new Color(202,204,246);
             textColor = new Color(70,73,140);
             path ="src/App/image/circle3.png";
+            bgHover = new Color(160,163,231);
         }
         else{
             bgColor = new Color (246,205,202);
+            bgDefault = new Color(246,205,202);
             textColor = new Color(119,49,39);
             path = "src/App/image/circle2.png";
+            bgHover = new Color(225,159,156);
         }
         
                 
@@ -73,6 +78,30 @@ public class CharacterArchivePanel extends JPanel{
         setComponentBounds(photo, 25, 22, 150, 150);
         add(photo);
         
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                bgColor = bgHover;
+                revalidate();
+                repaint();
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                bgColor = bgDefault;
+                revalidate();
+                repaint();
+            }
+        });
+    }
+
+    public GameCharacter getGameChar() {
+        return gameChar;
+    }
+
+    public ImageIcon getImage() {
+        return image;
     }
 
     

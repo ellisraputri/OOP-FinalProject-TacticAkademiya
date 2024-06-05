@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
+import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -46,6 +48,7 @@ public class CharInfoHome extends javax.swing.JFrame {
     
     private ArrayList<GameCharacter> gameChars = new ArrayList<>();
     private HashMap<GameCharacter, ImageIcon> allCharacters = new LinkedHashMap<>();
+    private ArrayList<CharacterArchivePanel> charPanels = new ArrayList<>();
     
     /**
      * Creates new form CharInfoHome
@@ -87,10 +90,24 @@ public class CharInfoHome extends javax.swing.JFrame {
         
         int x = 870;
         for(int i=0; i<elementsName.length; i++){
-            App.LabelHover lab = new App.LabelHover(false, clickedElementCircle.get(i), clickhoverElementCircle.get(i), hoverElementCircle.get(i));
+            App.LabelHover lab = new App.LabelHover(false, clickedElementCircle.get(i), clickhoverElementCircle.get(i), hoverElementCircle.get(i), elementsName[i]);
             lab.setLabelIcon("src/App/image/Element/Small/" + elementsName[i] +".png");
             getContentPane().add(lab);
             lab.setBounds(x, 315, 34, 35);
+            
+            lab.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    if(lab.isClicked()){
+                        elementFilter.add(lab.getName());
+                        handleClick();
+                    }
+                    else{
+                        elementFilter.remove(lab.getName());
+                        handleReleaseClick();
+                    }
+                }
+            });
             
             getContentPane().add(clickedElementCircle.get(i));
             clickedElementCircle.get(i).setBounds(x-2, 315, 36, 36);
@@ -120,10 +137,24 @@ public class CharInfoHome extends javax.swing.JFrame {
         
         x = 872;
         for(int i=0; i<weaponsName.length; i++){
-            App.LabelHover lab = new App.LabelHover(false, clickedWeaponCircle.get(i), clickhoverWeaponCircle.get(i), hoverWeaponCircle.get(i));
+            App.LabelHover lab = new App.LabelHover(false, clickedWeaponCircle.get(i), clickhoverWeaponCircle.get(i), hoverWeaponCircle.get(i), weaponsName[i]);
             lab.setLabelIcon("src/App/image/Weapon/Small/" + weaponsName[i] +".png");
             getContentPane().add(lab);
             lab.setBounds(x, 420, 34, 35);
+            
+            lab.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    if(lab.isClicked()){
+                        weaponFilter.add(lab.getName());
+                        handleClick();
+                    }
+                    else{
+                        weaponFilter.remove(lab.getName());
+                        handleReleaseClick();
+                    }
+                }
+            });
             
             getContentPane().add(clickedWeaponCircle.get(i));
             clickedWeaponCircle.get(i).setBounds(x-3, 420, 36, 36);
@@ -148,10 +179,23 @@ public class CharInfoHome extends javax.swing.JFrame {
         
         //set up hover and click for the 4-star button
         x=875;
-        App.LabelHover star4 = new App.LabelHover(false, fourStarClicked, fourStarHoverClick, fourStarHover);
+        App.LabelHover star4 = new App.LabelHover(false, fourStarClicked, fourStarHoverClick, fourStarHover, "fourstar");
         star4.setLabelIcon("src/App/image/fourstar.png");
         getContentPane().add(star4);
         star4.setBounds(x, 530, star4.getPreferredSize().width, star4.getPreferredSize().height);
+        star4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if(star4.isClicked()){
+                    starFilter.add("4");
+                    handleClick();
+                }
+                else{
+                    starFilter.remove("4");
+                    handleReleaseClick();
+                }
+            }
+        });
 
         getContentPane().add(fourStarClicked);
         fourStarClicked.setBounds(x-11, 521, fourStarClicked.getPreferredSize().width, fourStarClicked.getPreferredSize().height);
@@ -172,10 +216,23 @@ public class CharInfoHome extends javax.swing.JFrame {
         
         //set up hover and click for the 5-star button
         x=x+star4.getPreferredSize().width+30;
-        App.LabelHover star5 = new App.LabelHover(false, fiveStarClick, fiveStarHoverClick, fiveStarHover);
+        App.LabelHover star5 = new App.LabelHover(false, fiveStarClick, fiveStarHoverClick, fiveStarHover, "fivestar");
         star5.setLabelIcon("src/App/image/fivestar.png");
         getContentPane().add(star5);
         star5.setBounds(x, 530, star5.getPreferredSize().width, star5.getPreferredSize().height);
+        star5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if(star5.isClicked()){
+                    starFilter.add("5");
+                    handleClick();
+                }
+                else{
+                    starFilter.remove("5");
+                    handleReleaseClick();
+                }
+            }
+        });
 
         getContentPane().add(fiveStarClick);
         fiveStarClick.setBounds(x-11, 521, fiveStarClick.getPreferredSize().width, fiveStarClick.getPreferredSize().height);
@@ -198,11 +255,11 @@ public class CharInfoHome extends javax.swing.JFrame {
         
         
         fillCharacterInfo();
-        showPanels();
+        setPanels();
     }
     
     
-    private void showPanels(){
+    private void setPanels(){
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setViewportBorder(null);
@@ -238,18 +295,110 @@ public class CharInfoHome extends javax.swing.JFrame {
         }
         
         
-        int row=0, column=0;
-        int i=0;
-        for(GameCharacter gc: allCharacters.keySet()){
+        for(GameCharacter gc:allCharacters.keySet()){
             ImageIcon image = allCharacters.get(gc);
-            String charName = gc.getName();
-            String charElement = gc.getElement();
-            int stars = gc.getStars();
+            App.CharacterArchivePanel panel = new App.CharacterArchivePanel(40, image, gc);
+            charPanels.add(panel);
+        }
+        
+        showPanels(charPanels);
+        
+    }
+    
+    
+    private void fillCharacterInfo(){
+        try {
+            File myObj = new File("src/App/text/character_1.txt");
+            Scanner myReader = new Scanner(myObj);
             
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String[] parts = data.split("#");
+                boolean pneuma = Boolean.parseBoolean(parts[5]);
+                boolean ousia = Boolean.parseBoolean(parts[6]);
+                int stars = Integer.parseInt(parts[7].trim());
+                GameCharacter gc = new GameCharacter(parts[0], parts[1], parts[2], parts[4], pneuma, ousia);
+                gc.setStars(stars);
+                gameChars.add(gc);
+            }
+            myReader.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    ArrayList<CharacterArchivePanel> filteredPanels = new ArrayList<>();
+    ArrayList<String> elementFilter = new ArrayList<>();
+    ArrayList<String> weaponFilter = new ArrayList<>();
+    ArrayList<String> starFilter = new ArrayList<>();
+    
+    private void handleClick(){
+        filteredPanels.clear();
+        Set<CharacterArchivePanel> setAll = new LinkedHashSet<>();
+        ArrayList<CharacterArchivePanel> tempElement = new ArrayList<>();
+        ArrayList<CharacterArchivePanel> tempWeapon = new ArrayList<>();
+        ArrayList<CharacterArchivePanel> tempStar = new ArrayList<>();
+        
+        //filter based on elements
+        for(CharacterArchivePanel c: charPanels){
+            if(elementFilter.contains(c.getGameChar().getElement())){
+                tempElement.add(c);
+            }
+        }
+        
+        //filter based on weapon
+        for(CharacterArchivePanel c: charPanels){
+            if(weaponFilter.contains(c.getGameChar().getWeapon())){
+                tempWeapon.add(c);
+            }
+        }
+        
+        //filter based on stars
+        for(CharacterArchivePanel c: charPanels){
+            String star = String.valueOf(c.getGameChar().getStars());
+            if(starFilter.contains(star)){
+                tempStar.add(c);
+            }
+        }
+        
+        //intersect all characters with the filtered characters
+        setAll.addAll(charPanels);
+        if(!(tempElement.isEmpty())){
+            setAll.retainAll(tempElement);
+        }
+        if(!(tempWeapon.isEmpty())){
+            setAll.retainAll(tempWeapon);
+        }
+        if(!(tempStar.isEmpty())){
+            setAll.retainAll(tempStar);
+        }
+
+        //add to filteredPanels to show it
+        filteredPanels.addAll(setAll);
+        showPanels(filteredPanels);
+    }
+    
+    private void handleReleaseClick(){
+        //show all characters if no filter
+        if(weaponFilter.isEmpty() && elementFilter.isEmpty() && starFilter.isEmpty()){
+            showPanels(charPanels);
+        }
+        else{
+            handleClick();
+        }
+        
+    }
+    
+    
+    private void showPanels(ArrayList<CharacterArchivePanel> charList){
+        parentPanel.removeAll();
+        int row=0, column=0;
+        for(int i=0; i<charList.size(); i++){
+            CharacterArchivePanel clonedPanel = charList.get(i);
             int panelWidth = 200;
             int panelHeight = 250;
-            
-            App.CharacterArchivePanel clonedPanel = new App.CharacterArchivePanel(40, charName, charElement, image, stars);
 
             // Calculate the row and column indices
             row = i / 3;
@@ -282,34 +431,9 @@ public class CharInfoHome extends javax.swing.JFrame {
             // Scroll to show the new panel
             scrollPane.getVerticalScrollBar().setValue(0);
             
-            i++;
         }
     }
     
-    
-    private void fillCharacterInfo(){
-        try {
-            File myObj = new File("src/App/text/character_1.txt");
-            Scanner myReader = new Scanner(myObj);
-            
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                String[] parts = data.split("#");
-                boolean pneuma = Boolean.parseBoolean(parts[5]);
-                boolean ousia = Boolean.parseBoolean(parts[6]);
-                int stars = Integer.parseInt(parts[7].trim());
-                GameCharacter gc = new GameCharacter(parts[0], parts[1], parts[2], parts[4], pneuma, ousia);
-                gc.setStars(stars);
-                gameChars.add(gc);
-            }
-            myReader.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -378,7 +502,6 @@ public class CharInfoHome extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Character Archive");
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -630,6 +753,8 @@ public class CharInfoHome extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle7.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(840, 180, 381, 450);
+
+        scrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         parentPanel.setBackground(new java.awt.Color(255, 204, 204));
 

@@ -13,12 +13,18 @@ class LabelHover extends JLabel {
     private JLabel clickedCircle;
     private JLabel clickhoverCircle;
     private JLabel hoverCircle;
+    private String name;
 
-    public LabelHover(boolean over1, JLabel clickedCircle, JLabel clickhoverCircle, JLabel hoverCircle) {
+    public String getName() {
+        return name;
+    }
+
+    public LabelHover(boolean over1, JLabel clickedCircle, JLabel clickhoverCircle, JLabel hoverCircle, String name) {
         this.over = over1;
         this.clickedCircle = clickedCircle;
         this.clickhoverCircle = clickhoverCircle;
         this.hoverCircle = hoverCircle;
+        this.name = name;
         
         addMouseListener(new MouseAdapter() {
             @Override
@@ -70,6 +76,10 @@ class LabelHover extends JLabel {
 
     public boolean isOver() {
         return over;
+    }
+
+    public boolean isClicked() {
+        return clicked;
     }
 
     public JLabel getClickedCircle() {
