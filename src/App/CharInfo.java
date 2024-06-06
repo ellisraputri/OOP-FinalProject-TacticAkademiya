@@ -9,6 +9,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -34,6 +35,7 @@ public class CharInfo extends javax.swing.JFrame {
         initComponents();
         setTitle("Character "+gamechar.getName() + " Details");
         bg.setIcon(new ImageIcon("src/App/image/bg_"+gamechar.getElement() +".png"));
+        splashArtLabel.setIcon(new ImageIcon("src/App/image/CharacterCard/SplashArt/"+gamechar.getName()+".png"));
         myinit();
     }
     
@@ -46,19 +48,32 @@ public class CharInfo extends javax.swing.JFrame {
         getContentPane().setComponentZOrder(usernameLabel, 0);
         getContentPane().setComponentZOrder(emailLabel, 0);
         
+        //setting name
+        nameLabel.setText(gamechar.getName());
+        nameLabel.setBounds(nameLabel.getX(), nameLabel.getY(), 520, nameLabel.getPreferredSize().height);
+        nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        //setting scroll pane
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setViewportBorder(null);
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
         
-        parentPanel = new JPanel(); // The initial panel inside scroll pane
+        //setting parentPanel
         parentPanel.setLayout(null); // Use absolute layout
-        parentPanel.setPreferredSize(new Dimension(400, 200)); // Set initial size
+        parentPanel.setPreferredSize(new Dimension(550, 480)); // Set initial size
         parentPanel.setOpaque(false);
         parentPanel.setBackground(new Color(0,0,0,0));
         parentPanel.setBorder(null);
         scrollPane.setViewportView(parentPanel); // Set this panel as viewport's view
+        
+        //setting basic information
+        
+        
+        //repaint components
+        parentPanel.revalidate();
+        parentPanel.repaint();
     }
     
     
@@ -78,18 +93,19 @@ public class CharInfo extends javax.swing.JFrame {
         exitButton = new javax.swing.JLabel();
         scrollPane = new javax.swing.JScrollPane();
         parentPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        regionLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        rarityLabel = new javax.swing.JLabel();
+        weaponTypeLabel = new javax.swing.JLabel();
+        consLabel = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         splashArtLabel = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1290, 750));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -135,37 +151,43 @@ public class CharInfo extends javax.swing.JFrame {
         getContentPane().add(exitButton);
         exitButton.setBounds(1190, 20, 70, 70);
 
+        scrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         parentPanel.setBackground(new java.awt.Color(255, 204, 204));
         parentPanel.setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(113, 113, 113));
-        jLabel2.setText("Region:");
-        parentPanel.add(jLabel2);
-        jLabel2.setBounds(0, 180, 90, 30);
+        regionLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        regionLabel.setForeground(new java.awt.Color(67, 67, 71));
+        regionLabel.setText("Region:");
+        parentPanel.add(regionLabel);
+        regionLabel.setBounds(10, 180, 90, 30);
 
         jLabel3.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
         jLabel3.setText("Basic Information");
         parentPanel.add(jLabel3);
-        jLabel3.setBounds(0, 0, 270, 60);
+        jLabel3.setBounds(10, 0, 270, 60);
 
-        jLabel4.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(113, 113, 113));
-        jLabel4.setText("Rarity:");
-        parentPanel.add(jLabel4);
-        jLabel4.setBounds(0, 60, 80, 30);
+        rarityLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        rarityLabel.setForeground(new java.awt.Color(67, 67, 71));
+        rarityLabel.setText("Rarity:");
+        parentPanel.add(rarityLabel);
+        rarityLabel.setBounds(10, 60, 80, 30);
 
-        jLabel5.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(113, 113, 113));
-        jLabel5.setText("Weapon:");
-        parentPanel.add(jLabel5);
-        jLabel5.setBounds(0, 100, 90, 30);
+        weaponTypeLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        weaponTypeLabel.setForeground(new java.awt.Color(67, 67, 71));
+        weaponTypeLabel.setText("Weapon:");
+        parentPanel.add(weaponTypeLabel);
+        weaponTypeLabel.setBounds(10, 100, 90, 30);
 
-        jLabel6.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(113, 113, 113));
-        jLabel6.setText("Constellation:");
-        parentPanel.add(jLabel6);
-        jLabel6.setBounds(0, 140, 140, 30);
+        consLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        consLabel.setForeground(new java.awt.Color(67, 67, 71));
+        consLabel.setText("Constellation:");
+        parentPanel.add(consLabel);
+        consLabel.setBounds(10, 140, 140, 30);
+
+        jLabel2.setText("jLabel2");
+        parentPanel.add(jLabel2);
+        jLabel2.setBounds(100, 70, 38, 16);
 
         scrollPane.setViewportView(parentPanel);
 
@@ -176,8 +198,17 @@ public class CharInfo extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(73, 111, 620, 570);
+
+        splashArtLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/CharacterCard/SplashArt/Venti.png"))); // NOI18N
         getContentPane().add(splashArtLabel);
-        splashArtLabel.setBounds(640, 140, 700, 350);
+        splashArtLabel.setBounds(570, 130, 830, 415);
+
+        nameLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        nameLabel.setForeground(new java.awt.Color(252, 236, 214));
+        nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nameLabel.setText("Test");
+        getContentPane().add(nameLabel);
+        nameLabel.setBounds(740, 540, 520, 44);
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_Anemo.png"))); // NOI18N
         bg.setToolTipText("");
@@ -255,18 +286,20 @@ public class CharInfo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
+    private javax.swing.JLabel consLabel;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel exitButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel nameLabel;
     private javax.swing.JPanel parentPanel;
     private javax.swing.JLabel profileButton;
+    private javax.swing.JLabel rarityLabel;
+    private javax.swing.JLabel regionLabel;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JLabel splashArtLabel;
     private javax.swing.JLabel usernameLabel;
+    private javax.swing.JLabel weaponTypeLabel;
     // End of variables declaration//GEN-END:variables
 }
