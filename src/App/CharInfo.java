@@ -7,6 +7,8 @@ package App;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -20,6 +22,7 @@ public class CharInfo extends javax.swing.JFrame {
     private int userId;
     private String username;
     private String email;
+    
     /**
      * Creates new form charInfo
      */
@@ -36,6 +39,7 @@ public class CharInfo extends javax.swing.JFrame {
         setTitle("Character "+gamechar.getName() + " Details");
         bg.setIcon(new ImageIcon("src/App/image/bg_"+gamechar.getElement() +".png"));
         splashArtLabel.setIcon(new ImageIcon("src/App/image/CharacterCard/SplashArt/"+gamechar.getName()+".png"));
+        setLocationRelativeTo(null);
         myinit();
     }
     
@@ -48,10 +52,13 @@ public class CharInfo extends javax.swing.JFrame {
         getContentPane().setComponentZOrder(usernameLabel, 0);
         getContentPane().setComponentZOrder(emailLabel, 0);
         
-        //setting name
+        //setting name and element
         nameLabel.setText(gamechar.getName());
+        int xElementLabel = 990 - nameLabel.getPreferredSize().width / 2 - 57;
         nameLabel.setBounds(nameLabel.getX(), nameLabel.getY(), 520, nameLabel.getPreferredSize().height);
         nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        elementLabel.setIcon(new ImageIcon("src/App/image/Element/Medium/" +gamechar.getElement()+ ".png"));
+        elementLabel.setBounds(xElementLabel, elementLabel.getY()-2, elementLabel.getPreferredSize().width, elementLabel.getPreferredSize().height);
         
         //setting scroll pane
         scrollPane.setOpaque(false);
@@ -68,12 +75,39 @@ public class CharInfo extends javax.swing.JFrame {
         parentPanel.setBorder(null);
         scrollPane.setViewportView(parentPanel); // Set this panel as viewport's view
         
-        //setting basic information
+        App.GameCharacterDetail charDetails = new App.GameCharacterDetail(gamechar);
+        setBasicInfo(charDetails);
         
         
         //repaint components
         parentPanel.revalidate();
         parentPanel.repaint();
+        getContentPane().revalidate();
+        getContentPane().repaint();
+    }
+    
+    private void setBasicInfo(GameCharacterDetail charDetails){
+        //set rarity
+        String star = (gamechar.getStars() == 4)? "four" : "five";
+        rarityPic.setIcon(new ImageIcon("src/App/image/" + star+ "star.png"));
+        
+        //set weapon
+        weaponPic.setIcon(new ImageIcon("src/App/image/Weapon/Small/" +gamechar.getWeapon()+ ".png"));
+        weaponTypeLabel1.setText(gamechar.getWeapon());
+        weaponTypeLabel1.setBounds(weaponTypeLabel1.getX(), weaponTypeLabel1.getY(), weaponTypeLabel1.getPreferredSize().width, weaponTypeLabel1.getPreferredSize().height);
+        
+        //set constellation
+        consLabel.setText(charDetails.getConstellation());
+        consLabel.setBounds(consLabel.getX(), consLabel.getY(), consLabel.getPreferredSize().width, consLabel.getPreferredSize().height);
+        
+        //set affiliation
+        affiliationLabel.setText(charDetails.getAffiliation());
+        affiliationLabel.setBounds(affiliationLabel.getX(), affiliationLabel.getY(), affiliationLabel.getPreferredSize().width, affiliationLabel.getPreferredSize().height);
+    
+        //set birthday
+        birthdayLabel.setText(charDetails.getBirthday());
+        birthdayLabel.setBounds(birthdayLabel.getX(), birthdayLabel.getY(), birthdayLabel.getPreferredSize().width, birthdayLabel.getPreferredSize().height);
+    
     }
     
     
@@ -93,14 +127,19 @@ public class CharInfo extends javax.swing.JFrame {
         exitButton = new javax.swing.JLabel();
         scrollPane = new javax.swing.JScrollPane();
         parentPanel = new javax.swing.JPanel();
-        regionLabel = new javax.swing.JLabel();
+        birthdayLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         rarityLabel = new javax.swing.JLabel();
+        weaponTypeLabel1 = new javax.swing.JLabel();
         weaponTypeLabel = new javax.swing.JLabel();
         consLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        rarityPic = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        affiliationLabel = new javax.swing.JLabel();
+        weaponPic = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         splashArtLabel = new javax.swing.JLabel();
+        elementLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
@@ -156,22 +195,28 @@ public class CharInfo extends javax.swing.JFrame {
         parentPanel.setBackground(new java.awt.Color(255, 204, 204));
         parentPanel.setLayout(null);
 
-        regionLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
-        regionLabel.setForeground(new java.awt.Color(67, 67, 71));
-        regionLabel.setText("Region:");
-        parentPanel.add(regionLabel);
-        regionLabel.setBounds(10, 180, 90, 30);
+        birthdayLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        birthdayLabel.setForeground(new java.awt.Color(67, 67, 71));
+        birthdayLabel.setText("Birthday:");
+        parentPanel.add(birthdayLabel);
+        birthdayLabel.setBounds(10, 220, 90, 30);
 
         jLabel3.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
-        jLabel3.setText("Basic Information");
+        jLabel3.setText("Best Weapons");
         parentPanel.add(jLabel3);
-        jLabel3.setBounds(10, 0, 270, 60);
+        jLabel3.setBounds(10, 270, 270, 60);
 
         rarityLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         rarityLabel.setForeground(new java.awt.Color(67, 67, 71));
         rarityLabel.setText("Rarity:");
         parentPanel.add(rarityLabel);
         rarityLabel.setBounds(10, 60, 80, 30);
+
+        weaponTypeLabel1.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        weaponTypeLabel1.setForeground(new java.awt.Color(67, 67, 71));
+        weaponTypeLabel1.setText("Weapon:");
+        parentPanel.add(weaponTypeLabel1);
+        weaponTypeLabel1.setBounds(130, 103, 90, 30);
 
         weaponTypeLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         weaponTypeLabel.setForeground(new java.awt.Color(67, 67, 71));
@@ -185,9 +230,24 @@ public class CharInfo extends javax.swing.JFrame {
         parentPanel.add(consLabel);
         consLabel.setBounds(10, 140, 140, 30);
 
-        jLabel2.setText("jLabel2");
-        parentPanel.add(jLabel2);
-        jLabel2.setBounds(100, 70, 38, 16);
+        rarityPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/fivestar.png"))); // NOI18N
+        parentPanel.add(rarityPic);
+        rarityPic.setBounds(80, 63, 118, 22);
+
+        jLabel4.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
+        jLabel4.setText("Basic Information");
+        parentPanel.add(jLabel4);
+        jLabel4.setBounds(10, 0, 270, 60);
+
+        affiliationLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        affiliationLabel.setForeground(new java.awt.Color(67, 67, 71));
+        affiliationLabel.setText("Affiliation:");
+        parentPanel.add(affiliationLabel);
+        affiliationLabel.setBounds(10, 180, 110, 30);
+
+        weaponPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Weapon/Small/Bow.png"))); // NOI18N
+        parentPanel.add(weaponPic);
+        weaponPic.setBounds(95, 100, 30, 30);
 
         scrollPane.setViewportView(parentPanel);
 
@@ -199,16 +259,22 @@ public class CharInfo extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(73, 111, 620, 570);
 
-        splashArtLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/CharacterCard/SplashArt/Venti.png"))); // NOI18N
+        splashArtLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        splashArtLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/CharacterCard/SplashArt/Albedo.png"))); // NOI18N
+        splashArtLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         getContentPane().add(splashArtLabel);
-        splashArtLabel.setBounds(570, 130, 830, 415);
+        splashArtLabel.setBounds(680, 120, 590, 415);
+
+        elementLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Element/Medium/Anemo.png"))); // NOI18N
+        getContentPane().add(elementLabel);
+        elementLabel.setBounds(910, 540, 44, 40);
 
         nameLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
         nameLabel.setForeground(new java.awt.Color(252, 236, 214));
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nameLabel.setText("Test");
         getContentPane().add(nameLabel);
-        nameLabel.setBounds(740, 540, 520, 44);
+        nameLabel.setBounds(720, 540, 520, 44);
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_Anemo.png"))); // NOI18N
         bg.setToolTipText("");
@@ -285,21 +351,26 @@ public class CharInfo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel affiliationLabel;
     private javax.swing.JLabel bg;
+    private javax.swing.JLabel birthdayLabel;
     private javax.swing.JLabel consLabel;
+    private javax.swing.JLabel elementLabel;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel exitButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JPanel parentPanel;
     private javax.swing.JLabel profileButton;
     private javax.swing.JLabel rarityLabel;
-    private javax.swing.JLabel regionLabel;
+    private javax.swing.JLabel rarityPic;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JLabel splashArtLabel;
     private javax.swing.JLabel usernameLabel;
+    private javax.swing.JLabel weaponPic;
     private javax.swing.JLabel weaponTypeLabel;
+    private javax.swing.JLabel weaponTypeLabel1;
     // End of variables declaration//GEN-END:variables
 }
