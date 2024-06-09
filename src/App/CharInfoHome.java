@@ -24,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -298,6 +299,13 @@ public class CharInfoHome extends javax.swing.JFrame {
         for(GameCharacter gc:allCharacters.keySet()){
             ImageIcon image = allCharacters.get(gc);
             App.CharacterArchivePanel panel = new App.CharacterArchivePanel(40, image, gc);
+            panel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    setVisible(false);
+                    new CharInfo(panel.getGameChar(), userId, username, email).setVisible(true);
+                }
+            });
             charPanels.add(panel);
         }
         
@@ -374,10 +382,16 @@ public class CharInfoHome extends javax.swing.JFrame {
         if(!(tempStar.isEmpty())){
             setAll.retainAll(tempStar);
         }
-
+        
         //add to filteredPanels to show it
         filteredPanels.addAll(setAll);
-        showPanels(filteredPanels);
+        if(weaponFilter.contains("Claymore") && weaponFilter.size()==1 && elementFilter.contains("Hydro") && elementFilter.size()==1){
+            scrollPane.setVisible(false);
+        }
+        else{
+            scrollPane.setVisible(true);
+            showPanels(filteredPanels);
+        }
     }
     
     private void handleReleaseClick(){
@@ -410,14 +424,6 @@ public class CharInfoHome extends javax.swing.JFrame {
 
             // Set the bounds for the cloned panel with your custom size
             clonedPanel.setBounds(x, y, panelWidth, panelHeight);
-            
-            clonedPanel.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    dispose();
-                    new CharInfo(clonedPanel.getGameChar(), userId, username, email).setVisible(true);
-                }
-            });
             
             // Add the cloned panel to the initial panel
             parentPanel.add(clonedPanel);

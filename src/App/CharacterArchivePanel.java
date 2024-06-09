@@ -93,6 +93,7 @@ public class CharacterArchivePanel extends JPanel{
                 revalidate();
                 repaint();
             }
+            
         });
     }
 
@@ -108,7 +109,7 @@ public class CharacterArchivePanel extends JPanel{
     public void setComponentBounds(Component component, int x, int y, int width, int height) {
         component.setBounds(x, y, width, height); // Set the position and size of the component
     }
-    
+
     
     @Override
     protected void paintComponent(Graphics g) {

@@ -13,7 +13,6 @@ public class WrappedLabel extends JLabel {
     private int maxWidth;
     private Color bgColor;
     private Insets insets;
-    private int horizontalAlignment;
     
     public WrappedLabel(){
         super();
@@ -23,7 +22,6 @@ public class WrappedLabel extends JLabel {
         this.maxWidth = maxWidth;
         this.bgColor = bgColor != null ? bgColor : new Color(0, 0, 0, 0); // default to transparent if null
         this.insets = insets != null ? insets : new Insets(0, 0, 0, 0); // default to no insets if null
-        this.horizontalAlignment = SwingConstants.LEFT;
         setOpaque(false);
     }
     

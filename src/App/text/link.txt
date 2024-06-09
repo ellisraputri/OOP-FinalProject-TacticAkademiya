@@ -1,85 +1,85 @@
-Xiangling    https://genshin.global/character/xiangling-pyro/
-Kaedehara Kazuha    https://genshin.global/character/kaedehara-kazuha-anemo/
-Geo Traveler    https://genshin.global/character/traveler-aether-lumine/
-Electro Traveler    https://genshin.global/character/traveler-aether-lumine/
-Dendro Traveler    https://genshin.global/character/traveler-aether-lumine/
-Hydro Traveler    https://genshin.global/character/traveler-aether-lumine/
-Bennett    https://genshin.global/character/bennett-pyro/
-Kaeya    https://genshin.global/character/kaeya-cryo/
-Lisa    https://genshin.global/character/lisa-electro/
-Barbara    https://genshin.global/character/barbara-hydro/
-Razor    https://genshin.global/character/razor-electro/
+Xiangling    https://genshin.global/character/xiangling-pyro/    https://genshin.gg/characters/xiangling/
+Kaedehara Kazuha    https://genshin.global/character/kaedehara-kazuha-anemo/    https://genshin.gg/characters/kazuha/
+Geo Traveler    https://genshin.global/character/traveler-aether-lumine/    https://genshin.gg/characters/traveler(geo)/
+Electro Traveler    https://genshin.global/character/traveler-aether-lumine/    https://genshin.gg/characters/traveler(electro)/
+Dendro Traveler    https://genshin.global/character/traveler-aether-lumine/    https://genshin.gg/characters/traveler(dendro)/
+Hydro Traveler    https://genshin.global/character/traveler-aether-lumine/    https://genshin.gg/characters/traveler(hydro)/
+Bennett    https://genshin.global/character/bennett-pyro/    https://genshin.gg/characters/bennett/
+Kaeya    https://genshin.global/character/kaeya-cryo/    https://genshin.gg/characters/kaeya/
+Lisa    https://genshin.global/character/lisa-electro/    https://genshin.gg/characters/lisa/
+Barbara    https://genshin.global/character/barbara-hydro/    https://genshin.gg/characters/barbara/
+Razor    https://genshin.global/character/razor-electro/    https://genshin.gg/characters/razor/
 Hu Tao    https://genshin.global/character/hu-tao-pyro/    https://genshin.gg/characters/hutao/
-Beidou    https://genshin.global/character/beidou-electro/
-Xingqiu    https://genshin.global/character/xingqiu-hydro/
-Ningguang    https://genshin.global/character/ningguang-geo/
-Fischl    https://genshin.global/character/fischl-electro/
+Beidou    https://genshin.global/character/beidou-electro/    https://genshin.gg/characters/beidou/
+Xingqiu    https://genshin.global/character/xingqiu-hydro/    https://genshin.gg/characters/xingqiu/
+Ningguang    https://genshin.global/character/ningguang-geo/    https://genshin.gg/characters/ningguang/
+Fischl    https://genshin.global/character/fischl-electro/    https://genshin.gg/characters/fischl/
 Arlecchino    https://genshin.global/character/arlecchino/    https://genshin.gg/characters/arlecchino/
-Noelle    https://genshin.global/character/noelle-geo/
-Chongyun    https://genshin.global/character/chongyun-cryo/
-Sucrose    https://genshin.global/character/sucrose-anemo/
-Jean    https://genshin.global/character/jean-gunnhildr-anemo/
+Noelle    https://genshin.global/character/noelle-geo/    https://genshin.gg/characters/noelle/
+Chongyun    https://genshin.global/character/chongyun-cryo/    https://genshin.gg/characters/chongyun/
+Sucrose    https://genshin.global/character/sucrose-anemo/    https://genshin.gg/characters/sucrose/
+Jean    https://genshin.global/character/jean-gunnhildr-anemo/    https://genshin.gg/characters/jean/
 Diluc    https://genshin.global/character/diluc-ragnvindr-pyro/    https://genshin.gg/characters/diluc/
-Qiqi    https://genshin.global/character/qiqi-cryo/
-Mona    https://genshin.global/character/mona-megistus-hydro/
-Keqing    https://genshin.global/character/keqing-electro/
-Venti    https://genshin.global/character/venti-anemo/
+Qiqi    https://genshin.global/character/qiqi-cryo/    https://genshin.gg/characters/qiqi/
+Mona    https://genshin.global/character/mona-megistus-hydro/    https://genshin.gg/characters/mona/
+Keqing    https://genshin.global/character/keqing-electro/    https://genshin.gg/characters/keqing/
+Venti    https://genshin.global/character/venti-anemo/    https://genshin.gg/characters/venti/
 Lyney    https://genshin.global/character/lyney-pyro/    https://genshin.gg/characters/lyney/
-Diona    https://genshin.global/character/diona-cryo/	
-Tartaglia    https://genshin.global/character/tartaglia-childe-hydro/
-Xinyan    https://genshin.global/character/xinyan-pyro/
-Zhongli    https://genshin.global/character/zhongli-geo/
-Albedo    https://genshin.global/character/albedo-geo/
-Ganyu    https://genshin.global/character/ganyu-cryo/
-Faruzan    https://genshin.global/character/faruzan-anemo/
-Chevreuse    https://genshin.global/character/chevreuse/
-Rosaria    https://genshin.global/character/rosaria-cryo/
-Gaming    https://genshin.global/character/gaming/
-Eula    https://genshin.global/character/rosaria-cryo/
-Xianyun    https://genshin.global/character/xianyun/
-Kamisato Ayaka    https://genshin.global/character/kamisato-ayaka-cryo/
-Xiao    https://genshin.global/character/xiao-anemo/
-Yoimiya    https://genshin.global/character/yoimiya-pyro/
-Aloy    https://genshin.global/character/aloy-cryo/
-Kujou Sara    https://genshin.global/character/kujou-sara-electro/
-Raiden Shogun    https://genshin.global/character/raiden-shogun-electro/
-Sangonomiya Kokomi    https://genshin.global/character/sangonomiya-kokomi-hydro/
-Thoma    https://genshin.global/character/thoma-pyro/
-Gorou    https://genshin.global/character/gorou-geo/
-Arataki Itto    https://genshin.global/character/arataki-itto-geo/
-Yun Jin    https://genshin.global/character/yun-jin-geo/
-Shenhe    https://genshin.global/character/shenhe-cryo/
-Yae Miko    https://genshin.global/character/yae-miko-electro/
-Kamisato Ayato    https://genshin.global/character/kamisato-ayato-hydro/
-Yelan    https://genshin.global/character/yelan-hydro/
-Kuki Shinobu    https://genshin.global/character/kuki-shinobu-electro/
-Wanderer    https://genshin.global/character/wanderer-anemo/
-Collei    https://genshin.global/character/collei-dendro/
-Tighnari    https://genshin.global/character/tighnari-dendro/
-Dori    https://genshin.global/character/dori-electro/
-Candace    https://genshin.global/character/candace-hydro/
-Cyno    https://genshin.global/character/cyno-electro/
-Nilou    https://genshin.global/character/nilou-hydro/
-Nahida    https://genshin.global/character/nahida-dendro/	
-Layla    https://genshin.global/character/layla-cryo/
-Sayu    https://genshin.global/character/sayu-anemo/
-Lynette    https://genshin.global/character/lynette-anemo/
-Yaoyao    https://genshin.global/character/yaoyao-dendro/
-Alhaitham    https://genshin.global/character/alhaitham-dendro/
+Diona    https://genshin.global/character/diona-cryo/    https://genshin.gg/characters/diona/
+Tartaglia    https://genshin.global/character/tartaglia-childe-hydro/    https://genshin.gg/characters/childe/
+Xinyan    https://genshin.global/character/xinyan-pyro/    https://genshin.gg/characters/xinyan/
+Zhongli    https://genshin.global/character/zhongli-geo/    https://genshin.gg/characters/zhongli/
+Albedo    https://genshin.global/character/albedo-geo/    https://genshin.gg/characters/albedo/
+Ganyu    https://genshin.global/character/ganyu-cryo/    https://genshin.gg/characters/ganyu/
+Faruzan    https://genshin.global/character/faruzan-anemo/    https://genshin.gg/characters/faruzan/
+Chevreuse    https://genshin.global/character/chevreuse/    https://genshin.gg/characters/chevreuse/
+Rosaria    https://genshin.global/character/rosaria-cryo/    https://genshin.gg/characters/rosaria/
+Gaming    https://genshin.global/character/gaming/    https://genshin.gg/characters/gaming/
+Eula    https://genshin.global/character/eula-lawrence-cryo/    https://genshin.gg/characters/eula/
+Xianyun    https://genshin.global/character/xianyun/    https://genshin.gg/characters/xianyun/
+Kamisato Ayaka    https://genshin.global/character/kamisato-ayaka-cryo/    https://genshin.gg/characters/ayaka/
+Xiao    https://genshin.global/character/xiao-anemo/    https://genshin.gg/characters/xiao/
+Yoimiya    https://genshin.global/character/yoimiya-pyro/    https://genshin.gg/characters/yoimiya/
+Aloy    https://genshin.global/character/aloy-cryo/    https://genshin.gg/characters/aloy/
+Kujou Sara    https://genshin.global/character/kujou-sara-electro/    https://genshin.gg/characters/sara/
+Raiden Shogun    https://genshin.global/character/raiden-shogun-electro/    https://genshin.gg/characters/raiden/
+Sangonomiya Kokomi    https://genshin.global/character/sangonomiya-kokomi-hydro/    https://genshin.gg/characters/kokomi/
+Thoma    https://genshin.global/character/thoma-pyro/    https://genshin.gg/characters/thoma/
+Gorou    https://genshin.global/character/gorou-geo/    https://genshin.gg/characters/gorou/
+Arataki Itto    https://genshin.global/character/arataki-itto-geo/    https://genshin.gg/characters/itto/
+Yun Jin    https://genshin.global/character/yun-jin-geo/    https://genshin.gg/characters/yunjin/
+Shenhe    https://genshin.global/character/shenhe-cryo/    https://genshin.gg/characters/shenhe/
+Yae Miko    https://genshin.global/character/yae-miko-electro/    https://genshin.gg/characters/yaemiko/
+Kamisato Ayato    https://genshin.global/character/kamisato-ayato-hydro/    https://genshin.gg/characters/ayato/
+Yelan    https://genshin.global/character/yelan-hydro/    https://genshin.gg/characters/yelan/
+Kuki Shinobu    https://genshin.global/character/kuki-shinobu-electro/    https://genshin.gg/characters/kukishinobu/
+Wanderer    https://genshin.global/character/wanderer-anemo/    https://genshin.gg/characters/wanderer/
+Collei    https://genshin.global/character/collei-dendro/    https://genshin.gg/characters/collei/
+Tighnari    https://genshin.global/character/tighnari-dendro/    https://genshin.gg/characters/tighnari/
+Dori    https://genshin.global/character/dori-electro/    https://genshin.gg/characters/dori/
+Candace    https://genshin.global/character/candace-hydro/    https://genshin.gg/characters/candace/
+Cyno    https://genshin.global/character/cyno-electro/    https://genshin.gg/characters/cyno/
+Nilou    https://genshin.global/character/nilou-hydro/    https://genshin.gg/characters/nilou/
+Nahida    https://genshin.global/character/nahida-dendro/    https://genshin.gg/characters/nahida/
+Layla    https://genshin.global/character/layla-cryo/    https://genshin.gg/characters/layla/
+Sayu    https://genshin.global/character/sayu-anemo/    https://genshin.gg/characters/sayu/
+Lynette    https://genshin.global/character/lynette-anemo/    https://genshin.gg/characters/lynette/
+Yaoyao    https://genshin.global/character/yaoyao-dendro/    https://genshin.gg/characters/yaoyao/
+Alhaitham    https://genshin.global/character/alhaitham-dendro/    https://genshin.gg/characters/alhaitham/
 Klee    https://genshin.global/character/klee-pyro/    https://genshin.gg/characters/klee/
-Mika    https://genshin.global/character/mika-cyno/
-Kaveh    https://genshin.global/character/kaveh-dendro/
-Baizhu    https://genshin.global/character/baizhu-dendro/
-Kirara    https://genshin.global/character/kirara-dendro/
-Shikanoin Heizou    https://genshin.global/character/shikanoin-heizou-anemo/
-Yanfei    https://genshin.global/character/yanfei-pyro/
-Freminet    https://genshin.global/character/freminet-cryo/
-Neuvillette    https://genshin.global/character/neuvillette/
-Wriothesley    https://genshin.global/character/wriothesley/
-Charlotte    https://genshin.global/character/charlotte/
-Furina    https://genshin.global/character/furina/
-Navia    https://genshin.global/character/navia/
+Mika    https://genshin.global/character/mika-cyno/    https://genshin.gg/characters/mika/
+Kaveh    https://genshin.global/character/kaveh-dendro/    https://genshin.gg/characters/kaveh/
+Baizhu    https://genshin.global/character/baizhu-dendro/    https://genshin.gg/characters/baizhu/
+Kirara    https://genshin.global/character/kirara-dendro/    https://genshin.gg/characters/kirara/
+Shikanoin Heizou    https://genshin.global/character/shikanoin-heizou-anemo/    https://genshin.gg/characters/heizou/
+Yanfei    https://genshin.global/character/yanfei-pyro/    https://genshin.gg/characters/yanfei/
+Freminet    https://genshin.global/character/freminet-cryo/    https://genshin.gg/characters/freminet/
+Neuvillette    https://genshin.global/character/neuvillette/    https://genshin.gg/characters/neuvillette/
+Wriothesley    https://genshin.global/character/wriothesley/    https://genshin.gg/characters/wriothesley/
+Charlotte    https://genshin.global/character/charlotte/    https://genshin.gg/characters/charlotte/
+Furina    https://genshin.global/character/furina/    https://genshin.gg/characters/furina/
+Navia    https://genshin.global/character/navia/    https://genshin.gg/characters/navia/
 Dehya    https://genshin.global/character/dehya-pyro/    https://genshin.gg/characters/dehya/
-Amber    https://genshin.global/character/amber-pyro/
-Anemo Traveler    https://genshin.global/character/traveler-aether-lumine/
-Chiori    https://genshin.global/character/chiori/
+Amber    https://genshin.global/character/amber-pyro/    https://genshin.gg/characters/amber/
+Anemo Traveler    https://genshin.global/character/traveler-aether-lumine/    https://genshin.gg/characters/traveler(anemo)/
+Chiori    https://genshin.global/character/chiori/    https://genshin.gg/characters/chiori/

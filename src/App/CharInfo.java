@@ -9,7 +9,11 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Set;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -22,6 +26,7 @@ public class CharInfo extends javax.swing.JFrame {
     private int userId;
     private String username;
     private String email;
+    private GameCharacterDetail charDetails;
     
     /**
      * Creates new form charInfo
@@ -75,8 +80,13 @@ public class CharInfo extends javax.swing.JFrame {
         parentPanel.setBorder(null);
         scrollPane.setViewportView(parentPanel); // Set this panel as viewport's view
         
-        App.GameCharacterDetail charDetails = new App.GameCharacterDetail(gamechar);
-        setBasicInfo(charDetails);
+        charDetails = new App.GameCharacterDetail(gamechar);
+        setBasicInfo();
+        setWeapons();
+        setArtifacts();
+        setArtifactsStats();
+        setTeams();
+        setNamecard();
         
         
         //repaint components
@@ -86,7 +96,7 @@ public class CharInfo extends javax.swing.JFrame {
         getContentPane().repaint();
     }
     
-    private void setBasicInfo(GameCharacterDetail charDetails){
+    private void setBasicInfo(){
         //set rarity
         String star = (gamechar.getStars() == 4)? "four" : "five";
         rarityPic.setIcon(new ImageIcon("src/App/image/" + star+ "star.png"));
@@ -101,17 +111,230 @@ public class CharInfo extends javax.swing.JFrame {
         consLabel.setBounds(consLabel.getX(), consLabel.getY(), consLabel.getPreferredSize().width, consLabel.getPreferredSize().height);
         
         //set affiliation
-        affiliationLabel.setText(charDetails.getAffiliation());
-        affiliationLabel.setBounds(affiliationLabel.getX(), affiliationLabel.getY(), affiliationLabel.getPreferredSize().width, affiliationLabel.getPreferredSize().height);
-    
+        App.WrappedLabel affiliationLabel1 = new App.WrappedLabel(400, null, new Insets(2,2,2,2));
+        affiliationLabel1.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        affiliationLabel1.setForeground(new java.awt.Color(67, 67, 71));
+        affiliationLabel1.setText(charDetails.getAffiliation());
+        affiliationLabel1.setBounds(affiliationLabel.getX()+affiliationLabel.getPreferredSize().width+5, affiliationLabel.getY(), affiliationLabel1.getPreferredSize().width+4, affiliationLabel1.getPreferredSize().height);    
+        parentPanel.add(affiliationLabel1);
+
         //set birthday
         birthdayLabel.setText(charDetails.getBirthday());
-        birthdayLabel.setBounds(birthdayLabel.getX(), birthdayLabel.getY(), birthdayLabel.getPreferredSize().width, birthdayLabel.getPreferredSize().height);
+        birthdayLabel.setBounds(birthdayLabel.getX(), affiliationLabel1.getPreferredSize().height + affiliationLabel1.getY()+15, birthdayLabel.getPreferredSize().width, birthdayLabel.getPreferredSize().height);
     
+        Dimension newSize = new Dimension(parentPanel.getWidth(), birthdayLabel.getY()+birthdayLabel.getPreferredSize().height+30); // Adjusted size
+        System.out.println(newSize.height);
+        parentPanel.setPreferredSize(newSize);
     }
     
     
+    private void setWeapons(){
+        ArrayList<ImageIcon> weaponImages = charDetails.getWeaponImages();
+        ArrayList<String> weaponNames = charDetails.getWeapons();
+        System.out.println(weaponNames);
+        jLabel3.setBounds(jLabel3.getX(), birthdayLabel.getY()+birthdayLabel.getPreferredSize().height+30, jLabel3.getWidth(), jLabel3.getHeight());
+        int y=jLabel3.getY()+60;
+        for(int i=0; i<weaponImages.size(); i++){
+            int x = (i%2==0)? 0 : 260;
+            if(i>0){
+              y = (i%2==0)? y+90 : y;  
+            }
+            JLabel weaponImageLabel = new JLabel();
+            weaponImageLabel.setIcon(weaponImages.get(i));
+            weaponImageLabel.setBounds(x, y, 70, 70);
+            parentPanel.add(weaponImageLabel);
+            
+            App.WrappedLabelVerticalCenter weaponNameLabel = new App.WrappedLabelVerticalCenter(160, null, new Insets(2,10,2,2));
+            weaponNameLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+            weaponNameLabel.setForeground(new java.awt.Color(67, 67, 71));
+            weaponNameLabel.setText(weaponNames.get(i));
+            weaponNameLabel.setVerticalAlignment(SwingConstants.CENTER);
+            weaponNameLabel.setBounds(x+70, y, weaponNameLabel.getPreferredSize().width+4, 70);    
+            parentPanel.add(weaponNameLabel);
+            
+        }
+        Dimension newSize = new Dimension(parentPanel.getWidth(), y + 90); // Adjusted size
+        parentPanel.setPreferredSize(newSize);
+    }
     
+    private void setArtifacts(){
+        ArrayList<ImageIcon> artifactImages = charDetails.getArtifactImages();
+        ArrayList<String> artifactNames = charDetails.getArtifacts();
+        System.out.println(artifactNames);
+        
+        JLabel title = new JLabel();
+        title.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
+        title.setForeground(Color.black);
+        title.setText("Best Artifacts");
+        title.setBounds(10, parentPanel.getPreferredSize().height+15, title.getPreferredSize().width+4, 60);    
+        parentPanel.add(title);
+        
+        int y=title.getY() + title.getHeight();
+        
+        for(int i=0; i<artifactImages.size(); i++){
+            int x = (i%2==0)? 0 : 260;
+            if(i>0){
+              y = (i%2==0)? y+90 : y;  
+            }
+            
+            JLabel artifactImageLabel = new JLabel();
+            artifactImageLabel.setIcon(artifactImages.get(i));
+            artifactImageLabel.setBounds(x, y, 70, 70);
+            parentPanel.add(artifactImageLabel);
+            
+            App.WrappedLabelVerticalCenter artifactNameLabel = new App.WrappedLabelVerticalCenter(160, null, new Insets(2,2,2,2));
+            artifactNameLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+            artifactNameLabel.setForeground(new java.awt.Color(67, 67, 71));
+            artifactNameLabel.setText(artifactNames.get(i));
+            artifactNameLabel.setBounds(x+70, y, artifactNameLabel.getPreferredSize().width+4, 70);
+            parentPanel.add(artifactNameLabel);
+            
+            
+        }
+        Dimension newSize = new Dimension(parentPanel.getWidth(), y + 90); // Adjusted size
+        parentPanel.setPreferredSize(newSize);
+    }
+    
+    private void setArtifactsStats(){
+        System.out.println("artifact stats");
+        JLabel titleStats = new JLabel();
+        titleStats.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
+        titleStats.setForeground(Color.black);
+        titleStats.setText("Best Artifacts Stats");
+        titleStats.setBounds(10, parentPanel.getPreferredSize().height+15, titleStats.getPreferredSize().width+4, 60);    
+        parentPanel.add(titleStats);
+        
+        JLabel sandsImage = new JLabel();
+        sandsImage.setIcon(new ImageIcon("src/App/image/sands.png"));
+        sandsImage.setBounds(13, titleStats.getY()+titleStats.getHeight(), sandsImage.getPreferredSize().width, sandsImage.getPreferredSize().height);
+        parentPanel.add(sandsImage);
+        
+        JLabel sandsLabel = new JLabel();
+        sandsLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        sandsLabel.setForeground(new java.awt.Color(67, 67, 71));
+        sandsLabel.setText(charDetails.getArtifactSands());
+        sandsLabel.setBounds(sandsImage.getX()+sandsImage.getPreferredSize().width+10, sandsImage.getY(), sandsLabel.getPreferredSize().width+10, 36);
+        sandsLabel.setVerticalAlignment(SwingConstants.CENTER);
+        parentPanel.add(sandsLabel);
+        
+        JLabel gobletImage = new JLabel();
+        gobletImage.setIcon(new ImageIcon("src/App/image/goblet.png"));
+        gobletImage.setBounds(20, sandsImage.getY()+60, gobletImage.getPreferredSize().width, gobletImage.getPreferredSize().height);
+        parentPanel.add(gobletImage);
+        
+        JLabel gobletLabel = new JLabel();
+        gobletLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        gobletLabel.setForeground(new java.awt.Color(67, 67, 71));
+        gobletLabel.setText(charDetails.getArtifactGoblet());
+        gobletLabel.setBounds(gobletImage.getX()+gobletImage.getPreferredSize().width+15, gobletImage.getY(), gobletLabel.getPreferredSize().width+10, 36);
+        gobletLabel.setVerticalAlignment(SwingConstants.CENTER);
+        parentPanel.add(gobletLabel);
+        
+        JLabel circletImage = new JLabel();
+        circletImage.setIcon(new ImageIcon("src/App/image/circlet.png"));
+        circletImage.setBounds(13, gobletImage.getY()+60, circletImage.getPreferredSize().width, circletImage.getPreferredSize().height);
+        parentPanel.add(circletImage);
+        
+        JLabel circletLabel = new JLabel();
+        circletLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        circletLabel.setForeground(new java.awt.Color(67, 67, 71));
+        circletLabel.setText(charDetails.getArtifactCirclet());
+        circletLabel.setBounds(circletImage.getX()+circletImage.getPreferredSize().width+10, circletImage.getY(), circletLabel.getPreferredSize().width+10, 36);
+        circletLabel.setVerticalAlignment(SwingConstants.CENTER);
+        parentPanel.add(circletLabel);
+        
+        JLabel substatTitle = new JLabel();
+        substatTitle.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        substatTitle.setForeground(new java.awt.Color(67, 67, 71));
+        substatTitle.setText("Substats: ");
+        substatTitle.setBounds(18, circletImage.getY()+50, substatTitle.getPreferredSize().width+5, substatTitle.getPreferredSize().height);
+        substatTitle.setVerticalAlignment(SwingConstants.CENTER);
+        parentPanel.add(substatTitle);
+        
+        App.WrappedLabel substatLabel = new App.WrappedLabel(390, null, new Insets(2,2,2,2));
+        substatLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        substatLabel.setForeground(new java.awt.Color(67, 67, 71));
+        substatLabel.setText(charDetails.getArtifactSubstats());
+        substatLabel.setBounds(substatTitle.getX()+substatTitle.getPreferredSize().width+2, substatTitle.getY()-2, substatLabel.getPreferredSize().width+10, substatLabel.getPreferredSize().height);
+        substatLabel.setVerticalAlignment(SwingConstants.CENTER);
+        parentPanel.add(substatLabel);
+        
+        Dimension newSize = new Dimension(parentPanel.getWidth(), substatLabel.getY()+ 90); // Adjusted size
+        parentPanel.setPreferredSize(newSize);
+    }
+    
+    private void setTeams(){
+        ArrayList<String> teams = charDetails.getTeams();
+        System.out.println(teams);
+        
+        JLabel titleTeams = new JLabel();
+        titleTeams.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
+        titleTeams.setForeground(Color.black);
+        titleTeams.setText("Team Comps");
+        titleTeams.setBounds(10, parentPanel.getPreferredSize().height-5, titleTeams.getPreferredSize().width+4, 60);    
+        parentPanel.add(titleTeams);
+        
+        int row=0, column=0, lastY=titleTeams.getY();
+        for(int i=0; i<teams.size();i++){
+            ImageIcon image = new ImageIcon("src/App/image/CharacterCard/Archive/Portraits "+teams.get(i)+".png");
+            String name = teams.get(i);
+            
+            int panelWidth = 100;
+            int panelHeight = 100;
+            
+            CharacterPanelNonClick clonedPanel = new CharacterPanelNonClick(name);
+            clonedPanel.settingMouse();
+            clonedPanel.settingPanel(image, name, panelWidth, panelHeight,11,false);
+
+            // Calculate the row and column indices
+            row = i / 4;
+            column = i % 4;
+
+            // Calculate the x and y positions based on row and column indices
+            int x = 10 + column * (panelWidth + 30);
+            int y = 10 + row * (panelHeight + 40) + titleTeams.getPreferredSize().height+20 + titleTeams.getY();
+
+            // Set the bounds for the cloned panel with your custom size
+            clonedPanel.setBounds(x, y, panelWidth, panelHeight);
+            
+            // Add the cloned panel to the initial panel
+            parentPanel.add(clonedPanel);
+            lastY = y;
+        }
+        // Adjust preferred size of initial panel to include new panel
+        Dimension newSize = new Dimension(parentPanel.getWidth(), lastY+150); // Adjusted size
+        parentPanel.setPreferredSize(newSize);
+        
+    }
+    
+    
+    private void setNamecard(){
+        JLabel titleNamecard = new JLabel();
+        titleNamecard.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
+        titleNamecard.setForeground(Color.black);
+        titleNamecard.setText("Namecard");
+        titleNamecard.setBounds(10, parentPanel.getPreferredSize().height-5, titleNamecard.getPreferredSize().width+4, 60);    
+        parentPanel.add(titleNamecard);
+        
+        JLabel cardImage = new JLabel();
+        if(gamechar.getName().contains("Traveler")){
+            cardImage.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+            cardImage.setForeground(new java.awt.Color(67, 67, 71));
+            cardImage.setText("-");
+        }
+        else{
+            cardImage.setIcon(charDetails.getNamecard());
+        }
+        cardImage.setBounds(13, titleNamecard.getY()+60, cardImage.getPreferredSize().width+10, cardImage.getPreferredSize().height);
+        parentPanel.add(cardImage);
+        
+        Dimension newSize = new Dimension(parentPanel.getWidth(), cardImage.getY()+cardImage.getHeight()+40); // Adjusted size
+        parentPanel.setPreferredSize(newSize);
+    }
+    
+    
+    //cari masalah amber, hydro traveler
+    //bikin affiliation jd wrapped
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -349,7 +572,7 @@ public class CharInfo extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel affiliationLabel;
     private javax.swing.JLabel bg;
