@@ -230,24 +230,30 @@ public class ListCharacter extends javax.swing.JFrame {
             i++;
         }
         
-        try{
-            Connection con = ConnectionProvider.getCon();
-            String str = "insert into characters values(" + userId;
-            for(int j=0; j<clickedArray.length; j++){
-                str = str + "," + clickedArray[j];
-            } 
-            str += ")";
-            
-            PreparedStatement ps = con.prepareStatement(str);
-            ps.executeUpdate();
-
-            setVisible(false);
-            dispose();
-            new Home(userId).setVisible(true);
-
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(getContentPane(), e);
+        if(clickedArray.length<8){
+            JOptionPane.showMessageDialog(getContentPane(), "Characters must be at least 8.");
         }
+        else{
+            try{
+                Connection con = ConnectionProvider.getCon();
+                String str = "insert into characters values(" + userId;
+                for(int j=0; j<clickedArray.length; j++){
+                    str = str + "," + clickedArray[j];
+                } 
+                str += ")";
+
+                PreparedStatement ps = con.prepareStatement(str);
+                ps.executeUpdate();
+
+                setVisible(false);
+                dispose();
+                new Home(userId).setVisible(true);
+
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(getContentPane(), e);
+            }
+        }
+        
     }//GEN-LAST:event_nextButtonMouseClicked
 
     private void nextButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseEntered
@@ -270,25 +276,28 @@ public class ListCharacter extends javax.swing.JFrame {
             i++;
         }
         
-        try{
-            Connection con = ConnectionProvider.getCon();
-            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            
-            String str = "insert into characters values(" + userId;
-            for(int j=0; j<clickedArray.length; j++){
-                str = str + "," + clickedArray[j];
-            } 
-            str += ")";
-            
-            PreparedStatement ps = con.prepareStatement(str);
-            ps.executeUpdate();
+        if(clickedArray.length<8){
+            JOptionPane.showMessageDialog(getContentPane(), "Characters must be at least 8.");
+        }
+        else{
+            try{
+                Connection con = ConnectionProvider.getCon();
+                String str = "insert into characters values(" + userId;
+                for(int j=0; j<clickedArray.length; j++){
+                    str = str + "," + clickedArray[j];
+                } 
+                str += ")";
 
-            setVisible(false);
-            dispose();
-            new Home(userId).setVisible(true);
+                PreparedStatement ps = con.prepareStatement(str);
+                ps.executeUpdate();
 
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(getContentPane(), e);
+                setVisible(false);
+                dispose();
+                new Home(userId).setVisible(true);
+
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(getContentPane(), e);
+            }
         }
     }//GEN-LAST:event_nextLabelMouseClicked
 
