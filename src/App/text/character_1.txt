@@ -27,7 +27,7 @@ Venti#Anemo#S#Swirl, CC#Bow#false#false#5
 Lyney#Pyro#S#Pyro On-Field DPS#Bow#true#false#5									
 Diona#Cryo#S#Healer, Shielder, Cryo Applicator#Bow#false#false#4									
 Tartaglia#Hydro#S#Hydro On-Field DPS#Bow#false#false#5									
-Xinyan#Physical#D#Shielder, Physical On-Field DPS#Claymore#false#false#4									
+Xinyan#Pyro#D#Shielder, Physical On-Field DPS#Claymore#false#false#4									
 Zhongli#Geo#SS#Shielder#Polearm#false#false#5									
 Albedo#Geo#S#Geo Applicator#Sword#false#false#5									
 Ganyu#Cryo#S#Cryo On-Field DPS, Cryo Applicator, Cryo Amplifier#Bow#false#false#5									

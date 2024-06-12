@@ -4,14 +4,20 @@
  */
 package App;
 
+import jaco.mp3.player.MP3Player;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,6 +33,10 @@ public class CharInfo extends javax.swing.JFrame {
     private String username;
     private String email;
     private GameCharacterDetail charDetails;
+    private boolean cnPlaying=false;
+    private MP3Player cnVoicePlayer;
+    private boolean jpPlaying=false;
+    private MP3Player jpVoicePlayer;
     
     /**
      * Creates new form charInfo
@@ -87,6 +97,8 @@ public class CharInfo extends javax.swing.JFrame {
         setArtifactsStats();
         setTeams();
         setNamecard();
+        setVoicebox();
+        
         
         
         //repaint components
@@ -154,6 +166,7 @@ public class CharInfo extends javax.swing.JFrame {
             }
             
         }
+        
         
         
         
@@ -371,9 +384,24 @@ public class CharInfo extends javax.swing.JFrame {
         parentPanel.setPreferredSize(newSize);
     }
     
+    private void setVoicebox(){
+        if(gamechar.getName().contains("Traveler")){
+            
+        }
+        else{
+            cnVoicePlayer = new MP3Player();
+            cnVoicePlayer.addToPlayList(new File("src/App/audio/CN/"+gamechar.getName()+".mp3"));
+            cnVoicePlayer.addToPlayList(new File("src/App/audio/silence.mp3"));
+            cnVoicePlayer.setRepeat(true);
+
+            jpVoicePlayer = new MP3Player();
+            jpVoicePlayer.addToPlayList(new File("src/App/audio/JP/"+gamechar.getName()+".mp3"));
+            jpVoicePlayer.addToPlayList(new File("src/App/audio/silence.mp3"));
+            jpVoicePlayer.setRepeat(true); 
+        }
+    }
     
-    //cari masalah amber, hydro traveler
-    //bikin affiliation jd wrapped
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -547,10 +575,32 @@ public class CharInfo extends javax.swing.JFrame {
         nameLabel.setBounds(720, 520, 520, 44);
 
         jpVoiceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/play.png"))); // NOI18N
+        jpVoiceButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpVoiceButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jpVoiceButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jpVoiceButtonMouseExited(evt);
+            }
+        });
         getContentPane().add(jpVoiceButton);
         jpVoiceButton.setBounds(1100, 590, 30, 30);
 
         cnVoiceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/play.png"))); // NOI18N
+        cnVoiceButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cnVoiceButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cnVoiceButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cnVoiceButtonMouseExited(evt);
+            }
+        });
         getContentPane().add(cnVoiceButton);
         cnVoiceButton.setBounds(820, 590, 30, 30);
 
@@ -631,6 +681,48 @@ public class CharInfo extends javax.swing.JFrame {
         exitButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_exitButtonMouseExited
 
+    private void cnVoiceButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cnVoiceButtonMouseEntered
+        cnVoiceButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_cnVoiceButtonMouseEntered
+
+    private void cnVoiceButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cnVoiceButtonMouseExited
+        cnVoiceButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_cnVoiceButtonMouseExited
+    
+    
+    private void cnVoiceButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cnVoiceButtonMouseClicked
+        cnPlaying = !cnPlaying;
+        if(cnPlaying){
+            cnVoicePlayer.play();
+            cnVoiceButton.setIcon(new ImageIcon("src/App/image/pause.png"));
+        }
+        else{
+            cnVoicePlayer.pause();
+            cnVoiceButton.setIcon(new ImageIcon("src/App/image/play.png"));
+        }
+    }//GEN-LAST:event_cnVoiceButtonMouseClicked
+
+    private void jpVoiceButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpVoiceButtonMouseEntered
+        jpVoiceButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jpVoiceButtonMouseEntered
+
+    private void jpVoiceButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpVoiceButtonMouseExited
+        jpVoiceButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_jpVoiceButtonMouseExited
+
+    private void jpVoiceButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpVoiceButtonMouseClicked
+        jpPlaying = !jpPlaying;
+        if(jpPlaying){
+            jpVoicePlayer.play();
+            jpVoiceButton.setIcon(new ImageIcon("src/App/image/pause.png"));
+        }
+        else{
+            jpVoicePlayer.pause();
+            jpVoiceButton.setIcon(new ImageIcon("src/App/image/play.png"));
+        }
+    }//GEN-LAST:event_jpVoiceButtonMouseClicked
+
+     
     /**
      * @param args the command line arguments
      */
