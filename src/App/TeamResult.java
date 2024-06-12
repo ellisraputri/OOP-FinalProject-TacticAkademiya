@@ -643,17 +643,19 @@ public class TeamResult extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void profileButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseClicked
-        // TODO add your handling code here:
+        setVisible(false);
+        dispose();
+        new Settings(userId).setVisible(true);
     }//GEN-LAST:event_profileButtonMouseClicked
 
     private void profileButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseEntered
-        //        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile2.png")));
-        //        profileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile2.png")));
+        profileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_profileButtonMouseEntered
 
     private void profileButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseExited
-        //        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile1.png")));
-        //        profileButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile1.png")));
+        profileButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_profileButtonMouseExited
 
     private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
@@ -676,15 +678,19 @@ public class TeamResult extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonMouseExited
 
     private void profileButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton1MouseClicked
-        // TODO add your handling code here:
+         setVisible(false);
+        dispose();
+        new Settings(userId).setVisible(true);
     }//GEN-LAST:event_profileButton1MouseClicked
 
     private void profileButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton1MouseEntered
-        // TODO add your handling code here:
+        profileButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile2.png")));
+        profileButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_profileButton1MouseEntered
 
     private void profileButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton1MouseExited
-        // TODO add your handling code here:
+        profileButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile1.png")));
+        profileButton1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_profileButton1MouseExited
 
     private void exitButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButton1MouseClicked

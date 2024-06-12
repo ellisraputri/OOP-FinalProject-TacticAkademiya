@@ -150,4 +150,10 @@ public abstract class ClonePanel extends JPanel{
     public boolean getClicked(){
         return clicked;
     }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
+    }
+    
+    
 }

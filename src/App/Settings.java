@@ -11,14 +11,18 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -31,7 +35,7 @@ public class Settings extends javax.swing.JFrame {
     private String username;
     private String email;
     private String password;
-    private ArrayList<String> ownedChars = new ArrayList<>();
+    public ArrayList<String> ownedChars = new ArrayList<>();
     /**
      * Creates new form Settings
      */
@@ -64,10 +68,15 @@ public class Settings extends javax.swing.JFrame {
         parentPanel.setBorder(null);
         scrollPane.setViewportView(parentPanel); // Set this panel as viewport's view
         
+        imagePanel = new JPanel();
+        imagePanel.setLayout(null);
+        imagePanel.setPreferredSize(new Dimension(400, 200)); 
+        imagePanel.setOpaque(false);
+        imagePanel.setBackground(new Color(0,0,0,0));
         
         retrieveFromDatabase();
         setTextField();
-        setSomeCharImages();
+        setSomeCharImages(ownedChars);
         
         //repaint components
         parentPanel.revalidate();
@@ -232,18 +241,26 @@ public class Settings extends javax.swing.JFrame {
         passwordField.setEchoChar('*');
     }
     
-    private void setSomeCharImages(){
+    public void setSomeCharImages(ArrayList<String> characters){
+        imagePanel.removeAll();
         int x=10;
+        
         for(int i=0; i<4; i++){
             JLabel imageLabel = new JLabel();
-            imageLabel.setIcon(new ImageIcon("src/App/image/CharacterCard/Archive/Portraits " +ownedChars.get(i)+ ".png"));
-            imageLabel.setBounds(x, myCharLabel.getY()+myCharLabel.getPreferredSize().height+15, 100, 100);
-            parentPanel.add(imageLabel);
-            parentPanel.setComponentZOrder(imageLabel, 0);
+            imageLabel.setIcon(new ImageIcon("src/App/image/CharacterCard/Archive/Portraits " +characters.get(i)+ ".png"));
+            imageLabel.setBounds(x, 0, 100, 100);
+            imagePanel.add(imageLabel);
+            imagePanel.setComponentZOrder(imageLabel, 0);
             x+=120;
+            imagePanel.revalidate();
+            imagePanel.repaint();
         }
         
-        parentPanel.setPreferredSize(new Dimension(parentPanel.getWidth(), parentPanel.getHeight()+90));
+        imagePanel.setPreferredSize(new Dimension(imagePanel.getWidth(), 500));
+        imagePanel.setBounds(10, myCharLabel.getY()+myCharLabel.getPreferredSize().height+15, 500, imagePanel.getPreferredSize().height);
+        
+        parentPanel.add(imagePanel);
+        parentPanel.setPreferredSize(new Dimension(parentPanel.getWidth(), imagePanel.getHeight()+90));
     }
 
     /**
@@ -268,6 +285,7 @@ public class Settings extends javax.swing.JFrame {
         myCharArrow = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        exitButton = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -411,6 +429,21 @@ public class Settings extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(40, 40, 640, 630);
 
+        exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/exit1.png"))); // NOI18N
+        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitButtonMouseExited(evt);
+            }
+        });
+        getContentPane().add(exitButton);
+        exitButton.setBounds(1190, 20, 70, 70);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_setting.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1280, 720);
@@ -508,75 +541,82 @@ public class Settings extends javax.swing.JFrame {
         }
     }
     
+    private boolean checkExist(String username, String email){
+        ArrayList<String> allUsername = new ArrayList<>();
+        ArrayList<String> allEmail = new ArrayList<>();
+        
+        try{
+            Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = st.executeQuery("select username from user");
+            while(rs.next()){
+                allUsername.add(rs.getString(1));
+            }
+            ResultSet rs1 = st.executeQuery("select email from user");
+            while(rs1.next()){
+                allEmail.add(rs1.getString(1));
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(getContentPane(), e);
+        }
+        
+        if(allUsername.contains(username) && allEmail.contains(email)){
+            return true;
+        }
+        return false;
+    }
     
     
     private void saveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseClicked
-//        String username = usernameField.getText();
-//        String email = emailField.getText();
-//        String password = passwordField.getText();
-//        String passwordConfirm = passwordConfirmField.getText();
-//
-//        if(username.trim().isEmpty()){
-//            JOptionPane.showMessageDialog(getContentPane(), "Username is still empty.");
-//        }
-//        else if(email.trim().isEmpty()){
-//            JOptionPane.showMessageDialog(getContentPane(), "Email is still empty.");
-//        }
-//        else if(password.trim().isEmpty()){
-//            JOptionPane.showMessageDialog(getContentPane(), "Password is still empty.");
-//        }
-//        else if(passwordConfirm.trim().isEmpty()){
-//            JOptionPane.showMessageDialog(getContentPane(), "Confirm Password is still empty.");
-//        }
-//        else{
-//            if(!(validateEmail(email))){
-//                JOptionPane.showMessageDialog(getContentPane(), "Please input a correct email.");
-//            }
-//
-//            if(!(password.equals(passwordConfirm))){
-//                JOptionPane.showMessageDialog(getContentPane(), "Password and Confirm Password is not the same.");
-//            }
-//            else{
-//                if(!(validatePassword(password))){
-//                    JOptionPane.showMessageDialog(getContentPane(), "Password must have 8 characters with at least one number and one character");
-//                }
-//            }
-//
-//            if(checkExist(username, email)){
-//                JOptionPane.showMessageDialog(getContentPane(), "Email and username already existed.");
-//            }
-//
-//            if(password.equals(passwordConfirm) && validateEmail(email) && validatePassword(password) && !(checkExist(username, email))){
-//                try{
-//                    Connection con = ConnectionProvider.getCon();
-//                    Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-//                    ResultSet rs = st.executeQuery("select count(id) from user");
-//                    int newId=0;
-//                    if(rs.first()){
-//                        int id = rs.getInt(1);
-//                        newId = id + 1;
-//                    }
-//                    else{
-//                        newId = 1;
-//                    }
-//
-//                    String str = "insert into user values(?,?,?,?)";
-//                    PreparedStatement ps = con.prepareStatement(str);
-//                    ps.setInt(1, newId);
-//                    ps.setString(2, username);
-//                    ps.setString(3, email);
-//                    ps.setString(4, password);
-//                    ps.executeUpdate();
-//
-//                    setVisible(false);
-//                    dispose();
-//                    new ListCharacter(newId).setVisible(true);
-//
-//                }catch(Exception e){
-//                    JOptionPane.showMessageDialog(getContentPane(), e);
-//                }
-//            }
-//        }
+        String usernameInput = usernameField.getText();
+        String emailInput = emailField.getText();
+        String passwordInput = passwordField.getText();
+        
+
+        if(usernameInput.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Username cannot be empty.");
+        }
+        else if(emailInput.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Email cannot be empty.");
+        }
+        else if(passwordInput.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Password cannot be empty.");
+        }
+        else{
+            if(!(validateEmail(emailInput))){
+                JOptionPane.showMessageDialog(getContentPane(), "Please input a correct email.");
+            }            
+            if(!(validatePassword(passwordInput))){
+                JOptionPane.showMessageDialog(getContentPane(), "Password must have 8 characters with at least one number and one character");
+            }
+            
+            if(checkExist(usernameInput, emailInput)){
+                JOptionPane.showMessageDialog(getContentPane(), "Email and username already existed.");
+            }
+
+            if(validateEmail(emailInput) && validatePassword(passwordInput) && !(checkExist(usernameInput, emailInput))){
+                try{
+                    Connection con = ConnectionProvider.getCon();
+                    String str = "update user set ";
+                    str = str + "username='" + usernameInput + "', ";
+                    str = str + "email='" + emailInput + "', ";
+                    str = str + "password='" + passwordInput + "' ";
+                    str = str + "where id=" + userId;
+
+                    PreparedStatement ps = con.prepareStatement(str);
+                    ps.executeUpdate();
+
+                    JOptionPane.showMessageDialog(getContentPane(), "Information has been saved.");
+                    setVisible(false);
+                    dispose();
+                    new Home(userId).setVisible(true);
+
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(getContentPane(), e);
+                }
+            }
+        }
     }//GEN-LAST:event_saveButtonMouseClicked
 
     private void saveButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseEntered
@@ -592,72 +632,54 @@ public class Settings extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtonMouseExited
 
     private void saveLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveLabelMouseClicked
-//        String username = usernameField.getText();
-//        String email = emailField.getText();
-//        String password = passwordField.getText();
-//        String passwordConfirm = passwordConfirmField.getText();
-//
-//        if(username.trim().isEmpty()){
-//            JOptionPane.showMessageDialog(getContentPane(), "Username is still empty.");
-//        }
-//        else if(email.trim().isEmpty()){
-//            JOptionPane.showMessageDialog(getContentPane(), "Email is still empty.");
-//        }
-//        else if(password.trim().isEmpty()){
-//            JOptionPane.showMessageDialog(getContentPane(), "Password is still empty.");
-//        }
-//        else if(passwordConfirm.trim().isEmpty()){
-//            JOptionPane.showMessageDialog(getContentPane(), "Confirm Password is still empty.");
-//        }
-//        else{
-//            if(!(validateEmail(email))){
-//                JOptionPane.showMessageDialog(getContentPane(), "Please input a correct email.");
-//            }
-//
-//            if(!(password.equals(passwordConfirm))){
-//                JOptionPane.showMessageDialog(getContentPane(), "Password and Confirm Password is not the same.");
-//            }
-//            else{
-//                if(!(validatePassword(password))){
-//                    JOptionPane.showMessageDialog(getContentPane(), "Password must have 8 characters with at least one number and one character");
-//                }
-//            }
-//
-//            if(checkExist(username, email)){
-//                JOptionPane.showMessageDialog(getContentPane(), "Email and username already existed.");
-//            }
-//
-//            if(password.equals(passwordConfirm) && validateEmail(email) && validatePassword(password) && !(checkExist(username, email))){
-//                try{
-//                    Connection con = ConnectionProvider.getCon();
-//                    Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-//                    ResultSet rs = st.executeQuery("select count(id) from user");
-//                    int newId=0;
-//                    if(rs.first()){
-//                        int id = rs.getInt(1);
-//                        newId = id + 1;
-//                    }
-//                    else{
-//                        newId = 1;
-//                    }
-//
-//                    String str = "insert into user values(?,?,?,?)";
-//                    PreparedStatement ps = con.prepareStatement(str);
-//                    ps.setInt(1, newId);
-//                    ps.setString(2, username);
-//                    ps.setString(3, email);
-//                    ps.setString(4, password);
-//                    ps.executeUpdate();
-//
-//                    setVisible(false);
-//                    dispose();
-//                    new ListCharacter(newId).setVisible(true);
-//
-//                }catch(Exception e){
-//                    JOptionPane.showMessageDialog(getContentPane(), e);
-//                }
-//            }
-//        }
+        String usernameInput = usernameField.getText();
+        String emailInput = emailField.getText();
+        String passwordInput = passwordField.getText();
+        
+
+        if(usernameInput.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Username cannot be empty.");
+        }
+        else if(emailInput.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Email cannot be empty.");
+        }
+        else if(passwordInput.trim().isEmpty()){
+            JOptionPane.showMessageDialog(getContentPane(), "Password cannot be empty.");
+        }
+        else{
+            if(!(validateEmail(emailInput))){
+                JOptionPane.showMessageDialog(getContentPane(), "Please input a correct email.");
+            }            
+            if(!(validatePassword(passwordInput))){
+                JOptionPane.showMessageDialog(getContentPane(), "Password must have 8 characters with at least one number and one character");
+            }
+            
+            if(checkExist(usernameInput, emailInput)){
+                JOptionPane.showMessageDialog(getContentPane(), "Email and username already existed.");
+            }
+
+            if(validateEmail(emailInput) && validatePassword(passwordInput) && !(checkExist(usernameInput, emailInput))){
+                try{
+                    Connection con = ConnectionProvider.getCon();
+                    String str = "update user set ";
+                    str = str + "username='" + usernameInput + "', ";
+                    str = str + "email='" + emailInput + "', ";
+                    str = str + "password='" + passwordInput + "' ";
+                    str = str + "where id=" + userId;
+
+                    PreparedStatement ps = con.prepareStatement(str);
+                    ps.executeUpdate();
+
+                    JOptionPane.showMessageDialog(getContentPane(), "Information has been saved.");
+                    setVisible(false);
+                    dispose();
+                    new Home(userId).setVisible(true);
+
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(getContentPane(), e);
+                }
+            }
+        }
     }//GEN-LAST:event_saveLabelMouseClicked
 
     private void saveLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveLabelMouseEntered
@@ -717,17 +739,38 @@ public class Settings extends javax.swing.JFrame {
     }//GEN-LAST:event_myCharLabelMouseExited
     
     
-    private static boolean open=false;
+    public static boolean open=false;
+    Settings setting = (Settings) SwingUtilities.getRoot(this);
     
     private void myCharLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myCharLabelMouseClicked
         if(open==false){
-            new SettingCharacters(userId).setVisible(true);
+            new SettingCharacters(userId, ownedChars, setting).setVisible(true);
             open = true;
         }
         else{
             JOptionPane.showMessageDialog(parentPanel, "The frame is already opened.");
         }
     }//GEN-LAST:event_myCharLabelMouseClicked
+
+    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
+        int ans = JOptionPane.showConfirmDialog(getContentPane(), "Do you really want to go back? Your changes will not be saved", "SELECT", JOptionPane.YES_NO_OPTION);
+        
+        if(ans == JOptionPane.YES_OPTION){
+            setVisible(false);
+            dispose();
+            new Home(userId).setVisible(true);
+        }
+    }//GEN-LAST:event_exitButtonMouseClicked
+
+    private void exitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseEntered
+        exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/exit2.png")));
+        exitButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_exitButtonMouseEntered
+
+    private void exitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseExited
+        exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/exit1.png")));
+        exitButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_exitButtonMouseExited
 
     /**
      * @param args the command line arguments
@@ -767,8 +810,10 @@ public class Settings extends javax.swing.JFrame {
     private App.RoundJTextField usernameField;
     private App.RoundJTextField emailField;
     private App.RoundJPasswordField passwordField;
+    private JPanel imagePanel;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel emailLabel;
+    private javax.swing.JLabel exitButton;
     private javax.swing.JLabel hidePassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
