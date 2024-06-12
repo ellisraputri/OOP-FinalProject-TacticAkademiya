@@ -41,6 +41,8 @@ public class GameCharacterDetail {
     private String artifactSubstats;
     private ArrayList<String> teams = new ArrayList<>();
     private ImageIcon namecard;
+    private String cnVoice;
+    private String jpVoice;
     
     public GameCharacterDetail(GameCharacter gamechar){
         this.gamechar = gamechar;
@@ -87,6 +89,49 @@ public class GameCharacterDetail {
                 affiliation = doc.getElementsContainingText("Affiliation:").last().text().replaceAll("Affiliation: ", "");
            }
            birthday = doc.getElementsContainingText("Birthday:").last().text();
+           cnVoice = doc.getElementsContainingText("Chinese:").last().text().replaceAll("Chinese:", "");
+           jpVoice = doc.getElementsContainingText("Japanese:").last().text().replaceAll("Japanese:", "");
+           
+           if(gamechar.getName().equals("Bennett")){
+               jpVoice = " 逢坂良太/Osaka Ryota";
+           }
+           if(gamechar.getName().equals("Chongyun")){
+               jpVoice = " 斉藤壮馬/Saito Soma";
+           }
+           if(gamechar.getName().equals("Diluc")){
+               jpVoice = " 小野賢章/Ono Kensho";
+           }
+           if(gamechar.getName().equals("Tartaglia")){
+               jpVoice = " 木村良平/Kimura Ryohei";
+           }
+           if(gamechar.getName().equals("Kaveh")){
+               jpVoice = " 内田雄馬/Uchida Yuma";
+           }
+           if(gamechar.getName().equals("Keqing")){
+               cnVoice = " 谢莹/Xie Ying";
+           }
+           if(gamechar.getName().equals("Lisa")){
+               cnVoice = " 钟可/Zhong Ke";
+           }
+           if(gamechar.getName().equals("Kaedehara Kazuha")){
+               jpVoice = " Shimazaki Nobunaga";
+           }
+           if(gamechar.getName().equals("Venti")){
+               cnVoice=" 喵☆酱/Miao Jiang";
+           }
+           if(gamechar.getName().equals("Kaeya")){
+               cnVoice = " 孙晔/Sun Ye";
+               jpVoice = " 鳥海浩輔/Toriumi Kosuke";
+           }
+           if(gamechar.getName().equals("Mika")){
+               jpVoice = " 三瓶由布子/Sanpei Yuko";
+           }
+           if(gamechar.getName().equals("Razor")){
+               jpVoice = " 内山昂辉/Uchiyama Koki";
+               cnVoice = " 周帅/Zhou Shuai";
+           }
+           
+           
            
         }catch(IOException ex){
             ex.printStackTrace();
@@ -256,6 +301,15 @@ public class GameCharacterDetail {
     public ImageIcon getNamecard() {
         return namecard;
     }
+
+    public String getCnVoice() {
+        return cnVoice;
+    }
+
+    public String getJpVoice() {
+        return jpVoice;
+    }
+    
     
     
     

@@ -8,7 +8,7 @@ Bennett#Pyro#SS#Healer, Universal Amplifier, Pyro Applicator#Sword#false#false#4
 Kaeya#Cryo#B#Cryo Applicator, Off-field DPS#Sword#false#false#4						
 Lisa#Electro#B#Electro Applicator#Catalyst#false#false#4							
 Barbara#Hydro#B#Healer, Hydro Applicator#Catalyst#false#false#4									
-Razor#Cryo#B#Physical On-Field DPS#Claymore#false#false#4								
+Razor#Electro#B#Physical On-Field DPS#Claymore#false#false#4								
 Hu Tao#Pyro#SS#Pyro On-Field DPS#Polearm#false#false#5								
 Beidou#Electro#A#Off-Field DPS, Electro Applicator#Claymore#false#false#4									
 Xingqiu#Hydro#SS#Hydro Applicator, Off-field DPS#Sword#false#false#4								

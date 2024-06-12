@@ -121,7 +121,46 @@ public class CharInfo extends javax.swing.JFrame {
         //set birthday
         birthdayLabel.setText(charDetails.getBirthday());
         birthdayLabel.setBounds(birthdayLabel.getX(), affiliationLabel1.getPreferredSize().height + affiliationLabel1.getY()+15, birthdayLabel.getPreferredSize().width, birthdayLabel.getPreferredSize().height);
-    
+        
+        //set cn voice
+        cnVoiceLabel.setText("CN:"+charDetails.getCnVoice());
+        
+        if(gamechar.getName().equals("Alhaitham")){
+            jpVoiceLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 13));
+        }
+        jpVoiceLabel.setText("JP:"+charDetails.getJpVoice());
+        
+        cnVoiceLabel1.setVisible(false);
+        jpVoiceLabel1.setVisible(false);
+        
+        if(gamechar.getName().equals("Fischl") || gamechar.getName().equals("Yun Jin")){
+            cnVoicebox.setBounds(cnVoicebox.getX(), cnVoicebox.getY(), cnVoicebox.getWidth(), 100);
+            jpVoicebox.setBounds(jpVoicebox.getX(), jpVoicebox.getY(), jpVoicebox.getWidth(), 100);
+            cnVoiceLabel1.setVisible(true);
+            jpVoiceLabel1.setVisible(true);
+            
+            if(gamechar.getName().equals("Fischl")){
+                cnVoiceLabel.setText("CN:"+charDetails.getCnVoice().substring(0, 5));
+                cnVoiceLabel1.setText(charDetails.getCnVoice().substring(8));
+                jpVoiceLabel.setText("JP:" + charDetails.getJpVoice().substring(0, 20));
+                jpVoiceLabel1.setText(charDetails.getJpVoice().substring(22));
+            }
+            
+            else{
+                cnVoiceLabel.setText("CN:"+charDetails.getCnVoice().substring(0, 17));
+                cnVoiceLabel1.setText("Opera:"+charDetails.getCnVoice().substring(18));
+                jpVoiceLabel.setText("JP:" + charDetails.getJpVoice().substring(0, 23));
+                jpVoiceLabel1.setText("Opera:"+charDetails.getJpVoice().substring(24));
+            }
+            
+        }
+        
+        
+        
+        
+        
+        
+        
         Dimension newSize = new Dimension(parentPanel.getWidth(), birthdayLabel.getY()+birthdayLabel.getPreferredSize().height+30); // Adjusted size
         System.out.println(newSize.height);
         parentPanel.setPreferredSize(newSize);
@@ -364,6 +403,14 @@ public class CharInfo extends javax.swing.JFrame {
         splashArtLabel = new javax.swing.JLabel();
         elementLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
+        jpVoiceButton = new javax.swing.JLabel();
+        cnVoiceButton = new javax.swing.JLabel();
+        jpVoiceLabel1 = new javax.swing.JLabel();
+        jpVoiceLabel = new javax.swing.JLabel();
+        cnVoiceLabel1 = new javax.swing.JLabel();
+        cnVoiceLabel = new javax.swing.JLabel();
+        jpVoicebox = new javax.swing.JLabel();
+        cnVoicebox = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -486,18 +533,63 @@ public class CharInfo extends javax.swing.JFrame {
         splashArtLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/CharacterCard/SplashArt/Albedo.png"))); // NOI18N
         splashArtLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         getContentPane().add(splashArtLabel);
-        splashArtLabel.setBounds(680, 120, 590, 415);
+        splashArtLabel.setBounds(680, 100, 590, 415);
 
         elementLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Element/Medium/Anemo.png"))); // NOI18N
         getContentPane().add(elementLabel);
-        elementLabel.setBounds(910, 540, 44, 40);
+        elementLabel.setBounds(910, 520, 44, 40);
 
         nameLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
         nameLabel.setForeground(new java.awt.Color(252, 236, 214));
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nameLabel.setText("Test");
         getContentPane().add(nameLabel);
-        nameLabel.setBounds(720, 540, 520, 44);
+        nameLabel.setBounds(720, 520, 520, 44);
+
+        jpVoiceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/play.png"))); // NOI18N
+        getContentPane().add(jpVoiceButton);
+        jpVoiceButton.setBounds(1100, 590, 30, 30);
+
+        cnVoiceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/play.png"))); // NOI18N
+        getContentPane().add(cnVoiceButton);
+        cnVoiceButton.setBounds(820, 590, 30, 30);
+
+        jpVoiceLabel1.setFont(new java.awt.Font("HYWenHei-85W", 0, 14)); // NOI18N
+        jpVoiceLabel1.setForeground(new java.awt.Color(252, 236, 214));
+        jpVoiceLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jpVoiceLabel1.setText("JP:");
+        getContentPane().add(jpVoiceLabel1);
+        jpVoiceLabel1.setBounds(990, 655, 250, 18);
+
+        jpVoiceLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 14)); // NOI18N
+        jpVoiceLabel.setForeground(new java.awt.Color(252, 236, 214));
+        jpVoiceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jpVoiceLabel.setText("JP:");
+        getContentPane().add(jpVoiceLabel);
+        jpVoiceLabel.setBounds(990, 630, 250, 18);
+
+        cnVoiceLabel1.setFont(new java.awt.Font("HYWenHei-85W", 0, 14)); // NOI18N
+        cnVoiceLabel1.setForeground(new java.awt.Color(252, 236, 214));
+        cnVoiceLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cnVoiceLabel1.setText("CN:");
+        getContentPane().add(cnVoiceLabel1);
+        cnVoiceLabel1.setBounds(730, 655, 220, 18);
+
+        cnVoiceLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 14)); // NOI18N
+        cnVoiceLabel.setForeground(new java.awt.Color(252, 236, 214));
+        cnVoiceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cnVoiceLabel.setText("CN:");
+        getContentPane().add(cnVoiceLabel);
+        cnVoiceLabel.setBounds(730, 630, 220, 18);
+
+        jpVoicebox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(252, 236, 214), 3));
+        getContentPane().add(jpVoicebox);
+        jpVoicebox.setBounds(980, 580, 270, 80);
+
+        cnVoicebox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cnVoicebox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(252, 236, 214), 3));
+        getContentPane().add(cnVoicebox);
+        cnVoicebox.setBounds(720, 580, 240, 80);
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_Anemo.png"))); // NOI18N
         bg.setToolTipText("");
@@ -579,6 +671,10 @@ public class CharInfo extends javax.swing.JFrame {
     private javax.swing.JLabel affiliationLabel;
     private javax.swing.JLabel bg;
     private javax.swing.JLabel birthdayLabel;
+    private javax.swing.JLabel cnVoiceButton;
+    private javax.swing.JLabel cnVoiceLabel;
+    private javax.swing.JLabel cnVoiceLabel1;
+    private javax.swing.JLabel cnVoicebox;
     private javax.swing.JLabel consLabel;
     private javax.swing.JLabel elementLabel;
     private javax.swing.JLabel emailLabel;
@@ -586,6 +682,10 @@ public class CharInfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jpVoiceButton;
+    private javax.swing.JLabel jpVoiceLabel;
+    private javax.swing.JLabel jpVoiceLabel1;
+    private javax.swing.JLabel jpVoicebox;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JPanel parentPanel;
     private javax.swing.JLabel profileButton;
