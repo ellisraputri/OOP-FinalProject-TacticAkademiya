@@ -8,10 +8,13 @@ import DatabaseConnection.ConnectionProvider;
 import java.sql.*;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -34,6 +37,8 @@ public class LoginPage extends javax.swing.JFrame {
     }
     
     private void myinit(){
+        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));        
+        
         usernameEmailField = new App.RoundJTextField(30);
         passwordField = new App.RoundJPasswordField(30);
         

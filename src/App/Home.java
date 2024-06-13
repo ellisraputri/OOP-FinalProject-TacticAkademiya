@@ -6,9 +6,12 @@ package App;
 
 import DatabaseConnection.ConnectionProvider;
 import java.awt.Cursor;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,6 +41,8 @@ public class Home extends javax.swing.JFrame {
     }
     
     private void myinit(){
+        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
+        
         try{
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);

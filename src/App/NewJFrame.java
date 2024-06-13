@@ -5,7 +5,14 @@
 package App;
 
 import java.awt.CardLayout;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -63,7 +70,8 @@ public class NewJFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         Parent = new javax.swing.JPanel();
         firstpanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        label = new javax.swing.JLabel();
+        button = new javax.swing.JButton();
         secondpanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -100,10 +108,19 @@ public class NewJFrame extends javax.swing.JFrame {
         firstpanel.setBackground(new java.awt.Color(153, 153, 153));
         firstpanel.setLayout(null);
 
-        jLabel1.setText("first");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        firstpanel.add(jLabel1);
-        jLabel1.setBounds(120, 160, 30, 100);
+        label.setText("first");
+        label.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        firstpanel.add(label);
+        label.setBounds(120, 230, 50, 70);
+
+        button.setText("submit");
+        button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonActionPerformed(evt);
+            }
+        });
+        firstpanel.add(button);
+        button.setBounds(120, 150, 72, 23);
 
         Parent.add(firstpanel, "card2");
 
@@ -136,6 +153,33 @@ public class NewJFrame extends javax.swing.JFrame {
         Parent.repaint();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(Parent);
+        File f = chooser.getSelectedFile();
+        BufferedImage im = imageIconToBufferedImage(new ImageIcon(f.getAbsolutePath()));
+        BufferedImage resizedImage = resizeImage(im, label.getWidth(), label.getHeight());
+        label.setIcon(new ImageIcon(resizedImage));
+    }//GEN-LAST:event_buttonActionPerformed
+    
+    public static BufferedImage imageIconToBufferedImage(ImageIcon icon) {
+        Image img = icon.getImage();
+        BufferedImage bufferedImage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = bufferedImage.createGraphics();
+        g2d.drawImage(img, 0, 0, null);
+        g2d.dispose();
+        return bufferedImage;
+    }
+    
+    public static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
+        
+        Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
+        BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = outputImage.createGraphics();
+        g2d.drawImage(resultingImage, 0, 0, null);
+        g2d.dispose();
+        return outputImage;
+    }
     /**
      * @param args the command line arguments
      */
@@ -173,12 +217,13 @@ public class NewJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Parent;
+    private javax.swing.JButton button;
     private javax.swing.JPanel firstpanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel label;
     private javax.swing.JPanel secondpanel;
     // End of variables declaration//GEN-END:variables
 }

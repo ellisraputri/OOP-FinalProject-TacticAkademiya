@@ -10,6 +10,8 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.MalformedURLException;
@@ -59,6 +61,8 @@ public class CharInfo extends javax.swing.JFrame {
     }
     
     private void myinit(){
+        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
+
         //username and email label
         usernameLabel.setText(username);
         emailLabel.setText(email);
@@ -89,6 +93,11 @@ public class CharInfo extends javax.swing.JFrame {
         parentPanel.setBackground(new Color(0,0,0,0));
         parentPanel.setBorder(null);
         scrollPane.setViewportView(parentPanel); // Set this panel as viewport's view
+        
+        if(!(gamechar.getName().contains("Traveler"))){
+            lumineButton.setVisible(false);
+            aetherButton.setVisible(false);
+        }
         
         charDetails = new App.GameCharacterDetail(gamechar);
         setBasicInfo();
@@ -142,40 +151,41 @@ public class CharInfo extends javax.swing.JFrame {
         }
         jpVoiceLabel.setText("JP:"+charDetails.getJpVoice());
         
-        cnVoiceLabel1.setVisible(false);
-        jpVoiceLabel1.setVisible(false);
         
-        if(gamechar.getName().equals("Fischl") || gamechar.getName().equals("Yun Jin")){
-            cnVoicebox.setBounds(cnVoicebox.getX(), cnVoicebox.getY(), cnVoicebox.getWidth(), 100);
-            jpVoicebox.setBounds(jpVoicebox.getX(), jpVoicebox.getY(), jpVoicebox.getWidth(), 100);
-            cnVoiceLabel1.setVisible(true);
-            jpVoiceLabel1.setVisible(true);
-            
-            if(gamechar.getName().equals("Fischl")){
-                cnVoiceLabel.setText("CN:"+charDetails.getCnVoice().substring(0, 5));
-                cnVoiceLabel1.setText(charDetails.getCnVoice().substring(8));
-                jpVoiceLabel.setText("JP:" + charDetails.getJpVoice().substring(0, 20));
-                jpVoiceLabel1.setText(charDetails.getJpVoice().substring(22));
+        if(gamechar.getName().contains("Traveler")){
+            setVoiceTraveler();
+        }
+        else{
+            cnVoiceLabel1.setVisible(false);
+            jpVoiceLabel1.setVisible(false);
+
+            if(gamechar.getName().equals("Fischl") || gamechar.getName().equals("Yun Jin")){
+                cnVoicebox.setBounds(cnVoicebox.getX(), cnVoicebox.getY(), cnVoicebox.getWidth(), 100);
+                jpVoicebox.setBounds(jpVoicebox.getX(), jpVoicebox.getY(), jpVoicebox.getWidth(), 100);
+                cnVoiceLabel1.setVisible(true);
+                jpVoiceLabel1.setVisible(true);
+
+                if(gamechar.getName().equals("Fischl")){
+                    cnVoiceLabel.setText("CN:"+charDetails.getCnVoice().substring(0, 5));
+                    cnVoiceLabel1.setText(charDetails.getCnVoice().substring(8));
+                    jpVoiceLabel.setText("JP:" + charDetails.getJpVoice().substring(0, 20));
+                    jpVoiceLabel1.setText(charDetails.getJpVoice().substring(22));
+                }
+
+                else{
+                    cnVoiceLabel.setText("CN:"+charDetails.getCnVoice().substring(0, 17));
+                    cnVoiceLabel1.setText("Opera:"+charDetails.getCnVoice().substring(18));
+                    jpVoiceLabel.setText("JP:" + charDetails.getJpVoice().substring(0, 23));
+                    jpVoiceLabel1.setText("Opera:"+charDetails.getJpVoice().substring(24));
+                }
+
             }
-            
-            else{
-                cnVoiceLabel.setText("CN:"+charDetails.getCnVoice().substring(0, 17));
-                cnVoiceLabel1.setText("Opera:"+charDetails.getCnVoice().substring(18));
-                jpVoiceLabel.setText("JP:" + charDetails.getJpVoice().substring(0, 23));
-                jpVoiceLabel1.setText("Opera:"+charDetails.getJpVoice().substring(24));
-            }
-            
         }
         
         
         
         
-        
-        
-        
-        
         Dimension newSize = new Dimension(parentPanel.getWidth(), birthdayLabel.getY()+birthdayLabel.getPreferredSize().height+30); // Adjusted size
-        System.out.println(newSize.height);
         parentPanel.setPreferredSize(newSize);
     }
     
@@ -386,7 +396,7 @@ public class CharInfo extends javax.swing.JFrame {
     
     private void setVoicebox(){
         if(gamechar.getName().contains("Traveler")){
-            
+            setVoiceTraveler();
         }
         else{
             cnVoicePlayer = new MP3Player();
@@ -398,6 +408,68 @@ public class CharInfo extends javax.swing.JFrame {
             jpVoicePlayer.addToPlayList(new File("src/App/audio/JP/"+gamechar.getName()+".mp3"));
             jpVoicePlayer.addToPlayList(new File("src/App/audio/silence.mp3"));
             jpVoicePlayer.setRepeat(true); 
+        }
+    }
+    
+    private void setVoiceTraveler(){
+        if(!(lumineButton.isClicked()) && !(aetherButton.isClicked())){
+            cnVoiceLabel1.setVisible(true);
+            jpVoiceLabel1.setVisible(true);
+            cnVoicebox.setBounds(cnVoicebox.getX(), cnVoicebox.getY(), cnVoicebox.getWidth(), 100);
+            jpVoicebox.setBounds(jpVoicebox.getX(), jpVoicebox.getY(), jpVoicebox.getWidth(), 100);
+            cnVoiceLabel.setText("CN Female: 宴宁 / Yan Ning");
+            cnVoiceLabel1.setText("CN Male: 鹿喑 / Lu Yin");
+            jpVoiceLabel.setText("JP Female: 悠木碧 / Yuki Aoi");
+            jpVoiceLabel1.setText("JP Male: 堀江瞬 / Horie Shun");
+            
+            splashArtLabel.setIcon(new ImageIcon("src/App/image/CharacterCard/SplashArt/"+gamechar.getName()+".png"));
+            cnVoicePlayer = new MP3Player();
+            cnVoicePlayer.addToPlayList(new File("src/App/audio/silence.mp3"));
+            cnVoicePlayer.setRepeat(true);
+
+            jpVoicePlayer = new MP3Player();
+            jpVoicePlayer.addToPlayList(new File("src/App/audio/silence.mp3"));
+            jpVoicePlayer.setRepeat(true); 
+        }
+        else if (lumineButton.isClicked()){
+            cnVoiceLabel.setText("CN: 宴宁 / Yan Ning");
+            cnVoiceLabel1.setVisible(false);
+            jpVoiceLabel.setText("JP: 悠木碧 / Yuki Aoi");
+            jpVoiceLabel1.setVisible(false);
+            
+            cnVoicePlayer = new MP3Player();
+            cnVoicePlayer.addToPlayList(new File("src/App/audio/CN/Female Traveler.mp3"));
+            cnVoicePlayer.addToPlayList(new File("src/App/audio/silence.mp3"));
+            cnVoicePlayer.setRepeat(true);
+
+            jpVoicePlayer = new MP3Player();
+            jpVoicePlayer.addToPlayList(new File("src/App/audio/JP/Female Traveler.mp3"));
+            jpVoicePlayer.addToPlayList(new File("src/App/audio/silence.mp3"));
+            jpVoicePlayer.setRepeat(true); 
+            
+            splashArtLabel.setIcon(new ImageIcon("src/App/image/CharacterCard/SplashArt/Lumine.png"));
+            cnVoicebox.setBounds(cnVoicebox.getX(), cnVoicebox.getY(), cnVoicebox.getWidth(), 80);
+            jpVoicebox.setBounds(jpVoicebox.getX(), jpVoicebox.getY(), jpVoicebox.getWidth(), 80);
+        }
+        else if(aetherButton.isClicked()){
+            cnVoiceLabel.setText("CN: 鹿喑 / Lu Yin");
+            cnVoiceLabel1.setVisible(false);
+            jpVoiceLabel.setText("JP: 堀江瞬 / Horie Shun");
+            jpVoiceLabel1.setVisible(false);
+            
+            cnVoicePlayer = new MP3Player();
+            cnVoicePlayer.addToPlayList(new File("src/App/audio/CN/Male Traveler.mp3"));
+            cnVoicePlayer.addToPlayList(new File("src/App/audio/silence.mp3"));
+            cnVoicePlayer.setRepeat(true);
+
+            jpVoicePlayer = new MP3Player();
+            jpVoicePlayer.addToPlayList(new File("src/App/audio/JP/Male Traveler.mp3"));
+            jpVoicePlayer.addToPlayList(new File("src/App/audio/silence.mp3"));
+            jpVoicePlayer.setRepeat(true); 
+            
+            splashArtLabel.setIcon(new ImageIcon("src/App/image/CharacterCard/SplashArt/Aether.png"));
+            cnVoicebox.setBounds(cnVoicebox.getX(), cnVoicebox.getY(), cnVoicebox.getWidth(), 80);
+            jpVoicebox.setBounds(jpVoicebox.getX(), jpVoicebox.getY(), jpVoicebox.getWidth(), 80);
         }
     }
     
@@ -428,6 +500,8 @@ public class CharInfo extends javax.swing.JFrame {
         affiliationLabel = new javax.swing.JLabel();
         weaponPic = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        lumineButton = new App.ButtonCustom();
+        aetherButton = new App.ButtonCustom();
         splashArtLabel = new javax.swing.JLabel();
         elementLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
@@ -557,8 +631,57 @@ public class CharInfo extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(73, 111, 620, 570);
 
+        lumineButton.setBorder(null);
+        lumineButton.setForeground(new java.awt.Color(255, 255, 255));
+        lumineButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/lumine_logo.png"))); // NOI18N
+        lumineButton.setText(" Lumine");
+        lumineButton.setToolTipText("");
+        lumineButton.setBorderColor(new java.awt.Color(204, 236, 252));
+        lumineButton.setBorderColorNotOver(new java.awt.Color(204, 236, 252));
+        lumineButton.setBorderColorOver(new java.awt.Color(204, 236, 252));
+        lumineButton.setColor(new java.awt.Color(66, 167, 217));
+        lumineButton.setColor2(java.awt.Color.white);
+        lumineButton.setColorClick(new java.awt.Color(30, 127, 175));
+        lumineButton.setColorClick2(java.awt.Color.white);
+        lumineButton.setColorOver(new java.awt.Color(30, 127, 175));
+        lumineButton.setColorOver2(java.awt.Color.white);
+        lumineButton.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        lumineButton.setRadius(20);
+        lumineButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lumineButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(lumineButton);
+        lumineButton.setBounds(810, 110, 150, 40);
+
+        aetherButton.setBackground(new java.awt.Color(192, 134, 50));
+        aetherButton.setBorder(null);
+        aetherButton.setForeground(new java.awt.Color(255, 255, 255));
+        aetherButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/aether_logo.png"))); // NOI18N
+        aetherButton.setText(" Aether");
+        aetherButton.setToolTipText("");
+        aetherButton.setBorderColor(new java.awt.Color(252, 222, 179));
+        aetherButton.setBorderColorNotOver(new java.awt.Color(252, 222, 179));
+        aetherButton.setBorderColorOver(new java.awt.Color(252, 222, 179));
+        aetherButton.setColor(new java.awt.Color(192, 134, 50));
+        aetherButton.setColor2(java.awt.Color.white);
+        aetherButton.setColorClick(new java.awt.Color(134, 94, 38));
+        aetherButton.setColorClick2(java.awt.Color.white);
+        aetherButton.setColorOver(new java.awt.Color(134, 94, 38));
+        aetherButton.setColorOver2(java.awt.Color.white);
+        aetherButton.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        aetherButton.setRadius(20);
+        aetherButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aetherButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(aetherButton);
+        aetherButton.setBounds(1000, 110, 150, 40);
+
         splashArtLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        splashArtLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/CharacterCard/SplashArt/Albedo.png"))); // NOI18N
+        splashArtLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/CharacterCard/SplashArt/Anemo Traveler.png"))); // NOI18N
         splashArtLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         getContentPane().add(splashArtLabel);
         splashArtLabel.setBounds(680, 100, 590, 415);
@@ -722,6 +845,40 @@ public class CharInfo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jpVoiceButtonMouseClicked
 
+    private void lumineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lumineButtonActionPerformed
+        boolean click = lumineButton.isClicked();
+        click = !click;
+        lumineButton.setClicked(click);
+        
+        if(click){
+            aetherButton.setClicked(false);
+            lumineButton.setBackground(lumineButton.getColorClick());
+            lumineButton.setForeground(lumineButton.getColorClick2());
+            lumineButton.setBorderColor(lumineButton.getBorderColorOver());
+            aetherButton.setBackground(aetherButton.getColor());
+            aetherButton.setForeground(aetherButton.getColor2());
+            aetherButton.setBorderColor(aetherButton.getBorderColorNotOver());
+        }
+        setVoiceTraveler();
+    }//GEN-LAST:event_lumineButtonActionPerformed
+
+    private void aetherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aetherButtonActionPerformed
+        boolean click = aetherButton.isClicked();
+        click = !click;
+        aetherButton.setClicked(click);
+        
+        if(click){
+            lumineButton.setClicked(false); 
+            aetherButton.setBackground(aetherButton.getColorClick());
+            aetherButton.setForeground(aetherButton.getColorClick2());
+            aetherButton.setBorderColor(aetherButton.getBorderColorOver());
+            lumineButton.setBackground(lumineButton.getColor());
+            lumineButton.setForeground(lumineButton.getColor2());
+            lumineButton.setBorderColor(lumineButton.getBorderColorNotOver());
+        }
+        setVoiceTraveler();
+    }//GEN-LAST:event_aetherButtonActionPerformed
+
      
     /**
      * @param args the command line arguments
@@ -760,6 +917,7 @@ public class CharInfo extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private App.ButtonCustom aetherButton;
     private javax.swing.JLabel affiliationLabel;
     private javax.swing.JLabel bg;
     private javax.swing.JLabel birthdayLabel;
@@ -778,6 +936,7 @@ public class CharInfo extends javax.swing.JFrame {
     private javax.swing.JLabel jpVoiceLabel;
     private javax.swing.JLabel jpVoiceLabel1;
     private javax.swing.JLabel jpVoicebox;
+    private App.ButtonCustom lumineButton;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JPanel parentPanel;
     private javax.swing.JLabel profileButton;

@@ -7,6 +7,8 @@ package App;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -75,6 +77,8 @@ public class CharInfoHome extends javax.swing.JFrame {
     
     
     private void myinit(){
+        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
+        
         //username and email label
         usernameLabel.setText(username);
         emailLabel.setText(email);
@@ -508,6 +512,7 @@ public class CharInfoHome extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Character Archive");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         getContentPane().setLayout(null);
@@ -552,7 +557,7 @@ public class CharInfoHome extends javax.swing.JFrame {
             }
         });
         getContentPane().add(exitButton);
-        exitButton.setBounds(1190, 20, 70, 70);
+        exitButton.setBounds(1180, 20, 70, 70);
 
         jLabel3.setFont(new java.awt.Font("HYWenHei-85W", 0, 32)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(251, 172, 71));

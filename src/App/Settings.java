@@ -8,6 +8,8 @@ import DatabaseConnection.ConnectionProvider;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -53,6 +55,8 @@ public class Settings extends javax.swing.JFrame {
     }
     
     private void myinit(){
+        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));        
+        
         //setting scroll pane
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);

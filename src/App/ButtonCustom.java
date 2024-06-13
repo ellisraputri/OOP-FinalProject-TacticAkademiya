@@ -131,31 +131,45 @@ public class ButtonCustom extends JButton {
 
             @Override
             public void mouseExited(MouseEvent me) {
-                setBackground(color);
-                setForeground(color2);
-                setBorderColor(borderColorNotOver);
-                over = false;
-            }
-
-            @Override
-            public void mousePressed(MouseEvent me) {
-                setBackground(colorClick);
-                setForeground(colorClick2);
-                setBorderColor(borderColorOver);
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent me) {
-                if (over) {
+                if(clicked){
                     setBackground(colorOver);
                     setForeground(colorOver2);
                     setBorderColor(borderColorOver);
-                } else {
-                    setBackground(color);
-                    setForeground(color2);
-                    setBorderColor(borderColorNotOver);
                 }
+                else{
+                   setBackground(color);
+                    setForeground(color2);
+                    setBorderColor(borderColorNotOver); 
+                }
+                over = false;
             }
+
+//            @Override
+//            public void mousePressed(MouseEvent me) {
+//                if(!clicked){
+//                    setBackground(colorClick);
+//                    setForeground(colorClick2);
+//                    setBorderColor(borderColorOver);
+//                }
+//                else{
+//                    setBackground(color);
+//                    setForeground(color2);
+//                    setBorderColor(borderColorNotOver);
+//                }
+//            }
+
+//            @Override
+//            public void mouseReleased(MouseEvent me) {
+//                if (over) {
+//                    setBackground(colorOver);
+//                    setForeground(colorOver2);
+//                    setBorderColor(borderColorOver);
+//                } else {
+//                    setBackground(color);
+//                    setForeground(color2);
+//                    setBorderColor(borderColorNotOver);
+//                }
+//            }
         });
     }
 
@@ -170,6 +184,19 @@ public class ButtonCustom extends JButton {
     private Color borderColorNotOver;
     private Color borderColor;    
     private int radius = 0;
+    private boolean clicked=false;
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
+    }
+
+    public boolean isClicked() {
+        return clicked;
+    }
+    
+    
+    
+    
 
     @Override
     protected void paintComponent(Graphics grphcs) {

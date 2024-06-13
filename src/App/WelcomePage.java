@@ -5,6 +5,9 @@
 package App;
 
 import java.awt.Cursor;
+import java.awt.Point;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -20,6 +23,7 @@ public class WelcomePage extends javax.swing.JFrame {
         setTitle("Welcome Page");
         setResizable(false);
         setLocationRelativeTo(null);
+        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));        
     }
     
     /**

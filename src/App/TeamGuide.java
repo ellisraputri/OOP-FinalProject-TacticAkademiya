@@ -11,6 +11,8 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -73,6 +75,7 @@ public class TeamGuide extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         teamPage1();
         addCharOwned();
+        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
     }
     
     public TeamGuide(int userId, String username, String email) {
@@ -83,7 +86,8 @@ public class TeamGuide extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         teamPage1();
         addCharOwned();
-    }
+        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
+    }  
     
     private ArrayList<String> charOwnedList = new ArrayList<>();
     private void addCharOwned(){
@@ -376,6 +380,7 @@ public class TeamGuide extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         nextLabel = new javax.swing.JLabel();
         nextButton = new javax.swing.JLabel();
+        restartButton = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         teamPage2 = new javax.swing.JPanel();
         profileButton1 = new javax.swing.JLabel();
@@ -393,6 +398,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        restartButton1 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         teamPage3 = new javax.swing.JPanel();
         profileButton2 = new javax.swing.JLabel();
@@ -436,6 +442,7 @@ public class TeamGuide extends javax.swing.JFrame {
         chamber3Rad = new javax.swing.JRadioButton();
         chamber1Rad = new javax.swing.JRadioButton();
         chamberAllRad = new javax.swing.JRadioButton();
+        restartButton2 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         teamPage4 = new javax.swing.JPanel();
         profileButton3 = new javax.swing.JLabel();
@@ -448,6 +455,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryScroll1 = new javax.swing.JScrollPane();
         summaryPanel1 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
+        restartButton3 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -904,6 +912,21 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage1.add(nextButton);
         nextButton.setBounds(1000, 630, 247, 46);
 
+        restartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/restart1.png"))); // NOI18N
+        restartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                restartButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                restartButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                restartButtonMouseExited(evt);
+            }
+        });
+        teamPage1.add(restartButton);
+        restartButton.setBounds(1090, 20, 70, 70);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamguide.png"))); // NOI18N
         teamPage1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1280, 720);
@@ -1034,6 +1057,21 @@ public class TeamGuide extends javax.swing.JFrame {
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle.png"))); // NOI18N
         teamPage2.add(jLabel12);
         jLabel12.setBounds(600, 130, 650, 470);
+
+        restartButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/restart1.png"))); // NOI18N
+        restartButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                restartButton1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                restartButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                restartButton1MouseExited(evt);
+            }
+        });
+        teamPage2.add(restartButton1);
+        restartButton1.setBounds(1090, 20, 70, 70);
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamguide.png"))); // NOI18N
         teamPage2.add(jLabel14);
@@ -1675,6 +1713,21 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage3.add(chamberAllRad);
         chamberAllRad.setBounds(380, 210, 70, 33);
 
+        restartButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/restart1.png"))); // NOI18N
+        restartButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                restartButton2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                restartButton2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                restartButton2MouseExited(evt);
+            }
+        });
+        teamPage3.add(restartButton2);
+        restartButton2.setBounds(1090, 20, 70, 70);
+
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamguide.png"))); // NOI18N
         teamPage3.add(jLabel19);
         jLabel19.setBounds(0, 0, 1280, 720);
@@ -1775,6 +1828,21 @@ public class TeamGuide extends javax.swing.JFrame {
         jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle2.png"))); // NOI18N
         teamPage4.add(jLabel25);
         jLabel25.setBounds(220, 110, 850, 490);
+
+        restartButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/restart1.png"))); // NOI18N
+        restartButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                restartButton3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                restartButton3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                restartButton3MouseExited(evt);
+            }
+        });
+        teamPage4.add(restartButton3);
+        restartButton3.setBounds(1090, 20, 70, 70);
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamguide.png"))); // NOI18N
         teamPage4.add(jLabel26);
@@ -3284,14 +3352,70 @@ public class TeamGuide extends javax.swing.JFrame {
         radioButtonActionPerformed(chamberAllRad, chamberAllRad.isSelected(), chamber2Rad, chamber3Rad,chamber1Rad,"chamber");
     }//GEN-LAST:event_chamberAllRadActionPerformed
 
-    
-    
-    
-    
-    
-    
-    
-    
+    private void restartButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButtonMouseClicked
+        setVisible(false);
+        dispose();
+        new TeamGuide(userId, username, email).setVisible(true);
+    }//GEN-LAST:event_restartButtonMouseClicked
+
+    private void restartButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButtonMouseEntered
+        restartButton.setIcon(new ImageIcon("src/App/image/restart2.png"));
+        restartButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_restartButtonMouseEntered
+
+    private void restartButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButtonMouseExited
+        restartButton.setIcon(new ImageIcon("src/App/image/restart1.png"));
+        restartButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_restartButtonMouseExited
+
+    private void restartButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButton1MouseClicked
+        setVisible(false);
+        dispose();
+        new TeamGuide(userId, username, email).setVisible(true);
+    }//GEN-LAST:event_restartButton1MouseClicked
+
+    private void restartButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButton1MouseEntered
+        restartButton1.setIcon(new ImageIcon("src/App/image/restart2.png"));
+        restartButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_restartButton1MouseEntered
+
+    private void restartButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButton1MouseExited
+        restartButton1.setIcon(new ImageIcon("src/App/image/restart1.png"));
+        restartButton1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_restartButton1MouseExited
+
+    private void restartButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButton2MouseClicked
+        setVisible(false);
+        dispose();
+        new TeamGuide(userId, username, email).setVisible(true);
+    }//GEN-LAST:event_restartButton2MouseClicked
+
+    private void restartButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButton2MouseEntered
+        restartButton2.setIcon(new ImageIcon("src/App/image/restart2.png"));
+        restartButton2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_restartButton2MouseEntered
+
+    private void restartButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButton2MouseExited
+        restartButton2.setIcon(new ImageIcon("src/App/image/restart1.png"));
+        restartButton2.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_restartButton2MouseExited
+
+    private void restartButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButton3MouseClicked
+        setVisible(false);
+        dispose();
+        new TeamGuide(userId, username, email).setVisible(true);
+    }//GEN-LAST:event_restartButton3MouseClicked
+
+    private void restartButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButton3MouseEntered
+        restartButton3.setIcon(new ImageIcon("src/App/image/restart2.png"));
+        restartButton3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_restartButton3MouseEntered
+
+    private void restartButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButton3MouseExited
+       restartButton3.setIcon(new ImageIcon("src/App/image/restart1.png"));
+        restartButton3.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_restartButton3MouseExited
+
     
     
     
@@ -3426,6 +3550,10 @@ public class TeamGuide extends javax.swing.JFrame {
     private javax.swing.JLabel profileButton3;
     private javax.swing.JRadioButton pyroRadButton;
     private javax.swing.JRadioButton pyroRadButton1;
+    private javax.swing.JLabel restartButton;
+    private javax.swing.JLabel restartButton1;
+    private javax.swing.JLabel restartButton2;
+    private javax.swing.JLabel restartButton3;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JScrollPane scrollPane2;
     private javax.swing.JScrollPane scrollPane3;

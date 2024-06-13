@@ -1,49 +1,59 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package App;
 
-/**
- *
- * @author asus
- */
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class NewClass {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("CardLayout Example");
+        SwingUtilities.invokeLater(() -> new NewClass().createAndShowGUI());
+    }
+
+    private void createAndShowGUI() {
+        // Create the main frame
+        JFrame frame = new JFrame("Draggable Panel Example");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 300);
-        
-        JPanel cardPanel = new JPanel(new CardLayout());
-        
-        JPanel firstPanel = new JPanel();
-        firstPanel.add(new JLabel("First Panel"));
-        JButton switchButton1 = new JButton("Go to Second Panel");
-        firstPanel.add(switchButton1);
-        
-        JPanel secondPanel = new JPanel();
-        secondPanel.add(new JLabel("Second Panel"));
-        JButton switchButton2 = new JButton("Go to First Panel");
-        secondPanel.add(switchButton2);
-        
-        cardPanel.add(firstPanel, "First");
-        cardPanel.add(secondPanel, "Second");
-        
-        switchButton1.addActionListener(e -> {
-            CardLayout cl = (CardLayout) (cardPanel.getLayout());
-            cl.show(cardPanel, "Second");
-        });
-        
-        switchButton2.addActionListener(e -> {
-            CardLayout cl = (CardLayout) (cardPanel.getLayout());
-            cl.show(cardPanel, "First");
-        });
-        
-        frame.add(cardPanel);
+        frame.setSize(800, 600);
+        frame.setLayout(null); // Use absolute layout for custom positioning
+        frame.setResizable(false);
+
+        // Create the panel to be moved
+        JPanel movablePanel = new JPanel();
+        movablePanel.setBackground(Color.BLUE);
+        movablePanel.setBounds(50, 50, 200, 200); // Initial position and size
+
+        // Add mouse listeners to the panel
+        MouseAdapter mouseAdapter = new MouseAdapter() {
+            private Point initialClick;
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                initialClick = e.getPoint();
+//                getComponentAt(initialClick);
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                // Calculate new position of the panel
+                int newX = movablePanel.getX() + e.getX() - initialClick.x;
+                int newY = movablePanel.getY() + e.getY() - initialClick.y;
+
+                // Constrain panel within frame bounds
+                newX = Math.max(0, Math.min(frame.getWidth() - movablePanel.getWidth(), newX));
+                newY = Math.max(0, Math.min(frame.getHeight() - movablePanel.getHeight(), newY));
+
+                // Set the new position
+                movablePanel.setLocation(newX, newY);
+            }
+        };
+        movablePanel.addMouseListener(mouseAdapter);
+        movablePanel.addMouseMotionListener(mouseAdapter);
+
+        // Add the panel to the frame
+        frame.add(movablePanel);
+
+        // Make the frame visible
         frame.setVisible(true);
     }
 }
-

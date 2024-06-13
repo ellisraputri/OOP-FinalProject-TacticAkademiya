@@ -9,6 +9,8 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -45,6 +47,7 @@ public class TeamResult extends javax.swing.JFrame {
         this.email = email;
         this.teamGenerated = teamGenerated;
         resultPage1();
+        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
     }
     
     public TeamResult(int userId, String username, String email, HashMap<String,ArrayList<String>>teamSpiralAbyss){
@@ -54,6 +57,7 @@ public class TeamResult extends javax.swing.JFrame {
         this.email = email;
         this.teamSpiralAbyss = teamSpiralAbyss;
         resultPage2();
+        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));        
     }
     
     private void resultPage1(){
