@@ -4,6 +4,7 @@
  */
 package App;
 
+import jaco.mp3.player.MP3Player;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -36,6 +37,8 @@ public class CharInfoHome extends javax.swing.JFrame {
     private int userId;
     private String username;
     private String email;
+    private ImageIcon profileImage;
+    private MP3Player bgmPlayer;
     
     //attributes for elements button
     private ArrayList<JLabel> clickedElementCircle = new ArrayList<>();
@@ -65,11 +68,17 @@ public class CharInfoHome extends javax.swing.JFrame {
         myinit();
     }
     
-    public CharInfoHome(int userId, String username, String email) {
+    public CharInfoHome(int userId, String username, String email, ImageIcon profileImage, MP3Player bgmPlayer, boolean type) {
         initComponents();
         this.userId = userId;
         this.username = username;
         this.email = email;
+        this.bgmPlayer = bgmPlayer;
+        if(!type){
+            this.bgmPlayer.play();
+        }
+        
+        this.profileImage = profileImage;
         setLocationRelativeTo(null);
         myinit();
     }
@@ -86,6 +95,9 @@ public class CharInfoHome extends javax.swing.JFrame {
         emailLabel.setBounds(110, 60, emailLabel.getPreferredSize().width+10, emailLabel.getPreferredSize().height);
         getContentPane().setComponentZOrder(usernameLabel, 0);
         getContentPane().setComponentZOrder(emailLabel, 0);
+        
+        //set up profile image
+        profileButton.setIcon(profileImage);
         
         
         //set up hover and click for the elements button
@@ -307,7 +319,8 @@ public class CharInfoHome extends javax.swing.JFrame {
                 @Override
                 public void mousePressed(MouseEvent e) {
                     setVisible(false);
-                    new CharInfo(panel.getGameChar(), userId, username, email).setVisible(true);
+                    bgmPlayer.stop();
+                    new CharInfo(panel.getGameChar(), userId, username, email, profileImage, bgmPlayer).setVisible(true);
                 }
             });
             charPanels.add(panel);
@@ -800,23 +813,21 @@ public class CharInfoHome extends javax.swing.JFrame {
     private void profileButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseClicked
         setVisible(false);
         dispose();
-        new Settings(userId).setVisible(true);
+        new Settings(userId, bgmPlayer).setVisible(true);
     }//GEN-LAST:event_profileButtonMouseClicked
 
     private void profileButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseEntered
-        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile2.png")));
         profileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_profileButtonMouseEntered
 
     private void profileButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseExited
-        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile1.png")));
         profileButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_profileButtonMouseExited
 
     private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
         setVisible(false);
         dispose();
-        new Home(userId).setVisible(true);
+        new Home(userId, bgmPlayer).setVisible(true);
     }//GEN-LAST:event_exitButtonMouseClicked
 
     private void exitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseEntered

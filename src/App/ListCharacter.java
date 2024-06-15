@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import App.ImageLoader;
 import DatabaseConnection.ConnectionProvider;
+import jaco.mp3.player.MP3Player;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -35,7 +36,7 @@ public class ListCharacter extends javax.swing.JFrame {
     private int userId;
     private JPanel cloneablePanel;
     private ArrayList<CharacterPanel> panelList = new ArrayList<>();
-
+    private MP3Player bgmPlayer;
     
     /**
      * Creates new form ListCharacter
@@ -48,8 +49,9 @@ public class ListCharacter extends javax.swing.JFrame {
         myinit();
     }
     
-    public ListCharacter(int userId) {
+    public ListCharacter(int userId, MP3Player bgmPlayer) {
         initComponents();
+        this.bgmPlayer = bgmPlayer;
         this.userId = userId;
         setTitle("Character Listing");
         setResizable(false);
@@ -202,6 +204,7 @@ public class ListCharacter extends javax.swing.JFrame {
         if(option == JOptionPane.YES_OPTION){
             setVisible(false);
             dispose();
+            bgmPlayer.stop();
             new WelcomePage().setVisible(true);
         }
         
@@ -251,7 +254,7 @@ public class ListCharacter extends javax.swing.JFrame {
 
                 setVisible(false);
                 dispose();
-                new Home(userId).setVisible(true);
+                new Home(userId, bgmPlayer).setVisible(true);
 
             }catch(Exception e){
                 JOptionPane.showMessageDialog(getContentPane(), e);
@@ -297,7 +300,7 @@ public class ListCharacter extends javax.swing.JFrame {
 
                 setVisible(false);
                 dispose();
-                new Home(userId).setVisible(true);
+                new Home(userId, bgmPlayer).setVisible(true);
 
             }catch(Exception e){
                 JOptionPane.showMessageDialog(getContentPane(), e);

@@ -4,9 +4,11 @@
  */
 package App;
 
+import jaco.mp3.player.MP3Player;
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.io.File;
 import javax.swing.ImageIcon;
 
 /**
@@ -14,7 +16,7 @@ import javax.swing.ImageIcon;
  * @author asus
  */
 public class WelcomePage extends javax.swing.JFrame {
-
+    private MP3Player bgmWelcomePlayer;
     /**
      * Creates new form WelcomePage
      */
@@ -24,8 +26,18 @@ public class WelcomePage extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));        
+        setBGM();
     }
     
+    private void setBGM(){
+        String folderPath = "src/App/audio/bgm";
+        File folder = new File(folderPath);
+        File[] listOfFiles = folder.listFiles();
+        
+        bgmWelcomePlayer = new MP3Player(listOfFiles[18]);
+        bgmWelcomePlayer.setRepeat(true);
+        bgmWelcomePlayer.play();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,6 +86,7 @@ public class WelcomePage extends javax.swing.JFrame {
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         setVisible(false);
         dispose();
+        bgmWelcomePlayer.stop();
         new LoginPage().setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
 
@@ -114,7 +127,7 @@ public class WelcomePage extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

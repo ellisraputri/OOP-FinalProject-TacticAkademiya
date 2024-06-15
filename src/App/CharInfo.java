@@ -39,6 +39,9 @@ public class CharInfo extends javax.swing.JFrame {
     private MP3Player cnVoicePlayer;
     private boolean jpPlaying=false;
     private MP3Player jpVoicePlayer;
+    private ImageIcon profileImage;
+    private MP3Player bgmPlayer;
+    private MP3Player prevbgmPlayer;
     
     /**
      * Creates new form charInfo
@@ -47,11 +50,13 @@ public class CharInfo extends javax.swing.JFrame {
         initComponents();
     }
     
-    public CharInfo(GameCharacter gamechar, int userId, String username, String email) {
+    public CharInfo(GameCharacter gamechar, int userId, String username, String email, ImageIcon profileImage, MP3Player prevbgmPlayer) {
         this.gamechar = gamechar;
         this.userId = userId;
         this.username = username;
         this.email = email;
+        this.profileImage = profileImage;
+        this.prevbgmPlayer = prevbgmPlayer;
         initComponents();
         setTitle("Character "+gamechar.getName() + " Details");
         bg.setIcon(new ImageIcon("src/App/image/bg_"+gamechar.getElement() +".png"));
@@ -70,6 +75,12 @@ public class CharInfo extends javax.swing.JFrame {
         emailLabel.setBounds(110, 60, emailLabel.getPreferredSize().width+10, emailLabel.getPreferredSize().height);
         getContentPane().setComponentZOrder(usernameLabel, 0);
         getContentPane().setComponentZOrder(emailLabel, 0);
+        
+        //setting profile picture
+        profileButton.setIcon(profileImage);
+        
+        //set bgm
+        loadBgm();
         
         //setting name and element
         nameLabel.setText(gamechar.getName());
@@ -115,6 +126,27 @@ public class CharInfo extends javax.swing.JFrame {
         parentPanel.repaint();
         getContentPane().revalidate();
         getContentPane().repaint();
+    }
+    
+    private void loadBgm() {
+        String folderPath = "src/App/audio/bgmChar";
+        File folder = new File(folderPath);
+        File[] listOfFiles = folder.listFiles();
+        File selectedFile = null;
+
+        if (listOfFiles != null) {
+            for (File file : listOfFiles) {
+                if(file.isFile() && file.getAbsolutePath().contains(gamechar.getName())){
+                    selectedFile = file;
+                    break;
+                }
+            }
+        }
+        
+        bgmPlayer = new MP3Player();
+        bgmPlayer.addToPlayList(selectedFile);
+        bgmPlayer.play();
+        bgmPlayer.setRepeat(true);
     }
     
     private void setBasicInfo(){
@@ -258,7 +290,6 @@ public class CharInfo extends javax.swing.JFrame {
     }
     
     private void setArtifactsStats(){
-        System.out.println("artifact stats");
         JLabel titleStats = new JLabel();
         titleStats.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
         titleStats.setForeground(Color.black);
@@ -775,23 +806,22 @@ public class CharInfo extends javax.swing.JFrame {
     private void profileButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseClicked
         setVisible(false);
         dispose();
-        new Settings(userId).setVisible(true);
+        new Settings(userId, prevbgmPlayer).setVisible(true);
     }//GEN-LAST:event_profileButtonMouseClicked
 
     private void profileButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseEntered
-        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile2.png")));
         profileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_profileButtonMouseEntered
 
     private void profileButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseExited
-        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile1.png")));
         profileButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_profileButtonMouseExited
 
     private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
         setVisible(false);
         dispose();
-        new CharInfoHome(userId, username, email).setVisible(true);
+        bgmPlayer.stop();
+        new CharInfoHome(userId, username, email, profileImage, prevbgmPlayer, false).setVisible(true);
     }//GEN-LAST:event_exitButtonMouseClicked
 
     private void exitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseEntered

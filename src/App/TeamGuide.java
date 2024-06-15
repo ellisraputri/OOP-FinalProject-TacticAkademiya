@@ -5,6 +5,7 @@
 package App;
 
 import DatabaseConnection.ConnectionProvider;
+import jaco.mp3.player.MP3Player;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -41,6 +42,8 @@ public class TeamGuide extends javax.swing.JFrame {
     private int userId;
     private String username;
     private String email;
+    private ImageIcon profileImage;
+    private MP3Player bgmPlayer;
     private ArrayList<String> elements = new ArrayList<>();
     private ArrayList<String> weapons = new ArrayList<>();
     
@@ -78,11 +81,13 @@ public class TeamGuide extends javax.swing.JFrame {
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
     }
     
-    public TeamGuide(int userId, String username, String email) {
+    public TeamGuide(int userId, String username, String email, ImageIcon profileImage, MP3Player bgmPlayer) {
         initComponents();
         this.userId = userId;
         this.username = username;
         this.email = email;
+        this.profileImage = profileImage;
+        this.bgmPlayer = bgmPlayer;
         setLocationRelativeTo(null);
         teamPage1();
         addCharOwned();
@@ -168,6 +173,7 @@ public class TeamGuide extends javax.swing.JFrame {
         emailLabel.setText(email);
         usernameLabel.setBounds(110, 25, usernameLabel.getPreferredSize().width+10, usernameLabel.getPreferredSize().height);
         emailLabel.setBounds(110, 60, emailLabel.getPreferredSize().width+10, emailLabel.getPreferredSize().height);
+        profileButton.setIcon(profileImage);
         
         enemiesPane.setOpaque(false);
         enemiesPane.setBorder(null);
@@ -1859,16 +1865,14 @@ public class TeamGuide extends javax.swing.JFrame {
     private void profileButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseClicked
         setVisible(false);
         dispose();
-        new Settings(userId).setVisible(true);
+        new Settings(userId,bgmPlayer).setVisible(true);
     }//GEN-LAST:event_profileButtonMouseClicked
 
     private void profileButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseEntered
-        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile2.png")));
         profileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_profileButtonMouseEntered
 
     private void profileButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseExited
-        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile1.png")));
         profileButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_profileButtonMouseExited
 
@@ -1877,7 +1881,7 @@ public class TeamGuide extends javax.swing.JFrame {
         if(option == JOptionPane.YES_OPTION){
             setVisible(false);
             dispose();
-            new Home(userId).setVisible(true);
+            new Home(userId, bgmPlayer).setVisible(true);
         }
     }//GEN-LAST:event_exitButtonMouseClicked
 
@@ -2169,6 +2173,7 @@ public class TeamGuide extends javax.swing.JFrame {
         emailLabel1.setText(email);
         usernameLabel1.setBounds(110, 25, usernameLabel1.getPreferredSize().width+10, usernameLabel1.getPreferredSize().height);
         emailLabel1.setBounds(110, 60, emailLabel1.getPreferredSize().width+10, emailLabel1.getPreferredSize().height);
+        profileButton1.setIcon(profileImage);
         
         selectedPanels.clear();
         characterBannedList.clear();
@@ -2452,16 +2457,14 @@ public class TeamGuide extends javax.swing.JFrame {
     private void profileButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton1MouseClicked
         setVisible(false);
         dispose();
-        new Settings(userId).setVisible(true);
+        new Settings(userId, bgmPlayer).setVisible(true);
     }//GEN-LAST:event_profileButton1MouseClicked
 
     private void profileButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton1MouseEntered
-        profileButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile2.png")));
         profileButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_profileButton1MouseEntered
 
     private void profileButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton1MouseExited
-        profileButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile1.png")));
         profileButton1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_profileButton1MouseExited
 
@@ -2470,7 +2473,7 @@ public class TeamGuide extends javax.swing.JFrame {
         if(option == JOptionPane.YES_OPTION){
             setVisible(false);
             dispose();
-            new Home(userId).setVisible(true);
+            new Home(userId, bgmPlayer).setVisible(true);
         }
     }//GEN-LAST:event_exitButton1MouseClicked
 
@@ -2494,7 +2497,7 @@ public class TeamGuide extends javax.swing.JFrame {
            App.PrepareGenerator app = new App.PrepareGenerator(enemiesLabel.getText(), elementsLabel.getText(), weaponsLabel.getText(), banChars, charOwnedList); 
            System.out.println("generated:"+app.getGeneratedTeam());
            dispose();
-           new TeamResult(userId, username, email, app.getGeneratedTeam()).setVisible(true);
+           new TeamResult(userId, username, email, profileImage,bgmPlayer, app.getGeneratedTeam()).setVisible(true);
         }
     }//GEN-LAST:event_generateLabelMouseClicked
 
@@ -2520,7 +2523,7 @@ public class TeamGuide extends javax.swing.JFrame {
            App.PrepareGenerator app = new App.PrepareGenerator(enemiesLabel.getText(), elementsLabel.getText(), weaponsLabel.getText(), banChars, charOwnedList); 
            System.out.println("generated:"+app.getGeneratedTeam());
            dispose();
-           new TeamResult(userId, username, email, app.getGeneratedTeam()).setVisible(true);
+           new TeamResult(userId, username, email,profileImage,bgmPlayer, app.getGeneratedTeam()).setVisible(true);
         }
     }//GEN-LAST:event_generateButtonMouseClicked
 
@@ -2593,6 +2596,7 @@ public class TeamGuide extends javax.swing.JFrame {
         emailLabel2.setText(email);
         usernameLabel2.setBounds(110, 25, usernameLabel2.getPreferredSize().width+10, usernameLabel2.getPreferredSize().height);
         emailLabel2.setBounds(110, 60, emailLabel2.getPreferredSize().width+10, emailLabel2.getPreferredSize().height);
+        profileButton2.setIcon(profileImage);
         
         modeEnemyOnly1.setIcon(new ImageIcon("src/App/image/radio1.png"));
 
@@ -2671,16 +2675,14 @@ public class TeamGuide extends javax.swing.JFrame {
     private void profileButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton2MouseClicked
         setVisible(false);
         dispose();
-        new Settings(userId).setVisible(true);
+        new Settings(userId,bgmPlayer).setVisible(true);
     }//GEN-LAST:event_profileButton2MouseClicked
 
     private void profileButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton2MouseEntered
-        profileButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile2.png")));
         profileButton2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_profileButton2MouseEntered
 
     private void profileButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton2MouseExited
-        profileButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile1.png")));
         profileButton2.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_profileButton2MouseExited
 
@@ -2689,7 +2691,7 @@ public class TeamGuide extends javax.swing.JFrame {
         if(option == JOptionPane.YES_OPTION){
             setVisible(false);
             dispose();
-            new Home(userId).setVisible(true);
+            new Home(userId,bgmPlayer).setVisible(true);
         }
     }//GEN-LAST:event_exitButton2MouseClicked
 
@@ -3075,6 +3077,7 @@ public class TeamGuide extends javax.swing.JFrame {
         emailLabel3.setText(email);
         usernameLabel3.setBounds(110, 25, usernameLabel3.getPreferredSize().width+10, usernameLabel3.getPreferredSize().height);
         emailLabel3.setBounds(110, 60, emailLabel3.getPreferredSize().width+10, emailLabel3.getPreferredSize().height);
+        profileButton3.setIcon(profileImage);
         
         selectedPanels.clear();
         chamberHalfAndEnemies.clear();
@@ -3220,16 +3223,14 @@ public class TeamGuide extends javax.swing.JFrame {
     private void profileButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton3MouseClicked
         setVisible(false);
         dispose();
-        new Settings(userId).setVisible(true);
+        new Settings(userId,bgmPlayer).setVisible(true);
     }//GEN-LAST:event_profileButton3MouseClicked
 
     private void profileButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton3MouseEntered
-        profileButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile2.png")));
         profileButton3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_profileButton3MouseEntered
 
     private void profileButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton3MouseExited
-        profileButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile1.png")));
         profileButton3.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_profileButton3MouseExited
 
@@ -3238,7 +3239,7 @@ public class TeamGuide extends javax.swing.JFrame {
         if(option == JOptionPane.YES_OPTION){
             setVisible(false);
             dispose();
-            new Home(userId).setVisible(true);
+            new Home(userId, bgmPlayer).setVisible(true);
         }
     }//GEN-LAST:event_exitButton3MouseClicked
 
@@ -3264,7 +3265,7 @@ public class TeamGuide extends javax.swing.JFrame {
         System.out.print(teamsFinal);
         
         dispose();
-        new TeamResult(userId, username, email, teamsFinal).setVisible(true);
+        new TeamResult(userId, username, email,profileImage,bgmPlayer, teamsFinal).setVisible(true);
     }//GEN-LAST:event_generateLabel1MouseClicked
 
     private void generateLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateLabel1MouseEntered
@@ -3289,7 +3290,7 @@ public class TeamGuide extends javax.swing.JFrame {
         System.out.print(teamsFinal);
         
         dispose();
-        new TeamResult(userId, username, email, teamsFinal).setVisible(true);
+        new TeamResult(userId, username, email,profileImage,bgmPlayer, teamsFinal).setVisible(true);
     }//GEN-LAST:event_generateButton1MouseClicked
 
     private void generateButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateButton1MouseEntered
@@ -3355,7 +3356,7 @@ public class TeamGuide extends javax.swing.JFrame {
     private void restartButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButtonMouseClicked
         setVisible(false);
         dispose();
-        new TeamGuide(userId, username, email).setVisible(true);
+        new TeamGuide(userId, username, email, profileImage, bgmPlayer).setVisible(true);
     }//GEN-LAST:event_restartButtonMouseClicked
 
     private void restartButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButtonMouseEntered
@@ -3371,7 +3372,7 @@ public class TeamGuide extends javax.swing.JFrame {
     private void restartButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButton1MouseClicked
         setVisible(false);
         dispose();
-        new TeamGuide(userId, username, email).setVisible(true);
+        new TeamGuide(userId, username, email, profileImage, bgmPlayer).setVisible(true);
     }//GEN-LAST:event_restartButton1MouseClicked
 
     private void restartButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButton1MouseEntered
@@ -3387,7 +3388,7 @@ public class TeamGuide extends javax.swing.JFrame {
     private void restartButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButton2MouseClicked
         setVisible(false);
         dispose();
-        new TeamGuide(userId, username, email).setVisible(true);
+        new TeamGuide(userId, username, email, profileImage, bgmPlayer).setVisible(true);
     }//GEN-LAST:event_restartButton2MouseClicked
 
     private void restartButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButton2MouseEntered
@@ -3403,7 +3404,7 @@ public class TeamGuide extends javax.swing.JFrame {
     private void restartButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButton3MouseClicked
         setVisible(false);
         dispose();
-        new TeamGuide(userId, username, email).setVisible(true);
+        new TeamGuide(userId, username, email, profileImage, bgmPlayer).setVisible(true);
     }//GEN-LAST:event_restartButton3MouseClicked
 
     private void restartButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButton3MouseEntered

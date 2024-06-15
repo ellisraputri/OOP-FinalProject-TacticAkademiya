@@ -5,6 +5,7 @@
 package App;
 
 import DatabaseConnection.ConnectionProvider;
+import jaco.mp3.player.MP3Player;
 import java.sql.*;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -12,6 +13,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
@@ -24,11 +26,37 @@ import javax.swing.event.DocumentListener;
  * @author asus
  */
 public class LoginPage extends javax.swing.JFrame {
-
+    private MP3Player bgmPlayer;
+    
     /**
      * Creates new form LoginPage
      */
     public LoginPage() {
+        initComponents();
+        myinit();
+        setLocationRelativeTo(null);
+        setTitle("Login Page");
+        setResizable(false);
+        setBGM();
+    }
+    
+    private void setBGM(){
+        String folderPath = "src/App/audio/bgm";
+        File folder = new File(folderPath);
+        File[] listOfFiles = folder.listFiles();
+        
+        bgmPlayer = new MP3Player();
+        bgmPlayer.addToPlayList(listOfFiles[0]);
+        bgmPlayer.addToPlayList(listOfFiles[1]);
+        bgmPlayer.addToPlayList(listOfFiles[2]);
+        bgmPlayer.addToPlayList(listOfFiles[3]);
+        bgmPlayer.addToPlayList(listOfFiles[4]);
+        bgmPlayer.setRepeat(true);
+        bgmPlayer.play();
+    }
+    
+    public LoginPage(MP3Player bgmPlayer) {
+        this.bgmPlayer = bgmPlayer;
         initComponents();
         myinit();
         setLocationRelativeTo(null);
@@ -294,6 +322,7 @@ public class LoginPage extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         setVisible(false);
         dispose();
+        bgmPlayer.stop();
         new WelcomePage().setVisible(true);
     }//GEN-LAST:event_jLabel3MouseClicked
 
@@ -310,7 +339,7 @@ public class LoginPage extends javax.swing.JFrame {
     private void registerLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerLabelMouseClicked
         setVisible(false);
         dispose();
-        new SignUpPage().setVisible(true);
+        new SignUpPage(bgmPlayer).setVisible(true);
     }//GEN-LAST:event_registerLabelMouseClicked
 
     private void registerLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerLabelMouseEntered
@@ -356,7 +385,7 @@ public class LoginPage extends javax.swing.JFrame {
                         if(passwordConfirmation.equals(password)){
                             setVisible(false);
                             dispose();
-                            new Home(id).setVisible(true);
+                            new Home(id, bgmPlayer).setVisible(true);
                         }
                         else{
                             JOptionPane.showMessageDialog(getContentPane(), "Incorrect Password");
@@ -371,7 +400,7 @@ public class LoginPage extends javax.swing.JFrame {
                             if(passwordConfirmation.equals(password)){
                                 setVisible(false);
                                 dispose();
-                                new Home(id).setVisible(true);
+                                new Home(id, bgmPlayer).setVisible(true);
                             }
                             else{
                                 JOptionPane.showMessageDialog(getContentPane(), "Incorrect Password");
@@ -430,7 +459,7 @@ public class LoginPage extends javax.swing.JFrame {
                         if(passwordConfirmation.equals(password)){
                             setVisible(false);
                             dispose();
-                            new Home(id).setVisible(true);
+                            new Home(id, bgmPlayer).setVisible(true);
                         }
                         else{
                             JOptionPane.showMessageDialog(getContentPane(), "Incorrect Password");
@@ -445,7 +474,7 @@ public class LoginPage extends javax.swing.JFrame {
                             if(passwordConfirmation.equals(password)){
                                 setVisible(false);
                                 dispose();
-                                new Home(id).setVisible(true);
+                                new Home(id, bgmPlayer).setVisible(true);
                             }
                             else{
                                 JOptionPane.showMessageDialog(getContentPane(), "Incorrect Password");

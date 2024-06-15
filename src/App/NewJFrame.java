@@ -160,6 +160,7 @@ public class NewJFrame extends javax.swing.JFrame {
         BufferedImage im = imageIconToBufferedImage(new ImageIcon(f.getAbsolutePath()));
         BufferedImage resizedImage = resizeImage(im, label.getWidth(), label.getHeight());
         label.setIcon(new ImageIcon(resizedImage));
+        System.out.println(f.getAbsolutePath());
     }//GEN-LAST:event_buttonActionPerformed
     
     public static BufferedImage imageIconToBufferedImage(ImageIcon icon) {

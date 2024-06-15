@@ -4,6 +4,7 @@
  */
 package App;
 
+import jaco.mp3.player.MP3Player;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -29,6 +30,8 @@ public class TeamResult extends javax.swing.JFrame {
     private int userId;
     private String username;
     private String email;
+    private ImageIcon profileImage;
+    private MP3Player bgmPlayer;
     private ArrayList<String> teamGenerated;
     private ArrayList<String> teamInfo = new ArrayList<>();
     private int maxWidth=0;
@@ -40,21 +43,25 @@ public class TeamResult extends javax.swing.JFrame {
         initComponents();
     }
     
-    public TeamResult(int userId, String username, String email, ArrayList<String>teamGenerated){
+    public TeamResult(int userId, String username, String email, ImageIcon profileImage, MP3Player bgmPlayer, ArrayList<String>teamGenerated){
         initComponents();
         this.userId = userId;
         this.username = username;
         this.email = email;
+        this.profileImage = profileImage;
+        this.bgmPlayer = bgmPlayer;
         this.teamGenerated = teamGenerated;
         resultPage1();
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
     }
     
-    public TeamResult(int userId, String username, String email, HashMap<String,ArrayList<String>>teamSpiralAbyss){
+    public TeamResult(int userId, String username, String email, ImageIcon profileImage, MP3Player bgmPlayer, HashMap<String,ArrayList<String>>teamSpiralAbyss){
         initComponents();
         this.userId = userId;
         this.username = username;
         this.email = email;
+        this.profileImage = profileImage;
+        this.bgmPlayer = bgmPlayer;
         this.teamSpiralAbyss = teamSpiralAbyss;
         resultPage2();
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));        
@@ -70,6 +77,7 @@ public class TeamResult extends javax.swing.JFrame {
         emailLabel.setText(email);
         usernameLabel.setBounds(110, 25, usernameLabel.getPreferredSize().width+10, usernameLabel.getPreferredSize().height);
         emailLabel.setBounds(110, 60, emailLabel.getPreferredSize().width+10, emailLabel.getPreferredSize().height);
+        profileButton.setIcon(profileImage);
         
         setImages(0);
         setImages(1);
@@ -156,6 +164,7 @@ public class TeamResult extends javax.swing.JFrame {
         emailLabel1.setText(email);
         usernameLabel1.setBounds(110, 25, usernameLabel1.getPreferredSize().width+10, usernameLabel1.getPreferredSize().height);
         emailLabel1.setBounds(110, 60, emailLabel1.getPreferredSize().width+10, emailLabel1.getPreferredSize().height);
+        profileButton1.setIcon(profileImage);
         
         setImages2(0, "First Half");
         setImages2(1, "First Half");
@@ -649,7 +658,7 @@ public class TeamResult extends javax.swing.JFrame {
     private void profileButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseClicked
         setVisible(false);
         dispose();
-        new Settings(userId).setVisible(true);
+        new Settings(userId,bgmPlayer).setVisible(true);
     }//GEN-LAST:event_profileButtonMouseClicked
 
     private void profileButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseEntered
@@ -667,7 +676,7 @@ public class TeamResult extends javax.swing.JFrame {
         if(option == JOptionPane.YES_OPTION){
             setVisible(false);
             dispose();
-            new Home(userId).setVisible(true);
+            new Home(userId, bgmPlayer).setVisible(true);
         }
     }//GEN-LAST:event_exitButtonMouseClicked
 
@@ -684,7 +693,7 @@ public class TeamResult extends javax.swing.JFrame {
     private void profileButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton1MouseClicked
          setVisible(false);
         dispose();
-        new Settings(userId).setVisible(true);
+        new Settings(userId, bgmPlayer).setVisible(true);
     }//GEN-LAST:event_profileButton1MouseClicked
 
     private void profileButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButton1MouseEntered
@@ -702,7 +711,7 @@ public class TeamResult extends javax.swing.JFrame {
         if(option == JOptionPane.YES_OPTION){
             setVisible(false);
             dispose();
-            new Home(userId).setVisible(true);
+            new Home(userId, bgmPlayer).setVisible(true);
         }
     }//GEN-LAST:event_exitButton1MouseClicked
 

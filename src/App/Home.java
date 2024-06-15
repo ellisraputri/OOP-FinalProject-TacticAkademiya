@@ -5,9 +5,15 @@
 package App;
 
 import DatabaseConnection.ConnectionProvider;
+import jaco.mp3.player.MP3Player;
 import java.awt.Cursor;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
+import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -22,6 +28,9 @@ public class Home extends javax.swing.JFrame {
     private int userId;
     private String username;
     private String email;
+    private String profilePath;
+    private ImageIcon profileImage;
+    private MP3Player bgmPlayer;
     /**
      * Creates new form Home
      */
@@ -31,8 +40,9 @@ public class Home extends javax.swing.JFrame {
         myinit();
     }
     
-    public Home(int userId) {
+    public Home(int userId, MP3Player bgmPlayer) {
         initComponents();
+        this.bgmPlayer = bgmPlayer;
         this.userId = userId;
         setTitle("Home Page");
         setResizable(false);
@@ -50,6 +60,7 @@ public class Home extends javax.swing.JFrame {
             if(rs.first()){
                 this.username = rs.getString("username");
                 this.email = rs.getString("email");
+                this.profilePath = rs.getString("profile");
             }
         }
         catch(Exception e){
@@ -62,6 +73,75 @@ public class Home extends javax.swing.JFrame {
         emailLabel.setBounds(110, 60, emailLabel.getPreferredSize().width+10, emailLabel.getPreferredSize().height);
         getContentPane().setComponentZOrder(usernameLabel, 0);
         getContentPane().setComponentZOrder(emailLabel, 0);
+        
+        if(profilePath == null){
+           profilePath = "src/App/image/profile1.png";
+           setProfileImage(profilePath);
+        }
+        else if(profilePath.contains("GenshinIcons")){
+            BufferedImage im = imageIconToBufferedImage(new ImageIcon(profilePath));
+            cropIntoCircle(im);
+        }
+        else{
+            setProfileImage(profilePath);
+        }
+    }
+    
+    public void cropIntoCircle(BufferedImage croppedImage){
+        BufferedImage img = croppedImage;
+        
+        int width = img.getWidth(null);
+        int height = img.getHeight(null);
+
+        BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = bi.createGraphics();
+
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        int circleDiameter = Math.min(width,height);
+        Ellipse2D.Double circle = new Ellipse2D.Double(0,0,circleDiameter,circleDiameter);
+        g2.setClip(circle);
+        g2.drawImage(img,0,0,null);
+        
+        setProfileImage(bi);
+    }
+    
+    public void setProfileImage(BufferedImage im){
+        BufferedImage resizedImage = resizeImage(im, 70, 70);
+        profileButton.setIcon(new ImageIcon(resizedImage));
+        profileImage = new ImageIcon(resizedImage);
+        profileButton.repaint();
+        profileButton.revalidate();
+        getContentPane().repaint();
+        getContentPane().revalidate();
+    }
+    
+    public void setProfileImage(String path){
+        BufferedImage im = imageIconToBufferedImage(new ImageIcon(path));
+        BufferedImage resizedImage = resizeImage(im, 70, 70);
+        profileButton.setIcon(new ImageIcon(resizedImage));
+        profileImage = new ImageIcon(resizedImage);
+        profileButton.repaint();
+        profileButton.revalidate();
+        getContentPane().repaint();
+        getContentPane().revalidate();
+    }
+    
+    public static BufferedImage imageIconToBufferedImage(ImageIcon icon) {
+        Image img = icon.getImage();
+        BufferedImage bufferedImage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = bufferedImage.createGraphics();
+        g2d.drawImage(img, 0, 0, null);
+        g2d.dispose();
+        return bufferedImage;
+    }
+    
+    public static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
+        Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
+        BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = outputImage.createGraphics();
+        g2d.drawImage(resultingImage, 0, 0, null);
+        g2d.dispose();
+        return outputImage;
     }
 
     /**
@@ -193,7 +273,7 @@ public class Home extends javax.swing.JFrame {
     private void goButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goButton1MouseClicked
         setVisible(false);
         dispose();
-        new TeamGuide(userId, username, email).setVisible(true);
+        new TeamGuide(userId, username, email, profileImage, bgmPlayer).setVisible(true);
     }//GEN-LAST:event_goButton1MouseClicked
 
     private void goButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goButton1MouseEntered
@@ -209,10 +289,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_goButton1MouseExited
 
     private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
-        int option = JOptionPane.showConfirmDialog(getContentPane(), "Are you sure you want to go back?", "SELECT", JOptionPane.YES_NO_OPTION);
+        int option = JOptionPane.showConfirmDialog(getContentPane(), "Are you sure you want to log out?", "SELECT", JOptionPane.YES_NO_OPTION);
         if(option == JOptionPane.YES_OPTION){
             setVisible(false);
             dispose();
+            bgmPlayer.stop();
             new WelcomePage().setVisible(true);
         }
     }//GEN-LAST:event_exitButtonMouseClicked
@@ -230,23 +311,21 @@ public class Home extends javax.swing.JFrame {
     private void profileButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseClicked
         setVisible(false);
         dispose();
-        new Settings(userId).setVisible(true);
+        new Settings(userId, bgmPlayer).setVisible(true);
     }//GEN-LAST:event_profileButtonMouseClicked
 
     private void profileButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseEntered
-        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile2.png")));
         profileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_profileButtonMouseEntered
 
     private void profileButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseExited
-        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/profile1.png")));
         profileButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_profileButtonMouseExited
 
     private void goButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goButton2MouseClicked
         setVisible(false);
         dispose();
-        new CharInfoHome(userId, username, email).setVisible(true);
+        new CharInfoHome(userId, username, email, profileImage, bgmPlayer, true).setVisible(true);
     }//GEN-LAST:event_goButton2MouseClicked
 
     private void goButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goButton2MouseEntered
@@ -264,7 +343,7 @@ public class Home extends javax.swing.JFrame {
     private void goLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goLabel2MouseClicked
         setVisible(false);
         dispose();
-        new CharInfoHome().setVisible(true);
+        new CharInfoHome(userId, username, email, profileImage, bgmPlayer, true).setVisible(true);
     }//GEN-LAST:event_goLabel2MouseClicked
 
     private void goLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goLabel2MouseEntered
@@ -282,7 +361,7 @@ public class Home extends javax.swing.JFrame {
     private void goLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goLabel1MouseClicked
         setVisible(false);
         dispose();
-        new TeamGuide(userId, username, email).setVisible(true);
+        new TeamGuide(userId, username, email, profileImage, bgmPlayer).setVisible(true);
     }//GEN-LAST:event_goLabel1MouseClicked
 
     private void goLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goLabel1MouseEntered

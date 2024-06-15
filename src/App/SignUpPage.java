@@ -6,6 +6,7 @@ package App;
 
 import java.sql.*;
 import DatabaseConnection.ConnectionProvider;
+import jaco.mp3.player.MP3Player;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Point;
@@ -25,11 +26,20 @@ import javax.swing.event.DocumentListener;
  * @author asus
  */
 public class SignUpPage extends javax.swing.JFrame {
-
+    private MP3Player bgmPlayer;
     /**
      * Creates new form SignUp
      */
     public SignUpPage() {
+        initComponents();
+        myinit();
+        setTitle("Sign Up Page");
+        setResizable(false);
+        setLocationRelativeTo(null);
+    }
+    
+    public SignUpPage(MP3Player bgmPlayer) {
+        this.bgmPlayer = bgmPlayer;
         initComponents();
         myinit();
         setTitle("Sign Up Page");
@@ -489,6 +499,7 @@ public class SignUpPage extends javax.swing.JFrame {
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         setVisible(false);
         dispose();
+        bgmPlayer.stop();
         new WelcomePage().setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
 
@@ -509,13 +520,13 @@ public class SignUpPage extends javax.swing.JFrame {
     private void loginLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginLabelMouseClicked
         setVisible(false);
         dispose();
-        new LoginPage().setVisible(true);
+        new LoginPage(bgmPlayer).setVisible(true);
     }//GEN-LAST:event_loginLabelMouseClicked
 
     private void jSeparator1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSeparator1MouseClicked
         setVisible(false);
         dispose();
-        new LoginPage().setVisible(true);
+        new LoginPage(bgmPlayer).setVisible(true);
     }//GEN-LAST:event_jSeparator1MouseClicked
 
     private void jSeparator1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSeparator1MouseEntered
@@ -665,17 +676,18 @@ public class SignUpPage extends javax.swing.JFrame {
                        newId = 1;
                    }
                    
-                   String str = "insert into user values(?,?,?,?)";
+                   String str = "insert into user values(?,?,?,?,?)";
                    PreparedStatement ps = con.prepareStatement(str);
                    ps.setInt(1, newId);
                    ps.setString(2, username);
                    ps.setString(3, email);
                    ps.setString(4, password);
+                   ps.setString(5, null);
                    ps.executeUpdate();
                    
                    setVisible(false);
                    dispose();
-                   new ListCharacter(newId).setVisible(true);
+                   new ListCharacter(newId, bgmPlayer).setVisible(true);
                    
                }catch(Exception e){
                    JOptionPane.showMessageDialog(getContentPane(), e);
@@ -746,17 +758,18 @@ public class SignUpPage extends javax.swing.JFrame {
                        newId = 1;
                    }
                    
-                   String str = "insert into user values(?,?,?,?)";
+                   String str = "insert into user values(?,?,?,?,?)";
                    PreparedStatement ps = con.prepareStatement(str);
                    ps.setInt(1, newId);
                    ps.setString(2, username);
                    ps.setString(3, email);
                    ps.setString(4, password);
+                   ps.setString(5,null);
                    ps.executeUpdate();
                    
                    setVisible(false);
                    dispose();
-                   new ListCharacter(newId).setVisible(true);
+                   new ListCharacter(newId, bgmPlayer).setVisible(true);
                    
                }catch(Exception e){
                    JOptionPane.showMessageDialog(getContentPane(), e);

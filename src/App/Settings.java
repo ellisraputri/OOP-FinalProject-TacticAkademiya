@@ -4,14 +4,22 @@
  */
 package App;
 
+import static App.SettingProfile.resizeImage;
 import DatabaseConnection.ConnectionProvider;
+import jaco.mp3.player.MP3Player;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,6 +45,8 @@ public class Settings extends javax.swing.JFrame {
     private String username;
     private String email;
     private String password;
+    private String profilePath;
+    private MP3Player bgmPlayer;
     public ArrayList<String> ownedChars = new ArrayList<>();
     /**
      * Creates new form Settings
@@ -47,9 +57,10 @@ public class Settings extends javax.swing.JFrame {
         myinit();
     }
     
-    public Settings(int userId){
+    public Settings(int userId, MP3Player bgmPlayer){
         initComponents();
         this.userId = userId;
+        this.bgmPlayer = bgmPlayer;
         setLocationRelativeTo(null);
         myinit();
     }
@@ -100,6 +111,7 @@ public class Settings extends javax.swing.JFrame {
                 username = rs.getString(2);
                 email = rs.getString(3);
                 password = rs.getString(4);
+                profilePath = rs.getString(5);
             }
             
             
@@ -264,7 +276,119 @@ public class Settings extends javax.swing.JFrame {
         imagePanel.setBounds(10, myCharLabel.getY()+myCharLabel.getPreferredSize().height+15, 500, imagePanel.getPreferredSize().height);
         
         parentPanel.add(imagePanel);
-        parentPanel.setPreferredSize(new Dimension(parentPanel.getWidth(), imagePanel.getHeight()+90));
+        parentPanel.setPreferredSize(new Dimension(parentPanel.getWidth(), imagePanel.getHeight()+30));
+        
+        setProfilePicture();
+    }
+    
+    private void setProfilePicture(){
+        myProfile = new JLabel();
+        myProfile.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
+        myProfile.setForeground(new Color(131,113,90));
+        myProfile.setText("Profile Picture");
+        myProfile.setBounds(0, parentPanel.getPreferredSize().height+15, myProfile.getPreferredSize().width+4, 60);    
+        parentPanel.add(myProfile);
+        myProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                myProfileMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                myProfileMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                myProfileMouseExited(evt);
+            }
+        });
+        parentPanel.setComponentZOrder(myProfile, 0);
+        
+        myProfileArrow = new JLabel();
+        myProfileArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/right_arrow.png"))); // NOI18N
+        myProfileArrow.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                myProfileMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                myProfileMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                myProfileMouseExited(evt);
+            }
+        });
+        parentPanel.add(myProfileArrow);
+        myProfileArrow.setBounds(myProfile.getPreferredSize().width+13, myProfile.getY()+20, 20, 20);
+        parentPanel.setComponentZOrder(myProfileArrow,0);
+        
+        profilePic = new JLabel();
+        if(profilePath == null){
+           profilePath = "src/App/image/profile1.png";
+           setProfileImage(profilePath);
+        }
+        else if(profilePath.contains("GenshinIcons")){
+            BufferedImage im = imageIconToBufferedImage(new ImageIcon(profilePath));
+            cropIntoCircle(im);
+        }
+        else{
+            setProfileImage(profilePath);
+        }
+        parentPanel.add(profilePic);
+        profilePic.setBounds(15, myProfileArrow.getY()+30, 110,110);
+        
+        parentPanel.setPreferredSize(new Dimension(parentPanel.getWidth(), profilePic.getY()+120));
+    }
+    
+    public void cropIntoCircle(BufferedImage croppedImage){
+        BufferedImage img = croppedImage;
+        
+        int width = img.getWidth(null);
+        int height = img.getHeight(null);
+
+        BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = bi.createGraphics();
+
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        int circleDiameter = Math.min(width,height);
+        Ellipse2D.Double circle = new Ellipse2D.Double(0,0,circleDiameter,circleDiameter);
+        g2.setClip(circle);
+        g2.drawImage(img,0,0,null);
+        
+        setProfileImage(bi);
+    }
+    
+    public void setProfileImage(BufferedImage im){
+        BufferedImage resizedImage = resizeImage(im, 110, 110);
+        profilePic.setIcon(new ImageIcon(resizedImage));
+        profilePic.repaint();
+        profilePic.revalidate();
+        getContentPane().repaint();
+        getContentPane().revalidate();
+    }
+    
+    public void setProfileImage(String path){
+        BufferedImage im = imageIconToBufferedImage(new ImageIcon(path));
+        BufferedImage resizedImage = resizeImage(im, 110, 110);
+        profilePic.setIcon(new ImageIcon(resizedImage));
+        profilePic.repaint();
+        profilePic.revalidate();
+        getContentPane().repaint();
+        getContentPane().revalidate();
+    }
+    
+    public static BufferedImage imageIconToBufferedImage(ImageIcon icon) {
+        Image img = icon.getImage();
+        BufferedImage bufferedImage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = bufferedImage.createGraphics();
+        g2d.drawImage(img, 0, 0, null);
+        g2d.dispose();
+        return bufferedImage;
+    }
+    
+    public static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
+        Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
+        BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = outputImage.createGraphics();
+        g2d.drawImage(resultingImage, 0, 0, null);
+        g2d.dispose();
+        return outputImage;
     }
 
     /**
@@ -565,7 +689,7 @@ public class Settings extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(getContentPane(), e);
         }
         
-        if(allUsername.contains(username) && allEmail.contains(email)){
+        if(allUsername.contains(username) && allEmail.contains(email) && allUsername.indexOf(username)!=userId-1){
             return true;
         }
         return false;
@@ -614,7 +738,7 @@ public class Settings extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(getContentPane(), "Information has been saved.");
                     setVisible(false);
                     dispose();
-                    new Home(userId).setVisible(true);
+                    new Home(userId, bgmPlayer).setVisible(true);
 
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(getContentPane(), e);
@@ -677,7 +801,7 @@ public class Settings extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(getContentPane(), "Information has been saved.");
                     setVisible(false);
                     dispose();
-                    new Home(userId).setVisible(true);
+                    new Home(userId, bgmPlayer).setVisible(true);
 
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(getContentPane(), e);
@@ -762,7 +886,7 @@ public class Settings extends javax.swing.JFrame {
         if(ans == JOptionPane.YES_OPTION){
             setVisible(false);
             dispose();
-            new Home(userId).setVisible(true);
+            new Home(userId, bgmPlayer).setVisible(true);
         }
     }//GEN-LAST:event_exitButtonMouseClicked
 
@@ -775,7 +899,43 @@ public class Settings extends javax.swing.JFrame {
         exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/exit1.png")));
         exitButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_exitButtonMouseExited
-
+    
+    
+    public static boolean openProfile = false;
+    
+    private void myProfileMouseEntered(MouseEvent evt){
+        myProfileArrow.setBounds(200, myProfileArrow.getY(), 20, 20);
+        myProfileArrow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        myProfile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        parentPanel.revalidate();
+        parentPanel.repaint();
+        System.out.println("masuk");
+    }
+    
+    private void myProfileMouseExited(MouseEvent evt){
+        myProfileArrow.setBounds(190, myProfileArrow.getY(), 20, 20);
+        myProfileArrow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        myProfile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        parentPanel.revalidate();
+        parentPanel.repaint();
+    }
+    
+    private void myProfileMouseClicked(MouseEvent evt){
+        if(openProfile==false){
+            new SettingProfile(userId, setting).setVisible(true);
+            openProfile = true;
+        }
+        else{
+            JOptionPane.showMessageDialog(parentPanel, "The frame is already opened.");
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -815,6 +975,9 @@ public class Settings extends javax.swing.JFrame {
     private App.RoundJTextField emailField;
     private App.RoundJPasswordField passwordField;
     private JPanel imagePanel;
+    private JLabel myProfile;
+    private JLabel myProfileArrow;
+    private JLabel profilePic;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel exitButton;

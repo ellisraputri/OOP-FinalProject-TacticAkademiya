@@ -40,14 +40,12 @@ public class CharacterPanelNonClick extends ClonePanel{
             public void mouseEntered(MouseEvent me) {
                 over = true;
                 charName.setVisible(true);
-                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
             }
 
             @Override
             public void mouseExited(MouseEvent me) {
                 over = false;
                 charName.setVisible(false);
-                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
             }
 
             @Override
