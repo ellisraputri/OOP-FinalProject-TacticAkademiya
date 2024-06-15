@@ -405,6 +405,48 @@ public class CharInfoHome extends javax.swing.JFrame {
         if(weaponFilter.contains("Claymore") && weaponFilter.size()==1 && elementFilter.contains("Hydro") && elementFilter.size()==1){
             scrollPane.setVisible(false);
         }
+        else if(weaponFilter.contains("Sword") && weaponFilter.size()==1 && elementFilter.contains("Pyro") && elementFilter.size()==1 && starFilter.contains("5") && starFilter.size()==1){
+            scrollPane.setVisible(false);
+        }
+        else if(weaponFilter.contains("Sword") && weaponFilter.size()==1 && elementFilter.contains("Geo") && elementFilter.size()==1 && starFilter.contains("4") && starFilter.size()==1){
+            scrollPane.setVisible(false);
+        }
+        else if(weaponFilter.contains("Claymore") && weaponFilter.size()==1 && elementFilter.contains("Dendro") && elementFilter.size()==1 && starFilter.contains("5") && starFilter.size()==1){
+            scrollPane.setVisible(false);
+        }
+        else if(weaponFilter.contains("Claymore") && weaponFilter.size()==1 && elementFilter.contains("Electro") && elementFilter.size()==1 && starFilter.contains("5") && starFilter.size()==1){
+            scrollPane.setVisible(false);
+        }
+        else if(weaponFilter.contains("Claymore") && weaponFilter.size()==1 && elementFilter.contains("Anemo") && elementFilter.size()==1 && starFilter.contains("5") && starFilter.size()==1){
+            scrollPane.setVisible(false);
+        }
+        else if(weaponFilter.contains("Bow") && weaponFilter.size()==1 && elementFilter.contains("Hydro") && elementFilter.size()==1 && starFilter.contains("4") && starFilter.size()==1){
+            scrollPane.setVisible(false);
+        }
+        else if(weaponFilter.contains("Bow") && weaponFilter.size()==1 && elementFilter.contains("Electro") && elementFilter.size()==1 && starFilter.contains("5") && starFilter.size()==1){
+            scrollPane.setVisible(false);
+        }
+        else if(weaponFilter.contains("Bow") && weaponFilter.size()==1 && elementFilter.contains("Geo") && elementFilter.size()==1 && starFilter.contains("5") && starFilter.size()==1){
+            scrollPane.setVisible(false);
+        }
+        else if(weaponFilter.contains("Catalyst") && weaponFilter.size()==1 && elementFilter.contains("Dendro") && elementFilter.size()==1 && starFilter.contains("4") && starFilter.size()==1){
+            scrollPane.setVisible(false);
+        }
+        else if(weaponFilter.contains("Catalyst") && weaponFilter.size()==1 && elementFilter.contains("Geo") && elementFilter.size()==1 && starFilter.contains("5") && starFilter.size()==1){
+            scrollPane.setVisible(false);
+        }
+        else if(weaponFilter.contains("Polearm") && weaponFilter.size()==1 && elementFilter.contains("Hydro") && elementFilter.size()==1 && starFilter.contains("5") && starFilter.size()==1){
+            scrollPane.setVisible(false);
+        }
+        else if(weaponFilter.contains("Polearm") && weaponFilter.size()==1 && elementFilter.contains("Dendro") && elementFilter.size()==1 && starFilter.contains("5") && starFilter.size()==1){
+            scrollPane.setVisible(false);
+        }
+        else if(weaponFilter.contains("Polearm") && weaponFilter.size()==1 && elementFilter.contains("Electro") && elementFilter.size()==1 && starFilter.contains("4") && starFilter.size()==1){
+            scrollPane.setVisible(false);
+        }
+        else if(weaponFilter.contains("Polearm") && weaponFilter.size()==1 && elementFilter.contains("Anemo") && elementFilter.size()==1 && starFilter.contains("4") && starFilter.size()==1){
+            scrollPane.setVisible(false);
+        }
         else{
             scrollPane.setVisible(true);
             showPanels(filteredPanels);

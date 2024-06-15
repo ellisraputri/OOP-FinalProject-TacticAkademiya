@@ -86,8 +86,7 @@ public class WelcomePage extends javax.swing.JFrame {
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         setVisible(false);
         dispose();
-        bgmWelcomePlayer.stop();
-        new LoginPage().setVisible(true);
+        new LoginPage(bgmWelcomePlayer).setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
 
     /**

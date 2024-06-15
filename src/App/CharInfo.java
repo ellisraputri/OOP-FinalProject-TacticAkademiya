@@ -129,7 +129,7 @@ public class CharInfo extends javax.swing.JFrame {
     }
     
     private void loadBgm() {
-        String folderPath = "src/App/audio/bgmChar";
+        String folderPath = "src/App/audio/bgm";
         File folder = new File(folderPath);
         File[] listOfFiles = folder.listFiles();
         File selectedFile = null;

@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,6 +47,7 @@ public class Settings extends javax.swing.JFrame {
     private String email;
     private String password;
     private String profilePath;
+    private ArrayList<String> musicList = new ArrayList<>();
     private MP3Player bgmPlayer;
     public ArrayList<String> ownedChars = new ArrayList<>();
     /**
@@ -331,9 +333,10 @@ public class Settings extends javax.swing.JFrame {
             setProfileImage(profilePath);
         }
         parentPanel.add(profilePic);
-        profilePic.setBounds(15, myProfileArrow.getY()+30, 110,110);
+        profilePic.setBounds(15, myProfileArrow.getY()+40, 110,110);
         
         parentPanel.setPreferredSize(new Dimension(parentPanel.getWidth(), profilePic.getY()+120));
+        setMusic();
     }
     
     public void cropIntoCircle(BufferedImage croppedImage){
@@ -359,6 +362,8 @@ public class Settings extends javax.swing.JFrame {
         profilePic.setIcon(new ImageIcon(resizedImage));
         profilePic.repaint();
         profilePic.revalidate();
+        parentPanel.repaint();
+        parentPanel.revalidate();
         getContentPane().repaint();
         getContentPane().revalidate();
     }
@@ -369,6 +374,8 @@ public class Settings extends javax.swing.JFrame {
         profilePic.setIcon(new ImageIcon(resizedImage));
         profilePic.repaint();
         profilePic.revalidate();
+        parentPanel.repaint();
+        parentPanel.revalidate();
         getContentPane().repaint();
         getContentPane().revalidate();
     }
@@ -389,6 +396,119 @@ public class Settings extends javax.swing.JFrame {
         g2d.drawImage(resultingImage, 0, 0, null);
         g2d.dispose();
         return outputImage;
+    }
+    
+    public void setMusic(){
+        myMusic = new JLabel();
+        myMusic.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
+        myMusic.setForeground(new Color(131,113,90));
+        myMusic.setText("Background Music");
+        myMusic.setBounds(0, parentPanel.getPreferredSize().height+15, myMusic.getPreferredSize().width+4, 60);    
+        parentPanel.add(myMusic);
+        myMusic.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                myMusicMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                myMusicMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                myMusicMouseExited(evt);
+            }
+        });
+        parentPanel.setComponentZOrder(myMusic, 0);
+        
+        myMusicArrow = new JLabel();
+        myMusicArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/right_arrow.png"))); // NOI18N
+        myMusicArrow.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                myMusicMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                myMusicMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                myMusicMouseExited(evt);
+            }
+        });
+        parentPanel.add(myMusicArrow);
+        myMusicArrow.setBounds(myMusic.getPreferredSize().width+13, myMusic.getY()+20, 20, 20);
+        parentPanel.setComponentZOrder(myMusicArrow,0);
+        
+        musicPanel = new JPanel();
+        musicPanel.setLayout(null);
+        musicPanel.setPreferredSize(new Dimension(400, 200)); 
+        musicPanel.setOpaque(false);
+        musicPanel.setBackground(new Color(0,0,0,0));
+        musicPanel.setBounds(0, myMusicArrow.getY()+myMusicArrow.getPreferredSize().height+25, musicPanel.getPreferredSize().width, musicPanel.getPreferredSize().height);
+        parentPanel.add(musicPanel);
+        parentPanel.setComponentZOrder(musicPanel, 0);
+        
+        setMusicList();
+
+        parentPanel.setPreferredSize(new Dimension(parentPanel.getWidth(), myMusicArrow.getY()+260));
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }
+    
+    public void setMusicList(){
+        musicPanel.removeAll();
+        checkFromDatabase();
+        
+        int y=0;
+        for(int i=0; i<musicList.size(); i++){
+            JLabel musicTitle = new JLabel();
+            String[] filename = musicList.get(i).split(" - ");
+            String name = filename[1].replaceAll(".mp3", "").trim();
+            
+            musicTitle.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+            musicTitle.setForeground(new Color(131,113,90));
+            musicTitle.setText("- "+ name);
+            musicTitle.setBounds(0, y, musicTitle.getPreferredSize().width+20, musicTitle.getPreferredSize().height);    
+            musicPanel.add(musicTitle);
+            musicPanel.setComponentZOrder(musicTitle,0);
+            musicPanel.revalidate();
+            musicPanel.repaint();
+            
+            y+=40;
+        }
+        
+        musicPanel.setPreferredSize(new Dimension(musicPanel.getWidth(), y+90));
+        musicPanel.setBounds(10, myMusicArrow.getY()+myMusicArrow.getPreferredSize().height+25, musicPanel.getPreferredSize().width, musicPanel.getPreferredSize().height);
+        parentPanel.add(musicPanel);
+        parentPanel.setPreferredSize(new Dimension(parentPanel.getWidth(), musicPanel.getY()+musicPanel.getHeight()+15));
+        parentPanel.revalidate();
+        parentPanel.repaint();
+    }
+    
+    private void checkFromDatabase(){
+        musicList.clear();
+        try{
+            Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = st.executeQuery("select * from user where id='" + userId + "'");
+            if(rs.first()){
+                musicList.add(rs.getString(6));
+                musicList.add(rs.getString(7));
+                musicList.add(rs.getString(8));
+                musicList.add(rs.getString(9));
+                musicList.add(rs.getString(10));
+            }
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(getContentPane(), e);
+        }
+    }
+    
+    public void updateBgmPlayer(){
+        bgmPlayer = new MP3Player();
+        bgmPlayer.addToPlayList(new File("src/App/audio/bgm/"+musicList.get(0)));
+        bgmPlayer.addToPlayList(new File("src/App/audio/bgm/"+musicList.get(1)));
+        bgmPlayer.addToPlayList(new File("src/App/audio/bgm/"+musicList.get(2)));
+        bgmPlayer.addToPlayList(new File("src/App/audio/bgm/"+musicList.get(3)));
+        bgmPlayer.addToPlayList(new File("src/App/audio/bgm/"+musicList.get(4)));
+        bgmPlayer.setRepeat(true);
+        bgmPlayer.play();
     }
 
     /**
@@ -904,16 +1024,15 @@ public class Settings extends javax.swing.JFrame {
     public static boolean openProfile = false;
     
     private void myProfileMouseEntered(MouseEvent evt){
-        myProfileArrow.setBounds(200, myProfileArrow.getY(), 20, 20);
+        myProfileArrow.setBounds(myProfile.getPreferredSize().width+20, myProfileArrow.getY(), 20, 20);
         myProfileArrow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         myProfile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         parentPanel.revalidate();
         parentPanel.repaint();
-        System.out.println("masuk");
     }
     
     private void myProfileMouseExited(MouseEvent evt){
-        myProfileArrow.setBounds(190, myProfileArrow.getY(), 20, 20);
+        myProfileArrow.setBounds(myProfile.getPreferredSize().width+13, myProfileArrow.getY(), 20, 20);
         myProfileArrow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         myProfile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         parentPanel.revalidate();
@@ -931,7 +1050,33 @@ public class Settings extends javax.swing.JFrame {
     }
     
     
+    public static boolean openMusic = false;
     
+    private void myMusicMouseEntered(MouseEvent evt){
+        myMusicArrow.setBounds(myMusic.getPreferredSize().width+20, myMusicArrow.getY(), 20, 20);
+        myMusicArrow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        myMusic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        parentPanel.revalidate();
+        parentPanel.repaint();
+    }
+    
+    private void myMusicMouseExited(MouseEvent evt){
+        myMusicArrow.setBounds(myMusic.getPreferredSize().width+13, myMusicArrow.getY(), 20, 20);
+        myMusicArrow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        myMusic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        parentPanel.revalidate();
+        parentPanel.repaint();
+    }
+    
+    private void myMusicMouseClicked(MouseEvent evt){
+        if(openMusic==false){
+            new SettingMusic(userId, bgmPlayer, setting).setVisible(true);
+            openMusic = true;
+        }
+        else{
+            JOptionPane.showMessageDialog(parentPanel, "The frame is already opened.");
+        }
+    }
     
     
     
@@ -978,6 +1123,9 @@ public class Settings extends javax.swing.JFrame {
     private JLabel myProfile;
     private JLabel myProfileArrow;
     private JLabel profilePic;
+    private JLabel myMusic;
+    private JLabel myMusicArrow;
+    private JPanel musicPanel;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel exitButton;

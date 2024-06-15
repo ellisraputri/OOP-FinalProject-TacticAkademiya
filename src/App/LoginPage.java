@@ -37,22 +37,6 @@ public class LoginPage extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("Login Page");
         setResizable(false);
-        setBGM();
-    }
-    
-    private void setBGM(){
-        String folderPath = "src/App/audio/bgm";
-        File folder = new File(folderPath);
-        File[] listOfFiles = folder.listFiles();
-        
-        bgmPlayer = new MP3Player();
-        bgmPlayer.addToPlayList(listOfFiles[0]);
-        bgmPlayer.addToPlayList(listOfFiles[1]);
-        bgmPlayer.addToPlayList(listOfFiles[2]);
-        bgmPlayer.addToPlayList(listOfFiles[3]);
-        bgmPlayer.addToPlayList(listOfFiles[4]);
-        bgmPlayer.setRepeat(true);
-        bgmPlayer.play();
     }
     
     public LoginPage(MP3Player bgmPlayer) {
@@ -385,7 +369,9 @@ public class LoginPage extends javax.swing.JFrame {
                         if(passwordConfirmation.equals(password)){
                             setVisible(false);
                             dispose();
-                            new Home(id, bgmPlayer).setVisible(true);
+                            bgmPlayer.stop();
+                            new Home(id).setVisible(true);
+                            System.out.println(id);
                         }
                         else{
                             JOptionPane.showMessageDialog(getContentPane(), "Incorrect Password");
@@ -400,7 +386,8 @@ public class LoginPage extends javax.swing.JFrame {
                             if(passwordConfirmation.equals(password)){
                                 setVisible(false);
                                 dispose();
-                                new Home(id, bgmPlayer).setVisible(true);
+                                bgmPlayer.stop();
+                                new Home(id).setVisible(true);
                             }
                             else{
                                 JOptionPane.showMessageDialog(getContentPane(), "Incorrect Password");
@@ -459,7 +446,8 @@ public class LoginPage extends javax.swing.JFrame {
                         if(passwordConfirmation.equals(password)){
                             setVisible(false);
                             dispose();
-                            new Home(id, bgmPlayer).setVisible(true);
+                            bgmPlayer.stop();
+                            new Home(id).setVisible(true);
                         }
                         else{
                             JOptionPane.showMessageDialog(getContentPane(), "Incorrect Password");
@@ -474,7 +462,8 @@ public class LoginPage extends javax.swing.JFrame {
                             if(passwordConfirmation.equals(password)){
                                 setVisible(false);
                                 dispose();
-                                new Home(id, bgmPlayer).setVisible(true);
+                                bgmPlayer.stop();
+                                new Home(id).setVisible(true);
                             }
                             else{
                                 JOptionPane.showMessageDialog(getContentPane(), "Incorrect Password");

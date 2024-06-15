@@ -14,9 +14,11 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -38,6 +40,45 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         this.userId = 1;
         myinit();
+    }
+    
+    public Home(int userId) {
+        initComponents();
+        this.userId = userId;
+        setBGM();
+        setTitle("Home Page");
+        setResizable(false);
+        setLocationRelativeTo(null);
+        myinit();
+    }
+    
+    private void setBGM(){
+        ArrayList<String> musicList = new ArrayList<>();
+        try {
+            Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            String query = "select * from user where id='" + userId + "'";
+            ResultSet rs = st.executeQuery(query);
+
+            if (rs.first()) {
+                musicList.add(rs.getString(6));
+                musicList.add(rs.getString(7));
+                musicList.add(rs.getString(8));
+                musicList.add(rs.getString(9));
+                musicList.add(rs.getString(10));
+            } 
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(getContentPane(), e);
+        }
+
+        bgmPlayer = new MP3Player();
+        for (String musicFile : musicList) {
+            bgmPlayer.addToPlayList(new File("src/App/audio/bgm/" + musicFile));
+        }
+        bgmPlayer.setRepeat(true);
+        bgmPlayer.play();
+
     }
     
     public Home(int userId, MP3Player bgmPlayer) {

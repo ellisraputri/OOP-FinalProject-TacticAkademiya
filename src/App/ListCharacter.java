@@ -254,7 +254,8 @@ public class ListCharacter extends javax.swing.JFrame {
 
                 setVisible(false);
                 dispose();
-                new Home(userId, bgmPlayer).setVisible(true);
+                bgmPlayer.stop();
+                new Home(userId).setVisible(true);
 
             }catch(Exception e){
                 JOptionPane.showMessageDialog(getContentPane(), e);
@@ -300,7 +301,8 @@ public class ListCharacter extends javax.swing.JFrame {
 
                 setVisible(false);
                 dispose();
-                new Home(userId, bgmPlayer).setVisible(true);
+                bgmPlayer.stop();
+                new Home(userId).setVisible(true);
 
             }catch(Exception e){
                 JOptionPane.showMessageDialog(getContentPane(), e);

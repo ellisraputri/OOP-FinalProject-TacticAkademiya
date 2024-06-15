@@ -676,13 +676,18 @@ public class SignUpPage extends javax.swing.JFrame {
                        newId = 1;
                    }
                    
-                   String str = "insert into user values(?,?,?,?,?)";
+                   String str = "insert into user values(?,?,?,?,?,?,?,?,?,?)";
                    PreparedStatement ps = con.prepareStatement(str);
                    ps.setInt(1, newId);
                    ps.setString(2, username);
                    ps.setString(3, email);
                    ps.setString(4, password);
-                   ps.setString(5, null);
+                   ps.setString(5,null);
+                   ps.setString(6, "1a - What a Hopeful Voyage.mp3");
+                   ps.setString(7, "1b - Vast and Blue.mp3");
+                   ps.setString(8, "1c - Mesmerizing Waves.mp3");
+                   ps.setString(9, "1d - Lovers' Oath.mp3");
+                   ps.setString(10, "1e - Old Tales Preserved.mp3");
                    ps.executeUpdate();
                    
                    setVisible(false);
@@ -758,13 +763,18 @@ public class SignUpPage extends javax.swing.JFrame {
                        newId = 1;
                    }
                    
-                   String str = "insert into user values(?,?,?,?,?)";
+                   String str = "insert into user values(?,?,?,?,?,?,?,?,?,?)";
                    PreparedStatement ps = con.prepareStatement(str);
                    ps.setInt(1, newId);
                    ps.setString(2, username);
                    ps.setString(3, email);
                    ps.setString(4, password);
                    ps.setString(5,null);
+                   ps.setString(6, "1a - What a Hopeful Voyage.mp3");
+                   ps.setString(7, "1b - Vast and Blue.mp3");
+                   ps.setString(8, "1c - Mesmerizing Waves.mp3");
+                   ps.setString(9, "1d - Lovers' Oath.mp3");
+                   ps.setString(10, "1e - Old Tales Preserved.mp3");
                    ps.executeUpdate();
                    
                    setVisible(false);
