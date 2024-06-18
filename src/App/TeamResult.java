@@ -8,11 +8,9 @@ import jaco.mp3.player.MP3Player;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,7 +96,7 @@ public class TeamResult extends javax.swing.JFrame {
         resultPage1.revalidate();
         resultPage1.repaint();
         
-        System.out.println(jLabel8.getY());
+        System.out.println(explanation1.getY());
         System.out.println(rectangle1.getY());
     }
     
@@ -347,8 +345,8 @@ public class TeamResult extends javax.swing.JFrame {
         emailLabel = new javax.swing.JLabel();
         exitButton = new javax.swing.JLabel();
         char2Label = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        bestTeam1 = new javax.swing.JLabel();
+        explanation1 = new javax.swing.JLabel();
         char3Label = new javax.swing.JLabel();
         char4Label = new javax.swing.JLabel();
         char1Label = new javax.swing.JLabel();
@@ -357,24 +355,24 @@ public class TeamResult extends javax.swing.JFrame {
         char3Label1 = new javax.swing.JLabel();
         char4Label1 = new javax.swing.JLabel();
         rectangle1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        bg1 = new javax.swing.JLabel();
         resultPage2 = new javax.swing.JPanel();
         profileButton1 = new javax.swing.JLabel();
         usernameLabel1 = new javax.swing.JLabel();
         emailLabel1 = new javax.swing.JLabel();
         exitButton1 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        bestTeam2 = new javax.swing.JLabel();
+        secondhalfText = new javax.swing.JLabel();
         char2Name = new javax.swing.JLabel();
         char4Name = new javax.swing.JLabel();
         char3Name = new javax.swing.JLabel();
         char1Name = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        explanation2 = new javax.swing.JLabel();
         secondHalfButton = new javax.swing.JLabel();
         firstHalfButton = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        firstHalfText = new javax.swing.JLabel();
+        rectangle2 = new javax.swing.JLabel();
+        bg2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Team Result");
@@ -436,19 +434,19 @@ public class TeamResult extends javax.swing.JFrame {
         resultPage1.add(char2Label);
         char2Label.setBounds(330, 490, 190, 30);
 
-        jLabel7.setBackground(new java.awt.Color(241, 167, 84));
-        jLabel7.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 175, 85));
-        jLabel7.setText("Best Team");
-        resultPage1.add(jLabel7);
-        jLabel7.setBounds(100, 120, 200, 50);
+        bestTeam1.setBackground(new java.awt.Color(241, 167, 84));
+        bestTeam1.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        bestTeam1.setForeground(new java.awt.Color(255, 175, 85));
+        bestTeam1.setText("Best Team");
+        resultPage1.add(bestTeam1);
+        bestTeam1.setBounds(100, 120, 200, 50);
 
-        jLabel8.setBackground(new java.awt.Color(241, 167, 84));
-        jLabel8.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Team Explanation");
-        resultPage1.add(jLabel8);
-        jLabel8.setBounds(110, 380, 340, 50);
+        explanation1.setBackground(new java.awt.Color(241, 167, 84));
+        explanation1.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        explanation1.setForeground(new java.awt.Color(255, 255, 255));
+        explanation1.setText("Team Explanation");
+        resultPage1.add(explanation1);
+        explanation1.setBounds(110, 380, 340, 50);
 
         char3Label.setBackground(new java.awt.Color(252, 236, 214));
         char3Label.setFont(new java.awt.Font("HYWenHei-85W", 0, 20)); // NOI18N
@@ -503,9 +501,9 @@ public class TeamResult extends javax.swing.JFrame {
         resultPage1.add(rectangle1);
         rectangle1.setBounds(90, 370, 1130, 300);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamresult.png"))); // NOI18N
-        resultPage1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1280, 720);
+        bg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamresult.png"))); // NOI18N
+        resultPage1.add(bg1);
+        bg1.setBounds(0, 0, 1280, 720);
 
         parentPanel.add(resultPage1, "card2");
 
@@ -553,19 +551,19 @@ public class TeamResult extends javax.swing.JFrame {
         resultPage2.add(exitButton1);
         exitButton1.setBounds(1190, 20, 70, 70);
 
-        jLabel9.setBackground(new java.awt.Color(241, 167, 84));
-        jLabel9.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 175, 85));
-        jLabel9.setText("Best Teams");
-        resultPage2.add(jLabel9);
-        jLabel9.setBounds(90, 140, 230, 50);
+        bestTeam2.setBackground(new java.awt.Color(241, 167, 84));
+        bestTeam2.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        bestTeam2.setForeground(new java.awt.Color(255, 175, 85));
+        bestTeam2.setText("Best Teams");
+        resultPage2.add(bestTeam2);
+        bestTeam2.setBounds(90, 140, 230, 50);
 
-        jLabel10.setBackground(new java.awt.Color(241, 167, 84));
-        jLabel10.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Second Half");
-        resultPage2.add(jLabel10);
-        jLabel10.setBounds(100, 410, 190, 50);
+        secondhalfText.setBackground(new java.awt.Color(241, 167, 84));
+        secondhalfText.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
+        secondhalfText.setForeground(new java.awt.Color(255, 255, 255));
+        secondhalfText.setText("Second Half");
+        resultPage2.add(secondhalfText);
+        secondhalfText.setBounds(100, 410, 190, 50);
 
         char2Name.setBackground(new java.awt.Color(252, 236, 214));
         char2Name.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
@@ -595,12 +593,12 @@ public class TeamResult extends javax.swing.JFrame {
         resultPage2.add(char1Name);
         char1Name.setBounds(750, 320, 190, 30);
 
-        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel12.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Team Explanation");
-        resultPage2.add(jLabel12);
-        jLabel12.setBounds(740, 160, 340, 50);
+        explanation2.setBackground(new java.awt.Color(255, 255, 255));
+        explanation2.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        explanation2.setForeground(new java.awt.Color(255, 255, 255));
+        explanation2.setText("Team Explanation");
+        resultPage2.add(explanation2);
+        explanation2.setBounds(740, 160, 340, 50);
 
         secondHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle6.png"))); // NOI18N
         secondHalfButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -632,20 +630,20 @@ public class TeamResult extends javax.swing.JFrame {
         resultPage2.add(firstHalfButton);
         firstHalfButton.setBounds(740, 220, 210, 70);
 
-        jLabel13.setBackground(new java.awt.Color(241, 167, 84));
-        jLabel13.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("First Half");
-        resultPage2.add(jLabel13);
-        jLabel13.setBounds(100, 190, 160, 50);
+        firstHalfText.setBackground(new java.awt.Color(241, 167, 84));
+        firstHalfText.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
+        firstHalfText.setForeground(new java.awt.Color(255, 255, 255));
+        firstHalfText.setText("First Half");
+        resultPage2.add(firstHalfText);
+        firstHalfText.setBounds(100, 190, 160, 50);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle4.png"))); // NOI18N
-        resultPage2.add(jLabel3);
-        jLabel3.setBounds(720, 140, 470, 530);
+        rectangle2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle4.png"))); // NOI18N
+        resultPage2.add(rectangle2);
+        rectangle2.setBounds(720, 140, 470, 530);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamresult.png"))); // NOI18N
-        resultPage2.add(jLabel2);
-        jLabel2.setBounds(0, 0, 1280, 720);
+        bg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamresult.png"))); // NOI18N
+        resultPage2.add(bg2);
+        bg2.setBounds(0, 0, 1280, 720);
 
         parentPanel.add(resultPage2, "card2");
 
@@ -867,6 +865,10 @@ public class TeamResult extends javax.swing.JFrame {
     private App.WrappedLabel char3Detail;
     private App.WrappedLabel char4Detail;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bestTeam1;
+    private javax.swing.JLabel bestTeam2;
+    private javax.swing.JLabel bg1;
+    private javax.swing.JLabel bg2;
     private javax.swing.JLabel char1Label;
     private javax.swing.JLabel char1Label1;
     private javax.swing.JLabel char1Name;
@@ -883,23 +885,19 @@ public class TeamResult extends javax.swing.JFrame {
     private javax.swing.JLabel emailLabel1;
     private javax.swing.JLabel exitButton;
     private javax.swing.JLabel exitButton1;
+    private javax.swing.JLabel explanation1;
+    private javax.swing.JLabel explanation2;
     private javax.swing.JLabel firstHalfButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel firstHalfText;
     private javax.swing.JPanel parentPanel;
     private javax.swing.JLabel profileButton;
     private javax.swing.JLabel profileButton1;
     private javax.swing.JLabel rectangle1;
+    private javax.swing.JLabel rectangle2;
     private javax.swing.JPanel resultPage1;
     private javax.swing.JPanel resultPage2;
     private javax.swing.JLabel secondHalfButton;
+    private javax.swing.JLabel secondhalfText;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JLabel usernameLabel1;
     // End of variables declaration//GEN-END:variables

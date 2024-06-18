@@ -7,7 +7,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
 public class WrappedLabel extends JLabel {
     private int maxWidth;

@@ -360,14 +360,14 @@ public class TeamGuide extends javax.swing.JFrame {
         usernameLabel = new javax.swing.JLabel();
         emailLabel = new javax.swing.JLabel();
         exitButton = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        optionalLabel = new javax.swing.JLabel();
         enemiesPane = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         clonePanelContainer = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        selectEnemyText = new javax.swing.JLabel();
         modeSpiralAbyss = new javax.swing.JRadioButton();
         hydroRadButton = new javax.swing.JRadioButton();
-        jLabel4 = new javax.swing.JLabel();
+        modeText = new javax.swing.JLabel();
         modeEnemyOnly = new javax.swing.JRadioButton();
         swordRadButton = new javax.swing.JRadioButton();
         dendroRadButton = new javax.swing.JRadioButton();
@@ -376,18 +376,18 @@ public class TeamGuide extends javax.swing.JFrame {
         physicalRadButton = new javax.swing.JRadioButton();
         cryoRadButton = new javax.swing.JRadioButton();
         anemoRadButton = new javax.swing.JRadioButton();
-        jLabel5 = new javax.swing.JLabel();
+        preferElementText = new javax.swing.JLabel();
         bowRadButton = new javax.swing.JRadioButton();
         polearmRadButton = new javax.swing.JRadioButton();
         catalystRadButton = new javax.swing.JRadioButton();
         claymoreRadButton = new javax.swing.JRadioButton();
         pyroRadButton = new javax.swing.JRadioButton();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        preferWeaponText = new javax.swing.JLabel();
+        optionalLabel2 = new javax.swing.JLabel();
         nextLabel = new javax.swing.JLabel();
         nextButton = new javax.swing.JLabel();
         restartButton = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        bg1 = new javax.swing.JLabel();
         teamPage2 = new javax.swing.JPanel();
         profileButton1 = new javax.swing.JLabel();
         usernameLabel1 = new javax.swing.JLabel();
@@ -396,26 +396,26 @@ public class TeamGuide extends javax.swing.JFrame {
         characterPane = new javax.swing.JPanel();
         scrollPane2 = new javax.swing.JScrollPane();
         clonePanelContainer2 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        banCharText = new javax.swing.JLabel();
         generateLabel = new javax.swing.JLabel();
         generateButton = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        summaryText = new javax.swing.JLabel();
         summaryScroll = new javax.swing.JScrollPane();
         summaryPanel = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        optionalLabel3 = new javax.swing.JLabel();
+        summarybg = new javax.swing.JLabel();
         restartButton1 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        bg2 = new javax.swing.JLabel();
         teamPage3 = new javax.swing.JPanel();
         profileButton2 = new javax.swing.JLabel();
         usernameLabel2 = new javax.swing.JLabel();
         emailLabel2 = new javax.swing.JLabel();
         exitButton2 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        optionalLabel4 = new javax.swing.JLabel();
+        chamberText = new javax.swing.JLabel();
         modeSpiralAbyss1 = new javax.swing.JRadioButton();
         hydroRadButton1 = new javax.swing.JRadioButton();
-        jLabel15 = new javax.swing.JLabel();
+        modeText2 = new javax.swing.JLabel();
         modeEnemyOnly1 = new javax.swing.JRadioButton();
         swordRadButton1 = new javax.swing.JRadioButton();
         dendroRadButton1 = new javax.swing.JRadioButton();
@@ -424,32 +424,32 @@ public class TeamGuide extends javax.swing.JFrame {
         physicalRadButton1 = new javax.swing.JRadioButton();
         cryoRadButton1 = new javax.swing.JRadioButton();
         anemoRadButton1 = new javax.swing.JRadioButton();
-        jLabel16 = new javax.swing.JLabel();
+        preferElement2 = new javax.swing.JLabel();
         bowRadButton1 = new javax.swing.JRadioButton();
         polearmRadButton1 = new javax.swing.JRadioButton();
         catalystRadButton1 = new javax.swing.JRadioButton();
         claymoreRadButton1 = new javax.swing.JRadioButton();
         floor9Radio = new javax.swing.JRadioButton();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        preferWeapon2 = new javax.swing.JLabel();
+        optionalLabel5 = new javax.swing.JLabel();
         nextLabel1 = new javax.swing.JLabel();
         nextButton1 = new javax.swing.JLabel();
         floor10Radio = new javax.swing.JRadioButton();
         floor11Radio = new javax.swing.JRadioButton();
         floor12Radio = new javax.swing.JRadioButton();
         pyroRadButton1 = new javax.swing.JRadioButton();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        floorText = new javax.swing.JLabel();
+        optionalLabel6 = new javax.swing.JLabel();
         characterPane2 = new javax.swing.JPanel();
         scrollPane3 = new javax.swing.JScrollPane();
         clonePanelContainer3 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
+        banCharText2 = new javax.swing.JLabel();
         chamber2Rad = new javax.swing.JRadioButton();
         chamber3Rad = new javax.swing.JRadioButton();
         chamber1Rad = new javax.swing.JRadioButton();
         chamberAllRad = new javax.swing.JRadioButton();
         restartButton2 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        bg3 = new javax.swing.JLabel();
         teamPage4 = new javax.swing.JPanel();
         profileButton3 = new javax.swing.JLabel();
         usernameLabel3 = new javax.swing.JLabel();
@@ -457,12 +457,12 @@ public class TeamGuide extends javax.swing.JFrame {
         exitButton3 = new javax.swing.JLabel();
         generateLabel1 = new javax.swing.JLabel();
         generateButton1 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
+        summaryText2 = new javax.swing.JLabel();
         summaryScroll1 = new javax.swing.JScrollPane();
         summaryPanel1 = new javax.swing.JPanel();
-        jLabel25 = new javax.swing.JLabel();
+        summarybg2 = new javax.swing.JLabel();
         restartButton3 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
+        bg4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Team Guide Page");
@@ -518,12 +518,12 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage1.add(exitButton);
         exitButton.setBounds(1190, 20, 70, 70);
 
-        jLabel2.setFont(new java.awt.Font("HYWenHei-85W", 0, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel2.setText("(optional)");
-        jLabel2.setToolTipText("");
-        teamPage1.add(jLabel2);
-        jLabel2.setBounds(990, 240, 90, 30);
+        optionalLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 16)); // NOI18N
+        optionalLabel.setForeground(new java.awt.Color(241, 167, 84));
+        optionalLabel.setText("(optional)");
+        optionalLabel.setToolTipText("");
+        teamPage1.add(optionalLabel);
+        optionalLabel.setBounds(990, 240, 90, 30);
 
         enemiesPane.setLayout(null);
 
@@ -541,12 +541,12 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage1.add(enemiesPane);
         enemiesPane.setBounds(60, 170, 500, 470);
 
-        jLabel3.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel3.setText("Select Enemies");
-        jLabel3.setToolTipText("");
-        teamPage1.add(jLabel3);
-        jLabel3.setBounds(55, 120, 280, 40);
+        selectEnemyText.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        selectEnemyText.setForeground(new java.awt.Color(241, 167, 84));
+        selectEnemyText.setText("Select Enemies");
+        selectEnemyText.setToolTipText("");
+        teamPage1.add(selectEnemyText);
+        selectEnemyText.setBounds(55, 120, 280, 40);
 
         modeSpiralAbyss.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         modeSpiralAbyss.setForeground(new java.awt.Color(252, 236, 214));
@@ -590,12 +590,12 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage1.add(hydroRadButton);
         hydroRadButton.setBounds(910, 290, 120, 33);
 
-        jLabel4.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel4.setText("Modes");
-        jLabel4.setToolTipText("");
-        teamPage1.add(jLabel4);
-        jLabel4.setBounds(611, 92, 280, 40);
+        modeText.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        modeText.setForeground(new java.awt.Color(241, 167, 84));
+        modeText.setText("Modes");
+        modeText.setToolTipText("");
+        teamPage1.add(modeText);
+        modeText.setBounds(611, 92, 280, 40);
 
         modeEnemyOnly.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         modeEnemyOnly.setForeground(new java.awt.Color(252, 236, 214));
@@ -760,12 +760,12 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage1.add(anemoRadButton);
         anemoRadButton.setBounds(910, 340, 120, 33);
 
-        jLabel5.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel5.setText("Preferred Elements");
-        jLabel5.setToolTipText("");
-        teamPage1.add(jLabel5);
-        jLabel5.setBounds(620, 230, 380, 40);
+        preferElementText.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        preferElementText.setForeground(new java.awt.Color(241, 167, 84));
+        preferElementText.setText("Preferred Elements");
+        preferElementText.setToolTipText("");
+        teamPage1.add(preferElementText);
+        preferElementText.setBounds(620, 230, 380, 40);
 
         bowRadButton.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
         bowRadButton.setForeground(new java.awt.Color(252, 236, 214));
@@ -872,19 +872,19 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage1.add(pyroRadButton);
         pyroRadButton.setBounds(620, 290, 120, 33);
 
-        jLabel6.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel6.setText("Preferred Weapon");
-        jLabel6.setToolTipText("");
-        teamPage1.add(jLabel6);
-        jLabel6.setBounds(620, 420, 380, 40);
+        preferWeaponText.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        preferWeaponText.setForeground(new java.awt.Color(241, 167, 84));
+        preferWeaponText.setText("Preferred Weapon");
+        preferWeaponText.setToolTipText("");
+        teamPage1.add(preferWeaponText);
+        preferWeaponText.setBounds(620, 420, 380, 40);
 
-        jLabel7.setFont(new java.awt.Font("HYWenHei-85W", 0, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel7.setText("(optional)");
-        jLabel7.setToolTipText("");
-        teamPage1.add(jLabel7);
-        jLabel7.setBounds(970, 430, 90, 30);
+        optionalLabel2.setFont(new java.awt.Font("HYWenHei-85W", 0, 16)); // NOI18N
+        optionalLabel2.setForeground(new java.awt.Color(241, 167, 84));
+        optionalLabel2.setText("(optional)");
+        optionalLabel2.setToolTipText("");
+        teamPage1.add(optionalLabel2);
+        optionalLabel2.setBounds(970, 430, 90, 30);
 
         nextLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         nextLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -933,9 +933,9 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage1.add(restartButton);
         restartButton.setBounds(1090, 20, 70, 70);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamguide.png"))); // NOI18N
-        teamPage1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1280, 720);
+        bg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamguide.png"))); // NOI18N
+        teamPage1.add(bg1);
+        bg1.setBounds(0, 0, 1280, 720);
 
         parentPanel.add(teamPage1, "card4");
 
@@ -999,12 +999,12 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage2.add(characterPane);
         characterPane.setBounds(60, 170, 430, 510);
 
-        jLabel9.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel9.setText("Banned Characters");
-        jLabel9.setToolTipText("");
-        teamPage2.add(jLabel9);
-        jLabel9.setBounds(55, 120, 380, 40);
+        banCharText.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        banCharText.setForeground(new java.awt.Color(241, 167, 84));
+        banCharText.setText("Banned Characters");
+        banCharText.setToolTipText("");
+        teamPage2.add(banCharText);
+        banCharText.setBounds(55, 120, 380, 40);
 
         generateLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         generateLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -1038,12 +1038,12 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage2.add(generateButton);
         generateButton.setBounds(1000, 630, 247, 46);
 
-        jLabel13.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(174, 116, 49));
-        jLabel13.setText("Summary");
-        jLabel13.setToolTipText("");
-        teamPage2.add(jLabel13);
-        jLabel13.setBounds(630, 160, 280, 40);
+        summaryText.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        summaryText.setForeground(new java.awt.Color(174, 116, 49));
+        summaryText.setText("Summary");
+        summaryText.setToolTipText("");
+        teamPage2.add(summaryText);
+        summaryText.setBounds(630, 160, 280, 40);
 
         summaryScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -1053,16 +1053,16 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage2.add(summaryScroll);
         summaryScroll.setBounds(630, 220, 580, 350);
 
-        jLabel8.setFont(new java.awt.Font("HYWenHei-85W", 0, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel8.setText("(optional)");
-        jLabel8.setToolTipText("");
-        teamPage2.add(jLabel8);
-        jLabel8.setBounds(410, 130, 90, 30);
+        optionalLabel3.setFont(new java.awt.Font("HYWenHei-85W", 0, 16)); // NOI18N
+        optionalLabel3.setForeground(new java.awt.Color(241, 167, 84));
+        optionalLabel3.setText("(optional)");
+        optionalLabel3.setToolTipText("");
+        teamPage2.add(optionalLabel3);
+        optionalLabel3.setBounds(410, 130, 90, 30);
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle.png"))); // NOI18N
-        teamPage2.add(jLabel12);
-        jLabel12.setBounds(600, 130, 650, 470);
+        summarybg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle.png"))); // NOI18N
+        teamPage2.add(summarybg);
+        summarybg.setBounds(600, 130, 650, 470);
 
         restartButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/restart1.png"))); // NOI18N
         restartButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1079,9 +1079,9 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage2.add(restartButton1);
         restartButton1.setBounds(1090, 20, 70, 70);
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamguide.png"))); // NOI18N
-        teamPage2.add(jLabel14);
-        jLabel14.setBounds(0, 0, 1280, 720);
+        bg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamguide.png"))); // NOI18N
+        teamPage2.add(bg2);
+        bg2.setBounds(0, 0, 1280, 720);
 
         parentPanel.add(teamPage2, "card4");
 
@@ -1130,19 +1130,19 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage3.add(exitButton2);
         exitButton2.setBounds(1190, 20, 70, 70);
 
-        jLabel10.setFont(new java.awt.Font("HYWenHei-85W", 0, 16)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel10.setText("(optional)");
-        jLabel10.setToolTipText("");
-        teamPage3.add(jLabel10);
-        jLabel10.setBounds(420, 300, 90, 30);
+        optionalLabel4.setFont(new java.awt.Font("HYWenHei-85W", 0, 16)); // NOI18N
+        optionalLabel4.setForeground(new java.awt.Color(241, 167, 84));
+        optionalLabel4.setText("(optional)");
+        optionalLabel4.setToolTipText("");
+        teamPage3.add(optionalLabel4);
+        optionalLabel4.setBounds(420, 300, 90, 30);
 
-        jLabel11.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel11.setText("Chamber");
-        jLabel11.setToolTipText("");
-        teamPage3.add(jLabel11);
-        jLabel11.setBounds(280, 110, 170, 40);
+        chamberText.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        chamberText.setForeground(new java.awt.Color(241, 167, 84));
+        chamberText.setText("Chamber");
+        chamberText.setToolTipText("");
+        teamPage3.add(chamberText);
+        chamberText.setBounds(280, 110, 170, 40);
 
         modeSpiralAbyss1.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         modeSpiralAbyss1.setForeground(new java.awt.Color(252, 236, 214));
@@ -1181,12 +1181,12 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage3.add(hydroRadButton1);
         hydroRadButton1.setBounds(910, 290, 120, 33);
 
-        jLabel15.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel15.setText("Modes");
-        jLabel15.setToolTipText("");
-        teamPage3.add(jLabel15);
-        jLabel15.setBounds(611, 92, 280, 40);
+        modeText2.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        modeText2.setForeground(new java.awt.Color(241, 167, 84));
+        modeText2.setText("Modes");
+        modeText2.setToolTipText("");
+        teamPage3.add(modeText2);
+        modeText2.setBounds(611, 92, 280, 40);
 
         modeEnemyOnly1.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         modeEnemyOnly1.setForeground(new java.awt.Color(252, 236, 214));
@@ -1356,12 +1356,12 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage3.add(anemoRadButton1);
         anemoRadButton1.setBounds(910, 340, 120, 33);
 
-        jLabel16.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel16.setText("Preferred Elements");
-        jLabel16.setToolTipText("");
-        teamPage3.add(jLabel16);
-        jLabel16.setBounds(620, 230, 380, 40);
+        preferElement2.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        preferElement2.setForeground(new java.awt.Color(241, 167, 84));
+        preferElement2.setText("Preferred Elements");
+        preferElement2.setToolTipText("");
+        teamPage3.add(preferElement2);
+        preferElement2.setBounds(620, 230, 380, 40);
 
         bowRadButton1.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
         bowRadButton1.setForeground(new java.awt.Color(252, 236, 214));
@@ -1468,19 +1468,19 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage3.add(floor9Radio);
         floor9Radio.setBounds(60, 160, 50, 33);
 
-        jLabel17.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel17.setText("Preferred Weapon");
-        jLabel17.setToolTipText("");
-        teamPage3.add(jLabel17);
-        jLabel17.setBounds(620, 420, 380, 40);
+        preferWeapon2.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        preferWeapon2.setForeground(new java.awt.Color(241, 167, 84));
+        preferWeapon2.setText("Preferred Weapon");
+        preferWeapon2.setToolTipText("");
+        teamPage3.add(preferWeapon2);
+        preferWeapon2.setBounds(620, 420, 380, 40);
 
-        jLabel18.setFont(new java.awt.Font("HYWenHei-85W", 0, 16)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel18.setText("(optional)");
-        jLabel18.setToolTipText("");
-        teamPage3.add(jLabel18);
-        jLabel18.setBounds(970, 430, 90, 30);
+        optionalLabel5.setFont(new java.awt.Font("HYWenHei-85W", 0, 16)); // NOI18N
+        optionalLabel5.setForeground(new java.awt.Color(241, 167, 84));
+        optionalLabel5.setText("(optional)");
+        optionalLabel5.setToolTipText("");
+        teamPage3.add(optionalLabel5);
+        optionalLabel5.setBounds(970, 430, 90, 30);
 
         nextLabel1.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         nextLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -1598,19 +1598,19 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage3.add(pyroRadButton1);
         pyroRadButton1.setBounds(620, 290, 120, 33);
 
-        jLabel20.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel20.setText("Floor");
-        jLabel20.setToolTipText("");
-        teamPage3.add(jLabel20);
-        jLabel20.setBounds(60, 110, 120, 40);
+        floorText.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        floorText.setForeground(new java.awt.Color(241, 167, 84));
+        floorText.setText("Floor");
+        floorText.setToolTipText("");
+        teamPage3.add(floorText);
+        floorText.setBounds(60, 110, 120, 40);
 
-        jLabel21.setFont(new java.awt.Font("HYWenHei-85W", 0, 16)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel21.setText("(optional)");
-        jLabel21.setToolTipText("");
-        teamPage3.add(jLabel21);
-        jLabel21.setBounds(990, 240, 90, 30);
+        optionalLabel6.setFont(new java.awt.Font("HYWenHei-85W", 0, 16)); // NOI18N
+        optionalLabel6.setForeground(new java.awt.Color(241, 167, 84));
+        optionalLabel6.setText("(optional)");
+        optionalLabel6.setToolTipText("");
+        teamPage3.add(optionalLabel6);
+        optionalLabel6.setBounds(990, 240, 90, 30);
 
         characterPane2.setLayout(null);
 
@@ -1628,12 +1628,12 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage3.add(characterPane2);
         characterPane2.setBounds(60, 340, 440, 330);
 
-        jLabel22.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(241, 167, 84));
-        jLabel22.setText("Banned Characters");
-        jLabel22.setToolTipText("");
-        teamPage3.add(jLabel22);
-        jLabel22.setBounds(60, 290, 360, 40);
+        banCharText2.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        banCharText2.setForeground(new java.awt.Color(241, 167, 84));
+        banCharText2.setText("Banned Characters");
+        banCharText2.setToolTipText("");
+        teamPage3.add(banCharText2);
+        banCharText2.setBounds(60, 290, 360, 40);
 
         chamber2Rad.setFont(new java.awt.Font("HYWenHei-85W", 0, 22)); // NOI18N
         chamber2Rad.setForeground(new java.awt.Color(252, 236, 214));
@@ -1734,9 +1734,9 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage3.add(restartButton2);
         restartButton2.setBounds(1090, 20, 70, 70);
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamguide.png"))); // NOI18N
-        teamPage3.add(jLabel19);
-        jLabel19.setBounds(0, 0, 1280, 720);
+        bg3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamguide.png"))); // NOI18N
+        teamPage3.add(bg3);
+        bg3.setBounds(0, 0, 1280, 720);
 
         parentPanel.add(teamPage3, "card4");
 
@@ -1816,12 +1816,12 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage4.add(generateButton1);
         generateButton1.setBounds(1000, 630, 247, 46);
 
-        jLabel23.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(174, 116, 49));
-        jLabel23.setText("Summary");
-        jLabel23.setToolTipText("");
-        teamPage4.add(jLabel23);
-        jLabel23.setBounds(550, 140, 180, 40);
+        summaryText2.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        summaryText2.setForeground(new java.awt.Color(174, 116, 49));
+        summaryText2.setText("Summary");
+        summaryText2.setToolTipText("");
+        teamPage4.add(summaryText2);
+        summaryText2.setBounds(550, 140, 180, 40);
 
         summaryScroll1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -1831,9 +1831,9 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage4.add(summaryScroll1);
         summaryScroll1.setBounds(270, 200, 730, 350);
 
-        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle2.png"))); // NOI18N
-        teamPage4.add(jLabel25);
-        jLabel25.setBounds(220, 110, 850, 490);
+        summarybg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle2.png"))); // NOI18N
+        teamPage4.add(summarybg2);
+        summarybg2.setBounds(220, 110, 850, 490);
 
         restartButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/restart1.png"))); // NOI18N
         restartButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1850,9 +1850,9 @@ public class TeamGuide extends javax.swing.JFrame {
         teamPage4.add(restartButton3);
         restartButton3.setBounds(1090, 20, 70, 70);
 
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamguide.png"))); // NOI18N
-        teamPage4.add(jLabel26);
-        jLabel26.setBounds(0, 0, 1280, 720);
+        bg4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_teamguide.png"))); // NOI18N
+        teamPage4.add(bg4);
+        bg4.setBounds(0, 0, 1280, 720);
 
         parentPanel.add(teamPage4, "card4");
 
@@ -3463,6 +3463,12 @@ public class TeamGuide extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton anemoRadButton;
     private javax.swing.JRadioButton anemoRadButton1;
+    private javax.swing.JLabel banCharText;
+    private javax.swing.JLabel banCharText2;
+    private javax.swing.JLabel bg1;
+    private javax.swing.JLabel bg2;
+    private javax.swing.JLabel bg3;
+    private javax.swing.JLabel bg4;
     private javax.swing.JRadioButton bowRadButton;
     private javax.swing.JRadioButton bowRadButton1;
     private javax.swing.JRadioButton catalystRadButton;
@@ -3472,6 +3478,7 @@ public class TeamGuide extends javax.swing.JFrame {
     private javax.swing.JRadioButton chamber3Rad;
     private javax.swing.JRadioButton chamberAllRad;
     private javax.swing.ButtonGroup chamberGroup;
+    private javax.swing.JLabel chamberText;
     private javax.swing.JPanel characterPane;
     private javax.swing.JPanel characterPane2;
     private javax.swing.JRadioButton claymoreRadButton;
@@ -3499,6 +3506,7 @@ public class TeamGuide extends javax.swing.JFrame {
     private javax.swing.JRadioButton floor12Radio;
     private javax.swing.JRadioButton floor9Radio;
     private javax.swing.ButtonGroup floorGroup;
+    private javax.swing.JLabel floorText;
     private javax.swing.JLabel generateButton;
     private javax.swing.JLabel generateButton1;
     private javax.swing.JLabel generateLabel;
@@ -3507,44 +3515,31 @@ public class TeamGuide extends javax.swing.JFrame {
     private javax.swing.JRadioButton geoRadButton1;
     private javax.swing.JRadioButton hydroRadButton;
     private javax.swing.JRadioButton hydroRadButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JRadioButton modeEnemyOnly;
     private javax.swing.JRadioButton modeEnemyOnly1;
     private javax.swing.JRadioButton modeSpiralAbyss;
     private javax.swing.JRadioButton modeSpiralAbyss1;
+    private javax.swing.JLabel modeText;
+    private javax.swing.JLabel modeText2;
     private javax.swing.JLabel nextButton;
     private javax.swing.JLabel nextButton1;
     private javax.swing.JLabel nextLabel;
     private javax.swing.JLabel nextLabel1;
+    private javax.swing.JLabel optionalLabel;
+    private javax.swing.JLabel optionalLabel2;
+    private javax.swing.JLabel optionalLabel3;
+    private javax.swing.JLabel optionalLabel4;
+    private javax.swing.JLabel optionalLabel5;
+    private javax.swing.JLabel optionalLabel6;
     private javax.swing.JPanel parentPanel;
     private javax.swing.JRadioButton physicalRadButton;
     private javax.swing.JRadioButton physicalRadButton1;
     private javax.swing.JRadioButton polearmRadButton;
     private javax.swing.JRadioButton polearmRadButton1;
+    private javax.swing.JLabel preferElement2;
+    private javax.swing.JLabel preferElementText;
+    private javax.swing.JLabel preferWeapon2;
+    private javax.swing.JLabel preferWeaponText;
     private javax.swing.JLabel profileButton;
     private javax.swing.JLabel profileButton1;
     private javax.swing.JLabel profileButton2;
@@ -3558,10 +3553,15 @@ public class TeamGuide extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JScrollPane scrollPane2;
     private javax.swing.JScrollPane scrollPane3;
+    private javax.swing.JLabel selectEnemyText;
     private javax.swing.JPanel summaryPanel;
     private javax.swing.JPanel summaryPanel1;
     private javax.swing.JScrollPane summaryScroll;
     private javax.swing.JScrollPane summaryScroll1;
+    private javax.swing.JLabel summaryText;
+    private javax.swing.JLabel summaryText2;
+    private javax.swing.JLabel summarybg;
+    private javax.swing.JLabel summarybg2;
     private javax.swing.JRadioButton swordRadButton;
     private javax.swing.JRadioButton swordRadButton1;
     private javax.swing.JPanel teamPage1;

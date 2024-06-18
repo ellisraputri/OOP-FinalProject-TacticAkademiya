@@ -7,7 +7,6 @@ package App;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,20 +22,20 @@ public class PrepareGenerator {
     private ArrayList<String> bannedNames;
     private ArrayList<String> charOwned;
     
-    public ArrayList<String> charName = new ArrayList<>();
-    public ArrayList<String> charElement = new ArrayList<>();
-    public ArrayList<String> charTier = new ArrayList<>();
-    public ArrayList<String> charWeapon = new ArrayList<>();
-    public ArrayList<Boolean> charPneuma = new ArrayList<>();
-    public ArrayList<Boolean> charOusia = new ArrayList<>();
+    private ArrayList<String> charName = new ArrayList<>();
+    private ArrayList<String> charElement = new ArrayList<>();
+    private ArrayList<String> charTier = new ArrayList<>();
+    private ArrayList<String> charWeapon = new ArrayList<>();
+    private ArrayList<Boolean> charPneuma = new ArrayList<>();
+    private ArrayList<Boolean> charOusia = new ArrayList<>();
     
-    public ArrayList<String> bestElements = new ArrayList<>();
-    public ArrayList<String> avoidElements = new ArrayList<>();
-    public ArrayList<String> bestWeapons = new ArrayList<>();
-    public boolean bestPneuma=false;
-    public boolean bestOusia=false;
+    private ArrayList<String> bestElements = new ArrayList<>();
+    private ArrayList<String> avoidElements = new ArrayList<>();
+    private ArrayList<String> bestWeapons = new ArrayList<>();
+    private boolean bestPneuma=false;
+    private boolean bestOusia=false;
     
-    public String[][] teams;
+    private String[][] teams;
     
     private ArrayList<String> generatedTeam = new ArrayList<>();
 

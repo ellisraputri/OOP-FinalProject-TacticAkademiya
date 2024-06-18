@@ -11,27 +11,18 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -107,7 +98,7 @@ public class SettingMusic extends javax.swing.JFrame {
         getContentPane().repaint();
     }
     
-    SettingMusic settingmusic = (SettingMusic) SwingUtilities.getRoot(this);
+    private SettingMusic settingmusic = (SettingMusic) SwingUtilities.getRoot(this);
     private int index=-1;
     
     private void setScrollPane(String folderpath, int prevY){
@@ -224,7 +215,7 @@ public class SettingMusic extends javax.swing.JFrame {
         saveButton = new javax.swing.JLabel();
         scrollPane = new javax.swing.JScrollPane();
         parentPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Settings");
@@ -274,9 +265,9 @@ public class SettingMusic extends javax.swing.JFrame {
         getContentPane().add(scrollPane);
         scrollPane.setBounds(80, 190, 590, 410);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_settingmusic.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1280, 720);
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_settingmusic.png"))); // NOI18N
+        getContentPane().add(bg);
+        bg.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -434,11 +425,9 @@ public class SettingMusic extends javax.swing.JFrame {
         });
     }
     
-    private App.RoundJTextField usernameField;
-    private App.RoundJTextField emailField;
-    private App.RoundJPasswordField passwordField;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel bg;
     private javax.swing.JPanel parentPanel;
     private javax.swing.JLabel saveButton;
     private javax.swing.JLabel saveLabel;

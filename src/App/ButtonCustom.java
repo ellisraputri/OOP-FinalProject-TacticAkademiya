@@ -144,32 +144,6 @@ public class ButtonCustom extends JButton {
                 over = false;
             }
 
-//            @Override
-//            public void mousePressed(MouseEvent me) {
-//                if(!clicked){
-//                    setBackground(colorClick);
-//                    setForeground(colorClick2);
-//                    setBorderColor(borderColorOver);
-//                }
-//                else{
-//                    setBackground(color);
-//                    setForeground(color2);
-//                    setBorderColor(borderColorNotOver);
-//                }
-//            }
-
-//            @Override
-//            public void mouseReleased(MouseEvent me) {
-//                if (over) {
-//                    setBackground(colorOver);
-//                    setForeground(colorOver2);
-//                    setBorderColor(borderColorOver);
-//                } else {
-//                    setBackground(color);
-//                    setForeground(color2);
-//                    setBorderColor(borderColorNotOver);
-//                }
-//            }
         });
     }
 
@@ -193,10 +167,6 @@ public class ButtonCustom extends JButton {
     public boolean isClicked() {
         return clicked;
     }
-    
-    
-    
-    
 
     @Override
     protected void paintComponent(Graphics grphcs) {

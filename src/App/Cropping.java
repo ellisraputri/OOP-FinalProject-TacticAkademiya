@@ -314,7 +314,7 @@ public class Cropping extends javax.swing.JFrame {
         imageLabel = new javax.swing.JLabel();
         saveLabel = new javax.swing.JLabel();
         saveButton = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cropping");
@@ -362,9 +362,9 @@ public class Cropping extends javax.swing.JFrame {
         getContentPane().add(saveButton);
         saveButton.setBounds(900, 610, 247, 46);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_setting.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1280, 720);
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_setting.png"))); // NOI18N
+        getContentPane().add(bg);
+        bg.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -476,8 +476,8 @@ public class Cropping extends javax.swing.JFrame {
     private JPanel movablePanel;
     private JPanel overlayPanel;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bg;
     private javax.swing.JLabel imageLabel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel parentPanel;
     private javax.swing.JLabel saveButton;
     private javax.swing.JLabel saveLabel;

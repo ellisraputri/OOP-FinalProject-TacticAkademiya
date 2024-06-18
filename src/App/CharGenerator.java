@@ -63,7 +63,7 @@ public class CharGenerator {
     public void addAllNames(){
         for(GameCharacter c:sortedChar){
             sortedCharName.add(c.getName());
-        }
+        } 
     }
     
     public void filterCharacter(ArrayList<String> userName, ArrayList<String>userElement, ArrayList<String>userTier, ArrayList<String>userWeapon, ArrayList<Boolean>userPneuma, ArrayList<Boolean>userOusia){
@@ -162,7 +162,6 @@ public class CharGenerator {
         for(String avoidElement: avoidElements){
             elements.remove(avoidElement);
         }
-
         
         if(nameSupport2==null){
             String str;
@@ -210,20 +209,16 @@ public class CharGenerator {
                                     for(String role2: roles2){
                                         if(parts[1].contains(role1) || parts[2].contains(role1) || parts[3].contains(role1)){
                                             if(parts[1].contains(role2) || parts[2].contains(role2) || parts[3].contains(role2)){
-                                                System.out.println("moo");
                                                 str = parts[0] + "_" + element;
                                                 return str;
                                             }
                                         }
                                     }
                                 }
-                                
-
                                 if(str==null){
                                     for(String role:roles1){
                                         if(parts[1].contains(role) || parts[2].contains(role) || parts[3].contains(role)){
                                             str = parts[0] + "_" + element;
-                                            System.out.println("x");
                                         }
                                     }
                                 }
@@ -320,7 +315,6 @@ public class CharGenerator {
             if(state.equals("dps")){
                 ArrayList<String> duplicateNames = new ArrayList<>();
                 for(int i=0; i<4; i++){
-                    System.out.println(part[i]);
                     int checkNameResult = checkNames(part[i]);
                     String[]charNames = part[i].split(",");
 
@@ -334,13 +328,11 @@ public class CharGenerator {
                         duplicateNames.add(part[i]);
                     }
                 }
-                System.out.println("TeamsL" + Arrays.toString(part)); 
             }
             else if(state.equals("dpscombined")){
                 String[] roleChar2 = findRoleBasedOnChar(name2).split(",");
                 ArrayList<String> duplicateNames = new ArrayList<>();
                 for(int i=0; i<4; i++){
-                    System.out.println(part[i]);
                     int checkNameResult = checkNames(part[i]);
                     String[]charNames = part[i].split(",");
 
@@ -358,7 +350,6 @@ public class CharGenerator {
                         duplicateNames.add(part[i]);
                     }
                 }
-                System.out.println(Arrays.toString(part));
                 if(!(Arrays.asList(part).contains(name2))){
                     return null;
                 }
@@ -438,7 +429,6 @@ public class CharGenerator {
 
         for(String r: roles){
             r= r.trim();
-            System.out.println("loop"+r);
             if(sortedCharName.contains(r) && !(duplicateNames.contains(r))){
                 return r;
             }
@@ -479,7 +469,6 @@ public class CharGenerator {
                 charTemp.add(name);
             }
         }
-        System.out.println("chartemp" + charTemp);
 
         String nameToReturn="";
         for(GameCharacter c: sortedChar){
@@ -495,12 +484,12 @@ public class CharGenerator {
             nameToReturn = charTemp.getLast();
         }
 
-        System.out.println("name to return:" + nameToReturn);
         return nameToReturn;
     }
 
 
-    public String[][] generator(ArrayList<String>userName, ArrayList<String>userElement, ArrayList<String>userTier, ArrayList<String>userWeapon, ArrayList<Boolean>userPneuma, ArrayList<Boolean>userOusia){
+    public String[][] generator(ArrayList<String>userName, ArrayList<String>userElement, ArrayList<String>userTier, ArrayList<String>userWeapon, 
+            ArrayList<Boolean>userPneuma, ArrayList<Boolean>userOusia){
         CharGenerator demo = new CharGenerator();
         emptyAll();
         filterCharacter(userName, userElement, userTier, userWeapon, userPneuma, userOusia);
@@ -546,7 +535,6 @@ public class CharGenerator {
                 }
                 else{
                     result = demo.findCharacter(bestElements.get(i));
-                    System.out.println("addAll");
                     if(demo.checkDps(result.getName())){
                         resultDps.add(result);
                     }
@@ -579,10 +567,8 @@ public class CharGenerator {
         for(int j=0; j<resultDpsCombined.size(); j+=2){
             String[] team2 = new String[4];
             team2 = demo.findTeamComp(resultDpsCombined.get(j).getName(), resultDpsCombined.get(j+1).getName(),null, resultDpsCombined.get(j).getElement());
-            System.out.println(Arrays.toString(team2) +"ss");
             if(Arrays.asList(team2).contains("Team unavailable")){
                 String name = findName(team2[1], team2[2], team2[3]);
-                System.out.println(name);
                 String[][] newTemp = {{"Team unavailable", name}};
                 return newTemp;
             }
@@ -604,10 +590,8 @@ public class CharGenerator {
             String[] team4 = new String[4];
             String[] dpsInfo = demo.findDps(resultNonDpsCombined.get(l).getName(), resultNonDpsCombined.get(l+1).getName()).split("_");            
             team4 = demo.findTeamComp(dpsInfo[0], resultNonDpsCombined.get(l).getName(),resultNonDpsCombined.get(l+1).getName(), dpsInfo[1]);
-            System.out.println(Arrays.toString(team4) + "aggagsas");
             if(Arrays.asList(team4).contains("Team unavailable")){
                 String name = findName(team4[1], team4[2], team4[3]);
-                System.out.println(name);
                 String[][] newTemp = {{"Team unavailable", name}};
                 return newTemp;
             }

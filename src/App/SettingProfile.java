@@ -212,7 +212,6 @@ public class SettingProfile extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         saveLabel = new javax.swing.JLabel();
         saveButton = new javax.swing.JLabel();
         scrollPane = new javax.swing.JScrollPane();
@@ -220,7 +219,7 @@ public class SettingProfile extends javax.swing.JFrame {
         profileCircle = new javax.swing.JLabel();
         uploadRad = new javax.swing.JRadioButton();
         genshinIconRad = new javax.swing.JRadioButton();
-        jLabel1 = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Settings");
@@ -317,9 +316,9 @@ public class SettingProfile extends javax.swing.JFrame {
         getContentPane().add(genshinIconRad);
         genshinIconRad.setBounds(240, 170, 220, 35);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_settingprofile.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1280, 720);
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_settingprofile.png"))); // NOI18N
+        getContentPane().add(bg);
+        bg.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -537,7 +536,7 @@ public class SettingProfile extends javax.swing.JFrame {
     
     
     public static boolean openCrop = false;
-    SettingProfile settingProfile = (SettingProfile) SwingUtilities.getRoot(this);
+    private SettingProfile settingProfile = (SettingProfile) SwingUtilities.getRoot(this);
     
     private void openFileChooser() {
         if (!openCrop) {
@@ -619,13 +618,10 @@ public class SettingProfile extends javax.swing.JFrame {
         });
     }
     
-    private App.RoundJTextField usernameField;
-    private App.RoundJTextField emailField;
-    private App.RoundJPasswordField passwordField;
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel bg;
     private javax.swing.JRadioButton genshinIconRad;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel parentPanel;
     private javax.swing.JLabel profileCircle;
     private javax.swing.JLabel saveButton;

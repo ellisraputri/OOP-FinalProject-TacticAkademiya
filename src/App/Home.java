@@ -128,7 +128,7 @@ public class Home extends javax.swing.JFrame {
         }
     }
     
-    public void cropIntoCircle(BufferedImage croppedImage){
+    private void cropIntoCircle(BufferedImage croppedImage){
         BufferedImage img = croppedImage;
         
         int width = img.getWidth(null);
@@ -146,7 +146,7 @@ public class Home extends javax.swing.JFrame {
         setProfileImage(bi);
     }
     
-    public void setProfileImage(BufferedImage im){
+    private void setProfileImage(BufferedImage im){
         BufferedImage resizedImage = resizeImage(im, 70, 70);
         profileButton.setIcon(new ImageIcon(resizedImage));
         profileImage = new ImageIcon(resizedImage);
@@ -156,7 +156,7 @@ public class Home extends javax.swing.JFrame {
         getContentPane().revalidate();
     }
     
-    public void setProfileImage(String path){
+    private void setProfileImage(String path){
         BufferedImage im = imageIconToBufferedImage(new ImageIcon(path));
         BufferedImage resizedImage = resizeImage(im, 70, 70);
         profileButton.setIcon(new ImageIcon(resizedImage));
@@ -167,7 +167,7 @@ public class Home extends javax.swing.JFrame {
         getContentPane().revalidate();
     }
     
-    public static BufferedImage imageIconToBufferedImage(ImageIcon icon) {
+    private static BufferedImage imageIconToBufferedImage(ImageIcon icon) {
         Image img = icon.getImage();
         BufferedImage bufferedImage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = bufferedImage.createGraphics();
@@ -176,7 +176,7 @@ public class Home extends javax.swing.JFrame {
         return bufferedImage;
     }
     
-    public static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
+    private static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
         Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
         BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = outputImage.createGraphics();
@@ -202,7 +202,7 @@ public class Home extends javax.swing.JFrame {
         goLabel1 = new javax.swing.JLabel();
         goButton1 = new javax.swing.JLabel();
         goButton2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -305,8 +305,8 @@ public class Home extends javax.swing.JFrame {
         });
         getContentPane().add(goButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 558, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_home.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_home.png"))); // NOI18N
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -453,13 +453,13 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bg;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel exitButton;
     private javax.swing.JLabel goButton1;
     private javax.swing.JLabel goButton2;
     private javax.swing.JLabel goLabel1;
     private javax.swing.JLabel goLabel2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel profileButton;
     private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables

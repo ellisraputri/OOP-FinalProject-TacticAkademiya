@@ -24,10 +24,7 @@ import java.util.Scanner;
 import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -354,10 +351,10 @@ public class CharInfoHome extends javax.swing.JFrame {
     }
     
     
-    ArrayList<CharacterArchivePanel> filteredPanels = new ArrayList<>();
-    ArrayList<String> elementFilter = new ArrayList<>();
-    ArrayList<String> weaponFilter = new ArrayList<>();
-    ArrayList<String> starFilter = new ArrayList<>();
+    private ArrayList<CharacterArchivePanel> filteredPanels = new ArrayList<>();
+    private ArrayList<String> elementFilter = new ArrayList<>();
+    private ArrayList<String> weaponFilter = new ArrayList<>();
+    private ArrayList<String> starFilter = new ArrayList<>();
     
     private void handleClick(){
         filteredPanels.clear();
@@ -513,11 +510,11 @@ public class CharInfoHome extends javax.swing.JFrame {
         usernameLabel = new javax.swing.JLabel();
         emailLabel = new javax.swing.JLabel();
         exitButton = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        filterText = new javax.swing.JLabel();
+        weaponsText = new javax.swing.JLabel();
+        titleText = new javax.swing.JLabel();
+        rarityText = new javax.swing.JLabel();
+        elementText = new javax.swing.JLabel();
         hoverElementCircle1 = new javax.swing.JLabel();
         hoverElementCircle2 = new javax.swing.JLabel();
         hoverElementCircle3 = new javax.swing.JLabel();
@@ -560,10 +557,10 @@ public class CharInfoHome extends javax.swing.JFrame {
         fiveStarClick = new javax.swing.JLabel();
         fiveStarHover = new javax.swing.JLabel();
         fiveStarHoverClick = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        filterPane = new javax.swing.JLabel();
         scrollPane = new javax.swing.JScrollPane();
         parentPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Character Archive");
@@ -614,40 +611,40 @@ public class CharInfoHome extends javax.swing.JFrame {
         getContentPane().add(exitButton);
         exitButton.setBounds(1180, 20, 70, 70);
 
-        jLabel3.setFont(new java.awt.Font("HYWenHei-85W", 0, 32)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(251, 172, 71));
-        jLabel3.setText("Filter");
-        jLabel3.setToolTipText("");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(870, 210, 110, 40);
+        filterText.setFont(new java.awt.Font("HYWenHei-85W", 0, 32)); // NOI18N
+        filterText.setForeground(new java.awt.Color(251, 172, 71));
+        filterText.setText("Filter");
+        filterText.setToolTipText("");
+        getContentPane().add(filterText);
+        filterText.setBounds(870, 210, 110, 40);
 
-        jLabel4.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(252, 236, 214));
-        jLabel4.setText("Weapons:");
-        jLabel4.setToolTipText("");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(870, 380, 280, 40);
+        weaponsText.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
+        weaponsText.setForeground(new java.awt.Color(252, 236, 214));
+        weaponsText.setText("Weapons:");
+        weaponsText.setToolTipText("");
+        getContentPane().add(weaponsText);
+        weaponsText.setBounds(870, 380, 280, 40);
 
-        jLabel5.setFont(new java.awt.Font("HYWenHei-85W", 0, 40)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(252, 236, 214));
-        jLabel5.setText("Character Archive");
-        jLabel5.setToolTipText("");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(60, 120, 380, 40);
+        titleText.setFont(new java.awt.Font("HYWenHei-85W", 0, 40)); // NOI18N
+        titleText.setForeground(new java.awt.Color(252, 236, 214));
+        titleText.setText("Character Archive");
+        titleText.setToolTipText("");
+        getContentPane().add(titleText);
+        titleText.setBounds(60, 120, 380, 40);
 
-        jLabel6.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(252, 236, 214));
-        jLabel6.setText("Rarity:");
-        jLabel6.setToolTipText("");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(870, 480, 280, 40);
+        rarityText.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
+        rarityText.setForeground(new java.awt.Color(252, 236, 214));
+        rarityText.setText("Rarity:");
+        rarityText.setToolTipText("");
+        getContentPane().add(rarityText);
+        rarityText.setBounds(870, 480, 280, 40);
 
-        jLabel7.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(252, 236, 214));
-        jLabel7.setText("Elemental Type:");
-        jLabel7.setToolTipText("");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(870, 270, 280, 40);
+        elementText.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
+        elementText.setForeground(new java.awt.Color(252, 236, 214));
+        elementText.setText("Elemental Type:");
+        elementText.setToolTipText("");
+        getContentPane().add(elementText);
+        elementText.setBounds(870, 270, 280, 40);
 
         hoverElementCircle1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/circle1_hover.png"))); // NOI18N
         getContentPane().add(hoverElementCircle1);
@@ -817,9 +814,9 @@ public class CharInfoHome extends javax.swing.JFrame {
         getContentPane().add(fiveStarHoverClick);
         fiveStarHoverClick.setBounds(890, 540, 138, 39);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle7.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(840, 180, 381, 450);
+        filterPane.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle7.png"))); // NOI18N
+        getContentPane().add(filterPane);
+        filterPane.setBounds(840, 180, 381, 450);
 
         scrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -841,9 +838,9 @@ public class CharInfoHome extends javax.swing.JFrame {
         getContentPane().add(scrollPane);
         scrollPane.setBounds(60, 190, 700, 440);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_charinfohome.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 1280, 720);
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_charinfohome.png"))); // NOI18N
+        getContentPane().add(bg);
+        bg.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -919,6 +916,7 @@ public class CharInfoHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bg;
     private javax.swing.JLabel clickedElementCircle1;
     private javax.swing.JLabel clickedElementCircle2;
     private javax.swing.JLabel clickedElementCircle3;
@@ -943,8 +941,11 @@ public class CharInfoHome extends javax.swing.JFrame {
     private javax.swing.JLabel clickhoverWeaponCircle3;
     private javax.swing.JLabel clickhoverWeaponCircle4;
     private javax.swing.JLabel clickhoverWeaponCircle5;
+    private javax.swing.JLabel elementText;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel exitButton;
+    private javax.swing.JLabel filterPane;
+    private javax.swing.JLabel filterText;
     private javax.swing.JLabel fiveStarClick;
     private javax.swing.JLabel fiveStarHover;
     private javax.swing.JLabel fiveStarHoverClick;
@@ -963,17 +964,13 @@ public class CharInfoHome extends javax.swing.JFrame {
     private javax.swing.JLabel hoverWeaponCircle3;
     private javax.swing.JLabel hoverWeaponCircle4;
     private javax.swing.JLabel hoverWeaponCircle5;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel parentPanel;
     private javax.swing.JLabel profileButton;
+    private javax.swing.JLabel rarityText;
     private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JLabel titleText;
     private javax.swing.JLabel usernameLabel;
+    private javax.swing.JLabel weaponsText;
     // End of variables declaration//GEN-END:variables
     
 

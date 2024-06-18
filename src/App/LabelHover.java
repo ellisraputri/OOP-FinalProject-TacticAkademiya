@@ -5,11 +5,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JRadioButton;
 
 class LabelHover extends JLabel {
-    public boolean over;
-    public boolean clicked;
+    private boolean over;
+    private boolean clicked;
     private JLabel clickedCircle;
     private JLabel clickhoverCircle;
     private JLabel hoverCircle;

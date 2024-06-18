@@ -214,10 +214,10 @@ public class SignUpPage extends javax.swing.JFrame {
         }
     }
     
-    public static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
+    private static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
     Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
-    public static boolean validateEmail(String emailStr) {
+    private static boolean validateEmail(String emailStr) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
         return matcher.matches();
     }
@@ -235,10 +235,10 @@ public class SignUpPage extends javax.swing.JFrame {
     }
     
     
-    public static final Pattern VALID_PASSWORD_REGEX = 
+    private static final Pattern VALID_PASSWORD_REGEX = 
     Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", Pattern.CASE_INSENSITIVE);
     
-    public static boolean validatePassword(String passwordStr) {
+    private static boolean validatePassword(String passwordStr) {
         Matcher matcher = VALID_PASSWORD_REGEX.matcher(passwordStr);
         return matcher.matches();
     }
@@ -302,38 +302,38 @@ public class SignUpPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        backButton = new javax.swing.JLabel();
         confirmPasswordLabel = new javax.swing.JLabel();
         usernameLabel = new javax.swing.JLabel();
         emailLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
         loginLabel = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        alreadyText = new javax.swing.JLabel();
+        underline = new javax.swing.JSeparator();
         showPassword = new javax.swing.JLabel();
         hidePassword = new javax.swing.JLabel();
         hidePasswordConfirm = new javax.swing.JLabel();
         showPasswordConfirm = new javax.swing.JLabel();
         registerLabel = new javax.swing.JLabel();
         registerButton = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/back1.png"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/back1.png"))); // NOI18N
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                backButtonMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel2MouseEntered(evt);
+                backButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel2MouseExited(evt);
+                backButtonMouseExited(evt);
             }
         });
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        getContentPane().add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         confirmPasswordLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         confirmPasswordLabel.setForeground(new java.awt.Color(133, 129, 119));
@@ -371,27 +371,27 @@ public class SignUpPage extends javax.swing.JFrame {
         });
         getContentPane().add(loginLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 590, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(179, 119, 50));
-        jLabel4.setText("Already have an account? ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 590, -1, -1));
+        alreadyText.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
+        alreadyText.setForeground(new java.awt.Color(179, 119, 50));
+        alreadyText.setText("Already have an account? ");
+        getContentPane().add(alreadyText, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 590, -1, -1));
 
-        jSeparator1.setBackground(new java.awt.Color(179, 119, 50));
-        jSeparator1.setForeground(new java.awt.Color(179, 119, 50));
-        jSeparator1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jSeparator1.setOpaque(true);
-        jSeparator1.addMouseListener(new java.awt.event.MouseAdapter() {
+        underline.setBackground(new java.awt.Color(179, 119, 50));
+        underline.setForeground(new java.awt.Color(179, 119, 50));
+        underline.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        underline.setOpaque(true);
+        underline.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSeparator1MouseClicked(evt);
+                underlineMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jSeparator1MouseEntered(evt);
+                underlineMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jSeparator1MouseExited(evt);
+                underlineMouseExited(evt);
             }
         });
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 610, 60, 1));
+        getContentPane().add(underline, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 610, 60, 1));
 
         showPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/show_password.png"))); // NOI18N
         showPassword.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -480,41 +480,41 @@ public class SignUpPage extends javax.swing.JFrame {
         });
         getContentPane().add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 628, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_signup.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_signup.png"))); // NOI18N
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/back2.png")));
-        jLabel2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    }//GEN-LAST:event_jLabel2MouseEntered
+    private void backButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseEntered
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/back2.png")));
+        backButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_backButtonMouseEntered
 
-    private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/back1.png")));
-        jLabel2.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_jLabel2MouseExited
+    private void backButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseExited
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/back1.png")));
+        backButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_backButtonMouseExited
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
         setVisible(false);
         dispose();
         bgmPlayer.stop();
         new WelcomePage().setVisible(true);
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_backButtonMouseClicked
 
     private void loginLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginLabelMouseEntered
         loginLabel.setForeground(new Color(135,86,31));
-        jSeparator1.setForeground(new Color(135,86,31));
+        underline.setForeground(new Color(135,86,31));
         loginLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jSeparator1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        underline.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_loginLabelMouseEntered
 
     private void loginLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginLabelMouseExited
         loginLabel.setForeground(new Color(179,119,50));
-        jSeparator1.setForeground(new Color(179,119,50));
+        underline.setForeground(new Color(179,119,50));
         loginLabel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        jSeparator1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        underline.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_loginLabelMouseExited
 
     private void loginLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginLabelMouseClicked
@@ -523,25 +523,25 @@ public class SignUpPage extends javax.swing.JFrame {
         new LoginPage(bgmPlayer).setVisible(true);
     }//GEN-LAST:event_loginLabelMouseClicked
 
-    private void jSeparator1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSeparator1MouseClicked
+    private void underlineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_underlineMouseClicked
         setVisible(false);
         dispose();
         new LoginPage(bgmPlayer).setVisible(true);
-    }//GEN-LAST:event_jSeparator1MouseClicked
+    }//GEN-LAST:event_underlineMouseClicked
 
-    private void jSeparator1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSeparator1MouseEntered
+    private void underlineMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_underlineMouseEntered
         loginLabel.setForeground(new Color(135,86,31));
-        jSeparator1.setForeground(new Color(135,86,31));
+        underline.setForeground(new Color(135,86,31));
         loginLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jSeparator1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    }//GEN-LAST:event_jSeparator1MouseEntered
+        underline.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_underlineMouseEntered
 
-    private void jSeparator1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSeparator1MouseExited
+    private void underlineMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_underlineMouseExited
         loginLabel.setForeground(new Color(179,119,50));
-        jSeparator1.setForeground(new Color(179,119,50));
+        underline.setForeground(new Color(179,119,50));
         loginLabel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        jSeparator1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_jSeparator1MouseExited
+        underline.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_underlineMouseExited
 
     private void hidePasswordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hidePasswordMouseEntered
         hidePassword.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -915,20 +915,20 @@ public class SignUpPage extends javax.swing.JFrame {
     private App.RoundJPasswordField passwordConfirmField;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel alreadyText;
+    private javax.swing.JLabel backButton;
+    private javax.swing.JLabel bg;
     private javax.swing.JLabel confirmPasswordLabel;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel hidePassword;
     private javax.swing.JLabel hidePasswordConfirm;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel registerButton;
     private javax.swing.JLabel registerLabel;
     private javax.swing.JLabel showPassword;
     private javax.swing.JLabel showPasswordConfirm;
+    private javax.swing.JSeparator underline;
     private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }

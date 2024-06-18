@@ -4,9 +4,6 @@
  */
 package App;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 /**
  *
  * @author asus

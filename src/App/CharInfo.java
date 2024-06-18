@@ -8,21 +8,13 @@ import jaco.mp3.player.MP3Player;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 /**
@@ -226,8 +218,8 @@ public class CharInfo extends javax.swing.JFrame {
         ArrayList<ImageIcon> weaponImages = charDetails.getWeaponImages();
         ArrayList<String> weaponNames = charDetails.getWeapons();
         System.out.println(weaponNames);
-        jLabel3.setBounds(jLabel3.getX(), birthdayLabel.getY()+birthdayLabel.getPreferredSize().height+30, jLabel3.getWidth(), jLabel3.getHeight());
-        int y=jLabel3.getY()+60;
+        weaponTitle.setBounds(weaponTitle.getX(), birthdayLabel.getY()+birthdayLabel.getPreferredSize().height+30, weaponTitle.getWidth(), weaponTitle.getHeight());
+        int y=weaponTitle.getY()+60;
         for(int i=0; i<weaponImages.size(); i++){
             int x = (i%2==0)? 0 : 260;
             if(i>0){
@@ -521,16 +513,16 @@ public class CharInfo extends javax.swing.JFrame {
         scrollPane = new javax.swing.JScrollPane();
         parentPanel = new javax.swing.JPanel();
         birthdayLabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        weaponTitle = new javax.swing.JLabel();
         rarityLabel = new javax.swing.JLabel();
         weaponTypeLabel1 = new javax.swing.JLabel();
         weaponTypeLabel = new javax.swing.JLabel();
         consLabel = new javax.swing.JLabel();
         rarityPic = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        basicInfoTitle = new javax.swing.JLabel();
         affiliationLabel = new javax.swing.JLabel();
         weaponPic = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        panelbg = new javax.swing.JLabel();
         lumineButton = new App.ButtonCustom();
         aetherButton = new App.ButtonCustom();
         splashArtLabel = new javax.swing.JLabel();
@@ -604,10 +596,10 @@ public class CharInfo extends javax.swing.JFrame {
         parentPanel.add(birthdayLabel);
         birthdayLabel.setBounds(10, 220, 90, 30);
 
-        jLabel3.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
-        jLabel3.setText("Best Weapons");
-        parentPanel.add(jLabel3);
-        jLabel3.setBounds(10, 270, 270, 60);
+        weaponTitle.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
+        weaponTitle.setText("Best Weapons");
+        parentPanel.add(weaponTitle);
+        weaponTitle.setBounds(10, 270, 270, 60);
 
         rarityLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         rarityLabel.setForeground(new java.awt.Color(67, 67, 71));
@@ -637,10 +629,10 @@ public class CharInfo extends javax.swing.JFrame {
         parentPanel.add(rarityPic);
         rarityPic.setBounds(80, 63, 118, 22);
 
-        jLabel4.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
-        jLabel4.setText("Basic Information");
-        parentPanel.add(jLabel4);
-        jLabel4.setBounds(10, 0, 270, 60);
+        basicInfoTitle.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
+        basicInfoTitle.setText("Basic Information");
+        parentPanel.add(basicInfoTitle);
+        basicInfoTitle.setBounds(10, 0, 270, 60);
 
         affiliationLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         affiliationLabel.setForeground(new java.awt.Color(67, 67, 71));
@@ -657,10 +649,10 @@ public class CharInfo extends javax.swing.JFrame {
         getContentPane().add(scrollPane);
         scrollPane.setBounds(110, 150, 540, 480);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle10.png"))); // NOI18N
-        jLabel1.setToolTipText("");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(73, 111, 620, 570);
+        panelbg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle10.png"))); // NOI18N
+        panelbg.setToolTipText("");
+        getContentPane().add(panelbg);
+        panelbg.setBounds(73, 111, 620, 570);
 
         lumineButton.setBorder(null);
         lumineButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -806,6 +798,8 @@ public class CharInfo extends javax.swing.JFrame {
     private void profileButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseClicked
         setVisible(false);
         dispose();
+        bgmPlayer.stop();
+        prevbgmPlayer.play();
         new Settings(userId, prevbgmPlayer).setVisible(true);
     }//GEN-LAST:event_profileButtonMouseClicked
 
@@ -949,6 +943,7 @@ public class CharInfo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private App.ButtonCustom aetherButton;
     private javax.swing.JLabel affiliationLabel;
+    private javax.swing.JLabel basicInfoTitle;
     private javax.swing.JLabel bg;
     private javax.swing.JLabel birthdayLabel;
     private javax.swing.JLabel cnVoiceButton;
@@ -959,15 +954,13 @@ public class CharInfo extends javax.swing.JFrame {
     private javax.swing.JLabel elementLabel;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel exitButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jpVoiceButton;
     private javax.swing.JLabel jpVoiceLabel;
     private javax.swing.JLabel jpVoiceLabel1;
     private javax.swing.JLabel jpVoicebox;
     private App.ButtonCustom lumineButton;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel panelbg;
     private javax.swing.JPanel parentPanel;
     private javax.swing.JLabel profileButton;
     private javax.swing.JLabel rarityLabel;
@@ -976,6 +969,7 @@ public class CharInfo extends javax.swing.JFrame {
     private javax.swing.JLabel splashArtLabel;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JLabel weaponPic;
+    private javax.swing.JLabel weaponTitle;
     private javax.swing.JLabel weaponTypeLabel;
     private javax.swing.JLabel weaponTypeLabel1;
     // End of variables declaration//GEN-END:variables

@@ -4,7 +4,6 @@
  */
 package App;
 
-import java.awt.List;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +15,7 @@ import javax.imageio.ImageIO;
  * @author asus
  */
 public class ImageLoader {
-    static ArrayList<String> fileName = new ArrayList<>();
+    private static ArrayList<String> fileName = new ArrayList<>();
     
     public static ArrayList<BufferedImage> loadImagesFromFolder(String folderPath) {
         ArrayList<BufferedImage> images = new ArrayList<>();

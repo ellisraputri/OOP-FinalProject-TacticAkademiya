@@ -4,7 +4,6 @@
  */
 package App;
 
-import static App.SettingProfile.resizeImage;
 import DatabaseConnection.ConnectionProvider;
 import jaco.mp3.player.MP3Player;
 import java.awt.Color;
@@ -28,7 +27,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -94,6 +92,7 @@ public class Settings extends javax.swing.JFrame {
         retrieveFromDatabase();
         setTextField();
         setSomeCharImages(ownedChars);
+        setProfilePicture();
         
         //repaint components
         parentPanel.revalidate();
@@ -277,10 +276,7 @@ public class Settings extends javax.swing.JFrame {
         imagePanel.setPreferredSize(new Dimension(imagePanel.getWidth(), 500));
         imagePanel.setBounds(10, myCharLabel.getY()+myCharLabel.getPreferredSize().height+15, 500, imagePanel.getPreferredSize().height);
         
-        parentPanel.add(imagePanel);
-        parentPanel.setPreferredSize(new Dimension(parentPanel.getWidth(), imagePanel.getHeight()+30));
-        
-        setProfilePicture();
+        parentPanel.add(imagePanel);        
     }
     
     private void setProfilePicture(){
@@ -288,7 +284,7 @@ public class Settings extends javax.swing.JFrame {
         myProfile.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         myProfile.setForeground(new Color(131,113,90));
         myProfile.setText("Profile Picture");
-        myProfile.setBounds(0, parentPanel.getPreferredSize().height+15, myProfile.getPreferredSize().width+4, 60);    
+        myProfile.setBounds(0, 540, myProfile.getPreferredSize().width+4, 60);    
         parentPanel.add(myProfile);
         myProfile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -398,7 +394,7 @@ public class Settings extends javax.swing.JFrame {
         return outputImage;
     }
     
-    public void setMusic(){
+    private void setMusic(){
         myMusic = new JLabel();
         myMusic.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         myMusic.setForeground(new Color(131,113,90));
@@ -531,10 +527,10 @@ public class Settings extends javax.swing.JFrame {
         hidePassword = new javax.swing.JLabel();
         showPassword = new javax.swing.JLabel();
         myCharArrow = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        settingText = new javax.swing.JLabel();
+        settingBg = new javax.swing.JLabel();
         exitButton = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Settings");
@@ -666,16 +662,16 @@ public class Settings extends javax.swing.JFrame {
         getContentPane().add(scrollPane);
         scrollPane.setBounds(80, 130, 560, 470);
 
-        jLabel3.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(179, 119, 50));
-        jLabel3.setText("Settings");
-        jLabel3.setToolTipText("");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(80, 70, 280, 50);
+        settingText.setFont(new java.awt.Font("HYWenHei-85W", 0, 36)); // NOI18N
+        settingText.setForeground(new java.awt.Color(179, 119, 50));
+        settingText.setText("Settings");
+        settingText.setToolTipText("");
+        getContentPane().add(settingText);
+        settingText.setBounds(80, 70, 280, 50);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle11.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(40, 40, 640, 630);
+        settingBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle11.png"))); // NOI18N
+        getContentPane().add(settingBg);
+        settingBg.setBounds(40, 40, 640, 630);
 
         exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/exit1.png"))); // NOI18N
         exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -692,9 +688,9 @@ public class Settings extends javax.swing.JFrame {
         getContentPane().add(exitButton);
         exitButton.setBounds(1190, 20, 70, 70);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_setting.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1280, 720);
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_setting.png"))); // NOI18N
+        getContentPane().add(bg);
+        bg.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -712,10 +708,10 @@ public class Settings extends javax.swing.JFrame {
         }
     }
     
-    public static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
+    private static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
     Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
-    public static boolean validateEmail(String emailStr) {
+    private static boolean validateEmail(String emailStr) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
         return matcher.matches();
     }
@@ -733,10 +729,10 @@ public class Settings extends javax.swing.JFrame {
     }
     
     
-    public static final Pattern VALID_PASSWORD_REGEX = 
+    private static final Pattern VALID_PASSWORD_REGEX = 
     Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", Pattern.CASE_INSENSITIVE);
     
-    public static boolean validatePassword(String passwordStr) {
+    private static boolean validatePassword(String passwordStr) {
         Matcher matcher = VALID_PASSWORD_REGEX.matcher(passwordStr);
         return matcher.matches();
     }
@@ -988,7 +984,7 @@ public class Settings extends javax.swing.JFrame {
     
     
     public static boolean open=false;
-    Settings setting = (Settings) SwingUtilities.getRoot(this);
+    private Settings setting = (Settings) SwingUtilities.getRoot(this);
     
     private void myCharLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myCharLabelMouseClicked
         if(open==false){
@@ -1127,12 +1123,10 @@ public class Settings extends javax.swing.JFrame {
     private JLabel myMusicArrow;
     private JPanel musicPanel;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bg;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel exitButton;
     private javax.swing.JLabel hidePassword;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel myCharArrow;
     private javax.swing.JLabel myCharLabel;
     private javax.swing.JPanel parentPanel;
@@ -1140,6 +1134,8 @@ public class Settings extends javax.swing.JFrame {
     private javax.swing.JLabel saveButton;
     private javax.swing.JLabel saveLabel;
     private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JLabel settingBg;
+    private javax.swing.JLabel settingText;
     private javax.swing.JLabel showPassword;
     private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables

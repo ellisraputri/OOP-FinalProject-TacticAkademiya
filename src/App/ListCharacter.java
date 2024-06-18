@@ -7,26 +7,18 @@ package App;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import App.ImageLoader;
 import DatabaseConnection.ConnectionProvider;
 import jaco.mp3.player.MP3Player;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
-import javax.swing.JLabel;
 
 /**
  *
@@ -133,28 +125,28 @@ public class ListCharacter extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
+        backButton = new javax.swing.JLabel();
         nextLabel = new javax.swing.JLabel();
         nextButton = new javax.swing.JLabel();
         scroll = new javax.swing.JScrollPane();
-        jLabel1 = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/back1.png"))); // NOI18N
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/back1.png"))); // NOI18N
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                backButtonMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel3MouseEntered(evt);
+                backButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel3MouseExited(evt);
+                backButtonMouseExited(evt);
             }
         });
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        getContentPane().add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         nextLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         nextLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -193,13 +185,13 @@ public class ListCharacter extends javax.swing.JFrame {
         scroll.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         getContentPane().add(scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 780, 370));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_listchar.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/bg_listchar.png"))); // NOI18N
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
         int option = JOptionPane.showConfirmDialog(getContentPane(), "Are you sure you want to go back? You changes will not be saved.", "SELECT", JOptionPane.YES_NO_OPTION);
         if(option == JOptionPane.YES_OPTION){
             setVisible(false);
@@ -217,17 +209,17 @@ public class ListCharacter extends javax.swing.JFrame {
             e.printStackTrace();
         }
         
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_backButtonMouseClicked
 
-    private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/back2.png")));
-        jLabel3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    }//GEN-LAST:event_jLabel3MouseEntered
+    private void backButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseEntered
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/back2.png")));
+        backButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_backButtonMouseEntered
 
-    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/back1.png")));
-        jLabel3.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_jLabel3MouseExited
+    private void backButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseExited
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/back1.png")));
+        backButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_backButtonMouseExited
 
     private void nextButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseClicked
         boolean[] clickedArray = new boolean[panelList.size()];
@@ -358,8 +350,8 @@ public class ListCharacter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel backButton;
+    private javax.swing.JLabel bg;
     private javax.swing.JLabel nextButton;
     private javax.swing.JLabel nextLabel;
     private javax.swing.JScrollPane scroll;
