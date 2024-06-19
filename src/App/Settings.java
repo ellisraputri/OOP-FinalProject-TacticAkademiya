@@ -130,11 +130,16 @@ public class Settings extends javax.swing.JFrame {
             ResultSet rs2 = st.executeQuery("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='characters'");
             int index=0;
             while(rs2.next()){
-                if(index==0){
+                if(index==70){
                     index++;
                     continue;
                 }
-                if(ownedOrNot.get(index-1) == true){
+                if(index<70 && ownedOrNot.get(index) == true){
+                    String name = rs2.getString(1);
+                    name = name.replaceAll("([a-z])([A-Z])", "$1 $2");
+                    ownedChars.add(name);
+                }
+                else if(index>70 && ownedOrNot.get(index-1) == true){
                     String name = rs2.getString(1);
                     name = name.replaceAll("([a-z])([A-Z])", "$1 $2");
                     ownedChars.add(name);

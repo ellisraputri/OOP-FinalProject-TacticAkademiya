@@ -409,7 +409,6 @@ public class SettingProfile extends javax.swing.JFrame {
             try{
                 Connection con = ConnectionProvider.getCon();
                 String str = "update user set profile= '" + path + "' where id='" + userId +"'";
-                System.out.println(str);
 
                 PreparedStatement ps = con.prepareStatement(str);
                 ps.executeUpdate();
