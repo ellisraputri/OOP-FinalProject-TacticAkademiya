@@ -160,12 +160,14 @@ public class CharInfo extends javax.swing.JFrame {
         affiliationLabel1.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         affiliationLabel1.setForeground(new java.awt.Color(67, 67, 71));
         affiliationLabel1.setText(charDetails.getAffiliation());
-        affiliationLabel1.setBounds(affiliationLabel.getX()+affiliationLabel.getPreferredSize().width+5, affiliationLabel.getY(), affiliationLabel1.getPreferredSize().width+4, affiliationLabel1.getPreferredSize().height);    
+        affiliationLabel1.setBounds(affiliationLabel.getX()+affiliationLabel.getPreferredSize().width+5, affiliationLabel.getY(), affiliationLabel1.getPreferredSize().width+4, 
+                affiliationLabel1.getPreferredSize().height);    
         parentPanel.add(affiliationLabel1);
 
         //set birthday
         birthdayLabel.setText(charDetails.getBirthday());
-        birthdayLabel.setBounds(birthdayLabel.getX(), affiliationLabel1.getPreferredSize().height + affiliationLabel1.getY()+15, birthdayLabel.getPreferredSize().width, birthdayLabel.getPreferredSize().height);
+        birthdayLabel.setBounds(birthdayLabel.getX(), affiliationLabel1.getPreferredSize().height + affiliationLabel1.getY()+15, birthdayLabel.getPreferredSize().width, 
+                birthdayLabel.getPreferredSize().height);
         
         //set cn voice
         cnVoiceLabel.setText("CN:"+charDetails.getCnVoice());
@@ -205,9 +207,6 @@ public class CharInfo extends javax.swing.JFrame {
 
             }
         }
-        
-        
-        
         
         Dimension newSize = new Dimension(parentPanel.getWidth(), birthdayLabel.getY()+birthdayLabel.getPreferredSize().height+30); // Adjusted size
         parentPanel.setPreferredSize(newSize);
@@ -350,7 +349,6 @@ public class CharInfo extends javax.swing.JFrame {
     
     private void setTeams(){
         ArrayList<String> teams = charDetails.getTeams();
-        System.out.println(teams);
         
         JLabel titleTeams = new JLabel();
         titleTeams.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N

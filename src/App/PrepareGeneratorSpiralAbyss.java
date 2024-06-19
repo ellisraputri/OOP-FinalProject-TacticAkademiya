@@ -115,7 +115,8 @@ public class PrepareGeneratorSpiralAbyss {
         
         ArrayList<String>generatedTeam2 = new ArrayList<>();
         try{
-            App.PrepareGenerator app2 = new App.PrepareGenerator(chamberHalfAndEnemies.get("Second Half"), elementsLabel.getText(), weaponsLabel.getText(), bannedName, charUncompleteHalf);
+            App.PrepareGenerator app2 = new App.PrepareGenerator(chamberHalfAndEnemies.get("Second Half"), elementsLabel.getText(), 
+                    weaponsLabel.getText(), bannedName, charUncompleteHalf);
             generatedTeam2 = app2.getGeneratedTeam();
         }catch(Exception e){
             ArrayList<String> returned = new ArrayList<>();
@@ -158,7 +159,6 @@ public class PrepareGeneratorSpiralAbyss {
             e.printStackTrace();
         }
         
-        System.out.println(firstHalf +" ditambah" + secondHalf);
         ArrayList<String> temp = new ArrayList<>();
         temp.add("null");
         
@@ -192,9 +192,7 @@ public class PrepareGeneratorSpiralAbyss {
    
     public void checkFloor(){
         if(floor.equals("12")){
-              HashMap<ArrayList<String>, ArrayList<String>> firstHalfSecondHalf = checkInTextTeams();
-              System.out.println("TEAMSSSSSSSS" + firstHalfSecondHalf);
-              
+              HashMap<ArrayList<String>, ArrayList<String>> firstHalfSecondHalf = checkInTextTeams();              
               ArrayList<ArrayList<String>> teamListFirstHalf = new ArrayList<>();
               ArrayList<ArrayList<String>> teamListSecondHalf = new ArrayList<>();
               
@@ -214,8 +212,7 @@ public class PrepareGeneratorSpiralAbyss {
                      teamListSecondHalf.add(firstHalfSecondHalf.get(firstHalf));
                   }
               }
-              
-              
+                            
               
               int index =0;
               while(success == false && index<teamListFirstHalf.size()){
@@ -232,8 +229,7 @@ public class PrepareGeneratorSpiralAbyss {
               index=0;
               while(success == false){
                   success = generateTeamSpiralAbyss();
-              }
-              
+              }  
         }
         else{
             generateTeamSpiralAbyss();
@@ -248,7 +244,6 @@ public class PrepareGeneratorSpiralAbyss {
         while(returnedTeam.size()==1){
             tempCharOwned.remove(returnedTeam.get(0));
 
-            System.out.println("TEMP CHAR OWNEDDDDDDDDDDDD : " + tempCharOwned);
             App.PrepareGenerator app1 = new App.PrepareGenerator(chamberHalfAndEnemies.get("First Half"), elementsLabel.getText(), weaponsLabel.getText(), bannedName, tempCharOwned);
             generatedTeam2 = app1.getGeneratedTeam();
             returnedTeam = checkOtherTeam(generatedTeam2, returnedTeam.get(0));
@@ -270,17 +265,13 @@ public class PrepareGeneratorSpiralAbyss {
             teamsFinal.put("Second Half", returnedTeam);
             return true;
         }
-        
-        System.out.println("GENERATED TEAM 2" + generatedTeam2);
-        System.out.println("RETURNED TEAM" +returnedTeam);
+
         return false;
     }
     
     private boolean generateTeamSpiralAbyss(){
         App.PrepareGenerator app = new App.PrepareGenerator(chamberHalfAndEnemies.get("First Half"), elementsLabel.getText(), weaponsLabel.getText(), bannedName, charOwnedList);
         ArrayList<String>generatedTeam = app.getGeneratedTeam();
-        System.out.println("GENERATED 1" + generatedTeam);
-
         boolean result = generateOtherTeam(generatedTeam, "allGenerate");
         return result;
     }

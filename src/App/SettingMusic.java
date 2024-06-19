@@ -124,7 +124,6 @@ public class SettingMusic extends javax.swing.JFrame {
                 y = newY;
                 prevY = newY;
             }
-            
 
             // Set the bounds for the cloned panel with your custom size
             clonedPanel.setBounds(x, y, panelWidth, panelHeight);
@@ -284,8 +283,6 @@ public class SettingMusic extends javax.swing.JFrame {
                 track++;
             }
         }
-        
-        System.out.println(track);
         
         if(track!=5){
             JOptionPane.showMessageDialog(getContentPane(), "Please select five background music.");

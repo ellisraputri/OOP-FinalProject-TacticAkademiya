@@ -47,6 +47,7 @@ public class ListCharacter extends javax.swing.JFrame {
         this.userId = userId;
         setTitle("Character Listing");
         setResizable(false);
+        setLocationRelativeTo(null);
         myinit();
     }
     
@@ -224,12 +225,14 @@ public class ListCharacter extends javax.swing.JFrame {
     private void nextButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseClicked
         boolean[] clickedArray = new boolean[panelList.size()];
         int i=0;
+        int amount_clicked=0;
         for(CharacterPanel panel : panelList){
             clickedArray[i] = panel.getClicked();
             i++;
+            amount_clicked = (panel.getClicked())? amount_clicked+1 : amount_clicked;
         }
         
-        if(clickedArray.length<8){
+        if(amount_clicked<8){
             JOptionPane.showMessageDialog(getContentPane(), "Characters must be at least 8.");
         }
         else{
@@ -271,12 +274,14 @@ public class ListCharacter extends javax.swing.JFrame {
     private void nextLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextLabelMouseClicked
         boolean[] clickedArray = new boolean[panelList.size()];
         int i=0;
+        int amount_clicked=0;
         for(CharacterPanel panel : panelList){
             clickedArray[i] = panel.getClicked();
             i++;
+            amount_clicked = (panel.getClicked())? amount_clicked+1 : amount_clicked;
         }
         
-        if(clickedArray.length<8){
+        if(amount_clicked<8){
             JOptionPane.showMessageDialog(getContentPane(), "Characters must be at least 8.");
         }
         else{

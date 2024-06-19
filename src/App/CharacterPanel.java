@@ -24,8 +24,6 @@ public class CharacterPanel extends ClonePanel{
         return name;
     }
     
-    
-    
     public void settingMouse(BufferedImage image, BufferedImage imageHover){    
         //  Add event mouse
         addMouseListener(new MouseAdapter() {

@@ -54,7 +54,6 @@ public class PrepareGenerator {
     }
     
     private void prepareCharacters(){
-        
         try {
             File myObj = new File("src/App/text/character.txt");
             Scanner myReader = new Scanner(myObj);
@@ -108,25 +107,20 @@ public class PrepareGenerator {
                     if(!(partData[1].equals("null"))){
                         avoidElements.add(partData[1]);                        
                     }
-                    
                     if(!(partData[2].equals("null"))){
                         bestElements.add(partData[2]);                        
                     }
-                    
                     if(!(partData[3].equals("null"))){
                         bestElements.add(partData[3]);                        
                     }
-
                     boolean pneuma = Boolean.parseBoolean(partData[4]);
                     if(pneuma){
                         bestPneuma = pneuma;
                     }
-                    
                     boolean ousia = Boolean.parseBoolean(partData[5]);
                     if(ousia){
                         bestOusia = ousia;
                     }
-                    
                 }
             }
             myReader.close();
@@ -137,7 +131,6 @@ public class PrepareGenerator {
     }
     
     private void prepareEnemies(){
-        System.out.println(enemies);
         enemies = extractContentEnemy(enemies);
         String[] enemyNames = enemies.split(", ");
         
@@ -169,10 +162,8 @@ public class PrepareGenerator {
             state = execute();
         }
         
-        
         for(int i=0; i<teams.length; i++){
             for(String role: teams[i]){
-                System.out.println("hasil"+role);
                 generatedTeam.add(role);
             }
         }
@@ -188,13 +179,11 @@ public class PrepareGenerator {
             for(int j=0; j<teams[i].length; j++){
                 if(teams[i][j].contains("Team unavailable")){
                     String nameToRemove = teams[i][j+1];
-                    System.out.println(nameToRemove);
                     charElement.remove(charName.indexOf(nameToRemove));
                     charTier.remove(charName.indexOf(nameToRemove));
                     charWeapon.remove(charName.indexOf(nameToRemove));
                     charPneuma.remove(charName.indexOf(nameToRemove));
                     charOusia.remove(charName.indexOf(nameToRemove));
-                    System.out.println(charName.indexOf(nameToRemove));
                     charName.remove(nameToRemove);
                     return false;
                 }

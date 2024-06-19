@@ -168,6 +168,11 @@ public class SettingProfile extends javax.swing.JFrame {
                 }
             });
             
+            if(path.equals(profilePath)){
+                clonedPanel.setClicked(true);
+                clonedPanel.checkmark.setVisible(true);
+            }
+            
 
             // Calculate the row and column indices
             row = i / 4;
@@ -327,28 +332,36 @@ public class SettingProfile extends javax.swing.JFrame {
     
     private void saveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseClicked
         if(genshinIconRad.isSelected()){
+            String path="";
             if(lastClicked==-1){
-                JOptionPane.showMessageDialog(getContentPane(), "Please select an icon");
+                path = "src/App/image/profile1.png";
             }
             else{
-                String path = panelList.get(lastClicked).getPath();
-                try{
-                    Connection con = ConnectionProvider.getCon();
-                    String str = "update user set profile= '" + path + "' where id='" + userId +"'";
-                    System.out.println(str);
+                path = panelList.get(lastClicked).getPath();
+            }
+            try{
+                Connection con = ConnectionProvider.getCon();
+                String str = "update user set profile= '" + path + "' where id='" + userId +"'";
+                System.out.println(str);
 
-                    PreparedStatement ps = con.prepareStatement(str);
-                    ps.executeUpdate();
+                PreparedStatement ps = con.prepareStatement(str);
+                ps.executeUpdate();
 
-                    JOptionPane.showMessageDialog(getContentPane(), "Profile image has been saved.");
-                    setVisible(false);
-                    dispose();
-                    Settings.openProfile = false;
-                    setting.cropIntoCircle(panelList.get(lastClicked).getImage());
-
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(getContentPane(), e);
+                JOptionPane.showMessageDialog(getContentPane(), "Profile image has been saved.");
+                setVisible(false);
+                dispose();
+                Settings.openProfile = false;
+                
+                if(lastClicked==-1){
+                    setting.setProfileImage(path);
                 }
+                else{
+                    setting.cropIntoCircle(panelList.get(lastClicked).getImage());
+                }
+                
+
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(getContentPane(), e);
             }
         }
         else{
@@ -386,28 +399,36 @@ public class SettingProfile extends javax.swing.JFrame {
 
     private void saveLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveLabelMouseClicked
        if(genshinIconRad.isSelected()){
+            String path="";
             if(lastClicked==-1){
-                JOptionPane.showMessageDialog(getContentPane(), "Please select an icon");
+                path = "src/App/image/profile1.png";
             }
             else{
-                String path = panelList.get(lastClicked).getPath();
-                try{
-                    Connection con = ConnectionProvider.getCon();
-                    String str = "update user set profile= '" + path + "' where id='" + userId +"'";
-                    System.out.println(str);
+                path = panelList.get(lastClicked).getPath();
+            }
+            try{
+                Connection con = ConnectionProvider.getCon();
+                String str = "update user set profile= '" + path + "' where id='" + userId +"'";
+                System.out.println(str);
 
-                    PreparedStatement ps = con.prepareStatement(str);
-                    ps.executeUpdate();
+                PreparedStatement ps = con.prepareStatement(str);
+                ps.executeUpdate();
 
-                    JOptionPane.showMessageDialog(getContentPane(), "Profile image has been saved.");
-                    setVisible(false);
-                    dispose();
-                    Settings.openProfile = false;
-                    setting.cropIntoCircle(panelList.get(lastClicked).getImage());
-
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(getContentPane(), e);
+                JOptionPane.showMessageDialog(getContentPane(), "Profile image has been saved.");
+                setVisible(false);
+                dispose();
+                Settings.openProfile = false;
+                
+                if(lastClicked==-1){
+                    setting.setProfileImage(path);
                 }
+                else{
+                    setting.cropIntoCircle(panelList.get(lastClicked).getImage());
+                }
+                
+
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(getContentPane(), e);
             }
         }
         else{
@@ -525,9 +546,14 @@ public class SettingProfile extends javax.swing.JFrame {
     
     
     public void setProfileImage(String path){
+        if(path.equals("null")){
+            path = "src/App/image/profile1.png";
+        }
+        
         BufferedImage im = imageIconToBufferedImage(new ImageIcon(path));
         BufferedImage resizedImage = resizeImage(im, profileCircle.getWidth(), profileCircle.getHeight());
         profileCircle.setIcon(new ImageIcon(resizedImage));
+        
         profileCircle.repaint();
         profileCircle.revalidate();
         getContentPane().repaint();
@@ -561,6 +587,7 @@ public class SettingProfile extends javax.swing.JFrame {
 
     
     public static BufferedImage imageIconToBufferedImage(ImageIcon icon) {
+        
         Image img = icon.getImage();
         BufferedImage bufferedImage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = bufferedImage.createGraphics();

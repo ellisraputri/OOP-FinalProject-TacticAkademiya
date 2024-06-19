@@ -49,6 +49,7 @@ public class TeamResult extends javax.swing.JFrame {
         this.profileImage = profileImage;
         this.bgmPlayer = bgmPlayer;
         this.teamGenerated = teamGenerated;
+        setLocationRelativeTo(null);
         resultPage1();
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
     }
@@ -61,6 +62,7 @@ public class TeamResult extends javax.swing.JFrame {
         this.profileImage = profileImage;
         this.bgmPlayer = bgmPlayer;
         this.teamSpiralAbyss = teamSpiralAbyss;
+        setLocationRelativeTo(null);
         resultPage2();
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));        
     }
@@ -95,9 +97,6 @@ public class TeamResult extends javax.swing.JFrame {
         rectangle1.setBounds(90, 370, maxWidth+70, rectangle1.getPreferredSize().height);
         resultPage1.revalidate();
         resultPage1.repaint();
-        
-        System.out.println(explanation1.getY());
-        System.out.println(rectangle1.getY());
     }
     
     private void setImages(int index){

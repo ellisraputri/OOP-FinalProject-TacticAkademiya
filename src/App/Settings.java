@@ -805,7 +805,7 @@ public class Settings extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(getContentPane(), e);
         }
         
-        if(allUsername.contains(username) && allEmail.contains(email) && allUsername.indexOf(username)!=userId-1){
+        if(allUsername.contains(username) && allEmail.contains(email) && allUsername.indexOf(username)!=userId-1 && allEmail.indexOf(email)!=userId-1){
             return true;
         }
         return false;
