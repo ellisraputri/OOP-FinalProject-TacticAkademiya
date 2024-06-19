@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package App;
 
 import jaco.mp3.player.MP3Player;
@@ -26,11 +22,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/**
- *
- * @author asus
- */
 public class CharInfoHome extends javax.swing.JFrame {
+    //basic attributes
     private int userId;
     private String username;
     private String email;
@@ -49,20 +42,14 @@ public class CharInfoHome extends javax.swing.JFrame {
     private ArrayList<JLabel> hoverWeaponCircle = new ArrayList<>();
     private String[] weaponsName = {"Sword", "Claymore", "Bow", "Catalyst", "Polearm"};
     
+    //attributes for characters
     private ArrayList<GameCharacter> gameChars = new ArrayList<>();
     private HashMap<GameCharacter, ImageIcon> allCharacters = new LinkedHashMap<>();
     private ArrayList<CharacterArchivePanel> charPanels = new ArrayList<>();
     
-    /**
-     * Creates new form CharInfoHome
-     */
+    
     public CharInfoHome() {
         initComponents();
-        this.userId = 1;
-        this.username = "ellis";
-        this.email = "ellis@mail.com";
-        setLocationRelativeTo(null);
-        myinit();
     }
     
     public CharInfoHome(int userId, String username, String email, ImageIcon profileImage, MP3Player bgmPlayer, boolean type) {
@@ -72,17 +59,16 @@ public class CharInfoHome extends javax.swing.JFrame {
         this.email = email;
         this.bgmPlayer = bgmPlayer;
         if(!type){
-            this.bgmPlayer.play();
+            this.bgmPlayer.play();      //if from CharInfo.java, then play this bgm
         }
-        
         this.profileImage = profileImage;
         setLocationRelativeTo(null);
         myinit();
     }
-    
-    
+
     
     private void myinit(){
+        //set cursor image
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
         
         //username and email label
@@ -96,19 +82,21 @@ public class CharInfoHome extends javax.swing.JFrame {
         //set up profile image
         profileButton.setIcon(profileImage);
         
-        
         //set up hover and click for the elements button
         Collections.addAll(clickedElementCircle, clickedElementCircle1, clickedElementCircle2, clickedElementCircle3, clickedElementCircle4, clickedElementCircle5, clickedElementCircle6, clickedElementCircle7);
         Collections.addAll(clickhoverElementCircle, clickhoverElementCircle1, clickhoverElementCircle2, clickhoverElementCircle3, clickhoverElementCircle4, clickhoverElementCircle5, clickhoverElementCircle6, clickhoverElementCircle7);
         Collections.addAll(hoverElementCircle, hoverElementCircle1, hoverElementCircle2, hoverElementCircle3, hoverElementCircle4, hoverElementCircle5, hoverElementCircle6, hoverElementCircle7);
         
+        //set elements filter buttons
         int x = 870;
         for(int i=0; i<elementsName.length; i++){
+            //initialize label hover
             App.LabelHover lab = new App.LabelHover(false, clickedElementCircle.get(i), clickhoverElementCircle.get(i), hoverElementCircle.get(i), elementsName[i]);
             lab.setLabelIcon("src/App/image/Element/Small/" + elementsName[i] +".png");
             getContentPane().add(lab);
             lab.setBounds(x, 315, 34, 35);
             
+            //add mouse listener to handle click
             lab.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
@@ -123,6 +111,7 @@ public class CharInfoHome extends javax.swing.JFrame {
                 }
             });
             
+            //arrange circle
             getContentPane().add(clickedElementCircle.get(i));
             clickedElementCircle.get(i).setBounds(x-2, 315, 36, 36);
             getContentPane().add(clickhoverElementCircle.get(i));
@@ -130,19 +119,21 @@ public class CharInfoHome extends javax.swing.JFrame {
             getContentPane().add(hoverElementCircle.get(i));
             hoverElementCircle.get(i).setBounds(x-2, 315, 36, 36);
             
+            //set all circle to visible false
             clickedElementCircle.get(i).setVisible(false);
             clickhoverElementCircle.get(i).setVisible(false);
             hoverElementCircle.get(i).setVisible(false);
             
+            //set component to become the top
             getContentPane().setComponentZOrder(lab, 0);
             lab.setVisible(true);
             getContentPane().setComponentZOrder(clickedElementCircle.get(i), 1);
             getContentPane().setComponentZOrder(clickhoverElementCircle.get(i), 1);
             getContentPane().setComponentZOrder(hoverElementCircle.get(i), 1);
             
+            //set horizontal position 
             x+=40;
         }
-        
         
         //set up the hover and click for weapon buttons
         Collections.addAll(clickedWeaponCircle, clickedWeaponCircle1, clickedWeaponCircle2, clickedWeaponCircle3, clickedWeaponCircle4, clickedWeaponCircle5);
@@ -151,11 +142,13 @@ public class CharInfoHome extends javax.swing.JFrame {
         
         x = 872;
         for(int i=0; i<weaponsName.length; i++){
+            //initialize label hover
             App.LabelHover lab = new App.LabelHover(false, clickedWeaponCircle.get(i), clickhoverWeaponCircle.get(i), hoverWeaponCircle.get(i), weaponsName[i]);
             lab.setLabelIcon("src/App/image/Weapon/Small/" + weaponsName[i] +".png");
             getContentPane().add(lab);
             lab.setBounds(x, 420, 34, 35);
             
+            //add mouse listener to handle click
             lab.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
@@ -170,6 +163,7 @@ public class CharInfoHome extends javax.swing.JFrame {
                 }
             });
             
+            //add circle to contentpane
             getContentPane().add(clickedWeaponCircle.get(i));
             clickedWeaponCircle.get(i).setBounds(x-3, 420, 36, 36);
             getContentPane().add(clickhoverWeaponCircle.get(i));
@@ -177,16 +171,19 @@ public class CharInfoHome extends javax.swing.JFrame {
             getContentPane().add(hoverWeaponCircle.get(i));
             hoverWeaponCircle.get(i).setBounds(x-3, 420, 36, 36);
             
+            //set all circle to visible false
             clickedWeaponCircle.get(i).setVisible(false);
             clickhoverWeaponCircle.get(i).setVisible(false);
             hoverWeaponCircle.get(i).setVisible(false);
             
+            //set components z order
             getContentPane().setComponentZOrder(lab, 0);
             lab.setVisible(true);
             getContentPane().setComponentZOrder(clickedWeaponCircle.get(i), 1);
             getContentPane().setComponentZOrder(clickhoverWeaponCircle.get(i), 1);
             getContentPane().setComponentZOrder(hoverWeaponCircle.get(i), 1);
             
+            //set component horizontal position
             x+=50;
         }
         
@@ -197,7 +194,7 @@ public class CharInfoHome extends javax.swing.JFrame {
         star4.setLabelIcon("src/App/image/fourstar.png");
         getContentPane().add(star4);
         star4.setBounds(x, 530, star4.getPreferredSize().width, star4.getPreferredSize().height);
-        star4.addMouseListener(new MouseAdapter() {
+        star4.addMouseListener(new MouseAdapter() {     //add mouse listener
             @Override
             public void mousePressed(MouseEvent e) {
                 if(star4.isClicked()){
@@ -210,7 +207,8 @@ public class CharInfoHome extends javax.swing.JFrame {
                 }
             }
         });
-
+        
+        //add to contentpane
         getContentPane().add(fourStarClicked);
         fourStarClicked.setBounds(x-11, 521, fourStarClicked.getPreferredSize().width, fourStarClicked.getPreferredSize().height);
         getContentPane().add(fourStarHoverClick);
@@ -220,7 +218,8 @@ public class CharInfoHome extends javax.swing.JFrame {
         fourStarClicked.setVisible(false);
         fourStarHoverClick.setVisible(false);
         fourStarHover.setVisible(false);
-
+        
+        //set component z order to 0
         getContentPane().setComponentZOrder(star4, 0);
         star4.setVisible(true);
         getContentPane().setComponentZOrder(fourStarClicked, 1);
@@ -234,7 +233,7 @@ public class CharInfoHome extends javax.swing.JFrame {
         star5.setLabelIcon("src/App/image/fivestar.png");
         getContentPane().add(star5);
         star5.setBounds(x, 530, star5.getPreferredSize().width, star5.getPreferredSize().height);
-        star5.addMouseListener(new MouseAdapter() {
+        star5.addMouseListener(new MouseAdapter() {     //add mouse listener
             @Override
             public void mousePressed(MouseEvent e) {
                 if(star5.isClicked()){
@@ -247,7 +246,8 @@ public class CharInfoHome extends javax.swing.JFrame {
                 }
             }
         });
-
+        
+        //add to contentpane
         getContentPane().add(fiveStarClick);
         fiveStarClick.setBounds(x-11, 521, fiveStarClick.getPreferredSize().width, fiveStarClick.getPreferredSize().height);
         getContentPane().add(fiveStarHoverClick);
@@ -257,43 +257,51 @@ public class CharInfoHome extends javax.swing.JFrame {
         fiveStarClick.setVisible(false);
         fiveStarHoverClick.setVisible(false);
         fiveStarHover.setVisible(false);
-
+        
+        //set z order to 0
         getContentPane().setComponentZOrder(star5, 0);
         star5.setVisible(true);
         getContentPane().setComponentZOrder(fiveStarClick, 1);
         getContentPane().setComponentZOrder(fiveStarHoverClick, 1);
         getContentPane().setComponentZOrder(fiveStarHover, 1);
         
+        //repaint contentpane
         getContentPane().revalidate();
         getContentPane().repaint();
         
-        
+        //set panels for characters
         fillCharacterInfo();
         setPanels();
     }
     
-    
+    //set character panel
     private void setPanels(){
+        //set scroll pane
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setViewportBorder(null);
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
-
+        
+        //set parent panel
         parentPanel = new JPanel(); // The initial panel inside scroll pane
-        parentPanel.setLayout(null); // Use absolute layout
-        parentPanel.setPreferredSize(new Dimension(400, 200)); // Set initial size
+        parentPanel.setLayout(null); 
+        parentPanel.setPreferredSize(new Dimension(400, 200)); 
         parentPanel.setOpaque(false);
         parentPanel.setBackground(new Color(0, 0, 0, 0));
         parentPanel.setBorder(null);
-        scrollPane.setViewportView(parentPanel); // Set this panel as viewport's view
+        scrollPane.setViewportView(parentPanel); 
         
+        //load images from folder
         App.ImageLoader loader2 = new App.ImageLoader();
         loader2.emptyFileName();
         ArrayList<BufferedImage> imageList = loader2.loadImagesFromFolder("src/App/image/CharacterCard/NotZoom");
         ArrayList<String> nameList = loader2.returnFileNames();
         
+        //for traveler, the image is aether
         ImageIcon travelerImg = new ImageIcon("src/App/image/CharacterCard/Portraits Aether.png");
+        
+        //put the character and image in a hashmap
         for(int i=0; i<imageList.size(); i++){
             ImageIcon im = new ImageIcon(imageList.get(i));
             for(GameCharacter gc: gameChars){
@@ -308,13 +316,14 @@ public class CharInfoHome extends javax.swing.JFrame {
             }
         }
         
-        
+        //display the character panel
         for(GameCharacter gc:allCharacters.keySet()){
             ImageIcon image = allCharacters.get(gc);
             App.CharacterArchivePanel panel = new App.CharacterArchivePanel(40, image, gc);
-            panel.addMouseListener(new MouseAdapter() {
+            panel.addMouseListener(new MouseAdapter() { //add mouse listener
                 @Override
                 public void mousePressed(MouseEvent e) {
+                    //if the panel is clicked, then open that character details
                     setVisible(false);
                     bgmPlayer.stop();
                     new CharInfo(panel.getGameChar(), userId, username, email, profileImage, bgmPlayer).setVisible(true);
@@ -327,7 +336,7 @@ public class CharInfoHome extends javax.swing.JFrame {
         
     }
     
-    
+    //get all character information from txt file
     private void fillCharacterInfo(){
         try {
             File myObj = new File("src/App/text/character_1.txt");
@@ -351,13 +360,17 @@ public class CharInfoHome extends javax.swing.JFrame {
     }
     
     
+    //attributes for filtering
     private ArrayList<CharacterArchivePanel> filteredPanels = new ArrayList<>();
     private ArrayList<String> elementFilter = new ArrayList<>();
     private ArrayList<String> weaponFilter = new ArrayList<>();
     private ArrayList<String> starFilter = new ArrayList<>();
     
+    //handle click filter buttons
     private void handleClick(){
-        filteredPanels.clear();
+        filteredPanels.clear();     //clear the filter before
+        
+        //set temporary collections
         Set<CharacterArchivePanel> setAll = new LinkedHashSet<>();
         ArrayList<CharacterArchivePanel> tempElement = new ArrayList<>();
         ArrayList<CharacterArchivePanel> tempWeapon = new ArrayList<>();
@@ -399,6 +412,8 @@ public class CharInfoHome extends javax.swing.JFrame {
         
         //add to filteredPanels to show it
         filteredPanels.addAll(setAll);
+        
+        //some exceptions for certain type filter
         if(weaponFilter.contains("Claymore") && weaponFilter.size()==1 && elementFilter.contains("Hydro") && elementFilter.size()==1){
             scrollPane.setVisible(false);
         }
@@ -445,11 +460,13 @@ public class CharInfoHome extends javax.swing.JFrame {
             scrollPane.setVisible(false);
         }
         else{
+            //if it is not included in the if-elseif above, then show the filtered panel
             scrollPane.setVisible(true);
             showPanels(filteredPanels);
         }
     }
     
+    //handle when the filter button is not clicked anymore
     private void handleReleaseClick(){
         //show all characters if no filter
         if(weaponFilter.isEmpty() && elementFilter.isEmpty() && starFilter.isEmpty()){
@@ -457,11 +474,11 @@ public class CharInfoHome extends javax.swing.JFrame {
         }
         else{
             handleClick();
-        }
-        
+        } 
     }
     
     
+    //display the character panel
     private void showPanels(ArrayList<CharacterArchivePanel> charList){
         parentPanel.removeAll();
         int row=0, column=0;

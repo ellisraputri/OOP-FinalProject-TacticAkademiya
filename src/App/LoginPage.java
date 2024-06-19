@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package App;
 
 import DatabaseConnection.ConnectionProvider;
@@ -20,36 +16,28 @@ import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-/**
- *
- * @author asus
- */
+
 public class LoginPage extends javax.swing.JFrame {
-    private MP3Player bgmPlayer;
-    
-    /**
-     * Creates new form LoginPage
-     */
+    private MP3Player bgmPlayer;    
+   
     public LoginPage() {
         initComponents();
-        myinit();
-        setLocationRelativeTo(null);
-        setTitle("Login Page");
-        setResizable(false);
     }
     
     public LoginPage(MP3Player bgmPlayer) {
         this.bgmPlayer = bgmPlayer;
         initComponents();
         myinit();
-        setLocationRelativeTo(null);
-        setTitle("Login Page");
-        setResizable(false);
+        setLocationRelativeTo(null);    //set frame location
+        setTitle("Login Page");         //set frame title
+        setResizable(false);        //set to not resizable
     }
     
     private void myinit(){
+        //set cursor image
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));        
         
+        //set fields
         usernameEmailField = new App.RoundJTextField(30);
         passwordField = new App.RoundJPasswordField(30);
         
@@ -63,6 +51,7 @@ public class LoginPage extends javax.swing.JFrame {
         getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 394, -1, -1));
         getContentPane().setComponentZOrder(passwordField, 0);
         
+        //track the word that is being typed in usernameEmailField
         usernameEmailField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -81,16 +70,18 @@ public class LoginPage extends javax.swing.JFrame {
         });
         usernameEmailField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // When "Enter" is pressed in textField1, move focus to textField2
+                // When "Enter" is pressed, move focus to password field
                 passwordField.requestFocusInWindow();
             }
         });
+        //when usernameEmailField is focus lost
         usernameEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 usernameEmailFieldFocusLost(evt);
             }
         });
         
+        //track each typed word in passwordfield
         passwordField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -107,19 +98,21 @@ public class LoginPage extends javax.swing.JFrame {
                 updateSelfStatusPassword();
             }
         });
+        //check if password field is focus lost
         passwordField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 passwordFieldFocusLost(evt);
             }
         });
         
-        
+        //set hidepassword and showpassword
         getContentPane().setComponentZOrder(hidePassword, 0);
         getContentPane().setComponentZOrder(showPassword, 0);
         hidePassword.setVisible(false);
         passwordField.setEchoChar('*');
     }
     
+    //if the field is empty, then the field become red
     private void updateSelfStatusUsername(){
         String text = usernameEmailField.getText();
         if(text.trim().isEmpty()){
@@ -135,11 +128,13 @@ public class LoginPage extends javax.swing.JFrame {
     private static final Pattern VALID_PASSWORD_REGEX = 
     Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", Pattern.CASE_INSENSITIVE);
     
+    //check for password whether match the regex
     private static boolean validatePassword(String passwordStr) {
         Matcher matcher = VALID_PASSWORD_REGEX.matcher(passwordStr);
         return matcher.matches();
     }
     
+    //if password is empty or does not match the regex, field become red
     private void updateSelfStatusPassword(){
         String text = passwordField.getText();
         if(text.trim().isEmpty() || !(validatePassword(text))){
@@ -343,13 +338,17 @@ public class LoginPage extends javax.swing.JFrame {
         String usernameEmail = usernameEmailField.getText();
         String password = passwordField.getText();
 
+        //if usernameEmail field is empty
         if(usernameEmail.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Username is still empty.");
         }
+        
+        //if passwordField is empty
         else if(password.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Password is still empty.");
         }
         else{
+            //if password is not valid
             if(!(validatePassword(password))){
                 JOptionPane.showMessageDialog(getContentPane(), "Password must have 8 characters with at least one number and one character");
             }
@@ -358,6 +357,7 @@ public class LoginPage extends javax.swing.JFrame {
                 String passwordConfirmation ="";
                 int id = 0;
                 try{
+                    //check for username from usernameEmailField
                     Connection con = ConnectionProvider.getCon();
                     Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
                     ResultSet rs = st.executeQuery("select * from user where username='" + usernameEmail + "'");
@@ -365,24 +365,28 @@ public class LoginPage extends javax.swing.JFrame {
                         id = rs.getInt(1);
                         passwordConfirmation = rs.getString(4);
                         
+                        //check whether the password pass
                         if(passwordConfirmation.equals(password)){
+                            //if yes, close frame
                             setVisible(false);
                             dispose();
                             bgmPlayer.stop();
                             new Home(id).setVisible(true);
-                            System.out.println(id);
                         }
                         else{
                             JOptionPane.showMessageDialog(getContentPane(), "Incorrect Password");
                         }
                     }
                     else{
+                        //check for email from usernameEmailField
                         ResultSet rs1 = st.executeQuery("select * from user where email='" + usernameEmail + "'");
                         if(rs1.first()){
                             id = rs1.getInt(1);
                             passwordConfirmation = rs1.getString(4);
-
+                            
+                            //check whether the password pass
                             if(passwordConfirmation.equals(password)){
+                                //if yes, close frame
                                 setVisible(false);
                                 dispose();
                                 bgmPlayer.stop();
@@ -420,13 +424,17 @@ public class LoginPage extends javax.swing.JFrame {
         String usernameEmail = usernameEmailField.getText();
         String password = passwordField.getText();
 
+        //if usernameEmail field is empty
         if(usernameEmail.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Username is still empty.");
         }
+        
+        //if passwordField is empty
         else if(password.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Password is still empty.");
         }
         else{
+            //if password is not valid
             if(!(validatePassword(password))){
                 JOptionPane.showMessageDialog(getContentPane(), "Password must have 8 characters with at least one number and one character");
             }
@@ -435,6 +443,7 @@ public class LoginPage extends javax.swing.JFrame {
                 String passwordConfirmation ="";
                 int id = 0;
                 try{
+                    //check for username from usernameEmailField
                     Connection con = ConnectionProvider.getCon();
                     Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
                     ResultSet rs = st.executeQuery("select * from user where username='" + usernameEmail + "'");
@@ -442,7 +451,9 @@ public class LoginPage extends javax.swing.JFrame {
                         id = rs.getInt(1);
                         passwordConfirmation = rs.getString(4);
                         
+                        //check whether the password pass
                         if(passwordConfirmation.equals(password)){
+                            //if yes, close frame
                             setVisible(false);
                             dispose();
                             bgmPlayer.stop();
@@ -453,12 +464,15 @@ public class LoginPage extends javax.swing.JFrame {
                         }
                     }
                     else{
+                        //check for email from usernameEmailField
                         ResultSet rs1 = st.executeQuery("select * from user where email='" + usernameEmail + "'");
                         if(rs1.first()){
                             id = rs1.getInt(1);
                             passwordConfirmation = rs1.getString(4);
-
+                            
+                            //check whether the password pass
                             if(passwordConfirmation.equals(password)){
+                                //if yes, close frame
                                 setVisible(false);
                                 dispose();
                                 bgmPlayer.stop();
@@ -540,6 +554,7 @@ public class LoginPage extends javax.swing.JFrame {
         new SignUpPage().setVisible(true);
     }//GEN-LAST:event_underlineMouseClicked
     
+    //if the usernameEmailField is focus lost and empty, field become red
     private void usernameEmailFieldFocusLost(java.awt.event.FocusEvent evt) {                                   
         String text = usernameEmailField.getText();
         if(text.trim().isEmpty()){
@@ -552,6 +567,7 @@ public class LoginPage extends javax.swing.JFrame {
         }
     }
     
+    //if passwordField is focus lost and empty, field become red
     private void passwordFieldFocusLost(java.awt.event.FocusEvent evt) {                                   
         String text = passwordField.getText();
         if(text.trim().isEmpty() || !(validatePassword(text))){

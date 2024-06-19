@@ -1,16 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package App;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
-/**
- *
- * @author asus
- */
+
 public class MusicPanel extends JPanel{ 
     private static Color bgColor;
     private static Color borderColor;
@@ -47,6 +40,7 @@ public class MusicPanel extends JPanel{
         add(titleLabel);
         setComponentZOrder(titleLabel,0);        
         
+        //set play and pause button
         button = new JLabel();
         button.setIcon(new ImageIcon("src/App/image/play2.png"));
         button.setBounds(25, 15, button.getPreferredSize().width, button.getPreferredSize().height);
@@ -59,6 +53,7 @@ public class MusicPanel extends JPanel{
         });
         setComponentZOrder(button,0);
         
+        //set checkbox
         checkbox = new JLabel();
         checkbox.setIcon(new ImageIcon("src/App/image/Rectangle12.png"));
         checkbox.setBounds(504, 16, checkbox.getPreferredSize().width, checkbox.getPreferredSize().height);
@@ -78,34 +73,38 @@ public class MusicPanel extends JPanel{
         setComponentZOrder(checkbox,0);
     }
     
+    //if the button is clicked
     private void buttonMouseClicked(MouseEvent evt){
+        //if clickedButton is true, then stop music player and display play button
         if(clickedButton){
             button.setIcon(new ImageIcon("src/App/image/play2.png"));
             clickedButton = !clickedButton;
             settingmusic.stopMusicPlayer();
         }
+        //otherwise, play music player and display pause button
         else{
             clickedButton = !clickedButton;
             settingmusic.checkOtherMusic(index);
-            
-                button.setIcon(new ImageIcon("src/App/image/pause2.png"));
-            
-            
+            button.setIcon(new ImageIcon("src/App/image/pause2.png"));
         }
     }
     
+    //if the checkbox is clicked
     private void checkboxMouseClicked(MouseEvent evt){
+        //if clickedCheckbox is true, then dont show checkmark
         if(clickedCheckbox){
             clickedCheckbox = !clickedCheckbox;
             checkbox.setIcon(new ImageIcon("src/App/image/Rectangle12.png"));
         }
+        //otherwise, show checkmark
         else{
-            boolean check = settingmusic.checkClickedCheckboxAmount();
+            boolean check = settingmusic.checkClickedCheckboxAmount();  //check for music amount
             if(check){
                 clickedCheckbox = !clickedCheckbox;
                 checkbox.setIcon(new ImageIcon("src/App/image/checkmark3.png"));
             }
             else{
+                //if music amount is greater than 5, then show alert
                 JOptionPane.showMessageDialog(settingmusic.getContentPane(), "You have already selected five music");
             }  
         }
@@ -135,10 +134,11 @@ public class MusicPanel extends JPanel{
         checkbox.setIcon(new ImageIcon("src/App/image/checkmark3.png"));
     }
 
+    //get music file
     public File getFile() {
         return file;
     }
-
+    
     public boolean isClickedButton() {
         return clickedButton;
     }
@@ -148,11 +148,7 @@ public class MusicPanel extends JPanel{
         button.setIcon(new ImageIcon("src/App/image/play2.png"));
     }
 
-    
-    
-    
-   
-   
+    //paint panel
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

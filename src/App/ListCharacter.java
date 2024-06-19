@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package App;
 
 import java.awt.Color;
@@ -20,25 +16,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
-/**
- *
- * @author asus
- */
+
 public class ListCharacter extends javax.swing.JFrame {
     private int userId;
     private JPanel cloneablePanel;
     private ArrayList<CharacterPanel> panelList = new ArrayList<>();
     private MP3Player bgmPlayer;
     
-    /**
-     * Creates new form ListCharacter
-     */
+    
     public ListCharacter() {
         initComponents();
-        setTitle("Character Listing");
-        setResizable(false);
-        setLocationRelativeTo(null);
-        myinit();
     }
     
     public ListCharacter(int userId, MP3Player bgmPlayer) {
@@ -46,19 +33,22 @@ public class ListCharacter extends javax.swing.JFrame {
         this.bgmPlayer = bgmPlayer;
         this.userId = userId;
         setTitle("Character Listing");
-        setResizable(false);
-        setLocationRelativeTo(null);
+        setResizable(false);        //set to not resizable
+        setLocationRelativeTo(null);    //set location of frame
         myinit();
     }
     
     private void myinit(){ 
+        //set cursor
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
-
+        
+        //set scroll pane
         scroll.setOpaque(false);
         scroll.getViewport().setOpaque(false);
         scroll.setBorder(BorderFactory.createEmptyBorder());
         scroll.getVerticalScrollBar().setUnitIncrement(20);
         
+        //set parent panel
         cloneablePanel = new JPanel(); // The initial panel inside scroll pane
         cloneablePanel.setLayout(null); // Use absolute layout
         cloneablePanel.setPreferredSize(new Dimension(400, 200)); // Set initial size
@@ -68,16 +58,19 @@ public class ListCharacter extends javax.swing.JFrame {
         cloneablePanel.setBorder(null);
         scroll.setViewportView(cloneablePanel); // Set this panel as viewport's view
         
+        //load image from folder
         App.ImageLoader loader1 = new App.ImageLoader();
         ArrayList<BufferedImage> imageList = loader1.loadImagesFromFolder("src/App/image/CharacterCard/NotZoom");
         ArrayList<String> nameList = loader1.returnFileNames();
         
+        //load image when hovering from folder
         App.ImageLoader loader2 = new App.ImageLoader();
         ArrayList<BufferedImage> imageZoomList = loader2.loadImagesFromFolder("src/App/image/CharacterCard/Zoom");        
         
-        
+        //display panel
         int row=0, column=0;
         for(int i=0; i<imageList.size();i++){
+            //initialize character panel
             BufferedImage image = imageList.get(i);
             String charName = nameList.get(i);
             BufferedImage imageHover = imageZoomList.get(i);
@@ -197,7 +190,7 @@ public class ListCharacter extends javax.swing.JFrame {
         if(option == JOptionPane.YES_OPTION){
             setVisible(false);
             dispose();
-            bgmPlayer.stop();
+            bgmPlayer.stop();   
             new WelcomePage().setVisible(true);
         }
         
@@ -226,16 +219,19 @@ public class ListCharacter extends javax.swing.JFrame {
         boolean[] clickedArray = new boolean[panelList.size()];
         int i=0;
         int amount_clicked=0;
+        //check for clicked panel amount and collect the clicked panel in an array
         for(CharacterPanel panel : panelList){
             clickedArray[i] = panel.getClicked();
             i++;
             amount_clicked = (panel.getClicked())? amount_clicked+1 : amount_clicked;
         }
         
+        //if the amount less than 8, then show alert
         if(amount_clicked<8){
             JOptionPane.showMessageDialog(getContentPane(), "Characters must be at least 8.");
         }
         else{
+            //insert into database
             try{
                 Connection con = ConnectionProvider.getCon();
                 String str = "insert into characters values(" + userId;
@@ -247,6 +243,7 @@ public class ListCharacter extends javax.swing.JFrame {
                 PreparedStatement ps = con.prepareStatement(str);
                 ps.executeUpdate();
 
+                //close frame
                 setVisible(false);
                 dispose();
                 bgmPlayer.stop();
@@ -275,16 +272,19 @@ public class ListCharacter extends javax.swing.JFrame {
         boolean[] clickedArray = new boolean[panelList.size()];
         int i=0;
         int amount_clicked=0;
+        //check for clicked panel amount and collect the clicked panel in an array
         for(CharacterPanel panel : panelList){
             clickedArray[i] = panel.getClicked();
             i++;
             amount_clicked = (panel.getClicked())? amount_clicked+1 : amount_clicked;
         }
         
+        //if clicked amount less than 8, show alert
         if(amount_clicked<8){
             JOptionPane.showMessageDialog(getContentPane(), "Characters must be at least 8.");
         }
         else{
+            //insert into database
             try{
                 Connection con = ConnectionProvider.getCon();
                 String str = "insert into characters values(" + userId;
@@ -295,7 +295,8 @@ public class ListCharacter extends javax.swing.JFrame {
 
                 PreparedStatement ps = con.prepareStatement(str);
                 ps.executeUpdate();
-
+                
+                //close frame
                 setVisible(false);
                 dispose();
                 bgmPlayer.stop();

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package App;
 
 import java.awt.Cursor;
@@ -9,15 +5,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-/**
- *
- * @author asus
- */
+
 public class IconPanel extends ClonePanel{
-    private String name;
-    private BufferedImage image;
-    private int index;
-    private String path;
+    private String name;       //icon name
+    private BufferedImage image;    //icon image
+    private int index;  //icon index
+    private String path;    //image path
     
     public IconPanel(String name, BufferedImage image, int index, String path){
         this.name = name;
@@ -25,21 +18,24 @@ public class IconPanel extends ClonePanel{
         this.index = index;
         this.path = path;
     }
-
+    
+    //get icon name
     public String getName() {
         return name;
     }
 
+    //get icon path
     public String getPath() {
         return path;
     }
-
+    
+    //get image
     public BufferedImage getImage() {
         return image;
     }
     
     
-    
+    //setting for mouse
     public void settingMouse(SettingProfile settingprofile){    
         //set cursor
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -49,13 +45,13 @@ public class IconPanel extends ClonePanel{
             @Override
             public void mouseEntered(MouseEvent me) {
                 over = true;
-                charName.setVisible(true);
+                charName.setVisible(true);      //show icon name
             }
 
             @Override
             public void mouseExited(MouseEvent me) {
                 over = false;
-                charName.setVisible(false);
+                charName.setVisible(false);     //hide icon name
             }
 
             @Override
@@ -63,14 +59,17 @@ public class IconPanel extends ClonePanel{
                 if(clicked == false){
                     clicked = true;
                     checkmark.setVisible(true);
+                    
+                    //set up the profile image in the SettingProfile
                     settingprofile.lastClicked = index;
                     BufferedImage circledImage = settingprofile.cropIntoCircle(image);
                     settingprofile.setProfileImage(circledImage);
-                    
                 }
                 else{
                     clicked = false;
                     checkmark.setVisible(false);
+                    
+                    //set the profile image to default
                     settingprofile.setProfileImage("null");
                     settingprofile.lastClicked = -1;
                 }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package App;
 
 import java.awt.Color;
@@ -17,33 +13,34 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-/**
- *
- * @author asus
- */
+
 public abstract class ClonePanel extends JPanel{
-    public boolean over;
-    public boolean clicked = false;
-    public JLabel charImage;
-    public App.WrappedLabel charName;
-    public JLabel checkmark;
+    public boolean over;        //if the panel is being hovered, then over is true
+    public boolean clicked = false;     //if the panel is clicked, then clicked is true
+    public JLabel charImage;        //character image
+    public App.WrappedLabel charName;       //label that display character name
+    public JLabel checkmark;       
     
+    //is the panel is being hovered
     public boolean isOver() {
         return over;
     }
 
+    //set the "over" attribute
     public void setOver(boolean over) {
         this.over = over;
     }
     
+    //set name and checkmark
     private void settingNameAndCheckMark(String name, int imageWidth, int imageHeight, int fontSize, boolean bigCheckmark){
+        //if need big checkmark, then draw big checkmark
+        //otherwise, draw usual checkmark
         if(bigCheckmark){
             drawBigCheckmark(imageWidth);
         }
         else{
             drawCheckmark(imageWidth);
         }
-        
         
         //setting up the name of character
         charName = new App.WrappedLabel(imageWidth, new Color(228,220,209), new Insets(5,5,5,5));
@@ -61,9 +58,10 @@ public abstract class ClonePanel extends JPanel{
         charName.setVisible(false);
     }
     
+    //setting panel with imageicon
     public void settingPanel(ImageIcon image, String name, int imageWidth, int imageHeight, int fontSize, boolean bigCheckmark){
-        setOpaque(false);
-        setLayout(null);
+        setOpaque(false);   //transparent background
+        setLayout(null);    //null layout
         
         //setting up the character image
         charImage = new JLabel();
@@ -71,17 +69,19 @@ public abstract class ClonePanel extends JPanel{
         charImage.setBounds(0,0,imageWidth, imageHeight);
         add(charImage);
         
+        //setting name and checkmark
         settingNameAndCheckMark(name, imageWidth, imageHeight, fontSize, bigCheckmark);
         
+        //set all component z order accordingly
         setComponentZOrder(charImage, 1);
         setComponentZOrder(checkmark, 0);
         setComponentZOrder(charName, 0);
     }
     
-    
+    //setting panel with bufferedimage
     public void settingPanel(BufferedImage image, String name, int imageWidth, int imageHeight, int fontSize, boolean bigCheckmark){
-        setOpaque(false);
-        setLayout(null);
+        setOpaque(false);   //transparent background
+        setLayout(null);    //null layout
         
         //setting up the character image
         charImage = new JLabel();
@@ -89,14 +89,16 @@ public abstract class ClonePanel extends JPanel{
         charImage.setBounds(0,0,imageWidth, imageHeight);
         add(charImage);
         
+        //setting name and checkmark
         settingNameAndCheckMark(name, imageWidth, imageHeight, fontSize, bigCheckmark);
         
+        //set components z order accordingly
         setComponentZOrder(charImage, 1);
         setComponentZOrder(checkmark, 0);
         setComponentZOrder(charName, 0);
     }
     
-    
+    //draw usual checkmark
     public void drawCheckmark(int imageWidth){
         //setting up the checkmark
         checkmark = new JLabel();
@@ -106,6 +108,7 @@ public abstract class ClonePanel extends JPanel{
         checkmark.setVisible(false);
     }
     
+    //draw big checkmark
     public void drawBigCheckmark(int imageWidth){
         //setting up the checkmark
         checkmark = new JLabel();
@@ -115,42 +118,44 @@ public abstract class ClonePanel extends JPanel{
         checkmark.setVisible(false);
     }
         
-   
+   //setting mouse 
     public void settingMouse(){
         //  Add event mouse
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent me) {
                 over = true;
-                charName.setVisible(true);
-                setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                charName.setVisible(true);      //display character name
+                setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));  //cursor become hand cursor
             }
 
             @Override
             public void mouseExited(MouseEvent me) {
                 over = false;
-                charName.setVisible(false);
-                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                charName.setVisible(false);     //hide character name
+                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));   //cursor become default
             }
 
             @Override
             public void mousePressed(MouseEvent me) {     
                 if(clicked == false){
                     clicked = true;
-                    checkmark.setVisible(true);
+                    checkmark.setVisible(true);     //show checkmark
                 }
                 else{
                     clicked = false;
-                    checkmark.setVisible(false);
+                    checkmark.setVisible(false);    //hide checkmark
                 }
             }
         });
     }
     
+    //is the panel clicked
     public boolean getClicked(){
         return clicked;
     }
 
+    //set the clicked attribute
     public void setClicked(boolean clicked) {
         this.clicked = clicked;
     }

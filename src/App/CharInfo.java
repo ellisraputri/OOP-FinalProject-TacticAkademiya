@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package App;
 
 import jaco.mp3.player.MP3Player;
@@ -17,10 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-/**
- *
- * @author asus
- */
+
 public class CharInfo extends javax.swing.JFrame {
     private GameCharacter gamechar;
     private int userId;
@@ -50,14 +43,15 @@ public class CharInfo extends javax.swing.JFrame {
         this.profileImage = profileImage;
         this.prevbgmPlayer = prevbgmPlayer;
         initComponents();
-        setTitle("Character "+gamechar.getName() + " Details");
-        bg.setIcon(new ImageIcon("src/App/image/bg_"+gamechar.getElement() +".png"));
-        splashArtLabel.setIcon(new ImageIcon("src/App/image/CharacterCard/SplashArt/"+gamechar.getName()+".png"));
-        setLocationRelativeTo(null);
+        setTitle("Character "+gamechar.getName() + " Details");     //set frame title
+        bg.setIcon(new ImageIcon("src/App/image/bg_"+gamechar.getElement() +".png"));       //set background        
+        splashArtLabel.setIcon(new ImageIcon("src/App/image/CharacterCard/SplashArt/"+gamechar.getName()+".png"));      //set splash art
+        setLocationRelativeTo(null);    //set frame location
         myinit();
     }
     
     private void myinit(){
+        //set cursor image
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
 
         //username and email label
@@ -97,12 +91,14 @@ public class CharInfo extends javax.swing.JFrame {
         parentPanel.setBorder(null);
         scrollPane.setViewportView(parentPanel); // Set this panel as viewport's view
         
+        //if not traveler, dont show traveler buttons
         if(!(gamechar.getName().contains("Traveler"))){
             lumineButton.setVisible(false);
             aetherButton.setVisible(false);
         }
         
-        charDetails = new App.GameCharacterDetail(gamechar);
+        //set all things
+        charDetails = new App.GameCharacterDetail(gamechar);    //retrieving character details from web scrapping
         setBasicInfo();
         setWeapons();
         setArtifacts();
@@ -111,8 +107,6 @@ public class CharInfo extends javax.swing.JFrame {
         setNamecard();
         setVoicebox();
         
-        
-        
         //repaint components
         parentPanel.revalidate();
         parentPanel.repaint();
@@ -120,12 +114,14 @@ public class CharInfo extends javax.swing.JFrame {
         getContentPane().repaint();
     }
     
+    //load background music
     private void loadBgm() {
         String folderPath = "src/App/audio/bgm";
         File folder = new File(folderPath);
         File[] listOfFiles = folder.listFiles();
         File selectedFile = null;
-
+        
+        //load music based on the character name
         if (listOfFiles != null) {
             for (File file : listOfFiles) {
                 if(file.isFile() && file.getAbsolutePath().contains(gamechar.getName())){
@@ -135,12 +131,14 @@ public class CharInfo extends javax.swing.JFrame {
             }
         }
         
+        //play music and loop music
         bgmPlayer = new MP3Player();
         bgmPlayer.addToPlayList(selectedFile);
         bgmPlayer.play();
         bgmPlayer.setRepeat(true);
     }
     
+    //set basic information
     private void setBasicInfo(){
         //set rarity
         String star = (gamechar.getStars() == 4)? "four" : "five";
@@ -172,19 +170,25 @@ public class CharInfo extends javax.swing.JFrame {
         //set cn voice
         cnVoiceLabel.setText("CN:"+charDetails.getCnVoice());
         
+        //alhaitham japanese voice actor re-setup (because his name is too long)
         if(gamechar.getName().equals("Alhaitham")){
             jpVoiceLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 13));
         }
         jpVoiceLabel.setText("JP:"+charDetails.getJpVoice());
         
         
+        //set traveler voice 
         if(gamechar.getName().contains("Traveler")){
             setVoiceTraveler();
         }
+        
+        //set other character voice
         else{
             cnVoiceLabel1.setVisible(false);
             jpVoiceLabel1.setVisible(false);
 
+            //if it is Fischl or Yun Jin, make the box bigger and set another voice label
+            //this is because they have 2 voice actors for each language
             if(gamechar.getName().equals("Fischl") || gamechar.getName().equals("Yun Jin")){
                 cnVoicebox.setBounds(cnVoicebox.getX(), cnVoicebox.getY(), cnVoicebox.getWidth(), 100);
                 jpVoicebox.setBounds(jpVoicebox.getX(), jpVoicebox.getY(), jpVoicebox.getWidth(), 100);
@@ -208,16 +212,21 @@ public class CharInfo extends javax.swing.JFrame {
             }
         }
         
+        //set new size for parentpanel
         Dimension newSize = new Dimension(parentPanel.getWidth(), birthdayLabel.getY()+birthdayLabel.getPreferredSize().height+30); // Adjusted size
         parentPanel.setPreferredSize(newSize);
     }
     
-    
+    //set weapon 
     private void setWeapons(){
+        //get weapon images and names
         ArrayList<ImageIcon> weaponImages = charDetails.getWeaponImages();
         ArrayList<String> weaponNames = charDetails.getWeapons();
-        System.out.println(weaponNames);
+        
+        //set title
         weaponTitle.setBounds(weaponTitle.getX(), birthdayLabel.getY()+birthdayLabel.getPreferredSize().height+30, weaponTitle.getWidth(), weaponTitle.getHeight());
+        
+        //set image label and image 
         int y=weaponTitle.getY()+60;
         for(int i=0; i<weaponImages.size(); i++){
             int x = (i%2==0)? 0 : 260;
@@ -236,17 +245,20 @@ public class CharInfo extends javax.swing.JFrame {
             weaponNameLabel.setVerticalAlignment(SwingConstants.CENTER);
             weaponNameLabel.setBounds(x+70, y, weaponNameLabel.getPreferredSize().width+4, 70);    
             parentPanel.add(weaponNameLabel);
-            
         }
+        
+        //set new size for parent panel
         Dimension newSize = new Dimension(parentPanel.getWidth(), y + 90); // Adjusted size
         parentPanel.setPreferredSize(newSize);
     }
     
+    //set artifacts
     private void setArtifacts(){
+        //get artifact names and images
         ArrayList<ImageIcon> artifactImages = charDetails.getArtifactImages();
         ArrayList<String> artifactNames = charDetails.getArtifacts();
-        System.out.println(artifactNames);
         
+        //set title
         JLabel title = new JLabel();
         title.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
         title.setForeground(Color.black);
@@ -254,8 +266,8 @@ public class CharInfo extends javax.swing.JFrame {
         title.setBounds(10, parentPanel.getPreferredSize().height+15, title.getPreferredSize().width+4, 60);    
         parentPanel.add(title);
         
+        //set artifact image and label
         int y=title.getY() + title.getHeight();
-        
         for(int i=0; i<artifactImages.size(); i++){
             int x = (i%2==0)? 0 : 260;
             if(i>0){
@@ -273,14 +285,16 @@ public class CharInfo extends javax.swing.JFrame {
             artifactNameLabel.setText(artifactNames.get(i));
             artifactNameLabel.setBounds(x+70, y, artifactNameLabel.getPreferredSize().width+4, 70);
             parentPanel.add(artifactNameLabel);
-            
-            
         }
+        
+        //set new size for parentpanel
         Dimension newSize = new Dimension(parentPanel.getWidth(), y + 90); // Adjusted size
         parentPanel.setPreferredSize(newSize);
     }
     
+    //set artifact stats
     private void setArtifactsStats(){
+        //set title
         JLabel titleStats = new JLabel();
         titleStats.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
         titleStats.setForeground(Color.black);
@@ -288,11 +302,13 @@ public class CharInfo extends javax.swing.JFrame {
         titleStats.setBounds(10, parentPanel.getPreferredSize().height+15, titleStats.getPreferredSize().width+4, 60);    
         parentPanel.add(titleStats);
         
+        //set sands image
         JLabel sandsImage = new JLabel();
         sandsImage.setIcon(new ImageIcon("src/App/image/sands.png"));
         sandsImage.setBounds(13, titleStats.getY()+titleStats.getHeight(), sandsImage.getPreferredSize().width, sandsImage.getPreferredSize().height);
         parentPanel.add(sandsImage);
         
+        //set sands stats
         JLabel sandsLabel = new JLabel();
         sandsLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         sandsLabel.setForeground(new java.awt.Color(67, 67, 71));
@@ -301,11 +317,13 @@ public class CharInfo extends javax.swing.JFrame {
         sandsLabel.setVerticalAlignment(SwingConstants.CENTER);
         parentPanel.add(sandsLabel);
         
+        //set goblet image
         JLabel gobletImage = new JLabel();
         gobletImage.setIcon(new ImageIcon("src/App/image/goblet.png"));
         gobletImage.setBounds(20, sandsImage.getY()+60, gobletImage.getPreferredSize().width, gobletImage.getPreferredSize().height);
         parentPanel.add(gobletImage);
         
+        //set goblet stats
         JLabel gobletLabel = new JLabel();
         gobletLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         gobletLabel.setForeground(new java.awt.Color(67, 67, 71));
@@ -314,11 +332,13 @@ public class CharInfo extends javax.swing.JFrame {
         gobletLabel.setVerticalAlignment(SwingConstants.CENTER);
         parentPanel.add(gobletLabel);
         
+        //set circlet image
         JLabel circletImage = new JLabel();
         circletImage.setIcon(new ImageIcon("src/App/image/circlet.png"));
         circletImage.setBounds(13, gobletImage.getY()+60, circletImage.getPreferredSize().width, circletImage.getPreferredSize().height);
         parentPanel.add(circletImage);
         
+        //set circlet stats
         JLabel circletLabel = new JLabel();
         circletLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         circletLabel.setForeground(new java.awt.Color(67, 67, 71));
@@ -327,6 +347,7 @@ public class CharInfo extends javax.swing.JFrame {
         circletLabel.setVerticalAlignment(SwingConstants.CENTER);
         parentPanel.add(circletLabel);
         
+        //set substat title
         JLabel substatTitle = new JLabel();
         substatTitle.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         substatTitle.setForeground(new java.awt.Color(67, 67, 71));
@@ -335,6 +356,7 @@ public class CharInfo extends javax.swing.JFrame {
         substatTitle.setVerticalAlignment(SwingConstants.CENTER);
         parentPanel.add(substatTitle);
         
+        //set substat text
         App.WrappedLabel substatLabel = new App.WrappedLabel(390, null, new Insets(2,2,2,2));
         substatLabel.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         substatLabel.setForeground(new java.awt.Color(67, 67, 71));
@@ -343,20 +365,25 @@ public class CharInfo extends javax.swing.JFrame {
         substatLabel.setVerticalAlignment(SwingConstants.CENTER);
         parentPanel.add(substatLabel);
         
+        //set new size for parentpanel
         Dimension newSize = new Dimension(parentPanel.getWidth(), substatLabel.getY()+ 90); // Adjusted size
         parentPanel.setPreferredSize(newSize);
     }
     
+    
+    //set team comps
     private void setTeams(){
-        ArrayList<String> teams = charDetails.getTeams();
+        ArrayList<String> teams = charDetails.getTeams();   //get teams
         
+        //set title
         JLabel titleTeams = new JLabel();
-        titleTeams.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
+        titleTeams.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); 
         titleTeams.setForeground(Color.black);
         titleTeams.setText("Team Comps");
         titleTeams.setBounds(10, parentPanel.getPreferredSize().height-5, titleTeams.getPreferredSize().width+4, 60);    
         parentPanel.add(titleTeams);
         
+        //set team panels
         int row=0, column=0, lastY=titleTeams.getY();
         for(int i=0; i<teams.size();i++){
             ImageIcon image = new ImageIcon("src/App/image/CharacterCard/Archive/Portraits "+teams.get(i)+".png");
@@ -384,14 +411,15 @@ public class CharInfo extends javax.swing.JFrame {
             parentPanel.add(clonedPanel);
             lastY = y;
         }
+        
         // Adjust preferred size of initial panel to include new panel
         Dimension newSize = new Dimension(parentPanel.getWidth(), lastY+150); // Adjusted size
         parentPanel.setPreferredSize(newSize);
-        
     }
     
-    
+    //set namecard
     private void setNamecard(){
+        //set title
         JLabel titleNamecard = new JLabel();
         titleNamecard.setFont(new java.awt.Font("HYWenHei-85W", 0, 28)); // NOI18N
         titleNamecard.setForeground(Color.black);
@@ -399,6 +427,7 @@ public class CharInfo extends javax.swing.JFrame {
         titleNamecard.setBounds(10, parentPanel.getPreferredSize().height-5, titleNamecard.getPreferredSize().width+4, 60);    
         parentPanel.add(titleNamecard);
         
+        //set image, except for traveler (they dont have namecard)
         JLabel cardImage = new JLabel();
         if(gamechar.getName().contains("Traveler")){
             cardImage.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
@@ -411,20 +440,24 @@ public class CharInfo extends javax.swing.JFrame {
         cardImage.setBounds(13, titleNamecard.getY()+60, cardImage.getPreferredSize().width+10, cardImage.getPreferredSize().height);
         parentPanel.add(cardImage);
         
+        //set parentpanel size
         Dimension newSize = new Dimension(parentPanel.getWidth(), cardImage.getY()+cardImage.getHeight()+40); // Adjusted size
         parentPanel.setPreferredSize(newSize);
     }
     
+    //set voice box
     private void setVoicebox(){
         if(gamechar.getName().contains("Traveler")){
             setVoiceTraveler();
         }
         else{
+            //add CN voicelines
             cnVoicePlayer = new MP3Player();
             cnVoicePlayer.addToPlayList(new File("src/App/audio/CN/"+gamechar.getName()+".mp3"));
             cnVoicePlayer.addToPlayList(new File("src/App/audio/silence.mp3"));
             cnVoicePlayer.setRepeat(true);
-
+            
+            //add JP voicelines
             jpVoicePlayer = new MP3Player();
             jpVoicePlayer.addToPlayList(new File("src/App/audio/JP/"+gamechar.getName()+".mp3"));
             jpVoicePlayer.addToPlayList(new File("src/App/audio/silence.mp3"));
@@ -432,7 +465,10 @@ public class CharInfo extends javax.swing.JFrame {
         }
     }
     
+    //set voice for traveler
     private void setVoiceTraveler(){
+        //if none of it is being clicked
+        //display all information, but no voicelines
         if(!(lumineButton.isClicked()) && !(aetherButton.isClicked())){
             cnVoiceLabel1.setVisible(true);
             jpVoiceLabel1.setVisible(true);
@@ -452,6 +488,8 @@ public class CharInfo extends javax.swing.JFrame {
             jpVoicePlayer.addToPlayList(new File("src/App/audio/silence.mp3"));
             jpVoicePlayer.setRepeat(true); 
         }
+        
+        //if lumine button is clicked, set lumine info and voicelines
         else if (lumineButton.isClicked()){
             cnVoiceLabel.setText("CN: 宴宁 / Yan Ning");
             cnVoiceLabel1.setVisible(false);
@@ -472,6 +510,8 @@ public class CharInfo extends javax.swing.JFrame {
             cnVoicebox.setBounds(cnVoicebox.getX(), cnVoicebox.getY(), cnVoicebox.getWidth(), 80);
             jpVoicebox.setBounds(jpVoicebox.getX(), jpVoicebox.getY(), jpVoicebox.getWidth(), 80);
         }
+        
+        //if aether button is clicked, set aether info and voicelines
         else if(aetherButton.isClicked()){
             cnVoiceLabel.setText("CN: 鹿喑 / Lu Yin");
             cnVoiceLabel1.setVisible(false);
@@ -872,6 +912,7 @@ public class CharInfo extends javax.swing.JFrame {
         click = !click;
         lumineButton.setClicked(click);
         
+        //if lumine button is clicked, aether button is set to false
         if(click){
             aetherButton.setClicked(false);
             lumineButton.setBackground(lumineButton.getColorClick());
@@ -889,6 +930,7 @@ public class CharInfo extends javax.swing.JFrame {
         click = !click;
         aetherButton.setClicked(click);
         
+        //if aether button is clicked, lumine button is set to false
         if(click){
             lumineButton.setClicked(false); 
             aetherButton.setBackground(aetherButton.getColorClick());

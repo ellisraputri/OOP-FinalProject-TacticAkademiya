@@ -9,15 +9,17 @@ import javax.swing.JLabel;
 class LabelHover extends JLabel {
     private boolean over;
     private boolean clicked;
-    private JLabel clickedCircle;
-    private JLabel clickhoverCircle;
-    private JLabel hoverCircle;
+    private JLabel clickedCircle;   //circle that will appear when clicked
+    private JLabel clickhoverCircle;    //circle that will appear when hovering a clicked label
+    private JLabel hoverCircle;     //circle that will appear when hovering
     private String name;
 
+    //get label name
     public String getName() {
         return name;
     }
 
+    //constructor
     public LabelHover(boolean over1, JLabel clickedCircle, JLabel clickhoverCircle, JLabel hoverCircle, String name) {
         this.over = over1;
         this.clickedCircle = clickedCircle;
@@ -25,6 +27,8 @@ class LabelHover extends JLabel {
         this.hoverCircle = hoverCircle;
         this.name = name;
         
+        //add mouse listener
+        //display circle accordingly based on the mouse event
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent me) {
@@ -38,6 +42,8 @@ class LabelHover extends JLabel {
                     clickhoverCircle.setVisible(false);
                     clickedCircle.setVisible(false);
                 }
+                
+                //set cursor to hand cursor
                 setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }
 
@@ -53,6 +59,8 @@ class LabelHover extends JLabel {
                     hoverCircle.setVisible(false);
                     clickhoverCircle.setVisible(false);
                 }
+                
+                //set cursor to default
                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
             }
 
@@ -73,26 +81,32 @@ class LabelHover extends JLabel {
         });
     }
 
+    //is the label being hovered
     public boolean isOver() {
         return over;
     }
 
+    //is the label being clicked
     public boolean isClicked() {
         return clicked;
     }
 
+    //get clickedCircle
     public JLabel getClickedCircle() {
         return clickedCircle;
     }
 
+    //get clickhovercircle
     public JLabel getClickhoverCircle() {
         return clickhoverCircle;
     }
 
+    //get hovercircle
     public JLabel getHoverCircle() {
         return hoverCircle;
     }
     
+    //set the image of the label
     public void setLabelIcon(String path) {
         ImageIcon icon = new ImageIcon(path);
         if (icon.getIconWidth() == -1) {

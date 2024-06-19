@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package App;
 
 import jaco.mp3.player.MP3Player;
@@ -20,10 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author asus
- */
+
 public class TeamResult extends javax.swing.JFrame {
     private int userId;
     private String username;
@@ -34,13 +27,13 @@ public class TeamResult extends javax.swing.JFrame {
     private ArrayList<String> teamInfo = new ArrayList<>();
     private int maxWidth=0;
     private HashMap<String,ArrayList<String>>teamSpiralAbyss = new LinkedHashMap<>();
-    /**
-     * Creates new form TeamResult
-     */
+    
+    
     public TeamResult() {
         initComponents();
     }
     
+    //constructor for mode enemy only
     public TeamResult(int userId, String username, String email, ImageIcon profileImage, MP3Player bgmPlayer, ArrayList<String>teamGenerated){
         initComponents();
         this.userId = userId;
@@ -54,6 +47,7 @@ public class TeamResult extends javax.swing.JFrame {
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
     }
     
+    //constructor for spiral abyss mode
     public TeamResult(int userId, String username, String email, ImageIcon profileImage, MP3Player bgmPlayer, HashMap<String,ArrayList<String>>teamSpiralAbyss){
         initComponents();
         this.userId = userId;
@@ -68,45 +62,54 @@ public class TeamResult extends javax.swing.JFrame {
     }
     
     private void resultPage1(){
+        //set parentpanel
         parentPanel.removeAll();
         parentPanel.add(resultPage1);
         parentPanel.revalidate();
         parentPanel.repaint();
         
+        //set username, email,profile
         usernameLabel.setText(username);
         emailLabel.setText(email);
         usernameLabel.setBounds(110, 25, usernameLabel.getPreferredSize().width+10, usernameLabel.getPreferredSize().height);
         emailLabel.setBounds(110, 60, emailLabel.getPreferredSize().width+10, emailLabel.getPreferredSize().height);
         profileButton.setIcon(profileImage);
         
+        //set character images
         setImages(0);
         setImages(1);
         setImages(2);
         setImages(3);
         
+        //find character info
         findCharInfo(teamGenerated.get(0));
         findCharInfo(teamGenerated.get(1));
         findCharInfo(teamGenerated.get(2));
         findCharInfo(teamGenerated.get(3));
         
+        //set the info 
         setTextAndLayout(char1Label1, char1Label, 0);
         setTextAndLayout(char2Label1, char2Label, 1);
         setTextAndLayout(char3Label1, char3Label, 2);
         setTextAndLayout(char4Label1, char4Label, 3);
         
+        //repaint
         rectangle1.setBounds(90, 370, maxWidth+70, rectangle1.getPreferredSize().height);
         resultPage1.revalidate();
         resultPage1.repaint();
     }
     
     private void setImages(int index){
+        //get image from name
         String charName = teamGenerated.get(index);
         ImageIcon icon = new ImageIcon("src/App/image/CharacterCard/NotZoom/Portraits "+charName+".png");
         
+        //initialize the panel
         CharacterPanel charPanel = new CharacterPanel(charName);
         charPanel.settingPanel(icon, charName, 150, 150,14,false);
         charPanel.settingMouse();
         
+        //set location and repaint
         int x = 100 + (index*150) + (index*10);
         charPanel.setBounds(x,180,150,150);
         charPanel.setOpaque(false);
@@ -118,19 +121,23 @@ public class TeamResult extends javax.swing.JFrame {
     }
     
     private void setTextAndLayout(JLabel label, JLabel label2, int index){
+        //set character name
         String str = teamGenerated.get(index) + ": ";
         label.setText(str);
         label.setBounds(label.getX(), label.getY(), label.getPreferredSize().width, label.getPreferredSize().height);
         
+        //set character role
         String str2 = teamInfo.get(index);
         label2.setText(str2);
         label2.setBounds(label.getPreferredSize().width+label.getX()+5, label.getY(), label2.getPreferredSize().width, label2.getPreferredSize().height);
         
+        //set size
         if(label2.getPreferredSize().width+label.getPreferredSize().width > maxWidth){
             maxWidth = label2.getPreferredSize().width+label.getPreferredSize().width;
         }
     }
     
+    ///find character role from txt file
     private void findCharInfo(String name){
         try {
             File myObj = new File("src/App/text/character.txt");
@@ -152,17 +159,20 @@ public class TeamResult extends javax.swing.JFrame {
     
     
     private void resultPage2(){
+        //set parent panel
         parentPanel.removeAll();
         parentPanel.add(resultPage2);
         parentPanel.revalidate();
         parentPanel.repaint();
         
+        //set username, email, profile
         usernameLabel1.setText(username);
         emailLabel1.setText(email);
         usernameLabel1.setBounds(110, 25, usernameLabel1.getPreferredSize().width+10, usernameLabel1.getPreferredSize().height);
         emailLabel1.setBounds(110, 60, emailLabel1.getPreferredSize().width+10, emailLabel1.getPreferredSize().height);
         profileButton1.setIcon(profileImage);
         
+        //set character images
         setImages2(0, "First Half");
         setImages2(1, "First Half");
         setImages2(2, "First Half");
@@ -172,6 +182,7 @@ public class TeamResult extends javax.swing.JFrame {
         setImages2(2, "Second Half");
         setImages2(3, "Second Half");
         
+        //find character info(role)
         for(String key: teamSpiralAbyss.keySet()){
             findCharInfo(teamSpiralAbyss.get(key).get(0));
             findCharInfo(teamSpiralAbyss.get(key).get(1));
@@ -179,6 +190,7 @@ public class TeamResult extends javax.swing.JFrame {
             findCharInfo(teamSpiralAbyss.get(key).get(3));
         }
         
+        //set character detail in wrapped labels
         Insets insets = new Insets(2,2,2,2);
         char1Detail = new App.WrappedLabel(340, new Color(0,0,0,0), insets);
         char1Detail.setFont(new java.awt.Font("HYWenHei-85W", Font.PLAIN, 18)); // NOI18N
@@ -204,13 +216,15 @@ public class TeamResult extends javax.swing.JFrame {
         char4Detail.setOpaque(false);
         resultPage2.add(char4Detail);
         
+        //reset click for firsthalf button and secondhalf button
         resetClick();
         
+        //repaint
         resultPage2.revalidate();
         resultPage2.repaint();
-
     }
     
+    //set images for page2
     private void setImages2(int index, String type){
         String charName ="";
         int y=0;
@@ -222,12 +236,16 @@ public class TeamResult extends javax.swing.JFrame {
             charName = teamSpiralAbyss.get("Second Half").get(index);
             y=460;
         }
+        
+        //find the image based on first half or second half
         ImageIcon icon = new ImageIcon("src/App/image/CharacterCard/Small/Portraits "+charName+".png");
         
+        //initialize the panel
         CharacterPanelNonClick charPanel = new CharacterPanelNonClick(charName);
         charPanel.settingPanel(icon, charName, 120, 120,12,false);
         charPanel.settingMouse();
         
+        //set bounds and repaint
         int x = 100 + (index*120) + (index*10);
         charPanel.setBounds(x,y,120,120);
         charPanel.setOpaque(false);
@@ -237,11 +255,13 @@ public class TeamResult extends javax.swing.JFrame {
         resultPage2.revalidate();
         resultPage2.repaint();
     }
-    
    
     private int heightTrackFirst=320;
     private int heightTrackSecond=320;
+    
+    //set character information
     private void setTextAndLayout(JLabel label, App.WrappedLabel label2, int index, String type){
+        //set character name
         label2.setOpaque(false);
         String str = (type.equals("First Half"))? teamSpiralAbyss.get("First Half").get(index) : teamSpiralAbyss.get("Second Half").get(index-4);
         str = str + ":";
@@ -249,9 +269,9 @@ public class TeamResult extends javax.swing.JFrame {
         int y = (type.equals("First Half"))? heightTrackFirst : heightTrackSecond;
         label.setBounds(label.getX(), y, label.getPreferredSize().width, label.getPreferredSize().height);
         
+        //set kokomi name because it is too long
         String str2 = teamInfo.get(index);
         if(str.equals("Sangonomiya Kokomi:")){
-            System.out.println("kokomi");
             String[]strArr = str2.split(", ");
             String str3 = "<html>" + strArr[0].trim() + ",<br>" + strArr[1].trim() + "</html>";;
             label2.setText(str3);
@@ -260,8 +280,10 @@ public class TeamResult extends javax.swing.JFrame {
             label2.setText(str2);
         }
         
+        //set bounds for the name label
         label2.setBounds(label.getPreferredSize().width+label.getX()+5, y-2, label2.getPreferredSize().width, label2.getPreferredSize().height);
         
+        //add the height accordingly
         if(type.equals("First Half")){
             heightTrackFirst = heightTrackFirst + 20 + label2.getPreferredSize().height;
         }
@@ -269,12 +291,12 @@ public class TeamResult extends javax.swing.JFrame {
             heightTrackSecond = heightTrackSecond + 20 + label2.getPreferredSize().height;
         }
         
-        
+        //set label properties
         label2.setOpaque(false);
         label.setBackground(new Color(0,0,0,0));
         label2.setBackgroundColor(Color.red);
         
-        
+        //add to the page
         resultPage2.add(label);
         resultPage2.add(label2);
         resultPage2.setComponentZOrder(label, 0);
@@ -283,8 +305,11 @@ public class TeamResult extends javax.swing.JFrame {
         resultPage2.repaint();
     }
     
+    //if first half button is clicked
     private void handleClickFirstHalf(){
         heightTrackFirst = 320;
+        
+        //set chars name and details to be visible
         char1Name.setVisible(true);
         char2Name.setVisible(true);
         char3Name.setVisible(true);
@@ -293,14 +318,19 @@ public class TeamResult extends javax.swing.JFrame {
         char2Detail.setVisible(true);
         char3Detail.setVisible(true);
         char4Detail.setVisible(true);
+        
+        //set text and layout with the type of first half
         setTextAndLayout(char1Name, char1Detail, 0, "First Half");
         setTextAndLayout(char2Name, char2Detail, 1, "First Half");
         setTextAndLayout(char3Name, char3Detail, 2, "First Half");
         setTextAndLayout(char4Name, char4Detail, 3, "First Half");
     }
     
+    //if second half button is clicked
     private void handleClickSecondHalf(){
         heightTrackSecond = 320;
+        
+        //set chars name and details to be visible
         char1Name.setVisible(true);
         char2Name.setVisible(true);
         char3Name.setVisible(true);
@@ -309,13 +339,15 @@ public class TeamResult extends javax.swing.JFrame {
         char2Detail.setVisible(true);
         char3Detail.setVisible(true);
         char4Detail.setVisible(true);
-        System.out.println('t');
+        
+        //set text and layout with the type of first half
         setTextAndLayout(char1Name, char1Detail, 4, "Second Half");
         setTextAndLayout(char2Name, char2Detail, 5, "Second Half");
         setTextAndLayout(char3Name, char3Detail, 6, "Second Half");
         setTextAndLayout(char4Name, char4Detail, 7, "Second Half");
     }
     
+    //all character name and details is hidden
     private void resetClick(){
         char1Name.setVisible(false);
         char2Name.setVisible(false);
@@ -728,6 +760,8 @@ public class TeamResult extends javax.swing.JFrame {
     
     private void firstHalfButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_firstHalfButtonMouseClicked
         firstHalfClicked = !(firstHalfClicked);
+        
+        //set icon accordingly
         if(firstHalfClicked){
             firstHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle5_hoverclicked.png")));
             firstHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -738,10 +772,12 @@ public class TeamResult extends javax.swing.JFrame {
             firstHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         }
         
+        //if both of them is not clicked, then set all of it to be hidden
         if(firstHalfClicked == false && secondHalfClicked == false){
             resetClick();
         }
         
+        //if second half button is clicked, set second half button to false
         if(secondHalfClicked){
             secondHalfClicked = false;
             secondHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle6.png")));
@@ -780,6 +816,7 @@ public class TeamResult extends javax.swing.JFrame {
     
     private void secondHalfButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_secondHalfButtonMouseClicked
         secondHalfClicked = !(secondHalfClicked);
+        //set suitable icons
         if(secondHalfClicked){
             secondHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle6_hoverclicked.png")));
             secondHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -790,9 +827,12 @@ public class TeamResult extends javax.swing.JFrame {
             secondHalfButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         }
         
+        //if both of them is not clicked, then set all of it to be hidden
         if(firstHalfClicked == false && secondHalfClicked == false){
             resetClick();
         }
+        
+        //if first half button is clicked, set first half button to false
         if(firstHalfClicked){
             firstHalfClicked = false;
             firstHalfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/Rectangle5.png")));

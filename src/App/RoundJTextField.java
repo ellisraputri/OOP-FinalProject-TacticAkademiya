@@ -15,11 +15,12 @@ public class RoundJTextField extends JTextField {
 
     public RoundJTextField(int size) {
         super(size);
-        setOpaque(false); // As suggested by @AVD in comment.
+        setOpaque(false); 
         // Define the insets (top, left, bottom, right)
         insets = new Insets(11, 12, 11, 12); // Adjust these values as needed
     }
     
+    //paint the component, making sure it has backgroundcolor
     @Override
     protected void paintComponent(Graphics g) {
          g.setColor(getBackground());
@@ -27,6 +28,7 @@ public class RoundJTextField extends JTextField {
          super.paintComponent(g);
     }
     
+    //paint the border, making it rounded
     @Override
     protected void paintBorder(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;

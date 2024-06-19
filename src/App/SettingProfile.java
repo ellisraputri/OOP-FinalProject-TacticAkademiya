@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package App;
 
 import DatabaseConnection.ConnectionProvider;
@@ -33,10 +29,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-/**
- *
- * @author asus
- */
+
 public class SettingProfile extends javax.swing.JFrame {
     private int userId;
     private Settings setting;
@@ -44,25 +37,21 @@ public class SettingProfile extends javax.swing.JFrame {
     private ArrayList<IconPanel> panelList = new ArrayList<>();
     public int lastClicked=-1;
 
-    /**
-     * Creates new form Settings
-     */
+    
     public SettingProfile() {
         initComponents();
-        this.userId = 1;
-        profilePath = "src/App/image/profile1.png";
-        myinit();
     }
     
     public SettingProfile(int userId, Settings setting){
         initComponents();
         this.userId = userId;
         this.setting = setting;
-        setProfilePath();
-        setLocationRelativeTo(null);
+        setProfilePath();       //set profile path
+        setLocationRelativeTo(null);    //set frame location
         myinit();
     }
     
+    //retrieve the profile path from database
     private void setProfilePath(){
         try{
             Connection con = ConnectionProvider.getCon();
@@ -77,9 +66,12 @@ public class SettingProfile extends javax.swing.JFrame {
         }
     }
     
+    
     private void myinit(){
+        //set cursor image
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
         
+        //if the frame is closed, then the program wont stop
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
@@ -109,6 +101,7 @@ public class SettingProfile extends javax.swing.JFrame {
         parentPanel.setBorder(null);
         scrollPane.setViewportView(parentPanel); // Set this panel as viewport's view
         
+        //set profile image
         if(profilePath == null){
            profilePath = "src/App/image/profile1.png";
            setProfileImage(profilePath);
@@ -131,18 +124,21 @@ public class SettingProfile extends javax.swing.JFrame {
         getContentPane().repaint();
     }
     
+    //set up scroll pane
     private void setScrollPane(){
+        //load images 
         App.ImageLoader loaderr = new App.ImageLoader();
         loaderr.emptyFileName();
         ArrayList<BufferedImage> imageList = loaderr.loadImagesFromFolder("src/App/image/GenshinIcons");
-        ArrayList<String> nameList = new ArrayList<>();
-        ArrayList<String> oldNameList = loaderr.returnFileNames();
+        ArrayList<String> nameList = new ArrayList<>();     //list that contains the name that will be displayed to user
+        ArrayList<String> oldNameList = loaderr.returnFileNames();      //list that contains the actual file name
         
         for(String name: loaderr.returnFileNames()){
-            String newName = name.substring(0, name.length()-1);
+            String newName = name.substring(0, name.length()-1);       //edit the name 
             nameList.add(newName);
         }
         
+        //show panels
         int row=0, column=0;
         for(int i=0; i<imageList.size();i++){
             BufferedImage image = imageList.get(i);
@@ -152,10 +148,12 @@ public class SettingProfile extends javax.swing.JFrame {
             int panelWidth = 120;
             int panelHeight = 120;
             
+            //initialize panel
             IconPanel clonedPanel = new IconPanel(charName, image, i, path);
             clonedPanel.settingPanel(image, charName, panelWidth, panelHeight, 12, false);
             clonedPanel.settingMouse(settingProfile);
             
+            //add mouse listener
             clonedPanel.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
@@ -168,11 +166,11 @@ public class SettingProfile extends javax.swing.JFrame {
                 }
             });
             
+            //set clicked true for icons that is in profile path
             if(path.equals(profilePath)){
                 clonedPanel.setClicked(true);
                 clonedPanel.checkmark.setVisible(true);
             }
-            
 
             // Calculate the row and column indices
             row = i / 4;
@@ -203,11 +201,6 @@ public class SettingProfile extends javax.swing.JFrame {
     }
     
     
-    
-    
-    
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -333,6 +326,8 @@ public class SettingProfile extends javax.swing.JFrame {
     private void saveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseClicked
         if(genshinIconRad.isSelected()){
             String path="";
+            //if last clicked==-1 (it means that the user not clicking any icons)
+            //then, we set the default icon
             if(lastClicked==-1){
                 path = "src/App/image/profile1.png";
             }
@@ -340,18 +335,20 @@ public class SettingProfile extends javax.swing.JFrame {
                 path = panelList.get(lastClicked).getPath();
             }
             try{
+                //update user database
                 Connection con = ConnectionProvider.getCon();
                 String str = "update user set profile= '" + path + "' where id='" + userId +"'";
-                System.out.println(str);
 
                 PreparedStatement ps = con.prepareStatement(str);
                 ps.executeUpdate();
-
+                
+                //close frame
                 JOptionPane.showMessageDialog(getContentPane(), "Profile image has been saved.");
                 setVisible(false);
                 dispose();
                 Settings.openProfile = false;
                 
+                //set profile image in settings
                 if(lastClicked==-1){
                     setting.setProfileImage(path);
                 }
@@ -364,14 +361,19 @@ public class SettingProfile extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(getContentPane(), e);
             }
         }
+        
+        //if the user is using the "upload from computer"
         else{
             try{
+                //retrieving info from database
                 Connection con = ConnectionProvider.getCon();
                 Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = st.executeQuery("select * from user where id='" + userId + "'");
                 if(rs.first()){
                     String path = rs.getString(5);
                     JOptionPane.showMessageDialog(getContentPane(), "Profile image has been saved.");
+                    
+                    //close frame and set up profile image in settings
                     setVisible(false);
                     dispose();
                     Settings.openProfile = false;
@@ -398,8 +400,10 @@ public class SettingProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtonMouseExited
 
     private void saveLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveLabelMouseClicked
-       if(genshinIconRad.isSelected()){
+        if(genshinIconRad.isSelected()){
             String path="";
+            //if last clicked==-1 (it means that the user not clicking any icons)
+            //then, we set the default icon
             if(lastClicked==-1){
                 path = "src/App/image/profile1.png";
             }
@@ -407,17 +411,20 @@ public class SettingProfile extends javax.swing.JFrame {
                 path = panelList.get(lastClicked).getPath();
             }
             try{
+                //update user database
                 Connection con = ConnectionProvider.getCon();
                 String str = "update user set profile= '" + path + "' where id='" + userId +"'";
 
                 PreparedStatement ps = con.prepareStatement(str);
                 ps.executeUpdate();
-
+                
+                //close frame
                 JOptionPane.showMessageDialog(getContentPane(), "Profile image has been saved.");
                 setVisible(false);
                 dispose();
                 Settings.openProfile = false;
                 
+                //set profile image in settings
                 if(lastClicked==-1){
                     setting.setProfileImage(path);
                 }
@@ -430,14 +437,19 @@ public class SettingProfile extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(getContentPane(), e);
             }
         }
+        
+        //if the user is using the "upload from computer"
         else{
             try{
+                //retrieving info from database
                 Connection con = ConnectionProvider.getCon();
                 Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = st.executeQuery("select * from user where id='" + userId + "'");
                 if(rs.first()){
                     String path = rs.getString(5);
                     JOptionPane.showMessageDialog(getContentPane(), "Profile image has been saved.");
+                    
+                    //close frame and set up profile image in settings
                     setVisible(false);
                     dispose();
                     Settings.openProfile = false;
@@ -516,6 +528,7 @@ public class SettingProfile extends javax.swing.JFrame {
         scrollPane.setVisible(true);
     }//GEN-LAST:event_genshinIconRadActionPerformed
     
+    //crop images into circle
     public BufferedImage cropIntoCircle(BufferedImage croppedImage){
         BufferedImage img = croppedImage;
         
@@ -534,6 +547,7 @@ public class SettingProfile extends javax.swing.JFrame {
         return bi;
     }
     
+    //set profile image with buffered image
     public void setProfileImage(BufferedImage im){
         BufferedImage resizedImage = resizeImage(im, profileCircle.getWidth(), profileCircle.getHeight());
         profileCircle.setIcon(new ImageIcon(resizedImage));
@@ -543,8 +557,9 @@ public class SettingProfile extends javax.swing.JFrame {
         getContentPane().revalidate();
     }
     
-    
+    //set profile image with path
     public void setProfileImage(String path){
+        //if path is null, then set default profile image
         if(path.equals("null")){
             path = "src/App/image/profile1.png";
         }
@@ -563,30 +578,30 @@ public class SettingProfile extends javax.swing.JFrame {
     public static boolean openCrop = false;
     private SettingProfile settingProfile = (SettingProfile) SwingUtilities.getRoot(this);
     
+    //open file chooser to choose file
     private void openFileChooser() {
         if (!openCrop) {
             JFileChooser chooser = new JFileChooser();
             FileNameExtensionFilter filter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
-            chooser.setFileFilter(filter);
+            chooser.setFileFilter(filter);      //can only select image files
 
             int returnValue = chooser.showOpenDialog(getContentPane());
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 File f = chooser.getSelectedFile();
                 if (f != null) {
+                    //open cropping frame if the file is valid
                     new Cropping(f, settingProfile, userId).setVisible(true);
                     openCrop = true;
                 }
             } 
-        } 
-        
+        }         
         else {
             JOptionPane.showMessageDialog(getContentPane(), "A frame is already opened.");
         }
     }
 
-    
+    //change imageicon to bufferedimage
     public static BufferedImage imageIconToBufferedImage(ImageIcon icon) {
-        
         Image img = icon.getImage();
         BufferedImage bufferedImage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = bufferedImage.createGraphics();
@@ -595,6 +610,7 @@ public class SettingProfile extends javax.swing.JFrame {
         return bufferedImage;
     }
     
+    //resize image based on target width and height
     public static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
         Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
         BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);

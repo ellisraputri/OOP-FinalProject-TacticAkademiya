@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package App;
 
 import jaco.mp3.player.MP3Player;
@@ -11,29 +7,28 @@ import java.awt.Toolkit;
 import java.io.File;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author asus
- */
+
 public class WelcomePage extends javax.swing.JFrame {
     private MP3Player bgmWelcomePlayer;
-    /**
-     * Creates new form WelcomePage
-     */
+  
     public WelcomePage() {
         initComponents();
-        setTitle("Welcome Page");
-        setResizable(false);
-        setLocationRelativeTo(null);
+        setTitle("Welcome Page");   //set title
+        setLocationRelativeTo(null);    //set frame location
+        
+        //set cursor
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));        
         setBGM();
     }
     
+    //set background music player
     private void setBGM(){
+        //get the files
         String folderPath = "src/App/audio/bgm";
         File folder = new File(folderPath);
         File[] listOfFiles = folder.listFiles();
         
+        //play the music
         bgmWelcomePlayer = new MP3Player(listOfFiles[18]);
         bgmWelcomePlayer.setRepeat(true);
         bgmWelcomePlayer.play();
@@ -51,6 +46,7 @@ public class WelcomePage extends javax.swing.JFrame {
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         startButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/start1.png"))); // NOI18N

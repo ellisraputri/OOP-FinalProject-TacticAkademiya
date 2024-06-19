@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package App;
 
 import DatabaseConnection.ConnectionProvider;
@@ -31,36 +27,33 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-/**
- *
- * @author asus
- */
+
 public class Cropping extends javax.swing.JFrame {
+    //attributes
     private File fileInput;
     private BufferedImage resizedImage;
     private SettingProfile settingProfile;
     private int userId;
     private static int profileCount;
-    /**
-     * Creates new form Cropping
-     */
+ 
     public Cropping() {
         initComponents();
     }
     
     public Cropping(File f, SettingProfile settingProfile, int userId){
         initComponents();
-        this.fileInput =f;
+        this.fileInput =f;      //file to crop
         this.settingProfile = settingProfile;
         this.userId = userId;
         
         Random rand = new Random();
-        profileCount=rand.nextInt();
-        setLocationRelativeTo(null);
+        profileCount=rand.nextInt();    //random name for the result
+        setLocationRelativeTo(null);    //set location for the frame
         myinit();
     }
     
     private void myinit(){
+        //dont stop the system when the frame is close
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
@@ -75,11 +68,13 @@ public class Cropping extends javax.swing.JFrame {
             }
         });
         
+        //set up frame
         resizeImageAndPanel();
         setOverlayPanel();
         showCropper();
     }
     
+    //set the overlay panel that makes the photo darker
     private void setOverlayPanel() {
         overlayPanel = new JPanel(null) {
             @Override
@@ -89,17 +84,20 @@ public class Cropping extends javax.swing.JFrame {
                 g.setColor(new Color(0, 0, 0, 100));
                 g.fillRect(0, 0, getWidth(), getHeight());
 
-                // Create a hole where the movablePanel is
+                // Create a hole where the cropper is
                 g.setColor(new Color(0, 0, 0, 0));
                 g.fillRect(movablePanel.getX(), movablePanel.getY(), movablePanel.getWidth(), movablePanel.getHeight());
             }
         };
+        
+        //add to parentpanel
         parentPanel.add(overlayPanel);
         overlayPanel.setOpaque(false);
         overlayPanel.setBounds(0, 0, parentPanel.getWidth(), parentPanel.getHeight());
         parentPanel.setComponentZOrder(overlayPanel, 0);
     }
-
+    
+    //show cropper
     private void showCropper() {
         // Create the panel to be moved
         movablePanel = new JPanel() {
@@ -115,10 +113,11 @@ public class Cropping extends javax.swing.JFrame {
                 g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
             }
         };
-
+        
+        //set up properties
         movablePanel.setOpaque(false);
         movablePanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 4));
-        movablePanel.setBounds(50, 50, 200, 200); // Initial position and size
+        movablePanel.setBounds(50, 50, 200, 200); 
 
         // Add mouse listeners to the panel
         MouseAdapter mouseAdapter = new MouseAdapter() {
@@ -145,7 +144,8 @@ public class Cropping extends javax.swing.JFrame {
         };
         movablePanel.addMouseListener(mouseAdapter);
         movablePanel.addMouseMotionListener(mouseAdapter);
-
+        
+        //add resize handles to the cropper
         addResizeHandles(movablePanel);
 
         // Add the panel to the parent panel
@@ -153,6 +153,7 @@ public class Cropping extends javax.swing.JFrame {
         overlayPanel.setComponentZOrder(movablePanel, 0);
     }
     
+    //resize image based on aspect ratio to fit the frame
     private void resizeImageAndPanel(){
         try {
             // Load the image
@@ -221,6 +222,7 @@ public class Cropping extends javax.swing.JFrame {
         }
     }
     
+    //resize image for the profile picture
     public static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
         Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
         BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
@@ -230,7 +232,7 @@ public class Cropping extends javax.swing.JFrame {
         return outputImage;
     }
     
-    
+    //add resize handles
     private void addResizeHandles(JPanel panel) {
         // Create and add resize handles
         JPanel seHandle = createResizeHandle();
@@ -263,7 +265,8 @@ public class Cropping extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    //making the resize handle
     private JPanel createResizeHandle() {
         JPanel handle = new JPanel();
         handle.setBackground(Color.white);
@@ -271,22 +274,23 @@ public class Cropping extends javax.swing.JFrame {
         return handle;
     }
     
-    
+    //crop the image inro circle
     private BufferedImage cropIntoCircle(BufferedImage croppedImage){
         BufferedImage img = croppedImage;
-        
         int width = img.getWidth(null);
         int height = img.getHeight(null);
 
         BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = bi.createGraphics();
-
+        
+        //create a new image with the circle shape
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         int circleDiameter = Math.min(width,height);
         Ellipse2D.Double circle = new Ellipse2D.Double(0,0,circleDiameter,circleDiameter);
         g2.setClip(circle);
         g2.drawImage(img,0,0,null);
         
+        //save the image into profile folder
         String outputFolderPath = "src/App/image/Profile";
         try {
             // Create the output file path
@@ -370,17 +374,18 @@ public class Cropping extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseClicked
+        //set up profile image
         BufferedImage cropped = resizedImage.getSubimage(movablePanel.getX(), movablePanel.getY(), movablePanel.getWidth(), movablePanel.getHeight());
         cropIntoCircle(cropped);
         
         try{
+            //insert profile image path to database
             Connection con = ConnectionProvider.getCon();
             String str = "update user set profile= 'src/App/image/Profile/circular_image"+profileCount+".png' where id='" + userId +"'";
-            System.out.println(str);
-            
             PreparedStatement ps = con.prepareStatement(str);
             ps.executeUpdate();
-
+            
+            //close frame
             JOptionPane.showMessageDialog(getContentPane(), "Profile image has been saved.");
             setVisible(false);
             dispose();
@@ -405,16 +410,18 @@ public class Cropping extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtonMouseExited
 
     private void saveLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveLabelMouseClicked
+        //set up profile image
         BufferedImage cropped = resizedImage.getSubimage(movablePanel.getX(), movablePanel.getY(), movablePanel.getWidth(), movablePanel.getHeight());
         cropIntoCircle(cropped);
         
         try{
+            //insert into database
             Connection con = ConnectionProvider.getCon();
             String str = "update user set profile= 'src/App/image/Profile/circular_image"+profileCount+".png' where id='" + userId +"'";
-
             PreparedStatement ps = con.prepareStatement(str);
             ps.executeUpdate();
-
+            
+            //close frame
             JOptionPane.showMessageDialog(getContentPane(), "Profile image has been saved.");
             setVisible(false);
             dispose();

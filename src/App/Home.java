@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package App;
 
 import DatabaseConnection.ConnectionProvider;
@@ -22,10 +18,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author asus
- */
+
 public class Home extends javax.swing.JFrame {
     private int userId;
     private String username;
@@ -33,15 +26,12 @@ public class Home extends javax.swing.JFrame {
     private String profilePath;
     private ImageIcon profileImage;
     private MP3Player bgmPlayer;
-    /**
-     * Creates new form Home
-     */
+    
     public Home() {
         initComponents();
-        this.userId = 1;
-        myinit();
     }
     
+    //constructor when bgmPlayer has not been set
     public Home(int userId) {
         initComponents();
         this.userId = userId;
@@ -52,8 +42,11 @@ public class Home extends javax.swing.JFrame {
         myinit();
     }
     
+    //set background music when bgmPlayer has not been set
     private void setBGM(){
         ArrayList<String> musicList = new ArrayList<>();
+        
+        //retrieving music from the user database
         try {
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -71,16 +64,19 @@ public class Home extends javax.swing.JFrame {
             e.printStackTrace();
             JOptionPane.showMessageDialog(getContentPane(), e);
         }
-
+        
+        //set the music player and add the music file
         bgmPlayer = new MP3Player();
         for (String musicFile : musicList) {
             bgmPlayer.addToPlayList(new File("src/App/audio/bgm/" + musicFile));
         }
+        
+        //play music and loop music
         bgmPlayer.setRepeat(true);
         bgmPlayer.play();
-
     }
     
+    //constructor when bgmPlayer has been set
     public Home(int userId, MP3Player bgmPlayer) {
         initComponents();
         this.bgmPlayer = bgmPlayer;
@@ -91,9 +87,12 @@ public class Home extends javax.swing.JFrame {
         myinit();
     }
     
+    
     private void myinit(){
+        //set cursor image
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
         
+        //retrieve username, email, and profile image from database
         try{
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -108,6 +107,7 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(getContentPane(), e);
         }
         
+        //set username and email
         usernameLabel.setText(username);
         emailLabel.setText(email);
         usernameLabel.setBounds(110, 25, usernameLabel.getPreferredSize().width+10, usernameLabel.getPreferredSize().height);
@@ -115,6 +115,7 @@ public class Home extends javax.swing.JFrame {
         getContentPane().setComponentZOrder(usernameLabel, 0);
         getContentPane().setComponentZOrder(emailLabel, 0);
         
+        //set profile image
         if(profilePath == null){
            profilePath = "src/App/image/profile1.png";
            setProfileImage(profilePath);
@@ -128,9 +129,9 @@ public class Home extends javax.swing.JFrame {
         }
     }
     
+    //crop the image into circle
     private void cropIntoCircle(BufferedImage croppedImage){
         BufferedImage img = croppedImage;
-        
         int width = img.getWidth(null);
         int height = img.getHeight(null);
 
@@ -146,6 +147,7 @@ public class Home extends javax.swing.JFrame {
         setProfileImage(bi);
     }
     
+    //set profile image from bufferedimage
     private void setProfileImage(BufferedImage im){
         BufferedImage resizedImage = resizeImage(im, 70, 70);
         profileButton.setIcon(new ImageIcon(resizedImage));
@@ -156,6 +158,7 @@ public class Home extends javax.swing.JFrame {
         getContentPane().revalidate();
     }
     
+    //set profile image from path
     private void setProfileImage(String path){
         BufferedImage im = imageIconToBufferedImage(new ImageIcon(path));
         BufferedImage resizedImage = resizeImage(im, 70, 70);
@@ -167,6 +170,7 @@ public class Home extends javax.swing.JFrame {
         getContentPane().revalidate();
     }
     
+    //change ImageIcon to BufferedImage
     private static BufferedImage imageIconToBufferedImage(ImageIcon icon) {
         Image img = icon.getImage();
         BufferedImage bufferedImage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
@@ -176,6 +180,7 @@ public class Home extends javax.swing.JFrame {
         return bufferedImage;
     }
     
+    //resize image to a target width and height
     private static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
         Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
         BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
@@ -334,7 +339,7 @@ public class Home extends javax.swing.JFrame {
         if(option == JOptionPane.YES_OPTION){
             setVisible(false);
             dispose();
-            bgmPlayer.stop();
+            bgmPlayer.stop();   //because the welcome page has different music 
             new WelcomePage().setVisible(true);
         }
     }//GEN-LAST:event_exitButtonMouseClicked

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package App;
 
 import DatabaseConnection.ConnectionProvider;
@@ -24,10 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-/**
- *
- * @author asus
- */
+
 public class SettingMusic extends javax.swing.JFrame {
     private int userId;
     private ArrayList<MusicPanel> panelList = new ArrayList<>();
@@ -37,13 +30,9 @@ public class SettingMusic extends javax.swing.JFrame {
     private MP3Player bgmPlayer;
     private MP3Player musicPlayer;
 
-    /**
-     * Creates new form Settings
-     */
+    
     public SettingMusic() {
         initComponents();
-        this.userId = 1;
-        myinit();
     }
     
     public SettingMusic(int userId, MP3Player bgmPlayer, Settings setting){
@@ -52,13 +41,15 @@ public class SettingMusic extends javax.swing.JFrame {
         this.setting = setting;
         this.bgmPlayer = bgmPlayer;
         this.bgmPlayer.stop();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);    //set frame location
         myinit();
     }
     
     private void myinit(){
+        //set cursor image
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
         
+        //when this frame close, the program will not stop
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
@@ -102,11 +93,12 @@ public class SettingMusic extends javax.swing.JFrame {
     private int index=-1;
     
     private void setScrollPane(String folderpath, int prevY){
+        //get files
         File folder = new File(folderpath);
         File[] listOfFiles = folder.listFiles();
         
+        //display panels
         int x=10;
-        
         for(int i=1; i<listOfFiles.length+1;i++){
             index++;
             // Create a new cloned panel
@@ -146,6 +138,7 @@ public class SettingMusic extends javax.swing.JFrame {
         parentPanel.repaint();
     }
     
+    //check the music from database
     private void checkFromDatabase(){
         try{
             Connection con = ConnectionProvider.getCon();
@@ -163,6 +156,7 @@ public class SettingMusic extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(getContentPane(), e);
         }
         
+        //if the music is in the music list, then the set panel clicked to true
         for(MusicPanel panel: panelList){
             String name = panel.getFile().getName();
             if(musicList.contains(name)){
@@ -171,6 +165,7 @@ public class SettingMusic extends javax.swing.JFrame {
         }
     }
     
+    //check the clicked checkbox amount
     public boolean checkClickedCheckboxAmount(){
         int amount=0;
         for(MusicPanel panel: panelList){
@@ -179,23 +174,30 @@ public class SettingMusic extends javax.swing.JFrame {
             }
         }
         
+        //if more than 5, then return false
         if(amount>=5){
             return false;
         }
         return true;
     }
     
+    //check whether there is another music that is playing
     public void checkOtherMusic(int index){
+        //if yes, then stop current played music
         if(nowPlaying!=null){
             nowPlaying.setClickedButton(false);
             musicPlayer.stop();
         }
+        
+        //then, play the new music
         nowPlaying = panelList.get(index);
         musicPlayer = new MP3Player(nowPlaying.getFile());
         musicPlayer.play();
         musicPlayer.setRepeat(true);
     }
     
+    
+    //stop the music player
     public void stopMusicPlayer(){
         musicPlayer.stop();
     }
@@ -276,19 +278,22 @@ public class SettingMusic extends javax.swing.JFrame {
     private void saveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseClicked
         MusicPanel[] musics = new MusicPanel[5];
         int track=0;
+        
+        //check whether already 5 music being selected
         for(MusicPanel panel: panelList){
             if(panel.isClickedCheckbox()){
                 musics[track] = panel;
-                System.out.println(panel.getFile().getName());
                 track++;
             }
         }
         
+        //if not 5, then display warning
         if(track!=5){
             JOptionPane.showMessageDialog(getContentPane(), "Please select five background music.");
         }
         else{
             try{
+                //update user database
                 Connection con = ConnectionProvider.getCon();
                 String str = "update user set music1=?, music2=?, music3=?, music4=?, music5=? where id="+userId;
                 PreparedStatement ps = con.prepareStatement(str);
@@ -300,9 +305,13 @@ public class SettingMusic extends javax.swing.JFrame {
                 ps.executeUpdate();
 
                 JOptionPane.showMessageDialog(getContentPane(), "Music list has been saved.");
+                
+                //stop current music player
                 if(musicPlayer!=null){
                     musicPlayer.stop();
                 }
+                
+                //close frame, update music list and bgm player
                 setVisible(false);
                 dispose();
                 Settings.openMusic =false;
@@ -330,21 +339,22 @@ public class SettingMusic extends javax.swing.JFrame {
     private void saveLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveLabelMouseClicked
         MusicPanel[] musics = new MusicPanel[5];
         int track=0;
+        
+        //check whether already 5 music being selected
         for(MusicPanel panel: panelList){
             if(panel.isClickedCheckbox()){
                 musics[track] = panel;
-                System.out.println(panel.getFile().getName());
                 track++;
             }
         }
         
-        System.out.println(track);
-        
+        //if not 5, then display warning
         if(track!=5){
             JOptionPane.showMessageDialog(getContentPane(), "Please select five background music.");
         }
         else{
             try{
+                //update user database
                 Connection con = ConnectionProvider.getCon();
                 String str = "update user set music1=?, music2=?, music3=?, music4=?, music5=? where id="+userId;
                 PreparedStatement ps = con.prepareStatement(str);
@@ -356,9 +366,13 @@ public class SettingMusic extends javax.swing.JFrame {
                 ps.executeUpdate();
 
                 JOptionPane.showMessageDialog(getContentPane(), "Music list has been saved.");
+                
+                //stop current music player
                 if(musicPlayer!=null){
                     musicPlayer.stop();
                 }
+                
+                //close frame, update music list and bgm player
                 setVisible(false);
                 dispose();
                 Settings.openMusic =false;

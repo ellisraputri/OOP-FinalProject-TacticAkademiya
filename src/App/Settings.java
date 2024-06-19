@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package App;
 
 import DatabaseConnection.ConnectionProvider;
@@ -35,10 +31,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-/**
- *
- * @author asus
- */
+
 public class Settings extends javax.swing.JFrame {
     private int userId;
     private String username;
@@ -48,24 +41,22 @@ public class Settings extends javax.swing.JFrame {
     private ArrayList<String> musicList = new ArrayList<>();
     private MP3Player bgmPlayer;
     public ArrayList<String> ownedChars = new ArrayList<>();
-    /**
-     * Creates new form Settings
-     */
+    
+    
     public Settings() {
         initComponents();
-        this.userId = 1;
-        myinit();
     }
     
     public Settings(int userId, MP3Player bgmPlayer){
         initComponents();
         this.userId = userId;
         this.bgmPlayer = bgmPlayer;
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);    //set frame location
         myinit();
     }
     
     private void myinit(){
+        //set cursor image
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));        
         
         //setting scroll pane
@@ -83,6 +74,7 @@ public class Settings extends javax.swing.JFrame {
         parentPanel.setBorder(null);
         scrollPane.setViewportView(parentPanel); // Set this panel as viewport's view
         
+        //set image panel
         imagePanel = new JPanel();
         imagePanel.setLayout(null);
         imagePanel.setPreferredSize(new Dimension(400, 200)); 
@@ -105,6 +97,7 @@ public class Settings extends javax.swing.JFrame {
     private void retrieveFromDatabase(){
         ArrayList<Boolean> ownedOrNot = new ArrayList<>();
         try{
+            //retrieve username, email,password, profile path from database
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet rs = st.executeQuery("select * from user where id='" + userId + "'");
@@ -115,7 +108,7 @@ public class Settings extends javax.swing.JFrame {
                 profilePath = rs.getString(5);
             }
             
-            
+            //retrieve user's owned characters 
             ResultSet rs1 = st.executeQuery("select * from characters where userId=" + userId + "");
             if(rs1.first()){
                 for(int i=2; i<87; i++){
@@ -126,7 +119,7 @@ public class Settings extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(getContentPane(), "No user ID found");
             }
         
-        
+            //retrieve the character name
             ResultSet rs2 = st.executeQuery("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='characters'");
             int index=0;
             while(rs2.next()){
@@ -153,11 +146,14 @@ public class Settings extends javax.swing.JFrame {
     }
     
     
+    //set up text fields
     private void setTextField(){
+        //initialization
         usernameField = new App.RoundJTextField(30);
         emailField = new App.RoundJTextField(30);
         passwordField = new App.RoundJPasswordField(30);
         
+        //set username field
         usernameField.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         usernameField.setText(username);
         usernameField.setForeground(new java.awt.Color(130,130,130));
@@ -165,6 +161,7 @@ public class Settings extends javax.swing.JFrame {
         usernameField.setBounds(0, 50, 530, usernameField.getPreferredSize().height);
         parentPanel.setComponentZOrder(usernameField, 0);
         
+        //set email field
         emailField.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         emailField.setForeground(new java.awt.Color(130,130,130));
         emailField.setText(email);
@@ -172,6 +169,7 @@ public class Settings extends javax.swing.JFrame {
         emailField.setBounds(0, 162, 530, emailField.getPreferredSize().height);
         parentPanel.setComponentZOrder(emailField, 0);
         
+        //set password field
         passwordField.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         passwordField.setForeground(new java.awt.Color(130,130,130));
         passwordField.setText(password);
@@ -181,6 +179,7 @@ public class Settings extends javax.swing.JFrame {
         parentPanel.setComponentZOrder(hidePassword, 0);
         parentPanel.setComponentZOrder(showPassword, 0);
         
+        //add document listener, action listener, and focus listener
         usernameField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -209,6 +208,7 @@ public class Settings extends javax.swing.JFrame {
             }
         });
         
+        //add document listener, action listener, and focus listener
         emailField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -237,6 +237,7 @@ public class Settings extends javax.swing.JFrame {
             }
         });
         
+        //add document listener and focus listener
         passwordField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -259,15 +260,18 @@ public class Settings extends javax.swing.JFrame {
             }
         });
         
+        //setup hidepassword
         hidePassword.setVisible(false);
         passwordField.setEchoChar('*');
     }
     
+    //setup char image in image panel
     public void setSomeCharImages(ArrayList<String> characters){
         imagePanel.removeAll();
         int x=10;
         
         for(int i=0; i<4; i++){
+            //the label for image
             JLabel imageLabel = new JLabel();
             imageLabel.setIcon(new ImageIcon("src/App/image/CharacterCard/Archive/Portraits " +characters.get(i)+ ".png"));
             imageLabel.setBounds(x, 0, 100, 100);
@@ -278,13 +282,16 @@ public class Settings extends javax.swing.JFrame {
             imagePanel.repaint();
         }
         
+        //set new size to image panel
         imagePanel.setPreferredSize(new Dimension(imagePanel.getWidth(), 500));
         imagePanel.setBounds(10, myCharLabel.getY()+myCharLabel.getPreferredSize().height+15, 500, imagePanel.getPreferredSize().height);
         
         parentPanel.add(imagePanel);        
     }
     
+    //set profile picture
     private void setProfilePicture(){
+        //set title
         myProfile = new JLabel();
         myProfile.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         myProfile.setForeground(new Color(131,113,90));
@@ -304,6 +311,7 @@ public class Settings extends javax.swing.JFrame {
         });
         parentPanel.setComponentZOrder(myProfile, 0);
         
+        //set arrow
         myProfileArrow = new JLabel();
         myProfileArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/right_arrow.png"))); // NOI18N
         myProfileArrow.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -321,6 +329,7 @@ public class Settings extends javax.swing.JFrame {
         myProfileArrow.setBounds(myProfile.getPreferredSize().width+13, myProfile.getY()+20, 20, 20);
         parentPanel.setComponentZOrder(myProfileArrow,0);
         
+        //set profile picture
         profilePic = new JLabel();
         if(profilePath == null){
            profilePath = "src/App/image/profile1.png";
@@ -336,10 +345,12 @@ public class Settings extends javax.swing.JFrame {
         parentPanel.add(profilePic);
         profilePic.setBounds(15, myProfileArrow.getY()+40, 110,110);
         
+        //set new size for parent
         parentPanel.setPreferredSize(new Dimension(parentPanel.getWidth(), profilePic.getY()+120));
         setMusic();
     }
     
+    //crop image into circle
     public void cropIntoCircle(BufferedImage croppedImage){
         BufferedImage img = croppedImage;
         
@@ -358,6 +369,7 @@ public class Settings extends javax.swing.JFrame {
         setProfileImage(bi);
     }
     
+    //set profile image based on bufferedimage
     public void setProfileImage(BufferedImage im){
         BufferedImage resizedImage = resizeImage(im, 110, 110);
         profilePic.setIcon(new ImageIcon(resizedImage));
@@ -369,6 +381,7 @@ public class Settings extends javax.swing.JFrame {
         getContentPane().revalidate();
     }
     
+    //set profile image based on path
     public void setProfileImage(String path){
         BufferedImage im = imageIconToBufferedImage(new ImageIcon(path));
         BufferedImage resizedImage = resizeImage(im, 110, 110);
@@ -381,6 +394,7 @@ public class Settings extends javax.swing.JFrame {
         getContentPane().revalidate();
     }
     
+    //convert imageicon to bufferedimage
     public static BufferedImage imageIconToBufferedImage(ImageIcon icon) {
         Image img = icon.getImage();
         BufferedImage bufferedImage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
@@ -390,6 +404,7 @@ public class Settings extends javax.swing.JFrame {
         return bufferedImage;
     }
     
+    //resize image to target width and height
     public static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
         Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
         BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
@@ -399,7 +414,9 @@ public class Settings extends javax.swing.JFrame {
         return outputImage;
     }
     
+    //setup music
     private void setMusic(){
+        //set title
         myMusic = new JLabel();
         myMusic.setFont(new java.awt.Font("HYWenHei-85W", 0, 24)); // NOI18N
         myMusic.setForeground(new Color(131,113,90));
@@ -419,6 +436,7 @@ public class Settings extends javax.swing.JFrame {
         });
         parentPanel.setComponentZOrder(myMusic, 0);
         
+        //set arrow
         myMusicArrow = new JLabel();
         myMusicArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/image/right_arrow.png"))); // NOI18N
         myMusicArrow.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -436,6 +454,7 @@ public class Settings extends javax.swing.JFrame {
         myMusicArrow.setBounds(myMusic.getPreferredSize().width+13, myMusic.getY()+20, 20, 20);
         parentPanel.setComponentZOrder(myMusicArrow,0);
         
+        //set music panel
         musicPanel = new JPanel();
         musicPanel.setLayout(null);
         musicPanel.setPreferredSize(new Dimension(400, 200)); 
@@ -446,18 +465,22 @@ public class Settings extends javax.swing.JFrame {
         parentPanel.setComponentZOrder(musicPanel, 0);
         
         setMusicList();
-
+        
+        //set new size for parentpanel
         parentPanel.setPreferredSize(new Dimension(parentPanel.getWidth(), myMusicArrow.getY()+260));
         parentPanel.repaint();
         parentPanel.revalidate();
     }
     
+    //set music list
     public void setMusicList(){
         musicPanel.removeAll();
         checkFromDatabase();
         
+        //display label in the panel
         int y=0;
         for(int i=0; i<musicList.size(); i++){
+            //label for each music title
             JLabel musicTitle = new JLabel();
             String[] filename = musicList.get(i).split(" - ");
             String name = filename[1].replaceAll(".mp3", "").trim();
@@ -474,6 +497,7 @@ public class Settings extends javax.swing.JFrame {
             y+=40;
         }
         
+        //setup music panel and parentpanel after adding labels
         musicPanel.setPreferredSize(new Dimension(musicPanel.getWidth(), y+90));
         musicPanel.setBounds(10, myMusicArrow.getY()+myMusicArrow.getPreferredSize().height+25, musicPanel.getPreferredSize().width, musicPanel.getPreferredSize().height);
         parentPanel.add(musicPanel);
@@ -482,6 +506,7 @@ public class Settings extends javax.swing.JFrame {
         parentPanel.repaint();
     }
     
+    //check music from database
     private void checkFromDatabase(){
         musicList.clear();
         try{
@@ -501,6 +526,7 @@ public class Settings extends javax.swing.JFrame {
         }
     }
     
+    //update the bgm player to play the latest updated music
     public void updateBgmPlayer(){
         bgmPlayer = new MP3Player();
         bgmPlayer.addToPlayList(new File("src/App/audio/bgm/"+musicList.get(0)));
@@ -700,7 +726,7 @@ public class Settings extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    
+    //if username field is empty, then field become red
     private void updateSelfStatusUsername(){
         String text = usernameField.getText();
         if(text.trim().isEmpty()){
@@ -716,11 +742,13 @@ public class Settings extends javax.swing.JFrame {
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
     Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
+    //to validate email regex
     private static boolean validateEmail(String emailStr) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
         return matcher.matches();
     }
     
+    //if email is empty or not valid, then field become red
     private void updateSelfStatusEmail(){
         String text = emailField.getText();
         if(text.trim().isEmpty() || !(validateEmail(text))){
@@ -737,11 +765,13 @@ public class Settings extends javax.swing.JFrame {
     private static final Pattern VALID_PASSWORD_REGEX = 
     Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", Pattern.CASE_INSENSITIVE);
     
+    //to validate password regex
     private static boolean validatePassword(String passwordStr) {
         Matcher matcher = VALID_PASSWORD_REGEX.matcher(passwordStr);
         return matcher.matches();
     }
     
+    //if password is empty or not valid, then field become red
     private void updateSelfStatusPassword(){
         String text = passwordField.getText();
         if(text.trim().isEmpty() || !(validatePassword(text))){
@@ -754,6 +784,7 @@ public class Settings extends javax.swing.JFrame {
         }
     }
     
+    //if field is focus lost and empty, then field become red
     private void usernameFieldFocusLost(java.awt.event.FocusEvent evt) {                                   
         String text = usernameField.getText();
         if(text.trim().isEmpty()){
@@ -765,7 +796,8 @@ public class Settings extends javax.swing.JFrame {
             usernameField.setForeground(new Color(130,130,130));
         }
     }                                  
-
+    
+    //if field is focus lost and empty, then field become red
     private void emailFieldFocusLost(java.awt.event.FocusEvent evt) {                                
         String text = emailField.getText();
         if(text.trim().isEmpty() || !(validateEmail(text))){
@@ -778,6 +810,7 @@ public class Settings extends javax.swing.JFrame {
         }
     }                               
 
+    //if field is focus lost and empty, then field become red
     private void passwordFieldFocusLost(java.awt.event.FocusEvent evt) {                                   
         String text = passwordField.getText();
         if(text.trim().isEmpty() || !(validatePassword(text))){
@@ -790,10 +823,12 @@ public class Settings extends javax.swing.JFrame {
         }
     }
     
+    //check whether the username and email already exist 
     private boolean checkExist(String username, String email){
         ArrayList<String> allUsername = new ArrayList<>();
         ArrayList<String> allEmail = new ArrayList<>();
         
+        //call the database to check
         try{
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -822,29 +857,35 @@ public class Settings extends javax.swing.JFrame {
         String emailInput = emailField.getText();
         String passwordInput = passwordField.getText();
         
-
+        //if username is empty
         if(usernameInput.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Username cannot be empty.");
         }
+        //if email is empty
         else if(emailInput.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Email cannot be empty.");
         }
+        //if password is empty
         else if(passwordInput.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Password cannot be empty.");
         }
         else{
+            //if email is not valid
             if(!(validateEmail(emailInput))){
                 JOptionPane.showMessageDialog(getContentPane(), "Please input a correct email.");
             }            
+            //if password is not valid
             if(!(validatePassword(passwordInput))){
                 JOptionPane.showMessageDialog(getContentPane(), "Password must have 8 characters with at least one number and one character");
             }
             
+            //if the username and email already exist
             if(checkExist(usernameInput, emailInput)){
                 JOptionPane.showMessageDialog(getContentPane(), "Email and username already existed.");
             }
 
             if(validateEmail(emailInput) && validatePassword(passwordInput) && !(checkExist(usernameInput, emailInput))){
+                //update database
                 try{
                     Connection con = ConnectionProvider.getCon();
                     String str = "update user set ";
@@ -855,7 +896,8 @@ public class Settings extends javax.swing.JFrame {
 
                     PreparedStatement ps = con.prepareStatement(str);
                     ps.executeUpdate();
-
+                    
+                    //close frame
                     JOptionPane.showMessageDialog(getContentPane(), "Information has been saved.");
                     setVisible(false);
                     dispose();
@@ -885,29 +927,35 @@ public class Settings extends javax.swing.JFrame {
         String emailInput = emailField.getText();
         String passwordInput = passwordField.getText();
         
-
+        //if username is empty
         if(usernameInput.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Username cannot be empty.");
         }
+        //if email is empty
         else if(emailInput.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Email cannot be empty.");
         }
+        //if password is empty
         else if(passwordInput.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Password cannot be empty.");
         }
         else{
+            //if email is not valid
             if(!(validateEmail(emailInput))){
                 JOptionPane.showMessageDialog(getContentPane(), "Please input a correct email.");
             }            
+            //if password is not valid
             if(!(validatePassword(passwordInput))){
                 JOptionPane.showMessageDialog(getContentPane(), "Password must have 8 characters with at least one number and one character");
             }
             
+            //if the username and email already exist
             if(checkExist(usernameInput, emailInput)){
                 JOptionPane.showMessageDialog(getContentPane(), "Email and username already existed.");
             }
 
             if(validateEmail(emailInput) && validatePassword(passwordInput) && !(checkExist(usernameInput, emailInput))){
+                //update database
                 try{
                     Connection con = ConnectionProvider.getCon();
                     String str = "update user set ";
@@ -918,7 +966,8 @@ public class Settings extends javax.swing.JFrame {
 
                     PreparedStatement ps = con.prepareStatement(str);
                     ps.executeUpdate();
-
+                    
+                    //close frame
                     JOptionPane.showMessageDialog(getContentPane(), "Information has been saved.");
                     setVisible(false);
                     dispose();
@@ -946,7 +995,7 @@ public class Settings extends javax.swing.JFrame {
     private void showPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPasswordMouseClicked
         showPassword.setVisible(false);
         hidePassword.setVisible(true);
-        passwordField.setEchoChar((char)0);
+        passwordField.setEchoChar((char)0);     //set character to be as usual
     }//GEN-LAST:event_showPasswordMouseClicked
 
     private void showPasswordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPasswordMouseEntered
@@ -960,7 +1009,7 @@ public class Settings extends javax.swing.JFrame {
     private void hidePasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hidePasswordMouseClicked
         hidePassword.setVisible(false);
         showPassword.setVisible(true);
-        passwordField.setEchoChar('*');
+        passwordField.setEchoChar('*');     //set character as *
     }//GEN-LAST:event_hidePasswordMouseClicked
 
     private void hidePasswordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hidePasswordMouseEntered
@@ -972,6 +1021,7 @@ public class Settings extends javax.swing.JFrame {
     }//GEN-LAST:event_hidePasswordMouseExited
 
     private void myCharLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myCharLabelMouseEntered
+        //make the arrow move to right
         myCharArrow.setBounds(200, myCharArrow.getY(), 20, 20);
         myCharArrow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         myCharLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -980,6 +1030,7 @@ public class Settings extends javax.swing.JFrame {
     }//GEN-LAST:event_myCharLabelMouseEntered
 
     private void myCharLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myCharLabelMouseExited
+        //make the arrow move to left
         myCharArrow.setBounds(190, myCharArrow.getY(), 20, 20);
         myCharArrow.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         myCharLabel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -1025,6 +1076,7 @@ public class Settings extends javax.swing.JFrame {
     public static boolean openProfile = false;
     
     private void myProfileMouseEntered(MouseEvent evt){
+        //make arrow move to right
         myProfileArrow.setBounds(myProfile.getPreferredSize().width+20, myProfileArrow.getY(), 20, 20);
         myProfileArrow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         myProfile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -1033,6 +1085,7 @@ public class Settings extends javax.swing.JFrame {
     }
     
     private void myProfileMouseExited(MouseEvent evt){
+        //make arrow move to left
         myProfileArrow.setBounds(myProfile.getPreferredSize().width+13, myProfileArrow.getY(), 20, 20);
         myProfileArrow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         myProfile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -1054,6 +1107,7 @@ public class Settings extends javax.swing.JFrame {
     public static boolean openMusic = false;
     
     private void myMusicMouseEntered(MouseEvent evt){
+        //make arrow move to right
         myMusicArrow.setBounds(myMusic.getPreferredSize().width+20, myMusicArrow.getY(), 20, 20);
         myMusicArrow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         myMusic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -1062,6 +1116,7 @@ public class Settings extends javax.swing.JFrame {
     }
     
     private void myMusicMouseExited(MouseEvent evt){
+        //make arrow move to left
         myMusicArrow.setBounds(myMusic.getPreferredSize().width+13, myMusicArrow.getY(), 20, 20);
         myMusicArrow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         myMusic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

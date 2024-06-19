@@ -24,6 +24,7 @@ public class WrappedLabel extends JLabel {
         setOpaque(false);
     }
     
+    //set label text
     @Override
     public void setText(String text) {
         super.setText(text);
@@ -31,6 +32,7 @@ public class WrappedLabel extends JLabel {
         repaint();
     }
 
+    //paint label
     @Override
     protected void paintComponent(Graphics g) {
         // Custom background handling
@@ -66,7 +68,7 @@ public class WrappedLabel extends JLabel {
         
     }
 
-
+    //make the text to be wrap text when exceeding the max width
     private String[] getWrappedLines(String text, FontMetrics fm) {
         StringBuilder currentLine = new StringBuilder();
         java.util.List<String> wrappedLines = new java.util.ArrayList<>();
@@ -118,6 +120,7 @@ public class WrappedLabel extends JLabel {
         return wrappedLines.toArray(new String[0]);
     }
 
+    //adjusting the preferred size according to maxwidth and line height
     @Override
     public Dimension getPreferredSize() {
         FontMetrics fm = getFontMetrics(getFont());
@@ -138,20 +141,24 @@ public class WrappedLabel extends JLabel {
         return new Dimension(maxWidth + insets.left + insets.right, totalHeight + insets.top + insets.bottom);
     }
 
+    //get insets
     @Override
     public Insets getInsets() {
         return insets;
     }
 
+    //set background color of the label
     public void setBackgroundColor(Color backgroundColor) {
         this.bgColor = backgroundColor;
         repaint();
     }
 
+    //get label background color
     public Color getBackgroundColor() {
         return bgColor;
     }
 
+    //set label insets
     public void setInsets(Insets insets) {
         this.insets = insets;
         revalidate();

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package App;
 
 import java.io.File;
@@ -11,11 +7,9 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- *
- * @author asus
- */
+
 public class PrepareGenerator {
+    //attributes 
     private String enemies;
     private String preferredElements;
     private String preferredWeapons;
@@ -35,8 +29,7 @@ public class PrepareGenerator {
     private boolean bestPneuma=false;
     private boolean bestOusia=false;
     
-    private String[][] teams;
-    
+    private String[][] teams;   
     private ArrayList<String> generatedTeam = new ArrayList<>();
 
     public PrepareGenerator(String enemies, String preferredElements, String preferredWeapons, ArrayList<String> bannedNames, ArrayList<String>charOwned) {
@@ -46,14 +39,15 @@ public class PrepareGenerator {
         this.bannedNames = bannedNames;
         this.charOwned = charOwned;
         
+        //prepare all things
         prepareCharacters();
         prepareEnemies();
         preparePreference();
         prepareActivation();
-        
     }
     
     private void prepareCharacters(){
+        //retrieve character details from txt file
         try {
             File myObj = new File("src/App/text/character.txt");
             Scanner myReader = new Scanner(myObj);
@@ -78,6 +72,8 @@ public class PrepareGenerator {
     }
     
     
+    //the string input is in form with parentheses, such as "Automatons(Ruin Guard)"
+    //so, we extract the content, so we can get the "Ruin Guard" as the output
     private String extractContentEnemy(String input) {
         // Define the pattern to match text within parentheses
         Pattern pattern = Pattern.compile("\\(([^)]+)\\)");
@@ -95,6 +91,7 @@ public class PrepareGenerator {
         return result.toString();
     }
     
+    //retrieve enemy details from txt file
     private void findEnemyFromText(String enemyName){       
         try {
             File myObj = new File("src/App/text/enemy.txt");
@@ -130,6 +127,7 @@ public class PrepareGenerator {
         }
     }
     
+    //extract the enemy name and retrieve enemy details
     private void prepareEnemies(){
         enemies = extractContentEnemy(enemies);
         String[] enemyNames = enemies.split(", ");
@@ -139,7 +137,7 @@ public class PrepareGenerator {
         }
     }
     
-    
+    //set up the user preferences on elements and weapons
     private void preparePreference(){
         if(!(preferredElements.equals("-")) && !(bestElements.contains(preferredElements)) && !(avoidElements.contains(preferredElements))){
             bestElements.add(preferredElements);
@@ -149,7 +147,9 @@ public class PrepareGenerator {
         }
     }
     
+    //prepare to activate the generator
     private void prepareActivation(){
+        //setting all attributes 
         CharGenerator demo = new CharGenerator();
         demo.setBestElements(bestElements);
         demo.setAvoidElements(avoidElements);
@@ -157,11 +157,13 @@ public class PrepareGenerator {
         demo.setBestPneuma(bestPneuma);
         demo.setBestOusia(bestOusia);
         
+        //execute and loop until find the team
         boolean state = execute();
         while(state==false){
             state = execute();
         }
         
+        //extract the result to an ArrayList
         for(int i=0; i<teams.length; i++){
             for(String role: teams[i]){
                 generatedTeam.add(role);
@@ -169,11 +171,14 @@ public class PrepareGenerator {
         }
     }
     
+    //activate the generator
     public void activateGenerator(){
         CharGenerator demo = new CharGenerator();
         teams = demo.generator(charName, charElement, charTier, charWeapon, charPneuma, charOusia);
     }
 
+    //check whether the team is valid or not
+    //if not, then return false
     public boolean check(){
         for(int i=0; i<teams.length; i++){
             for(int j=0; j<teams[i].length; j++){
@@ -192,12 +197,14 @@ public class PrepareGenerator {
         return true;
     }
 
+    //execute the generator and check 
     public boolean execute(){
         activateGenerator();
         boolean state = check();
         return state;
     }
     
+    //return the final team result
     public ArrayList<String> getGeneratedTeam(){
         return generatedTeam;
     }

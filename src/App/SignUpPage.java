@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package App;
 
 import java.sql.*;
@@ -21,61 +17,58 @@ import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-/**
- *
- * @author asus
- */
+
 public class SignUpPage extends javax.swing.JFrame {
     private MP3Player bgmPlayer;
-    /**
-     * Creates new form SignUp
-     */
+   
     public SignUpPage() {
         initComponents();
-        myinit();
-        setTitle("Sign Up Page");
-        setResizable(false);
-        setLocationRelativeTo(null);
     }
     
     public SignUpPage(MP3Player bgmPlayer) {
         this.bgmPlayer = bgmPlayer;
         initComponents();
         myinit();
-        setTitle("Sign Up Page");
-        setResizable(false);
-        setLocationRelativeTo(null);
+        setTitle("Sign Up Page");   //set title
+        setResizable(false);    //cannot be resizable
+        setLocationRelativeTo(null);    //set frame location
     }
     
     private void myinit(){
+        //set cursor image
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));     
         
+        //field initialization
         usernameField = new App.RoundJTextField(30);
         emailField = new App.RoundJTextField(30);
         passwordField = new App.RoundJPasswordField(30);
         passwordConfirmField = new App.RoundJPasswordField(30);
         
+        //set username field
         usernameField.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         usernameField.setForeground(new java.awt.Color(130,130,130));
         getContentPane().add(usernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(606, 192, -1, -1));
         getContentPane().setComponentZOrder(usernameField, 0);
         
+        //set email field
         emailField.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         emailField.setForeground(new java.awt.Color(130,130,130));
         getContentPane().add(emailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(607, 296, -1, -1));
         getContentPane().setComponentZOrder(emailField, 0);
         
+        //set password field
         passwordField.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         passwordField.setForeground(new java.awt.Color(130,130,130));
         getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(607, 402, -1, -1));
         getContentPane().setComponentZOrder(passwordField, 0);
         
+        //set password confirm field
         passwordConfirmField.setFont(new java.awt.Font("HYWenHei-85W", 0, 18)); // NOI18N
         passwordConfirmField.setForeground(new java.awt.Color(130,130,130));
         getContentPane().add(passwordConfirmField, new org.netbeans.lib.awtextra.AbsoluteConstraints(607, 519, -1, -1));
         getContentPane().setComponentZOrder(passwordConfirmField, 0);
         
-        
+        //add documentlistener, actionlistener, and focuslistener
         usernameField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -104,6 +97,7 @@ public class SignUpPage extends javax.swing.JFrame {
             }
         });
         
+        //add documentlistener, actionlistener, and focuslistener
         emailField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -132,6 +126,7 @@ public class SignUpPage extends javax.swing.JFrame {
             }
         });
         
+        //add documentlistener, actionlistener, and focuslistener
         passwordField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -160,6 +155,7 @@ public class SignUpPage extends javax.swing.JFrame {
             }
         });
         
+        //add documentlistener, focuslistener
         passwordConfirmField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -182,26 +178,24 @@ public class SignUpPage extends javax.swing.JFrame {
             }
         });
         
-        
+        //set up show password and hide password
         getContentPane().setComponentZOrder(showPassword, 0);
         getContentPane().setComponentZOrder(hidePassword, 0);
         hidePassword.setVisible(false);
         passwordField.setEchoChar('*');
-        
         
         getContentPane().setComponentZOrder(showPasswordConfirm, 0);
         getContentPane().setComponentZOrder(hidePasswordConfirm, 0);
         hidePasswordConfirm.setVisible(false);
         passwordConfirmField.setEchoChar('*');
         
-        
-        
-        
+        //repaint
         revalidate();
         repaint();
     }
     
     
+    //if field is empty, then field become red
     private void updateSelfStatusUsername(){
         String text = usernameField.getText();
         if(text.trim().isEmpty()){
@@ -217,11 +211,13 @@ public class SignUpPage extends javax.swing.JFrame {
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
     Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
+    //to validate email based on regex
     private static boolean validateEmail(String emailStr) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
         return matcher.matches();
     }
     
+    //if email is empty or invalid, then field become red
     private void updateSelfStatusEmail(){
         String text = emailField.getText();
         if(text.trim().isEmpty() || !(validateEmail(text))){
@@ -238,11 +234,13 @@ public class SignUpPage extends javax.swing.JFrame {
     private static final Pattern VALID_PASSWORD_REGEX = 
     Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", Pattern.CASE_INSENSITIVE);
     
+    //to validate password based on regex
     private static boolean validatePassword(String passwordStr) {
         Matcher matcher = VALID_PASSWORD_REGEX.matcher(passwordStr);
         return matcher.matches();
     }
     
+    //if password is empty or not the same as password confirm, then field become red
     private void updateSelfStatusPassword(){
         String text = passwordField.getText();
         String textConfirm = passwordConfirmField.getText();
@@ -268,6 +266,7 @@ public class SignUpPage extends javax.swing.JFrame {
         }
     }
     
+    //if password confirm is empty or not the same as password, then field become red
     private void updateSelfStatusPasswordConfirm(){
         String text = passwordField.getText();
         String textConfirm = passwordConfirmField.getText();
@@ -560,7 +559,7 @@ public class SignUpPage extends javax.swing.JFrame {
     private void showPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPasswordMouseClicked
         showPassword.setVisible(false);
         hidePassword.setVisible(true);
-        passwordField.setEchoChar((char)0);
+        passwordField.setEchoChar((char)0); //set characters to be seen as usual
     }//GEN-LAST:event_showPasswordMouseClicked
 
     private void showPasswordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPasswordMouseEntered
@@ -574,7 +573,7 @@ public class SignUpPage extends javax.swing.JFrame {
     private void hidePasswordConfirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hidePasswordConfirmMouseClicked
         hidePasswordConfirm.setVisible(false);
         showPasswordConfirm.setVisible(true);
-        passwordConfirmField.setEchoChar('*');
+        passwordConfirmField.setEchoChar('*');  //set characters to *
     }//GEN-LAST:event_hidePasswordConfirmMouseClicked
 
     private void hidePasswordConfirmMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hidePasswordConfirmMouseEntered
@@ -599,11 +598,13 @@ public class SignUpPage extends javax.swing.JFrame {
         showPasswordConfirm.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_showPasswordConfirmMouseExited
 
+    //check whether the username and email already exist
     private boolean checkExist(String username, String email){
         ArrayList<String> allUsername = new ArrayList<>();
         ArrayList<String> allEmail = new ArrayList<>();
         
         try{
+            //call the database
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet rs = st.executeQuery("select username from user");
@@ -631,32 +632,40 @@ public class SignUpPage extends javax.swing.JFrame {
         String password = passwordField.getText();
         String passwordConfirm = passwordConfirmField.getText();
         
+        //if username is empty
         if(username.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Username is still empty.");
         }
+        //if email is empty
         else if(email.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Email is still empty.");
         }
+        //if password is empty
         else if(password.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Password is still empty.");
         }
+        //if password confirm is empty
         else if(passwordConfirm.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Confirm Password is still empty.");
         }
         else{
+            //if email invalid
            if(!(validateEmail(email))){
                 JOptionPane.showMessageDialog(getContentPane(), "Please input a correct email.");
            }
            
+           //if password not equals password confirm
            if(!(password.equals(passwordConfirm))){
                JOptionPane.showMessageDialog(getContentPane(), "Password and Confirm Password is not the same.");
            }
            else{
+               //if password invalid
                if(!(validatePassword(password))){
                     JOptionPane.showMessageDialog(getContentPane(), "Password must have 8 characters with at least one number and one character");
                }
            }
            
+           //if username and email exist
            if(checkExist(username, email)){
                 JOptionPane.showMessageDialog(getContentPane(), "Email and username already existed.");               
            }
@@ -664,6 +673,7 @@ public class SignUpPage extends javax.swing.JFrame {
            
            if(password.equals(passwordConfirm) && validateEmail(email) && validatePassword(password) && !(checkExist(username, email))){
                try{
+                   //create the user id
                    Connection con = ConnectionProvider.getCon();
                    Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
                    ResultSet rs = st.executeQuery("select count(id) from user");
@@ -676,6 +686,7 @@ public class SignUpPage extends javax.swing.JFrame {
                        newId = 1;
                    }
                    
+                   //insert into database
                    String str = "insert into user values(?,?,?,?,?,?,?,?,?,?)";
                    PreparedStatement ps = con.prepareStatement(str);
                    ps.setInt(1, newId);
@@ -683,6 +694,8 @@ public class SignUpPage extends javax.swing.JFrame {
                    ps.setString(3, email);
                    ps.setString(4, password);
                    ps.setString(5,null);
+                   
+                   //default bgm
                    ps.setString(6, "1a - What a Hopeful Voyage.mp3");
                    ps.setString(7, "1b - Vast and Blue.mp3");
                    ps.setString(8, "1c - Mesmerizing Waves.mp3");
@@ -690,6 +703,7 @@ public class SignUpPage extends javax.swing.JFrame {
                    ps.setString(10, "1e - Old Tales Preserved.mp3");
                    ps.executeUpdate();
                    
+                   //close frame
                    setVisible(false);
                    dispose();
                    new ListCharacter(newId, bgmPlayer).setVisible(true);
@@ -714,43 +728,53 @@ public class SignUpPage extends javax.swing.JFrame {
     }//GEN-LAST:event_registerButtonMouseExited
 
     private void registerLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerLabelMouseClicked
-        String username = usernameField.getText();
+               String username = usernameField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
         String passwordConfirm = passwordConfirmField.getText();
         
+        //if username is empty
         if(username.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Username is still empty.");
         }
+        //if email is empty
         else if(email.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Email is still empty.");
         }
+        //if password is empty
         else if(password.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Password is still empty.");
         }
+        //if password confirm is empty
         else if(passwordConfirm.trim().isEmpty()){
             JOptionPane.showMessageDialog(getContentPane(), "Confirm Password is still empty.");
         }
         else{
+            //if email invalid
            if(!(validateEmail(email))){
                 JOptionPane.showMessageDialog(getContentPane(), "Please input a correct email.");
            }
            
+           //if password not equals password confirm
            if(!(password.equals(passwordConfirm))){
                JOptionPane.showMessageDialog(getContentPane(), "Password and Confirm Password is not the same.");
            }
            else{
+               //if password invalid
                if(!(validatePassword(password))){
                     JOptionPane.showMessageDialog(getContentPane(), "Password must have 8 characters with at least one number and one character");
                }
            }
            
+           //if username and email exist
            if(checkExist(username, email)){
                 JOptionPane.showMessageDialog(getContentPane(), "Email and username already existed.");               
            }
            
+           
            if(password.equals(passwordConfirm) && validateEmail(email) && validatePassword(password) && !(checkExist(username, email))){
                try{
+                   //create the user id
                    Connection con = ConnectionProvider.getCon();
                    Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
                    ResultSet rs = st.executeQuery("select count(id) from user");
@@ -763,6 +787,7 @@ public class SignUpPage extends javax.swing.JFrame {
                        newId = 1;
                    }
                    
+                   //insert into database
                    String str = "insert into user values(?,?,?,?,?,?,?,?,?,?)";
                    PreparedStatement ps = con.prepareStatement(str);
                    ps.setInt(1, newId);
@@ -770,6 +795,8 @@ public class SignUpPage extends javax.swing.JFrame {
                    ps.setString(3, email);
                    ps.setString(4, password);
                    ps.setString(5,null);
+                   
+                   //default bgm
                    ps.setString(6, "1a - What a Hopeful Voyage.mp3");
                    ps.setString(7, "1b - Vast and Blue.mp3");
                    ps.setString(8, "1c - Mesmerizing Waves.mp3");
@@ -777,6 +804,7 @@ public class SignUpPage extends javax.swing.JFrame {
                    ps.setString(10, "1e - Old Tales Preserved.mp3");
                    ps.executeUpdate();
                    
+                   //close frame
                    setVisible(false);
                    dispose();
                    new ListCharacter(newId, bgmPlayer).setVisible(true);
@@ -800,6 +828,7 @@ public class SignUpPage extends javax.swing.JFrame {
         registerLabel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_registerLabelMouseExited
     
+    //if field is focus lost and empty, field become red
     private void usernameFieldFocusLost(java.awt.event.FocusEvent evt) {                                   
         String text = usernameField.getText();
         if(text.trim().isEmpty()){
@@ -812,6 +841,7 @@ public class SignUpPage extends javax.swing.JFrame {
         }
     }                                  
 
+    //if field is focus lost and empty, field become red
     private void emailFieldFocusLost(java.awt.event.FocusEvent evt) {                                
         String text = emailField.getText();
         if(text.trim().isEmpty() || !(validateEmail(text))){
@@ -824,6 +854,7 @@ public class SignUpPage extends javax.swing.JFrame {
         }
     }                               
 
+    //if field is focus lost and empty, field become red
     private void passwordFieldFocusLost(java.awt.event.FocusEvent evt) {                                   
         String text = passwordField.getText();
         String textConfirm = passwordConfirmField.getText();
@@ -849,6 +880,7 @@ public class SignUpPage extends javax.swing.JFrame {
         }
     }                                  
 
+    //if field is focus lost and empty, field become red
     private void passwordConfirmFieldFocusLost(java.awt.event.FocusEvent evt) {                                          
         String text = passwordField.getText();
         String textConfirm = passwordConfirmField.getText();

@@ -8,7 +8,7 @@ Noelle#Geo Amplifier, Universal Amplifier#NA Amplifier, Geo Applicator, Universa
 			
 			
 Arataki Itto			
-Arataki Itto#Geo Amplifier, Universal Amplifier#Geo Applicator, Universal Amplifier#Shielder, Geo Applicator, Universal Amplifier, Healer
+Arataki Itto#Geo Amplifier, Universal Amplifier, Geo Applicator#Geo Applicator, Universal Amplifier, Geo Amplifier#Shielder, Geo Applicator, Universal Amplifier, Healer
 			
 			
 Navia			

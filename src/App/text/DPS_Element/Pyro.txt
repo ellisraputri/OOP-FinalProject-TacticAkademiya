@@ -1,9 +1,9 @@
 Xiangling
-Xiangling#Hydro Applicator, Hydro On-Field DPS#Universal Amplifier, Pyro Applicator, Hydro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Hydro Applicator
+Xiangling#Hydro Applicator, Hydro On-Field DPS#Universal Amplifier, Pyro Applicator, Pyro On-Field DPS, Hydro Applicator#Swirl, Universal Amplifier, Pyro Applicator, Hydro Applicator
 Xiangling#Cryo Applicator, Cryo On-Field DPS#Pyro Applicator, Cryo Applicator, Universal Amplifier, Cryo Amplifier#Swirl, Universal Amplifier, Pyro Applicator, Cryo Applicator, Cryo Amplifier
 Xiangling#Pyro Applicator, Pyro On-Field DPS#Universal Amplifier, Pyro Applicator, Pyro On-Field DPS#Swirl, Universal Amplifier, Pyro Applicator
 Xiangling#Electro Applicator, Electro On-Field DPS#Electro Applicator, Pyro Applicator#Overload Amplifier, Swirl
-Xiangling#Reaction Amplifier, Dendro Applicator#Hydro Applicator#Dendro Applicator, Healer, Swirl
+Xiangling#Reaction Amplifier, Dendro Applicator#Hydro Applicator, Pyro Applicator#Dendro Applicator, Healer, Swirl
 			
 			
 Hu Tao

@@ -1,17 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package App;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
-/**
- *
- * @author asus
- */
+
+
 public class CharacterArchivePanel extends JPanel{ 
     private static int panelCount = 0; 
     private static int borderRadius;
@@ -25,17 +19,19 @@ public class CharacterArchivePanel extends JPanel{
     private GameCharacter gameChar;
 
     public CharacterArchivePanel(int borderRadius, ImageIcon image, GameCharacter gc) {
-        setLayout(null);
+        setLayout(null);    //set null layout
         this.borderRadius = borderRadius;
         this.borderWidth = 0;
         this.image = image;
         this.gameChar = gc;
         setOpaque(false);
         
+        //set basic attributes
         String name = gameChar.getName();
         String element = gameChar.getElement();
         int stars = gameChar.getStars();
        
+        //set color based on rarity
         if(stars == 4){
             bgColor = new Color(202,204,246);
             bgDefault = new Color(202,204,246);
@@ -52,7 +48,7 @@ public class CharacterArchivePanel extends JPanel{
         }
         
                 
-        // Example content - you can add whatever components you need
+        // set name label
         App.WrappedLabelCenter nameLabel = new App.WrappedLabelCenter(140, textColor, new Insets(2,2,2,2));
         nameLabel.setText(name);
         nameLabel.setFont(new Font("HYWenHei-85W", 0, 18));
@@ -60,24 +56,29 @@ public class CharacterArchivePanel extends JPanel{
         setComponentBounds(nameLabel, 25, 185, 150, 150);
         nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(nameLabel);
-
+        
+        //set element label
         JLabel elementLabel = new JLabel();
         elementLabel.setIcon(new ImageIcon("src/App/image/Element/Medium/"+element+".png"));
         setComponentBounds(elementLabel, 133, 140, elementLabel.getPreferredSize().width, elementLabel.getPreferredSize().height);
         add(elementLabel);
         
+        //set element circle
         JLabel circle = new JLabel();
         circle.setIcon(new ImageIcon(path));
         setComponentBounds(circle, 130, 135, circle.getPreferredSize().width, circle.getPreferredSize().height);
         add(circle);
         
+        //set character image
         JLabel photo = new JLabel();
         photo.setIcon(image);
         setComponentBounds(photo, 25, 22, 150, 150);
         add(photo);
         
+        //set cursor
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         
+        //add mouse listener that change the panel color when being hovered
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -94,21 +95,24 @@ public class CharacterArchivePanel extends JPanel{
             
         });
     }
-
+    
+    //get gamecharacter
     public GameCharacter getGameChar() {
         return gameChar;
     }
 
+    //get character image
     public ImageIcon getImage() {
         return image;
     }
 
-    
+    //set component position and size
     public void setComponentBounds(Component component, int x, int y, int width, int height) {
-        component.setBounds(x, y, width, height); // Set the position and size of the component
+        component.setBounds(x, y, width, height); 
     }
 
     
+    //paint the panel
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -119,6 +123,8 @@ public class CharacterArchivePanel extends JPanel{
         g2d.dispose();
     }
 
+    
+    //paint the panel border
     @Override
     protected void paintBorder(Graphics g) {
         super.paintBorder(g);

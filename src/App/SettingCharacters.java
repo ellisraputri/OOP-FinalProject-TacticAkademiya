@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package App;
 
 import DatabaseConnection.ConnectionProvider;
@@ -20,23 +16,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author asus
- */
+
 public class SettingCharacters extends javax.swing.JFrame {
     private int userId;
     private ArrayList<String> ownedChars;
     private ArrayList<CharacterPanel> panelList = new ArrayList<>();
     private Settings setting;
 
-    /**
-     * Creates new form Settings
-     */
     public SettingCharacters() {
         initComponents();
-        this.userId = 1;
-        myinit();
     }
     
     public SettingCharacters(int userId, ArrayList<String> ownedChars, Settings setting){
@@ -44,13 +32,15 @@ public class SettingCharacters extends javax.swing.JFrame {
         this.userId = userId;
         this.ownedChars = ownedChars;
         this.setting = setting;
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);    //set frame location
         myinit();
     }
     
     private void myinit(){
+        //set cursor image
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
         
+        //closing the frame doesnt mean stop the program
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
@@ -80,12 +70,13 @@ public class SettingCharacters extends javax.swing.JFrame {
         parentPanel.setBorder(null);
         scrollPane.setViewportView(parentPanel); // Set this panel as viewport's view
         
-        
+        //load images from folder
         App.ImageLoader loader1 = new App.ImageLoader();
         loader1.emptyFileName();
         ArrayList<BufferedImage> imageList = loader1.loadImagesFromFolder("src/App/image/CharacterCard/Small");
         ArrayList<String> nameList = loader1.returnFileNames();
         
+        //set the panels
         int row=0, column=0;
         for(int i=0; i<imageList.size();i++){
             BufferedImage image = imageList.get(i);
@@ -94,10 +85,10 @@ public class SettingCharacters extends javax.swing.JFrame {
             int panelWidth = 120;
             int panelHeight = 120;
             
+            //initializing character panel
             CharacterPanel clonedPanel = new CharacterPanel(charName);
             clonedPanel.settingPanel(image, charName, panelWidth, panelHeight, 12, false);
             clonedPanel.settingMouse();
-            
 
             // Calculate the row and column indices
             row = i / 4;
@@ -134,11 +125,12 @@ public class SettingCharacters extends javax.swing.JFrame {
     }
     
     
+    //set the clicked to true if the character is owned
     private void setClickedForOwnedChars(){
         for(CharacterPanel c: panelList){
             if(ownedChars.contains(c.getName())){
                 c.setClicked(true);
-                c.checkmark.setVisible(true);
+                c.checkmark.setVisible(true);   //show checkmark
             }
         }
     }
@@ -221,21 +213,24 @@ public class SettingCharacters extends javax.swing.JFrame {
         String[] charname = new String[panelList.size()];
         ArrayList<String> newOwned = new ArrayList<>();
         int i=0;
+        
+        //getting all the panel that is clicked
         for(CharacterPanel panel : panelList){
             clickedArray[i] = panel.getClicked();
-            charname[i] = panel.getName().replaceAll("\\s", "");
+            charname[i] = panel.getName().replaceAll("\\s", "");    //replace name to match database
             if(panel.getClicked()){
                 newOwned.add(panel.getName());
             }
             i++;
         }
 
-        
-        if(clickedArray.length<8){
+        //if characters less than 8, show alert
+        if(newOwned.size()<8){
             JOptionPane.showMessageDialog(getContentPane(), "Characters must be at least 8.");
         }
         else{
             try{
+                //update database
                 Connection con = ConnectionProvider.getCon();
                 String str = "update characters set ";
 
@@ -252,6 +247,7 @@ public class SettingCharacters extends javax.swing.JFrame {
                 PreparedStatement ps = con.prepareStatement(str);
                 ps.executeUpdate();
                 
+                //close frame
                 JOptionPane.showMessageDialog(getContentPane(), "Information has been saved.");
                 setVisible(false);
                 dispose();
@@ -282,21 +278,24 @@ public class SettingCharacters extends javax.swing.JFrame {
         String[] charname = new String[panelList.size()];
         ArrayList<String> newOwned = new ArrayList<>();
         int i=0;
+        
+        //getting all the panel that is clicked
         for(CharacterPanel panel : panelList){
             clickedArray[i] = panel.getClicked();
-            charname[i] = panel.getName().replaceAll("\\s", "");
+            charname[i] = panel.getName().replaceAll("\\s", "");    //replace name to match database
             if(panel.getClicked()){
                 newOwned.add(panel.getName());
             }
             i++;
         }
 
-        
-        if(clickedArray.length<8){
+        //if characters less than 8, show alert
+        if(newOwned.size()<8){
             JOptionPane.showMessageDialog(getContentPane(), "Characters must be at least 8.");
         }
         else{
             try{
+                //update database
                 Connection con = ConnectionProvider.getCon();
                 String str = "update characters set ";
 
@@ -313,6 +312,7 @@ public class SettingCharacters extends javax.swing.JFrame {
                 PreparedStatement ps = con.prepareStatement(str);
                 ps.executeUpdate();
                 
+                //close frame
                 JOptionPane.showMessageDialog(getContentPane(), "Information has been saved.");
                 setVisible(false);
                 dispose();

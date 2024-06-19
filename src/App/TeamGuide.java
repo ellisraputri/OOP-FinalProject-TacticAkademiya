@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package App;
 
 import DatabaseConnection.ConnectionProvider;
@@ -34,10 +30,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-/**
- *
- * @author asus
- */
+
 public class TeamGuide extends javax.swing.JFrame {
     private int userId;
     private String username;
@@ -67,18 +60,9 @@ public class TeamGuide extends javax.swing.JFrame {
     private ArrayList<EnemyPanel> otherHumanFactionsPanel = new ArrayList<>();
     private ArrayList<EnemyPanel> theAbyssPanel = new ArrayList<>();
     
-    /**
-     * Creates new form TeamGuide
-     */
+   
     public TeamGuide() {
         initComponents();
-        this.userId = 6;
-        this.username = "Ellis";
-        this.email = "ellismail@gmail.com";
-        setLocationRelativeTo(null);
-        teamPage1();
-        addCharOwned();
-        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
     }
     
     public TeamGuide(int userId, String username, String email, ImageIcon profileImage, MP3Player bgmPlayer) {
@@ -88,16 +72,21 @@ public class TeamGuide extends javax.swing.JFrame {
         this.email = email;
         this.profileImage = profileImage;
         this.bgmPlayer = bgmPlayer;
-        setLocationRelativeTo(null);
-        teamPage1();
-        addCharOwned();
+        setLocationRelativeTo(null);    //set frame location
+        teamPage1();    //start from page 1
+        addCharOwned();     //add user's owned character
+        
+        //set cursor image
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("src/App/image/mouse.png").getImage(), new Point(0,0),"custom cursor"));
     }  
     
     private ArrayList<String> charOwnedList = new ArrayList<>();
+    
+    //add user owned character from database
     private void addCharOwned(){
         ArrayList<Boolean> ownedOrNot = new ArrayList<>();
         try{
+            //retrieve from database
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet rs = st.executeQuery("select * from characters where userId=" + userId + "");
@@ -114,15 +103,19 @@ public class TeamGuide extends javax.swing.JFrame {
         }
         
         try{
+            //retrieve characters name
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet rs1 = st.executeQuery("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='characters'");
             int index=0;
             while(rs1.next()){
+                //index 70 is the userId, so we skip it
                 if(index==70){
                     index++;
                     continue;
                 }
+                
+                //to match the previous list, we need to modify the get() function 
                 if(index<70 && ownedOrNot.get(index) == true){
                     String name = rs1.getString(1);
                     name = name.replaceAll("([a-z])([A-Z])", "$1 $2");
@@ -141,6 +134,7 @@ public class TeamGuide extends javax.swing.JFrame {
 
     }
     
+    //reset all radio buttons for page 1
     private void resetRadioButtonsPage1(){
         pyroRadButton.setIcon(new ImageIcon("src/App/image/radio1.png"));
         cryoRadButton.setIcon(new ImageIcon("src/App/image/radio1.png"));
@@ -159,29 +153,31 @@ public class TeamGuide extends javax.swing.JFrame {
     }
     
     private void teamPage1(){
+        //reset parent panel
         parentPanel.removeAll();
         parentPanel.add(teamPage1);
         parentPanel.revalidate();
         parentPanel.repaint();
-        
+       
+        //set radio buttons
         modeEnemyOnly.setSelected(true);
         resetRadioButtonsPage1();
-
+        
+        //clear all things
         elements.clear();
         weapons.clear();
         characterBannedList.clear();
         
-        
+        //set username, email, profile
         usernameLabel.setText(username);
         emailLabel.setText(email);
         usernameLabel.setBounds(110, 25, usernameLabel.getPreferredSize().width+10, usernameLabel.getPreferredSize().height);
         emailLabel.setBounds(110, 60, emailLabel.getPreferredSize().width+10, emailLabel.getPreferredSize().height);
         profileButton.setIcon(profileImage);
         
+        //set enemies panel
         enemiesPane.setOpaque(false);
         enemiesPane.setBorder(null);
-        
-        
         for(ArrayList<EnemyPanel> list: enemyPanelList){
             list.clear();
         }
@@ -196,13 +192,14 @@ public class TeamGuide extends javax.swing.JFrame {
         enemyPanelList.add(otherHumanFactionsPanel);
         enemyPanelList.add(theAbyssPanel);
         
-        
+        //set scroll pane
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setViewportBorder(null);
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
         
+        //set container
         clonePanelContainer = new JPanel(); // The initial panel inside scroll pane
         clonePanelContainer.setLayout(null); // Use absolute layout
         clonePanelContainer.setPreferredSize(new Dimension(400, 200)); // Set initial size
@@ -211,6 +208,7 @@ public class TeamGuide extends javax.swing.JFrame {
         clonePanelContainer.setBorder(null);
         scrollPane.setViewportView(clonePanelContainer); // Set this panel as viewport's view
         
+        //set each enemy type 
         cloneablePanelAutomaton = new JPanel();
         setThePanelPage1(cloneablePanelAutomaton, 0, 0, "Automatons");
         
@@ -239,12 +237,14 @@ public class TeamGuide extends javax.swing.JFrame {
     }
     
     private void setThePanelPage1(JPanel newPanel, int xPanel, int yPanel, String type){
+        //set panel 
         newPanel.setLayout(null);
         newPanel.setPreferredSize(new Dimension(400, 200)); 
         newPanel.setOpaque(false);
         newPanel.setBackground(new Color(0,0,0,0));
         newPanel.setBorder(BorderFactory.createEmptyBorder());
         
+        //set the type label
         JLabel typeLabel = new JLabel(type);
         typeLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 28));
         typeLabel.setForeground(new Color(252,236,214));
@@ -252,11 +252,13 @@ public class TeamGuide extends javax.swing.JFrame {
         newPanel.add(typeLabel);
         newPanel.setComponentZOrder(typeLabel, 0);
     
+        //load images
         App.ImageLoader loader1 = new App.ImageLoader();
         loader1.emptyFileName();
         ArrayList<BufferedImage> imageList = loader1.loadImagesFromFolder("src/App/image/EnemyCard/"+type);
         ArrayList<String> nameList = loader1.returnFileNames();
 
+        //display panels
         int row=0, column=0;
         for(int i=0; i<imageList.size();i++){
             BufferedImage image = imageList.get(i);
@@ -265,6 +267,7 @@ public class TeamGuide extends javax.swing.JFrame {
             int panelWidth = 100;
             int panelHeight = 100;
             
+            //initialize the panel
             EnemyPanel clonedPanel = new EnemyPanel(enemyName, type);
             clonedPanel.settingMouse();
             clonedPanel.settingPanel(image, enemyName, panelWidth, panelHeight,10,false);
@@ -295,14 +298,17 @@ public class TeamGuide extends javax.swing.JFrame {
             list.add(clonedPanel);
         }
         
+        //set new size
         newPanel.setPreferredSize(new Dimension(newPanel.getWidth(), row * (100 + 20) + 100 + 20 + typeLabel.getHeight() + 10));
         newPanel.setBounds(xPanel, yPanel, 500, newPanel.getPreferredSize().height);
+        
+        //add to container
         clonePanelContainer.add(newPanel);
         clonePanelContainer.revalidate();
         clonePanelContainer.repaint();
-
     }
     
+    //adjust the container size
     private void adjustContainerSizePage1() {
         int totalHeight = 0;
         for (Component comp : clonePanelContainer.getComponents()) {
@@ -315,6 +321,7 @@ public class TeamGuide extends javax.swing.JFrame {
         scrollPane.repaint();
     }
     
+    //check the suitable arraylist to return based on enemy type
     private ArrayList<EnemyPanel> checkNameFromType(String type){
         switch(type){
             case "Automatons":
@@ -1931,6 +1938,7 @@ public class TeamGuide extends javax.swing.JFrame {
     }//GEN-LAST:event_nextLabelMouseExited
 
     
+    //draw the suitable icon when mouse enters the radio button
     private void drawMouseEnteredRadioButton(String type, String component, JRadioButton radio){
         component = component.substring(0,1).toUpperCase() + component.substring(1);
         if(type.equals("elements")){
@@ -1951,6 +1959,7 @@ public class TeamGuide extends javax.swing.JFrame {
         }
     }
     
+    //draw the suitable icon when mouse exits the radio button
     private void drawMouseExitedRadioButton(String type, String component, JRadioButton radio){
         component = component.substring(0,1).toUpperCase() + component.substring(1);
         if(type.equals("elements")){
@@ -1971,6 +1980,7 @@ public class TeamGuide extends javax.swing.JFrame {
         }      
     }
     
+    //draw the suitable icon when radio button is clicked
     private void radioButtonActionPerformed(String type, String component, JRadioButton radio){
         component = component.substring(0,1).toUpperCase() + component.substring(1);
         if(type.equals("elements")){
@@ -2167,29 +2177,35 @@ public class TeamGuide extends javax.swing.JFrame {
 
     
     private void teamPage2(){
+        //setup parent panel
         parentPanel.remove(teamPage1);
         parentPanel.add(teamPage2);
         parentPanel.revalidate();
         parentPanel.repaint();
         
+        //set username,email,profile
         usernameLabel1.setText(username);
         emailLabel1.setText(email);
         usernameLabel1.setBounds(110, 25, usernameLabel1.getPreferredSize().width+10, usernameLabel1.getPreferredSize().height);
         emailLabel1.setBounds(110, 60, emailLabel1.getPreferredSize().width+10, emailLabel1.getPreferredSize().height);
         profileButton1.setIcon(profileImage);
         
+        //clear list 
         selectedPanels.clear();
         characterBannedList.clear();
         
+        //set character pane
         characterPane.setOpaque(false);
         characterPane.setBorder(null);
         
+        //set scrollpane
         scrollPane2.setOpaque(false);
         scrollPane2.getViewport().setOpaque(false);
         scrollPane2.setViewportBorder(null);
         scrollPane2.setBorder(null);
         scrollPane2.getVerticalScrollBar().setUnitIncrement(20);
         
+        //set container2
         clonePanelContainer2 = new JPanel(); // The initial panel inside scroll pane
         clonePanelContainer2.setLayout(null); // Use absolute layout
         clonePanelContainer2.setPreferredSize(new Dimension(400, 200)); // Set initial size
@@ -2198,11 +2214,13 @@ public class TeamGuide extends javax.swing.JFrame {
         clonePanelContainer2.setBorder(null);
         scrollPane2.setViewportView(clonePanelContainer2); // Set this panel as viewport's view
         
+        //load images
         App.ImageLoader loader2 = new App.ImageLoader();
         loader2.emptyFileName();
         ArrayList<BufferedImage> imageList = loader2.loadImagesFromFolder("src/App/image/CharacterCard/Small");
         ArrayList<String> nameList = loader2.returnFileNames();
         
+        //filter to only characters that user has
         ArrayList<String> newNameList = new ArrayList<>();
         ArrayList<BufferedImage> newImageList = new ArrayList<>();
         for(int i=0; i<imageList.size(); i++){
@@ -2212,6 +2230,7 @@ public class TeamGuide extends javax.swing.JFrame {
             }
         }
         
+        //display character panel
         int row=0, column=0;
         for(int i=0; i<newImageList.size();i++){
             BufferedImage image = newImageList.get(i);
@@ -2220,10 +2239,10 @@ public class TeamGuide extends javax.swing.JFrame {
             int panelWidth = 120;
             int panelHeight = 120;
             
+            //initialize character panel
             CharacterPanel clonedPanel = new CharacterPanel(charName);
             clonedPanel.settingPanel(image, charName, panelWidth, panelHeight,12,false);
             clonedPanel.settingMouse();
-            
 
             // Calculate the row and column indices
             row = i / 3;
@@ -2257,13 +2276,14 @@ public class TeamGuide extends javax.swing.JFrame {
             characterBannedList.add(clonedPanel);
         }
         
-        
+        //setup summary scrollpane
         summaryScroll.setOpaque(false);
         summaryScroll.getViewport().setOpaque(false);
         summaryScroll.setViewportBorder(null);
         summaryScroll.setBorder(null);
         summaryScroll.getVerticalScrollBar().setUnitIncrement(20);
         
+        //set up summary panel
         summaryPanel = new JPanel(); // The initial panel inside scroll pane
         summaryPanel.setLayout(null); // Use absolute layout
         summaryPanel.setPreferredSize(new Dimension(400, 200)); // Set initial size
@@ -2272,6 +2292,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel.setBorder(null);
         summaryScroll.setViewportView(summaryPanel); // Set this panel as viewport's view
         
+        //set mode title
         JLabel modeLabel = new JLabel();
         modeLabel.setText("Mode: " + "Enemies Only");
         modeLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
@@ -2280,6 +2301,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel.add(modeLabel);
         summaryPanel.setComponentZOrder(modeLabel, 0);
         
+        //set enemy summary title
         JLabel enemySummaryLabel = new JLabel();
         enemySummaryLabel.setText("Enemies:");
         enemySummaryLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
@@ -2288,6 +2310,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel.add(enemySummaryLabel);
         summaryPanel.setComponentZOrder(enemySummaryLabel, 0);
         
+        //set enemies text
         enemiesLabel = new App.WrappedLabel(550, new Color(0,0,0,0), new Insets(2,2,2,2));
         enemiesLabel.setOpaque(false);
         enemiesLabel.setText(getEnemyName());
@@ -2297,6 +2320,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel.add(enemiesLabel);
         summaryPanel.setComponentZOrder(enemiesLabel, 0);
         
+        //set preferred element title
         JLabel preferredElementLabel = new JLabel();
         preferredElementLabel.setText("Preferred Elements:");
         preferredElementLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
@@ -2305,6 +2329,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel.add(preferredElementLabel);
         summaryPanel.setComponentZOrder(preferredElementLabel, 0);
         
+        //set elements text
         elementsLabel = new App.WrappedLabel(550, new Color(0,0,0,0), new Insets(2,2,2,2));
         elementsLabel.setOpaque(false);
         elementsLabel.setText(getElements());
@@ -2314,6 +2339,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel.add(elementsLabel);
         summaryPanel.setComponentZOrder(elementsLabel, 0);
         
+        //set preffered weapon label
         JLabel preferredWeaponLabel = new JLabel();
         preferredWeaponLabel.setText("Preferred Weapons:");
         preferredWeaponLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
@@ -2322,6 +2348,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel.add(preferredWeaponLabel);
         summaryPanel.setComponentZOrder(preferredWeaponLabel, 0);
         
+        //set weapons text
         weaponsLabel = new App.WrappedLabel(550, new Color(0,0,0,0), new Insets(2,2,2,2));
         weaponsLabel.setOpaque(false);
         weaponsLabel.setText(getWeapons());
@@ -2331,6 +2358,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel.add(weaponsLabel);
         summaryPanel.setComponentZOrder(weaponsLabel, 0);
         
+        //set banned character title
         bannedCharactersLabel = new JLabel();
         bannedCharactersLabel.setText("Banned Characters:");
         bannedCharactersLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
@@ -2339,6 +2367,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel.add(bannedCharactersLabel);
         summaryPanel.setComponentZOrder(bannedCharactersLabel, 0);
         
+        //set banned character text
         bannedNameLabel = new App.WrappedLabel(550, new Color(0,0,0,0), new Insets(2,2,2,2));
         bannedNameLabel.setOpaque(false);
         bannedNameLabel.setText("-");
@@ -2348,10 +2377,12 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel.add(bannedNameLabel);
         summaryPanel.setComponentZOrder(bannedNameLabel, 0);
         
+        //adjust size
         adjustContainerSizePage2();
         summaryScroll.getVerticalScrollBar().setValue(0);
     }
     
+    //handle panel click for team page2
     private void handlePanelClick(String panelName) {
         if (selectedPanels.contains(panelName)) {
             selectedPanels.remove(panelName);
@@ -2361,6 +2392,7 @@ public class TeamGuide extends javax.swing.JFrame {
         updateLabel();
     }
     
+    //update banned character name based on the panel clicked
     private void updateLabel(){
         String str ="";
         int j =0;
@@ -2380,6 +2412,7 @@ public class TeamGuide extends javax.swing.JFrame {
         adjustContainerSizePage2();
     }
     
+    //edit the weapons text
     private String getWeapons(){
         String str="";
         if(weapons.isEmpty()){
@@ -2393,6 +2426,7 @@ public class TeamGuide extends javax.swing.JFrame {
         return str;
     }
     
+    //edit the elements text
     private String getElements(){
         String str="";
         if(elements.isEmpty()){
@@ -2406,6 +2440,7 @@ public class TeamGuide extends javax.swing.JFrame {
         return str;
     }
     
+    //edut the enemy text
     private String getEnemyName(){
         String str="";
         if(enemyPanelList.isEmpty()){
@@ -2414,7 +2449,7 @@ public class TeamGuide extends javax.swing.JFrame {
         }
         
         ArrayList<Integer> clickedListIndex = new ArrayList<>();
-                
+        //get the clicked enemies
         for(int i=0; i<enemyPanelList.size();i++){
             for(EnemyPanel p: enemyPanelList.get(i)){
                 if(p.getClicked()){
@@ -2424,6 +2459,7 @@ public class TeamGuide extends javax.swing.JFrame {
             }
         }
         
+        //set it based on its type
         for(int index: clickedListIndex){
             if(clickedListIndex.indexOf(index) == 0){
                 str = str + enemyPanelList.get(index).get(0).getType() + " (";
@@ -2444,6 +2480,7 @@ public class TeamGuide extends javax.swing.JFrame {
         return str;
     }
     
+    //adjust container2 size
     private void adjustContainerSizePage2() {
         int totalHeight = 0;
         for (Component comp : summaryPanel.getComponents()) {
@@ -2497,8 +2534,8 @@ public class TeamGuide extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(parentPanel, "Character that is being fed to generator must be at least 8.");
         }
         else{
+            //call the generator
            App.PrepareGenerator app = new App.PrepareGenerator(enemiesLabel.getText(), elementsLabel.getText(), weaponsLabel.getText(), banChars, charOwnedList); 
-           System.out.println("generated:"+app.getGeneratedTeam());
            dispose();
            new TeamResult(userId, username, email, profileImage,bgmPlayer, app.getGeneratedTeam()).setVisible(true);
         }
@@ -2523,8 +2560,8 @@ public class TeamGuide extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(parentPanel, "Character that is being fed to generator must be at least 8.");
         }
         else{
+            //call the generator
            App.PrepareGenerator app = new App.PrepareGenerator(enemiesLabel.getText(), elementsLabel.getText(), weaponsLabel.getText(), banChars, charOwnedList); 
-           System.out.println("generated:"+app.getGeneratedTeam());
            dispose();
            new TeamResult(userId, username, email,profileImage,bgmPlayer, app.getGeneratedTeam()).setVisible(true);
         }
@@ -2543,7 +2580,7 @@ public class TeamGuide extends javax.swing.JFrame {
     }//GEN-LAST:event_generateButtonMouseExited
 
     
-    
+    //reset radio button in page3
     private void resetRadioButtonsPage3(){
         pyroRadButton1.setIcon(new ImageIcon("src/App/image/radio1.png"));
         cryoRadButton1.setIcon(new ImageIcon("src/App/image/radio1.png"));
@@ -2573,16 +2610,19 @@ public class TeamGuide extends javax.swing.JFrame {
     private String floor="";
     private String chamber="";
     private void teamPage3(){
+        //set parent panel
         parentPanel.removeAll();
         parentPanel.add(teamPage3);
         parentPanel.revalidate();
         parentPanel.repaint();
         resetRadioButtonsPage3();
         
+        //clear all list
         elements.clear();
         weapons.clear();
         characterBannedList.clear();
         
+        //set radio buttons
         floorGroup = new ButtonGroup();
         floorGroup.add(floor9Radio);
         floorGroup.add(floor10Radio);
@@ -2595,6 +2635,7 @@ public class TeamGuide extends javax.swing.JFrame {
         chamberGroup.add(chamber3Rad);
         chamberGroup.add(chamberAllRad);
         
+        //set username,email,profile
         usernameLabel2.setText(username);
         emailLabel2.setText(email);
         usernameLabel2.setBounds(110, 25, usernameLabel2.getPreferredSize().width+10, usernameLabel2.getPreferredSize().height);
@@ -2602,16 +2643,19 @@ public class TeamGuide extends javax.swing.JFrame {
         profileButton2.setIcon(profileImage);
         
         modeEnemyOnly1.setIcon(new ImageIcon("src/App/image/radio1.png"));
-
+        
+        //set characterpane
         characterPane2.setOpaque(false);
         characterPane2.setBorder(null);
         
+        //set scrollpane
         scrollPane3.setOpaque(false);
         scrollPane3.getViewport().setOpaque(false);
         scrollPane3.setViewportBorder(null);
         scrollPane3.setBorder(null);
         scrollPane3.getVerticalScrollBar().setUnitIncrement(20);
         
+        //set container3
         clonePanelContainer3 = new JPanel(); // The initial panel inside scroll pane
         clonePanelContainer3.setLayout(null); // Use absolute layout
         clonePanelContainer3.setPreferredSize(new Dimension(400, 200)); // Set initial size
@@ -2620,11 +2664,13 @@ public class TeamGuide extends javax.swing.JFrame {
         clonePanelContainer3.setBorder(null);
         scrollPane3.setViewportView(clonePanelContainer3); // Set this panel as viewport's view
         
+        //load character images
         App.ImageLoader loader3 = new App.ImageLoader();
         loader3.emptyFileName();
         ArrayList<BufferedImage> imageList = loader3.loadImagesFromFolder("src/App/image/CharacterCard/Small");
         ArrayList<String> nameList = loader3.returnFileNames();
         
+        //filter the character name to only the characters that user has
         ArrayList<String> newNameList = new ArrayList<>();
         ArrayList<BufferedImage> newImageList = new ArrayList<>();
         for(int i=0; i<imageList.size(); i++){
@@ -2634,6 +2680,7 @@ public class TeamGuide extends javax.swing.JFrame {
             }
         }
         
+        //display characterpanel
         int row=0, column=0;
         for(int i=0; i<newImageList.size();i++){
             BufferedImage image = newImageList.get(i);
@@ -2642,6 +2689,7 @@ public class TeamGuide extends javax.swing.JFrame {
             int panelWidth = 120;
             int panelHeight = 120;
             
+            //initialize characterpanel
             CharacterPanel clonedPanel = new CharacterPanel(charName);
             clonedPanel.settingPanel(image, charName, panelWidth, panelHeight,12,false);
             clonedPanel.settingMouse();
@@ -2852,7 +2900,7 @@ public class TeamGuide extends javax.swing.JFrame {
         radioButtonActionPerformed("weapons", "claymore", claymoreRadButton1);
     }//GEN-LAST:event_claymoreRadButton1ActionPerformed
     
-    
+    //draw the suitable icon when mouse enters the radio button
     private void drawMouseEnteredRadioButton(JRadioButton rad, boolean isSelect){
         if(isSelect){
             rad.setIcon(new ImageIcon("src/App/image/radio4.png"));
@@ -2862,6 +2910,7 @@ public class TeamGuide extends javax.swing.JFrame {
         }
     }
     
+    //draw the suitable icon when mouse exits the radio button
     private void drawMouseExitedRadioButton(JRadioButton rad, boolean isSelect){
         if(isSelect){
             rad.setIcon(new ImageIcon("src/App/image/radio2.png"));
@@ -2871,6 +2920,7 @@ public class TeamGuide extends javax.swing.JFrame {
         }
     }
     
+    //draw the suitable icon when the radio button is clicked
     private void radioButtonActionPerformed(JRadioButton rad, boolean isSelect, JRadioButton rad2, JRadioButton rad3, JRadioButton rad4, String type){
         if(isSelect){
             if(type.equals("floor")){
@@ -2910,6 +2960,8 @@ public class TeamGuide extends javax.swing.JFrame {
             }
         }
         
+        //making sure the user choose the floor and chamber
+        //then make sure the user have enough characters
         if(floor.isEmpty()){
             JOptionPane.showMessageDialog(parentPanel, "Please select a floor number");
         }
@@ -2947,6 +2999,9 @@ public class TeamGuide extends javax.swing.JFrame {
                 bannedName.add(p.getName());
             }
         }
+        
+        //making sure the user choose the floor and chamber
+        //then make sure the user have enough characters
         if(floor.isEmpty()){
             JOptionPane.showMessageDialog(parentPanel, "Please select a floor number");
         }
@@ -3071,26 +3126,31 @@ public class TeamGuide extends javax.swing.JFrame {
     private HashMap<String, String> chamberHalfAndEnemies = new LinkedHashMap<>();        
     
     private void teamPage4(){
+        //set parentpanel
         parentPanel.removeAll();
         parentPanel.add(teamPage4);
         parentPanel.revalidate();
         parentPanel.repaint();
         
+        //set username, email,profile
         usernameLabel3.setText(username);
         emailLabel3.setText(email);
         usernameLabel3.setBounds(110, 25, usernameLabel3.getPreferredSize().width+10, usernameLabel3.getPreferredSize().height);
         emailLabel3.setBounds(110, 60, emailLabel3.getPreferredSize().width+10, emailLabel3.getPreferredSize().height);
         profileButton3.setIcon(profileImage);
         
+        //clear lists
         selectedPanels.clear();
         chamberHalfAndEnemies.clear();
         
+        //set summary scrollpane
         summaryScroll1.setOpaque(false);
         summaryScroll1.getViewport().setOpaque(false);
         summaryScroll1.setViewportBorder(null);
         summaryScroll1.setBorder(null);
         summaryScroll1.getVerticalScrollBar().setUnitIncrement(20);
         
+        //set summarypanel
         summaryPanel1 = new JPanel(); // The initial panel inside scroll pane
         summaryPanel1.setLayout(null); // Use absolute layout
         summaryPanel1.setPreferredSize(new Dimension(400, 200)); // Set initial size
@@ -3099,6 +3159,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel1.setBorder(null);
         summaryScroll1.setViewportView(summaryPanel1); // Set this panel as viewport's view
         
+        //set mode label title
         JLabel modeLabel = new JLabel();
         modeLabel.setText("Mode: " + "Spiral Abyss");
         modeLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
@@ -3107,6 +3168,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel1.add(modeLabel);
         summaryPanel1.setComponentZOrder(modeLabel, 0);
         
+        //set floor title
         JLabel floorSummaryLabel = new JLabel();
         floorSummaryLabel.setText("Floor:");
         floorSummaryLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
@@ -3115,6 +3177,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel1.add(floorSummaryLabel);
         summaryPanel1.setComponentZOrder(floorSummaryLabel, 0);
         
+        //set floor text
         App.WrappedLabel floorLabel = new App.WrappedLabel(700, new Color(0,0,0,0), new Insets(2,2,2,2));
         floorLabel.setOpaque(false);
         floorLabel.setText(floor);
@@ -3124,6 +3187,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel1.add(floorLabel);
         summaryPanel1.setComponentZOrder(floorLabel, 0);
         
+        //set chamber title
         JLabel chamberSummaryLabel = new JLabel();
         chamberSummaryLabel.setText("Chamber:");
         chamberSummaryLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
@@ -3132,6 +3196,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel1.add(chamberSummaryLabel);
         summaryPanel1.setComponentZOrder(chamberSummaryLabel, 0);
         
+        //set chamber text
         App.WrappedLabel chamberLabel = new App.WrappedLabel(700, new Color(0,0,0,0), new Insets(2,2,2,2));
         chamberLabel.setOpaque(false);
         chamberLabel.setText(chamber);
@@ -3141,6 +3206,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel1.add(chamberLabel);
         summaryPanel1.setComponentZOrder(chamberLabel, 0);
         
+        //set preferred element title
         JLabel preferredElementLabel = new JLabel();
         preferredElementLabel.setText("Preferred Elements:");
         preferredElementLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
@@ -3149,6 +3215,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel1.add(preferredElementLabel);
         summaryPanel1.setComponentZOrder(preferredElementLabel, 0);
         
+        //set element text
         elementsLabel = new App.WrappedLabel(700, new Color(0,0,0,0), new Insets(2,2,2,2));
         elementsLabel.setOpaque(false);
         elementsLabel.setText(getElements());
@@ -3158,6 +3225,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel1.add(elementsLabel);
         summaryPanel1.setComponentZOrder(elementsLabel, 0);
         
+        //set preferred element title
         JLabel preferredWeaponLabel = new JLabel();
         preferredWeaponLabel.setText("Preferred Weapons:");
         preferredWeaponLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
@@ -3166,6 +3234,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel1.add(preferredWeaponLabel);
         summaryPanel1.setComponentZOrder(preferredWeaponLabel, 0);
         
+        //set weapon text
         weaponsLabel = new App.WrappedLabel(700, new Color(0,0,0,0), new Insets(2,2,2,2));
         weaponsLabel.setOpaque(false);
         weaponsLabel.setText(getWeapons());
@@ -3175,6 +3244,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel1.add(weaponsLabel);
         summaryPanel1.setComponentZOrder(weaponsLabel, 0);
         
+        //set banned character title
         bannedCharactersLabel = new JLabel();
         bannedCharactersLabel.setText("Banned Characters:");
         bannedCharactersLabel.setFont(new Font("HYWenHei-85W", Font.PLAIN, 24));
@@ -3183,6 +3253,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel1.add(bannedCharactersLabel);
         summaryPanel1.setComponentZOrder(bannedCharactersLabel, 0);
         
+        //set banned character name
         bannedNameLabel = new App.WrappedLabel(700, new Color(0,0,0,0), new Insets(2,2,2,2));
         bannedNameLabel.setOpaque(false);
         bannedNameLabel.setText(getBannedName());
@@ -3192,10 +3263,12 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryPanel1.add(bannedNameLabel);
         summaryPanel1.setComponentZOrder(bannedNameLabel, 0);
         
+        //adjust container size
         adjustContainerSizePage4();
         summaryScroll1.getVerticalScrollBar().setValue(0);
     }
     
+    //adjust container4 size
     private void adjustContainerSizePage4() {
         int totalHeight = 0;
         for (Component comp : summaryPanel1.getComponents()) {
@@ -3208,6 +3281,7 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryScroll1.repaint();
     }
     
+    //get all the banned characters name
     private String getBannedName(){
         String str="";
         if(bannedName.isEmpty()){
@@ -3256,16 +3330,14 @@ public class TeamGuide extends javax.swing.JFrame {
         exitButton3.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_exitButton3MouseExited
 
-    
-    
     private void generateLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateLabel1MouseClicked
+        //activate generator
         App.PrepareGeneratorSpiralAbyss app = new App.PrepareGeneratorSpiralAbyss(floor, chamber, elementsLabel, weaponsLabel, bannedName, charOwnedList);
         app.extractEnemyFromText();
         app.checkFloor();
         
         HashMap<String, ArrayList<String>> teamsFinal = new LinkedHashMap<>();
         teamsFinal = app.getFinalTeams();
-        System.out.print(teamsFinal);
         
         dispose();
         new TeamResult(userId, username, email,profileImage,bgmPlayer, teamsFinal).setVisible(true);
@@ -3284,13 +3356,13 @@ public class TeamGuide extends javax.swing.JFrame {
     }//GEN-LAST:event_generateLabel1MouseExited
 
     private void generateButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateButton1MouseClicked
+        //activate generator
         App.PrepareGeneratorSpiralAbyss app = new App.PrepareGeneratorSpiralAbyss(floor, chamber, elementsLabel, weaponsLabel, bannedName, charOwnedList);
         app.extractEnemyFromText();
         app.checkFloor();
         
         HashMap<String, ArrayList<String>> teamsFinal = new LinkedHashMap<>();
         teamsFinal = app.getFinalTeams();
-        System.out.print(teamsFinal);
         
         dispose();
         new TeamResult(userId, username, email,profileImage,bgmPlayer, teamsFinal).setVisible(true);

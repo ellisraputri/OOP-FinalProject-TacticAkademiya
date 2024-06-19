@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package App;
 
 import java.io.File;
@@ -18,14 +14,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-/**
- *
- * @author asus
- */
+
 public class GameCharacterDetail {
     private final GameCharacter gamechar;
-    private String url;
-    private String url2;
+    private String url;     //to find basic info
+    private String url2;    //to find weapon, artifact, teams
     private String constellation;
     private String affiliation;
     private String birthday;
@@ -48,6 +41,7 @@ public class GameCharacterDetail {
         findNamecard();
     }
     
+    //find the url for the character based on txt
     private void findUrl(){
         try {
             File myObj = new File("src/App/text/link.txt");
@@ -68,6 +62,7 @@ public class GameCharacterDetail {
         }
     }
     
+    //find basic info
     private void findBasicInfo(){
         try{
            //connecting to the url
@@ -88,6 +83,7 @@ public class GameCharacterDetail {
            cnVoice = doc.getElementsContainingText("Chinese:").last().text().replaceAll("Chinese:", "");
            jpVoice = doc.getElementsContainingText("Japanese:").last().text().replaceAll("Japanese:", "");
            
+           //setting the ones that their va name is not showing right
            if(gamechar.getName().equals("Bennett")){
                jpVoice = " 逢坂良太/Osaka Ryota";
            }
@@ -126,14 +122,13 @@ public class GameCharacterDetail {
                jpVoice = " 内山昂辉/Uchiyama Koki";
                cnVoice = " 周帅/Zhou Shuai";
            }
-           
-           
-           
+  
         }catch(IOException ex){
             ex.printStackTrace();
         }
     }
     
+    //find weapons, artifacts, and teams
     private void findWeaponsArtifactsTeams(){
         try{
            //connecting to the url
@@ -144,6 +139,7 @@ public class GameCharacterDetail {
            int i=0;
            for(Element e: weaponsArtifacts){
                 String str = e.text();
+                //for Dehya, the weapon only four
                 if(gamechar.getName().equals("Dehya")){
                     if(i<4){
                         weapons.add(str);
@@ -172,7 +168,8 @@ public class GameCharacterDetail {
            artifactCirclet = artifactStats.get(2).text().replaceAll("Circlet: ", "");
            artifactSubstats = artifactStats.get(3).text().replaceAll("Substats: ", "");
            
-           //find teams
+           //find teams for Hydro Traveler from txt
+           //this is because the web does not provide
            if(gamechar.getName().equals("Hydro Traveler")){
                 try {
                     File myObj = new File("src/App/text/hydroTravelerTeams.txt");
@@ -189,6 +186,9 @@ public class GameCharacterDetail {
                     e.printStackTrace();
                 }
            }
+           
+           //find teams for Amber from txt
+           //this is because the web does not provide
            else if(gamechar.getName().equals("Amber")){
                try {
                     File myObj = new File("src/App/text/amberTeams.txt");
@@ -205,10 +205,14 @@ public class GameCharacterDetail {
                     e.printStackTrace();
                 }
            }
+           
+           //find other characters team from the url
            else{
                 Elements charTeams = doc.getElementsByClass("character-portrait");
                 for(Element e: charTeams){
                      String name = e.select("img").attr("alt");
+                     
+                     //set some character name, because the web uses nickname
                      name = (name.equals("Itto"))? "Arataki Itto" : name;
                      name = (name.equals("Kokomi"))? "Sangonomiya Kokomi" : name;
                      name = (name.equals("Ayaka"))? "Kamisato Ayaka" : name;
@@ -231,22 +235,27 @@ public class GameCharacterDetail {
         }
     }
     
+    //find namecard from folder
     private void findNamecard(){
         namecard = new ImageIcon("src/App/image/CharacterCard/Namecard/" + gamechar.getName() +".png");
     }
     
+    //get character constellation name
     public String getConstellation() {
         return constellation;
     }
 
+    //get character affilliation
     public String getAffiliation() {
         return affiliation;
     }
 
+    //get character birthday
     public String getBirthday() {
         return birthday;
     }
     
+    //get weapon images based on the character best weapons
     public ArrayList<ImageIcon> getWeaponImages(){
         ArrayList<ImageIcon> weaponImageList = new ArrayList<>();
         for(String s: weapons){
@@ -254,54 +263,64 @@ public class GameCharacterDetail {
         }
         return weaponImageList;
     }
-
+    
+    //get the weapon names
     public ArrayList<String> getWeapons() {
         ArrayList<String> weapons2 = new ArrayList<>(weapons);
         return weapons2;
     }
     
+    //get artifact images based on the character best artifact
     public ArrayList<ImageIcon> getArtifactImages(){
         ArrayList<ImageIcon> artifactImageList = new ArrayList<>();
         for(String s: artifacts){
             artifactImageList.add(new ImageIcon("src/App/image/Artifacts/Portraits " + s + ".png"));
         }
-        System.out.println(artifactImageList.size());
         return artifactImageList;
     }
-
+    
+    //get the artifact names
     public ArrayList<String> getArtifacts() {
         ArrayList<String> artifact2 = new ArrayList<>(artifacts);
         return artifact2;
     }
-
+    
+    //get artifacts sands stats
     public String getArtifactSands() {
         return artifactSands;
     }
-
+    
+    //get artifacts goblet stats
     public String getArtifactGoblet() {
         return artifactGoblet;
     }
 
+    //get artifacts circlet stats
     public String getArtifactCirclet() {
         return artifactCirclet;
     }
-
+    
+    //get artifact substats
     public String getArtifactSubstats() {
         return artifactSubstats;
     }
-
+    
+    //get characters team comps
     public ArrayList<String> getTeams() {
         return teams;
     }
 
+    //get character namecard
     public ImageIcon getNamecard() {
         return namecard;
     }
 
+    //get character CN voice actor name
     public String getCnVoice() {
         return cnVoice;
     }
 
+    //get character JP voice actor name
     public String getJpVoice() {
         return jpVoice;
     }
