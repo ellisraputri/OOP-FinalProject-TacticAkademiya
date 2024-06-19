@@ -20,7 +20,9 @@ To access the documentations and poster, click [here](https://github.com/ellisra
 <br>
 
 ## Demo Video
-To access the demo video, click [here](-)
+To access the demo video, click [here](https://drive.google.com/file/d/1mNi6mOCJn-RfBANcbK8iUBGgfpYr482F/view?usp=sharing)
+
+The color quality of the video is a bit poor, so if you want to see the actual colors of the application, you can refer to the screenshots below.
 
 <br>
 

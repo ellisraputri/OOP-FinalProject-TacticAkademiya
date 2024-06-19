@@ -2257,7 +2257,7 @@ public class TeamGuide extends javax.swing.JFrame {
             
             clonedPanel.addMouseListener(new MouseAdapter() {
                 @Override
-                public void mouseClicked(MouseEvent e) {
+                public void mousePressed(MouseEvent e) {
                     handlePanelClick(clonedPanel.getName());
                 }
             });
@@ -2382,7 +2382,6 @@ public class TeamGuide extends javax.swing.JFrame {
         summaryScroll.getVerticalScrollBar().setValue(0);
     }
     
-    //handle panel click for team page2
     private void handlePanelClick(String panelName) {
         if (selectedPanels.contains(panelName)) {
             selectedPanels.remove(panelName);
