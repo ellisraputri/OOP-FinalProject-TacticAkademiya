@@ -10,7 +10,7 @@
 
 ## Project Description
 Tactic Akademiya is a simple Java app that helps Genshin players to know more about a 
-character and create the best party to defeat enemies. Tactic Akademiya consists of two main parts, namely the Team Guide page and Character Information page. Team Guide page will help you generate the best team comps to defeat enemies or to pass Spiral Abyss. Character Information page has a detailed information about a character, from the basic information to team builds. Besides that, user can also set their preferred profile picture and background music when using the app. 
+character and create the best party to defeat enemies. Tactic Akademiya consists of two main parts, namely the Team Guide page and Character Information page. Team Guide page will help you generate the best team comps to defeat enemies or to pass Spiral Abyss. Character Information page has a detailed information about a character that is obtained from web scrapping. Besides that, user can also set their preferred profile picture and background music when using the app. 
 
 <br>
 
