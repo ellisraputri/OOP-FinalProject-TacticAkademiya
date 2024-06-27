@@ -109,19 +109,11 @@ public class TeamGuide extends javax.swing.JFrame {
             ResultSet rs1 = st.executeQuery("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='characters'");
             int index=0;
             while(rs1.next()){
-                //index 70 is the userId, so we skip it
-                if(index==70){
+                if(index==0){
                     index++;
                     continue;
                 }
-                
-                //to match the previous list, we need to modify the get() function 
-                if(index<70 && ownedOrNot.get(index) == true){
-                    String name = rs1.getString(1);
-                    name = name.replaceAll("([a-z])([A-Z])", "$1 $2");
-                    charOwnedList.add(name);
-                }
-                else if(index>70 && ownedOrNot.get(index-1) == true){
+                else if(ownedOrNot.get(index-1) == true){
                     String name = rs1.getString(1);
                     name = name.replaceAll("([a-z])([A-Z])", "$1 $2");
                     charOwnedList.add(name);
